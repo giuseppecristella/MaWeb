@@ -1,0 +1,778 @@
+<RewriterConfig>
+  <Rules>
+    <RewriterRule>
+      <LookFor>~/index.html</LookFor>
+      <SendTo>~/Default.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/azienda.html</LookFor>
+      <SendTo>~/azienda.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/servizi.html</LookFor>
+      <SendTo>~/servizi.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/eventi.html</LookFor>
+      <SendTo>~/eventi.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/promozioni.html</LookFor>
+      <SendTo>~/promozioni.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/blog.html</LookFor>
+      <SendTo>~/blog.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/contattaci.html</LookFor>
+      <SendTo>~/contact.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/carrello.html</LookFor>
+      <SendTo>~/shop/carrello.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/il nostro canale youtube.html</LookFor>
+      <SendTo>~/video.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/suggerimenti.html</LookFor>
+      <SendTo>~/ListaNozze.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/newsletter.html</LookFor>
+      <SendTo>~/newsletter.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Complementi.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=40</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Idee Regalo.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=43</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Accedi.html</LookFor>
+      <SendTo>~/shop/Accedi.aspx</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucine.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=38</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Camere da letto.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=39</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Camerette.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=41</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/ciao.html</LookFor>
+      <SendTo>~/EventoDettaglio.aspx?Id=67</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Passeggiata-in-Gravina.html</LookFor>
+      <SendTo>~/EventoDettaglio.aspx?Id=66</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Ci-si-abitua-a-pepp.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=36</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Qual-è-la-Mission-della-tua-organizzazione.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=33</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Proposta-di-Valore-Unico.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=34</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Non-pensare-di-farla-franca.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=35</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Questione-di-atteggiamento.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=30</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Sua-maestà-il-consumatore.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=44</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/…-e-se-provassimo-a-guardarci-dentro.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=29</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Pilota-o-Passeggero.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=32</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/provola.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=168</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/peppe.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=169</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/50-di-Sconto-su-tutta-la-merce!.html</LookFor>
+      <SendTo>~/PromoDettaglio.aspx?Id=63</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/promozione-home.html</LookFor>
+      <SendTo>~/PromoDettaglio.aspx?Id=60</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/f.html</LookFor>
+      <SendTo>~/SuggDettaglio.aspx?Id=61</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Titolo-articolo-sugg.-per-la-casa.html</LookFor>
+      <SendTo>~/SuggDettaglio.aspx?Id=53</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Titolo-suggerimento-Buona-Cucina.html</LookFor>
+      <SendTo>~/SuggDettaglio.aspx?Id=55</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/Prova-sugg.-manutenzione.html</LookFor>
+      <SendTo>~/SuggDettaglio.aspx?Id=54</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Ottoman.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=51</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Chair.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=52</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Couch.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=53</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sedia Midia.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=166</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/50%-di-Sconto-su-tutta-la-merce!.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=63</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/promozione-home.html</LookFor>
+      <SendTo>~/BlogPost.aspx?Id=60</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Magento Red Furniture Set.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=54</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Akio Dresser.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=41</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Barcelona Bamboo Platform Bed.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=42</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/ Olympus Stylus 750 7.1MP Digital Camera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=46</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/SLR Camera Tripod.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=132</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Universal Camera Case.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=133</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Universal Camera Charger.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=134</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Canon Digital Rebel XT 8MP Digital SLR Camera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=44</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/ Argus QC-2185 Quick Click 5MP Digital Camera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=45</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/prodotto di prova.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=170</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi d'arredo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=171</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana d'arredo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=172</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Bastoni artistici.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=173</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi d'arredo blu scuro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=174</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/prova maioss.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=175</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Maioliche.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=42</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Pomo in maiolica.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=177</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Basamento con lume struttura metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=179</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Basamento impero struttura in metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=180</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Consolle legno noce gambi a sciabola.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=182</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lampadario vetro murano lavorato a mano .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=183</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume con paralume in pergamena.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=184</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume arredo bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=185</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume struttura metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=186</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume metacrilato trasparente.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=187</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumetti metacrilato trasparente.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=188</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi finitura rame paralume tessuto .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=189</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi in finitura oro-argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=190</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi verniciati con particolari maiolica .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=191</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana d'arredo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=172</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=173</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Basamento impero struttura in metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=180</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Consolle legno noce gambi a sciabola.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=182</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lampadario vetro murano lavorato a mano .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=183</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume con paralume in pergamena.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=184</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume arredo bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=185</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume struttura metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=186</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume metacrilato trasparente.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=187</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumetti metacrilato trasparente.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=188</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi finitura rame paralume tessuto .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=189</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi in finitura oro-argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=190</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi verniciati con particolari maiolica .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=191</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana asta ciliegio paralume bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=192</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Slamp bianca.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=193</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Slamp struttura nikel.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=194</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura alluminio poggia oggetti ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=195</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura oro-argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=196</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura alluminio e vetro bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=197</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura ruggine.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=198</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana blu raggrinzante con particolari maiolica.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=199</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Nikel paralume metacrilato bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=200</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Poltrona in metacrilato laccata nera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=201</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Poltroncina in metacrilato fumè nera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=202</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta cd finitura alluminio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=203</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV Rocchetti finitura alluminio piani legno ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=205</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sgabelli struttura alluminio seduta polipropilene arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=215</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio con cornice rivestita in pelle testa di moro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=216</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV legno wengè piano in cristallo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=206</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV legno wengè.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=207</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Pomo in maiolica 102M.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=178</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Alberello emblema spighe su tre monti in corona.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=222</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Alberello con fiore in turchino e arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=223</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Alberello decorazione bordeux.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=224</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Alberello fiori iempimento ghiricori in turchino-celeste.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=225</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Bottiglia decoro volto madre terra.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=226</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Brocchetta decoro faunistico.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=227</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Brocchetta elementi decorativi tradizionali.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=228</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Brocchetta tradizionale decoro peonea.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=229</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Campanella decoro margherita arancio turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=230</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Campanella piccola margherita foglie dipinte turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=231</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana asta ciliegio paralume bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=192</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Slamp bianca.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=193</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Slamp struttura nikel.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=194</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/esempio cucina.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=283</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piattino rosone centrale arancio e turchino .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=233</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piatto cappello del prete.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=234</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piatto rosone Chiesa Madre San Lorenzo di Laterza.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=235</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piatto decoro floreale giglio giallo–arancio-turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=236</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/esempio cucina.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=285</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura alluminio poggia oggetti ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=195</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura oro-argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=196</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura alluminio e vetro bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=197</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana finitura ruggine.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=198</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana blu raggrinzante con particolari maiolica.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=199</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Vaso da fiori giglio turchino arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=249</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Zuppiera con vassoio in maiolica decorazione 700  turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=250</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/prodotto di prova.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=251</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lume decorazione tradizionale in turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=237</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Pomo grande colori turchino e arancio .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=238</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Pomo medio colori turchino e arancio .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=239</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Pomo piccolo colori turchino e arancio .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=240</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tris di Pomi colori turchino e arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=241</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta foto in maiolica con decoro in turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=242</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta ombrello.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=243</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta sapone decorazioni tralci ghiricori turchino arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=244</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta candela decoro ventaglio turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=245</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta lettere decoro giallo arancio turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=246</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Svuota tasche rosso.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=247</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Vaso da fiori decorato con tralci ghirocori turchino giallo arancio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=248</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta candela decoro ventaglio turchino.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=270</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piatto nuovo di prova.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=42&amp;ProdId=287</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Piantana Nikel paralume metacrilato bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=200</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Poltrona in metacrilato laccata nera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=201</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Poltroncina in metacrilato fumè nera.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=202</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta cd finitura alluminio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=203</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sgabelli Snaidero finitura alluminio seduta legno laccata.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=204</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV Rocchetti finitura alluminio piani legno ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=205</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV legno wengè piano in cristallo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=206</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Porta TV legno wengè.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=207</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro giardino cornice oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=208</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro papaveri cornice argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=209</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro Parigi cornice argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=210</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro viole cornice oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=211</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sgabelli struttura cromata seduta metacrilato rosso.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=213</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sgabello struttura inox seduta vero cuoio bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=214</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio con cornice rivestita in pelle testa di moro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=216</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio cornice classica laccato bordeux.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=217</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio in finitura foglia oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=218</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino-tavolo da salotto finitura laccato lucido.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=219</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino da salotto struttura alluminio piano ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=220</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino piano in cristallo struttura ferro laccato grafite.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=221</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/esempio camera da letto.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=282</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/esempio cameretta.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=41&amp;ProdId=281</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Snaidero Gioconda completa di elettrodomestici.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=288</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cameretta Doimo Cityline con cabina armadio e letti scorrevoli. .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=41&amp;ProdId=298</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Snaidero code con penisola e libreria bianco opaco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=290</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Snaidero Time  impiallacciata Tek  .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=291</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Stosa Replay laccata bianca completa di elettrodomestici .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=294</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Snaidero Sistema zeta laccata lucido con piano in Okite.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=296</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Cucina Snaidero Skyline completa di elettrodomestici.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=38&amp;ProdId=299</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Idee Regalo.html</LookFor>
+      <SendTo>~/shop/Catalogo.aspx?CatId=43</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=171</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi d'arredo blu scuro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=174</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Basamento impero struttura in metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=181</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/esempio prodotto idee regalo.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=43&amp;ProdId=312</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro giardino cornice oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=208</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro papaveri cornice argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=209</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro Parigi cornice argento.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=210</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Quadro viole cornice oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=211</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Sgabello struttura inox seduta vero cuoio bianco.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=214</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio cornice classica laccato bordeux.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=217</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Specchio in finitura foglia oro.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=218</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino-tavolo da salotto finitura laccato lucido.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=219</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino da salotto struttura alluminio piano ciliegio.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=220</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Tavolino piano in cristallo struttura ferro laccato grafite.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=221</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Basamento impero struttura in metallo decorato.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=40&amp;ProdId=181</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Gruppo letto Grilli classico comò più due comodini in radica.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=300</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Gruppo letto Grilli classico comò più due comodini in noce .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=301</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Armadio ante scorrevole specchi bronzo finitura frassino canapa.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=302</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Armadio Florida laccato bianco lucido sei ante battente  .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=304</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Letto matrimoniale in eco pelle sfoderabile  .html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=39&amp;ProdId=305</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Lumi d'arredo colore ruggine.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=171</SendTo>
+    </RewriterRule>
+    <RewriterRule>
+      <LookFor>~/shop/Bastoni artistici.html</LookFor>
+      <SendTo>~/shop/Dettaglio.aspx?CatId=3&amp;ProdId=173</SendTo>
+    </RewriterRule>
+  </Rules>
+</RewriterConfig>

@@ -1,0 +1,143 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Gestione portale Matera Arredamenti</title>
+    <!--                       CSS                       -->
+    <!-- Reset Stylesheet -->
+    <link rel="stylesheet" href="resources/css/reset.css" type="text/css" media="screen" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css" media="screen" />
+    <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+    <link rel="stylesheet" href="resources/css/invalid.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="resources/css/ui.all.css" type="text/css" />
+    <!-- Internet Explorer Fixes Stylesheet -->
+    <!--[if lte IE 7]>
+			<link rel="stylesheet" href="resources/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+    <!--                       Javascripts                       -->
+    <!-- jQuery -->
+
+    <script type="text/javascript" src="resources/scripts/jquery-1.3.2.min.js"></script>
+
+    <!-- jQuery Configuration -->
+
+    <script type="text/javascript" src="resources/scripts/simpla.jquery.configuration.js"></script>
+
+    <!-- Facebox jQuery Plugin -->
+
+    <script type="text/javascript" src="resources/scripts/facebox.js"></script>
+
+    <!-- jQuery Datepicker Plugin -->
+
+    <script type="text/javascript" src="resources/scripts/ui.core.js"></script>
+
+    <script type="text/javascript" src="resources/scripts/ui.datepicker.js"></script>
+
+    <script type="text/javascript" src="resources/scripts/ui.datepicker-it.js"></script>
+
+    <!--[if IE]><script type="text/javascript" src="resources/scripts/jquery.bgiframe.js"></script><![endif]-->
+    <!-- Internet Explorer .png-fix -->
+    <!--[if IE 6]>
+			<script type="text/javascript" src="resources/scripts/DD_belatedPNG_0.0.7a.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+</head>
+<body>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#ctl00_ContentPlaceHolder1_txtData").datepicker();
+        });
+    </script>
+
+    <%--<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/it_IT"
+        type="text/javascript"></script>
+
+    <script type="text/javascript">        FB.init("90fadf74f6cbee14a721a43a616e659f");</script>--%>
+    <form id="form2" runat="server">
+    <div id="body-wrapper">
+        <!-- Wrapper for the radial gradient background -->
+        <div id="sidebar">
+            <div id="sidebar-wrapper">
+                <!-- Sidebar with logo and menu -->
+          
+                <!-- Logo (221px wide) -->
+<div style="width: 100px; text-align: center; margin: auto;">
+                
+                    <img id="logo" style="background: #fff; border: 3px solid #d0d0d0; padding: 5px;
+                        width: 90%; margin-right: 0px;" src="../img/logo.png" alt="Matera Arredamenti logo" />
+                </div>
+                <!-- Sidebar Profile links -->
+                <div id="profile-links">
+                    utente:
+                    <asp:LoginName ID="LoginName1" ForeColor="white" runat="server" />
+                    <br />
+                    <br />
+                    <a href="http://www.materaarredamenti.it" target="_blank" title="View the Site">Vai al
+                        Sito</a> |
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                </div>
+                <asp:ContentPlaceHolder ID="ContentNavigoss" runat="server">
+                </asp:ContentPlaceHolder>
+                <%--  <div id="messages" style="display: none">
+                    <!-- Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"  -->
+                    <h3>
+                        3 Messages</h3>
+                    <p>
+                        <strong>17th May 2009</strong> by Admin<br />
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in
+                        mi at felis aliquet congue. <small><a href="#" class="remove-link" title="Remove message">
+                            Remove</a></small>
+                    </p>
+                    <p>
+                        <strong>2nd May 2009</strong> by Jane Doe<br />
+                        Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at
+                        sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam.
+                        Vivamus pretium ornare est. <small><a href="#" class="remove-link" title="Remove message">
+                            Remove</a></small>
+                    </p>
+                    <p>
+                        <strong>25th April 2009</strong> by Admin<br />
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in
+                        mi at felis aliquet congue. <small><a href="#" class="remove-link" title="Remove message">
+                            Remove</a></small>
+                    </p>
+                </div>--%>
+                <!-- End #messages -->
+            </div>
+        </div>
+        <!-- End #sidebar -->
+        <div id="main-content">
+            <!-- Main Content Section with everything -->
+            <noscript>
+                <!-- Show a notification if the user has disabled javascript -->
+                <div class="notification error png_bg">
+                    <div>
+                        Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/"
+                            title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
+                                title="Enable Javascript in your browser">enable</a> Javascript to navigate
+                        the interface properly.
+                    </div>
+                </div>
+            </noscript>
+            <!-- Page Head -->
+            <h2 style="color: #bf0000">
+                Amministrazione portale MATERA ARREDAMENTI</h2>
+            <p id="page-intro">
+            </p>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <div id="footer">
+                <small>&#169; Copyright 2010 www.materarredamenti.it </small>
+            </div>
+            <!-- End #footer -->
+        </div>
+        <!-- End #main-content -->
+    </div>
+    </form>
+</body>
+</html>

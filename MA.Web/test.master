@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="test.master.cs" Inherits="_test" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Matera Arredamenti - mobili per la vita</title>
+    <asp:Literal runat="server" ID="ltrMetaFB"></asp:Literal>
+    <!--CSS FILES STARTS-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body onload="load()">
+    <form id="form1" runat="server">
+    <div style="background: #fff;" id="header_pattern">
+    </div>
+    <div class="head_bar">
+        <div class="center">
+            <a style="margin-top: -20px; background: #fff;" id="logo" title="Homepage" href="index.html">
+                <img style="margin-left: auto; margin-right: auto;" src="img/logo_w.png" alt=" " /></a>
+            <div id="main_navigation" style="float: left; margin-left: 10px; margin-top: 3px;"
+                class="main-menu">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolderNavigoss" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <%--ICONE--%>
+            <div style="text-align: left; float: left; margin-left: 55px;">
+                <div style="margin-top: -8px;" class="social_icons">
+                    <%--<a href="default.aspx" class="social-home">home</a>--%>
+                    <a href="contattaci.html" class="social-mail">mail</a> <a href="blog.html" class="social-blog">
+                        blog</a> <a href="il nostro canale youtube.html" class="social-youtube">youtube</a>
+                    <a target="_blank" href="http://www.facebook.com/matearredamenti" class="social-facebook">
+                        Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div id="wrapper">
+        <div style="border-bottom: 1px solid #fff;" id="header">
+            <!--close one div-->
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="bottom_section">
+        <div id="footer">
+            <div class="one">
+                <div style="height: 15px; display: block;">
+                </div>
+            </div>
+        </div>
+        <div id="footer-copy">
+            <div class="center">
+                <div style="text-align: center; color: #babdc0;" class="one">
+                    © 2012 - Matera Arredamenti
+                    <%-- <span style="font-style:italic;font-size:12px;">
+                     web dev <a href="http://zoom2design.com" target="_blank">zoom2design</a></span>  --%>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+
+   <url>
+      <loc>http://www.materarredamenti.it/</loc>
+      <lastmod>2010-01-31</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>http://www.materarredamenti.it/default.aspx</loc>
+      <changefreq>weekly</changefreq>
+   </url>
+   <url>
+      <loc>http://www.materarredamenti.it/azienda.html</loc>
+   </url>
+   <url>
+      <loc>http://www.materarredamenti.it/servizi.html</loc>
+      <lastmod>2008-03-13</lastmod>
+      <priority>0.3</priority>
+   </url>
+   <url>
+      <loc>http://www.materarredamenti.it/eventi.html</loc>
+   </url>
+  <url>
+    <loc>http://www.materarredamenti.it/Questionario.aspx</loc>
+  </url>
+  <url>
+    <loc>http://www.materarredamenti.it/RicForm.aspx</loc>
+  </url>
+  <url>
+    <loc>http://www.materarredamenti.it/eventi.html</loc>
+  </url>
+  <url>
+    <loc>http://www.materarredamenti.it/contact.aspx</loc>
+  </url>
+  <url>
+    <loc>http://www.materarredamenti.it/archivioGiornali.aspx</loc>
+  </url>
+</urlset>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/Default.aspx" title="Home"  description="">
+    <siteMapNode url="~/azienda.html" title="Azienda"  description="La nostra azienda" />
+    <siteMapNode url="~/servizi.html" title="Servizi"  description="I nostri servizi" />
+    <siteMapNode url="~/newsletter.aspx" title="Servizio Newsletter"  description="La nostra NewsLetter" />
+    <siteMapNode url="~/errore.aspx" title="Servizio Newsletter"  description="La nostra NewsLetter" />
+    <siteMapNode url="~/archivioGiornali.aspx" title="Archivio Giornali"  description="Archivio Giornali" />
+    
+    <siteMapNode url="~/eventi.html" title="Eventi"  description="Lista eventi in archivio" >
+      <siteMapNode url="~/Evento.aspx" title="Dettaglio Evento"  description="Dettaglio Evento" />
+    </siteMapNode>
+    <siteMapNode url="~/RicForm.aspx" title="Ricerca e formazione"  description="ricerca e formazione" >
+      <siteMapNode url="~/RicSinglePag.aspx" title="Dettaglio articolo"  description="Dettaglio articolo"/>
+    </siteMapNode>
+    <siteMapNode url="~/Archiviosuggerimenti.html" title="Archivio Suggerimenti"  description="Archivio Suggerimenti" />
+    <siteMapNode  title="Suggerimenti"  description="Suggerimenti" >
+      <siteMapNode url="~/suggerimenti.html" title="Dettaglio articolo"  description="Dettaglio articolo"/>
+    </siteMapNode>
+    <siteMapNode url="~/questionario.aspx" title="Questionario"  description="Questionario" />
+    <siteMapNode url="~/contact.aspx" title="Contattaci"  description="contattaci" />
+  </siteMapNode>
+</siteMap>

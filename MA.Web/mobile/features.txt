@@ -1,0 +1,5 @@
+- Font variations
+- Transitions variations
+- Color variations
+- Full page cherry slider
+- 

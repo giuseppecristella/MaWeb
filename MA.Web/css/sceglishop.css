@@ -1,0 +1,38 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+ 
+
+body{
+    background: #fff;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin:0px;
+	padding:0px;
+	font-family: 'PTSansRegular';
+	font-size:12px;
+}
+*{
+	margin:0px;
+	padding:0px;
+}
+/*.dark{
+	float:left;
+	margin:280px 0 0 350px;
+}
+.light{
+	float:right;
+	margin:280px 350px 0 0;
+}*/
+
+
+.dark{
+	float:left;
+	margin:240px 0 0 280px;
+}
+.light{
+	float:right;
+	margin:240px 280px 0 0;
+}

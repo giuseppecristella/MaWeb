@@ -1,0 +1,31 @@
+﻿<body style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+ <link rel="stylesheet" type="text/css" href="shadowbox-3.0.3/shadowbox.css">
+<script type="text/javascript" src="shadowbox-3.0.3/shadowbox.js"></script>
+
+<script type="text/javascript">
+Shadowbox.init({
+    // let's skip the automatic setup because we don't have any
+    // properly configured link elements on the page
+    skipSetup: true
+});
+</script>
+
+<script type="text/javascript">
+
+
+window.onload = function() {
+ 
+    // open a welcome message as soon as the window loads
+    Shadowbox.open({
+        content:    '<div style="background:#fff;width:350px;height:350px;" id="welcome-msg">Welcome to my website!</div>',
+        player:     "html",
+        title:      "Welcome",
+        height:     350,
+        width:      350
+    });
+
+};
+</script>
+
+<a href="shop/images/logo-account.png">My Image</a>
+</body>

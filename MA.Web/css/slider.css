@@ -1,0 +1,145 @@
+
+/* SLIDER NAV */
+.slider-nav { /*display: none; */width: 100%; padding: 0; /*float: left;margin: 0;*/ position: relative;z-index: 888; list-style: none; }
+.slider-nav li { list-style: none; padding: 0; margin: 0; background: none; border: none; position: absolute;z-index: 99999;}
+.slider-nav li.prev { top: 0; left: 0;}
+.slider-nav li.next { top: 0; right: 0; }
+.slider-nav a { display: block; text-indent: -9999px; position: relative; z-index: 666; outline: none; }
+
+/* js */
+.js .slider-nav { display: block; }
+
+/* slider-nav type 1 */
+.slider-nav.type-1 { width: 55px; /*float: left; margin-left: -16px;position: absolute;*/   }
+.slider-nav.type-1 a { height: 25px; width: 25px; }
+
+.slider-nav.type-1 li.prev a  
+{
+	 background:url(../images/jquery-slider-theme.png) no-repeat 0 0;
+	/*background: url(../images/arrows-1.png) 0 0 no-repeat; 
+	background-position: -16px 0; 
+	background-color:#FF6F00; */}
+.slider-nav.type-1 li.next a  
+{
+	  background:url(../images/jquery-slider-theme.png) no-repeat -25px 0;
+
+	/*background: url(../images/arrows-1.png) -16px -16px no-repeat; 
+                               background-position: -0 -16px; 
+                               background-color:#FF6F00;*/ }
+
+
+.slider-nav.type-1 a:hover,
+.slider-nav.type-1 a:focus {background-color: #FFE873;}
+.slider-nav.type-1 li.prev a:hover,
+.slider-nav.type-1 li.prev a:focus { background:url(../images/jquery-slider-theme.png) no-repeat 0 -25px; }
+.slider-nav.type-1 li.prev a:active { }
+.slider-nav.type-1 li.next a:hover,
+.slider-nav.type-1 li.next a:focus {  background:url(../images/jquery-slider-theme.png) no-repeat -25px -25px; }
+.slider-nav.type-1 li.next a:active { }
+
+
+
+
+/* slider-nav type 2 */
+.slider-nav.type-2 { width: 32px; margin-left: -16px; position: absolute; }
+.slider-nav.type-2 a { height: 16px; width: 16px;}
+.slider-nav.type-2 li.prev a { background: url(../images/arrows-2.png) 0 0 no-repeat; }
+.slider-nav.type-2 li.next a { background: url(../images/arrows-2.png) -16px -16px no-repeat; }
+.slider-nav.type-2 a:hover,
+.slider-nav.type-2 a:focus {background-color: #ae3b44;}
+.slider-nav.type-2 li.prev a:hover,
+.slider-nav.type-2 li.prev a:focus { background-position: 0 -16px;}
+.slider-nav.type-2 li.prev a:active {}
+.slider-nav.type-2 li.next a:hover,
+.slider-nav.type-2 li.next a:focus { background-position: -16px 0px; }
+.slider-nav.type-2 li.next a:active {}
+
+/* slider-nav type 3 */
+.slider-nav.type-3 { width: 32px;  margin-left: -16px;position: absolute; float: left; clear: both; }
+.slider-nav.type-3 a { height: 16px; width: 16px; }
+
+.slider-nav.type-3 li.prev a { background: url(../images/arrows-3b.png) 0 0 no-repeat; }
+.slider-nav.type-3 li.next a { background: url(../images/arrows-3b.png) -16px -16px no-repeat; }
+.slider-nav.type-3 a:hover,
+.slider-nav.type-3 a:focus {/*background-color: #ae3b44;*/}
+.slider-nav.type-3 li.prev a:hover,
+.slider-nav.type-3 li.prev a:focus { background-position: -16px 0; }
+.slider-nav.type-3 li.prev a:active { }
+.slider-nav.type-3 li.next a:hover,
+.slider-nav.type-3 li.next a:focus { background-position: 0px -16px; }
+.slider-nav.type-3 li.next a:active { }
+
+/* slider-nav type 4 */
+.slider-nav.type-4 { height: 0; position: absolute; }
+.slider-nav.type-4 a { height: 72px; width: 72px; }
+.slider-nav.type-4 li.prev a { background: #fff url(../images/arrows-6.png) 0 0 no-repeat; }
+.slider-nav.type-4 li.next a { background: #fff url(../images/arrows-6.png) 0 -144px no-repeat; }
+.slider-nav.type-4 li.prev a:hover,
+.slider-nav.type-4 li.prev a:focus { background-position: 0 -72px;}
+.slider-nav.type-4 li.prev a:active { margin-top: 1px}
+.slider-nav.type-4 li.next a:hover,
+.slider-nav.type-4 li.next a:focus { background-position: 0 -216px; }
+.slider-nav.type-4 li.next a:active { margin-top: 1px; }
+
+/* slider-nav type 5 */
+.slider-nav.type-5 { width: 36px;  margin-left: -16px;position: absolute; float: left; bottom: 30px; left: 30px; }
+.slider-nav.type-5 a { height: 16px; width: 16px;}
+.slider-nav.type-5 li.prev a { background: url(../images/arrows-5.png) 0 0 no-repeat; }
+.slider-nav.type-5 li.next a { background: url(../images/arrows-5.png) -16px -16px no-repeat; }
+.slider-nav.type-5 li.prev a:hover,
+.slider-nav.type-5 li.prev a:focus { background-position: -16px 0; }
+.slider-nav.type-5 li.prev a:active { }
+.slider-nav.type-5 li.next a:hover,
+.slider-nav.type-5 li.next a:focus { background-position: -0 -16px; }
+.slider-nav.type-5 li.next a:active { }
+
+ 
+
+/* CLIENTS */
+.clients { position: relative; float: left; height: 90px; width: 920px; overflow: hidden; margin: 0 -20px; padding: 0 30px;
+	top: 0px;
+	left: 0px;
+}
+.clients h2 { float: left; padding: 0; margin: 0;}
+.clients ul.items { margin: 0 -100px 0 -10px; padding: 0; list-style: none; float: left;overflow: hidden; width: 800px; }
+.clients ul.items li { float: left; margin: 0; list-style: none; width: 156px; text-align: center; height: 90px;}
+.clients ul.items li a { opacity: .5 }
+.clients ul.items li a:hover,
+.clients ul.items li a:focus { opacity: 1 }
+.clients .items a:hover img { margin-top: -90px; }
+
+.clients .slider-nav { top: 35px; bottom: auto; left: 190px; right: auto;}
+
+
+/* portfolio-container 
+.portfolio-container { border-top: 1px solid #f1f1f1; position: relative; float: left; height: 90px; width: 920px; overflow: hidden; margin: 0 -20px; padding: 0 30px;
+	top: 0px;
+	left: 0px;
+}
+.portfolio-container ul.portfolio-container-items { margin: 0 -100px 0 -10px; padding: 0; list-style: none; float: left;overflow: hidden; width: 800px; }
+.portfolio-container ul.portfolio-container-items li { float: left; margin: 0; list-style: none; width: 156px; text-align: center; height: 90px;}
+
+
+.portfolio-container .slider-nav { top: 35px; bottom: auto; left: 190px; right: auto;}
+*/
+
+/* MAIN COLOR OVERRIDE */
+ 
+
+ 
+.slider-nav.type-1 li a:hover,
+ 
+.slider-nav.type-2 li a:hover,
+ 
+.slider-nav.type-5 li a:hover,
+ 
+.slider-nav.type-5a li a:hover,
+ 
+.menu-1 li.current,
+.menu-1 li.current:after,
+.tags li a:hover,
+.pricing table:hover th,
+.button.default span { background-color: #B39250; }
+
+a.frame-holder:hover img,
+.tags li a:hover { border-color: #B39250; }
