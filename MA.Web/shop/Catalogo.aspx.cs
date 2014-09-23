@@ -21,7 +21,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
   // Constructor chaining; 
   // centralizzo la creazione dell'istanza della classe repository e del singleton 
   public shop_Catalogo()
-    : this(new RepositoryService(MagentoConnection.Instance, new CacheManager()))
+    : this(new RepositoryService(MagentoConnection.Instance, new AspnetCacheManager()))
   {
 
   }
@@ -35,22 +35,10 @@ public partial class shop_Catalogo : System.Web.UI.Page
   {
     try
     {
-      if ((ArrayList)Session["carrello"] == null)
-      {
-        Session["carrello"] = new ArrayList();
-      }
-      ArrayList arrayCart = (ArrayList)Session["carrello"];
-      int numItems = 0;
-      // Calcola il tot. di  un eventuale carrello e lo mostra
-      if (arrayCart != null)
-      {
-        for (int i = 0; i < arrayCart.Count; i++)
-        {
-          Product tProd = (Product)arrayCart[i];
-          numItems += int.Parse(tProd.qty);
-        }
-      }
-      ltrTotCart.Text = numItems.ToString();
+      var cart = Cart;
+      var totale = cart.Sum(p => int.Parse(p.price));
+      ltrTotCart.Text = totale.ToString();
+
       // Controlla la connessione?  Dovrebbe funzionare con l'introduzione del singleton
       if (!helper.checkConnection())
       {
@@ -58,13 +46,38 @@ public partial class shop_Catalogo : System.Web.UI.Page
         HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
       }
       /*PROVA API EST. AGGIUNTA FUNZIONE PER RECUPER BESTSERLLERS!!!!!
-Product[] p = Product.Peppe(apiUrl, sessionId);*/
+      Product[] p = Product.Peppe(apiUrl, sessionId);*/
     }
     catch (Exception ex)
     {
       helper.checkConnection();
       // Response.Redirect("Catalogo.html");
       // lblErr.Text = "apiurl: " + (string)HttpContext.Current.Cache["apiUrl"] + "SessId " + (string)HttpContext.Current.Cache["sessionId"] + ex.Message;//"session-test--> "+(string)Session["test"]+ " " +apiUrl + " sessionId: " + sessionId + " exc: " + ex.Message;
+    }
+  }
+
+  private static void CalculateTotal(List<Product> arrayCart, int numItems)
+  {
+    if (arrayCart == null) return;
+    
+    for (int i = 0; i < arrayCart.Count; i++)
+    {
+      Product tProd = (Product)arrayCart[i];
+      numItems += int.Parse(tProd.qty);
+    }
+  }
+
+
+  private List<Product> Cart
+  {
+    get
+    {
+      var cart = new List<Product>();
+      if (Session["carrello"] != null)
+      {
+        cart = Session["carrello"] as List<Product>;
+      }
+      return cart;
     }
   }
 
@@ -217,17 +230,17 @@ Product[] p = Product.Peppe(apiUrl, sessionId);*/
     //la product info è veloce ma meglio usarla per il dettaglio del prodotto selezionato
     //Product myProductInfo = Product.Info(apiUrl, sessionId, new object[] { tempproductCart.product_id });
     //faccio una product.list con filtro! perchè mi servono meno attributi
-    
+
     XmlRpcStruct filterParameters = new XmlRpcStruct();
     XmlRpcStruct filterOperator = new XmlRpcStruct();
     filterOperator.Add("eq", lnkbtn.Text); // operatore booleano
     filterParameters.Add("product_id", filterOperator);
-    
+
     Product[] myProducts = Ez.Newsletter.MagentoApi.Product.List(
-      (string)HttpContext.Current.Cache["apiUrl"], 
-      (string)HttpContext.Current.Cache["sessionId"], 
+      (string)HttpContext.Current.Cache["apiUrl"],
+      (string)HttpContext.Current.Cache["sessionId"],
       new object[] { filterParameters });
-   
+
     myProducts[0].qty = "1";
     ArrayList tempArrayCart = new ArrayList();
     helper.addProdToSessionCart(myProducts[0]);

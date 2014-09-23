@@ -4,10 +4,16 @@ using System.Linq;
 using System.Web;
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication;
+using MagentoRepository.Connection;
 
 
 /// <summary>
-/// Summary description for Repository
+/// Classe Repository di accesso al dominio di Magento
+/// attraverso le API esposte dal suo web service 
+/// NOTE: 
+/// 1) l'object model Magento dovrebbe essere rimappato su oggetti semplificati del nostro dominio
+/// a tal proposito potrebbe essere usato EF come ulteriore layer;
+/// 2) tutti i metodi dovrebbero cachare i risultati, da implementare considerando un adeguato pattern di caching
 /// </summary>
 public class RepositoryService : IRepository
 {
@@ -25,7 +31,7 @@ public class RepositoryService : IRepository
   public CategoryAssignedProduct[] GetProductsByCatId(string categoryId)
   {
     CategoryAssignedProduct[] assignedProducts = null;
-    assignedProducts = Category.AssignedProducts(_connection.url, _connection.GetSessionId(_cacheManager), new object[] { categoryId });
+    assignedProducts = Category.AssignedProducts(_connection.url, _connection.SessionId, new object[] { categoryId });
     return assignedProducts;
   }
 

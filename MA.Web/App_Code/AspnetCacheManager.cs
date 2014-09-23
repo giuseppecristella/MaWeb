@@ -8,7 +8,7 @@ using MagentoComunication;
 /// <summary>
 /// Summary description for CacheManager
 /// </summary>
-public class CacheManager: ICacheManager
+public class AspnetCacheManager: ICacheManager
 {
   public bool Contains(string key)
   {

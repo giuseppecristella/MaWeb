@@ -4,6 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShopMagentoApi.Test
 {
+  /// <summary>
+  /// 
+  /// </summary>
   [TestClass]
   public class MagentoApiTest
   {
