@@ -1,24 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Google.GData.Client;
-using Google.GData.Extensions;
-using Google.GData.YouTube;
-using Google.GData.Extensions.MediaRss;
-using Google.YouTube;
-using System.Reflection;
-using Facebook;
-using DataSetVepAdminTableAdapters;
 
 public partial class Blog : System.Web.UI.Page
 {

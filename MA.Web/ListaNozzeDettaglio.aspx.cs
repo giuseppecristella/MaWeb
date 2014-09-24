@@ -1,24 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Google.GData.Client;
-using Google.GData.Extensions;
-using Google.GData.YouTube;
-using Google.GData.Extensions.MediaRss;
-using Google.YouTube;
-using System.Reflection;
 using System.IO;
-using System.Text;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 public partial class ListaNozzeDettaglio : System.Web.UI.Page
 {

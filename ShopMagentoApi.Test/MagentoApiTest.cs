@@ -1,5 +1,4 @@
-﻿using System;
-using Ez.Newsletter.MagentoApi;
+﻿using Ez.Newsletter.MagentoApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShopMagentoApi.Test

@@ -1,5 +1,4 @@
-﻿using System;
-public interface IMagentoConnection
+﻿public interface IMagentoConnection
 {
   string password { get; set; }
   string sessionId { get; }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Web;
 using System.Web.Security;
-using System.Web.UI;
-using System.Data;
 using Ez.Newsletter.MagentoApi;
 
 public partial class shop_Customers_Default : System.Web.UI.Page

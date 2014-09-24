@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ez.Newsletter.MagentoApi;
-using MagentoComunication;
+﻿using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Cache;
 using MagentoRepository.Connection;
 
 

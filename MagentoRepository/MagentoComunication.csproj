@@ -41,13 +41,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\ICacheManager.cs" />
     <Compile Include="Connection\IMagentoConnection.cs" />
-    <Compile Include="ICache.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Connection\MagentoConnection.cs" />
     <Compile Include="Repository\RepositoryEF.cs" />

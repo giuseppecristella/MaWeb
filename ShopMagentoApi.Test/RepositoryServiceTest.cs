@@ -1,6 +1,4 @@
-﻿using System;
-using MagentoComunication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShopMagentoApi.Test
 {
@@ -26,15 +24,6 @@ namespace ShopMagentoApi.Test
       var repository = new RepositoryService(MagentoConnection.Instance, fakeCacheManager);
       var products = repository.GetProductsByCatId("47");
       Assert.IsTrue(products.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
-    }
-  }
-
-
-  public class FakeCacheManager : ICacheManager
-  {
-    public bool Contains(string key)
-    {
-      return false;
     }
   }
 }

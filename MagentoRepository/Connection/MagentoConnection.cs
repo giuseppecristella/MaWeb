@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Ez.Newsletter.MagentoApi;
-using MagentoComunication;
+using MagentoComunication.Cache;
 using MagentoRepository.Connection;
 
 /// <summary>
@@ -70,8 +67,33 @@ public class MagentoConnection: IMagentoConnection
 
 public class CacheManager : ICacheManager
 {
+  public void Add(string key, object value)
+  {
+    throw new NotImplementedException();
+  }
+
   public bool Contains(string key)
   {
     return false;
+  }
+
+  public int Count()
+  {
+    throw new NotImplementedException();
+  }
+
+  public T Get<T>(string key)
+  {
+    throw new NotImplementedException();
+  }
+
+  public T SafeGet<T>(string key, Func<T> getData)
+  {
+    throw new NotImplementedException();
+  }
+
+  public bool Remove(string key)
+  {
+    throw new NotImplementedException();
   }
 }

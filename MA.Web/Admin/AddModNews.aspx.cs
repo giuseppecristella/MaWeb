@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
-using AjaxControlToolkit;
+
 public partial class AddModNews : System.Web.UI.Page
 {
   string idTipo = "";

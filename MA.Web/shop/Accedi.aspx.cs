@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 public partial class shop_Accedi : System.Web.UI.Page
 {

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Hosting;
 using System.Xml;
 using System.Xml.XPath;
-using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
 using System.Collections;
 public static class helper
@@ -44,6 +39,12 @@ public static class helper
 
   public static ArrayList addProdToSessionCart(Product p)
   {
+    // leggo da session il carrello
+    // controllo che non sia già presente il prodotto da aggiungere
+    // aggiungo il prodotto
+    // estermamente aggiorno la session
+
+
     ArrayList tempArrayCart = new ArrayList();
     tempArrayCart = (ArrayList)HttpContext.Current.Session["carrello"];
     bool isPresent = false;

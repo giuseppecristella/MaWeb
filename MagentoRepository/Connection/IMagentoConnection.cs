@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace MagentoRepository.Connection
+﻿namespace MagentoRepository.Connection
 {
   public interface IMagentoConnection
   {
