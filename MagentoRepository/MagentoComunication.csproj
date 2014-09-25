@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\FakeCacheManager.cs" />
     <Compile Include="Cache\ICacheManager.cs" />
     <Compile Include="Connection\IMagentoConnection.cs" />
     <Compile Include="Repository\IRepository.cs" />

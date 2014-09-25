@@ -1,4 +1,7 @@
-﻿using Ez.Newsletter.MagentoApi;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Cache;
 using MagentoRepository.Connection;
 
@@ -26,11 +29,20 @@ public class RepositoryService : IRepository
 
   public CategoryAssignedProduct[] GetProductsByCatId(string categoryId)
   {
-    CategoryAssignedProduct[] assignedProducts = null;
-    assignedProducts = Category.AssignedProducts(_connection.url, _connection.SessionId, new object[] { categoryId });
-    return assignedProducts;
+    // Convenzione: le chiavi in cache avranno il nome della classe (plurale se collection) e l'eventuale id del filtro
+    var key = String.Concat("CategoryAssignedProduct", categoryId.ToString());
+    if (_cacheManager.Contains(key)) return _cacheManager.Get<CategoryAssignedProduct[]>(key);
+    try
+    {
+      var assignedProducts = Category.AssignedProducts(_connection.url, _connection.SessionId, new object[] { categoryId });
+      _cacheManager.Add(key, assignedProducts);
+      return assignedProducts;
+    }
+    catch (Exception ex)
+    {
+      return null;
+    }
   }
-
 }
 
 

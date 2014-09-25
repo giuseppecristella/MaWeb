@@ -27,7 +27,6 @@ namespace ShopMagentoApi.Test
       HttpContext.Current = new HttpContext(
         new HttpRequest(null, "http://tempuri.org", null),
         new HttpResponse(null));
-
     }
 
     [TestMethod]
@@ -39,36 +38,39 @@ namespace ShopMagentoApi.Test
       Assert.AreEqual(value, "stringa di prova");
     }
 
-
+    /// <summary>
+    /// Integration Test: viene testato il processo di aggiunta prodotti
+    /// al carrello, usando come meccanismo di cache quello effettivo
+    /// che sarà utilizzato nell'applicazione ossia la session cache asp.net
+    /// </summary>
     [TestMethod]
-    public void Add_Product_To_Cart()
+    public void Add_Some_Products_To_Cart()
     {
       var cache = new AspNetCacheManagerTest();
-
-      _sessionId = Ez.Newsletter.MagentoApi.Connection.Login(_apiUrl, _apiUser, _apiPassword);
-      XmlRpcStruct filterParameters = new XmlRpcStruct();
-      XmlRpcStruct filterOperator = new XmlRpcStruct();
-      filterOperator.Add("eq", "173"); // operatore booleano
-      filterParameters.Add("product_id", filterOperator);
-
-      Product[] products = Product.List(
-        _apiUrl,
-        _sessionId,
-        new object[] { filterParameters });
+      var product = GetProductById("173");
 
       CartHelper.CacheManager = new AspNetCacheManagerTest();
-      CartHelper.AddProductToSessionCart(products[0]);
-      CartHelper.AddProductToSessionCart(products[0]);
+      CartHelper.AddProductToSessionCart(product);
+      CartHelper.AddProductToSessionCart(product);
 
       var cartFromCache = cache.Get<Cart>("carrello");
+      Assert.AreEqual(cartFromCache.Products.Count(), 1);
+
+      product = GetProductById("179");
+      CartHelper.AddProductToSessionCart(product);
+
+      cartFromCache = cache.Get<Cart>("carrello");
       Assert.AreEqual(cartFromCache.Products.Count(), 2);
+    }
 
-
-      // Aggiunta prodotto da lista prodotti oppure prodotto dettaglio
-      // Scenario: sono in catalogo aggiungo, 
-      // leggo dalla sessione se non trovo niente faccio una new
-      // altrimenti aggiorno
-
+    private Product GetProductById(string productId)
+    {
+      _sessionId = Connection.Login(_apiUrl, _apiUser, _apiPassword);
+      var filterParameters = new XmlRpcStruct();
+      var filterOperator = new XmlRpcStruct {{"eq", productId}};
+      filterParameters.Add("product_id", filterOperator);
+      var products = Product.List(_apiUrl, _sessionId, new object[] { filterParameters });
+      return products[0];
     }
   }
 }

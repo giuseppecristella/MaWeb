@@ -58,7 +58,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
   private static void CalculateTotal(List<Product> arrayCart, int numItems)
   {
     if (arrayCart == null) return;
-    
+
     for (int i = 0; i < arrayCart.Count; i++)
     {
       Product tProd = (Product)arrayCart[i];
@@ -143,25 +143,36 @@ public partial class shop_Catalogo : System.Web.UI.Page
 
   protected void pagerProducts_PreRender(object sender, EventArgs e)
   {
-    string _catID = "47";
-    if (!string.IsNullOrEmpty(Request.QueryString["CatId"]))
-      _catID = Request.QueryString["CatId"];
-    object[] catIdObj = { _catID };
+    var rootCat = SetShopTypeInfo();
+    HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+    menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
-    // verificare se il timeout è relativo alla connection o più probabilmente alla cache
-    if (!helper.checkConnection())
+    var products = _repository.GetProductsByCatId("47");
+    if (products != null && products.Any())
     {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+      var productsInStock = products.Where(p => p.qty_in_stock > 0);
+      bool isPagerVisible = (productsInStock.Count() > pagerProducts.PageSize);
+      ShowHidePagerForShop(isPagerVisible);
+      lvProducts.DataSource = productsInStock;
+      lvProducts.DataBind();
     }
+  }
 
-    /*Recupero il nome della categoria e lo scrivo nella label*/
+  private string SetShopTypeInfo()
+  {
+    string catId = "47";
+    if (!string.IsNullOrEmpty(Request.QueryString["CatId"]))
+      catId = Request.QueryString["CatId"];
+    object[] catIdObj = { catId };
+
+/*Recupero il nome della categoria e lo scrivo nella label*/
     // Singletone per gestire la connessione a la sessionId
-    object catSubMenu = Category.Level((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], catIdObj);
-    System.Collections.Hashtable hashSubMenu = (System.Collections.Hashtable)catSubMenu;
-    lblCategoria.Text = (string)hashSubMenu["name"];
+    object catSubMenu = Category.Level((string) HttpContext.Current.Cache["apiUrl"],
+      (string) HttpContext.Current.Cache["sessionId"], catIdObj);
+    System.Collections.Hashtable hashSubMenu = (System.Collections.Hashtable) catSubMenu;
+    lblCategoria.Text = (string) hashSubMenu["name"];
     string rootCat = "37";
-    if ((string)hashSubMenu["parent_id"] == "47")
+    if ((string) hashSubMenu["parent_id"] == "47")
     {
       isShopVerde = false;
       //shop rosso
@@ -181,31 +192,11 @@ public partial class shop_Catalogo : System.Web.UI.Page
       divSpotRosso.Visible = true;
       divCarrello.Style.Add("background", "#76A227");
     }
-    //lblCategoria.Text = (string) Session["apiUrl"] +
-    //                    (string) Session["sessionId"] + " --> "+rootCat;
-    if (HttpContext.Current.Cache["sessionId"] == null)
-    {
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-    menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-    CategoryAssignedProduct[] tempmyAssignedProducts = null;
-    if (HttpContext.Current.Cache["myAssignedProducts" + _catID.ToString()] == null)
-    {
-      tempmyAssignedProducts = Category.AssignedProducts((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], catIdObj);
-      /*modifica per visualizzare soltanto gli articoli disponibili*/
-      ArrayList almyAssignedProducts = new ArrayList();
-      foreach (CategoryAssignedProduct product in tempmyAssignedProducts)
-      {
-        if (product.qty_in_stock > 0)
-        {
-          almyAssignedProducts.Add(product);
-        }
-      }
-      HttpContext.Current.Cache.Insert("myAssignedProducts" + _catID.ToString(), almyAssignedProducts);
-    }
-    ArrayList ProductList = (ArrayList)HttpContext.Current.Cache["myAssignedProducts" + _catID.ToString()];
-    bool isPagerVisible = (ProductList.Count > pagerProducts.PageSize);
+    return rootCat;
+  }
+
+  private void ShowHidePagerForShop(bool isPagerVisible)
+  {
     if (isShopVerde)
     {
       pagerProducts.Visible = isPagerVisible;
@@ -216,9 +207,6 @@ public partial class shop_Catalogo : System.Web.UI.Page
       pagerRosso.Visible = isPagerVisible;
       pagerProducts.Visible = false;
     }
-    ArrayList peppe = (ArrayList)HttpContext.Current.Cache["myAssignedProducts" + _catID.ToString()];
-    lvProducts.DataSource = peppe;// (ArrayList)HttpContext.Current.Cache["myAssignedProducts" + _catID.ToString()];
-    lvProducts.DataBind();
   }
 
   protected void addToCart(object sender, EventArgs e)

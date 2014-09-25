@@ -1,28 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using MagentoComunication.Cache;
 
 namespace ShopMagentoApi.Test
 {
   public class FakeCacheManager : ICacheManager
   {
+    private readonly Dictionary<string, object> cache;
+
+    public FakeCacheManager()
+    {
+        cache = new Dictionary<string, object>();
+    }
+
     public void Add(string key, object value)
     {
-      throw new NotImplementedException();
+      cache.Add(key, value);
     }
 
     public bool Contains(string key)
     {
-      return false;
+      return cache.ContainsKey(key);
     }
 
     public int Count()
     {
-      throw new NotImplementedException();
+      return cache.Count;
     }
 
     public T Get<T>(string key)
     {
-      throw new NotImplementedException();
+      return cache.ContainsKey(key) ? (T)cache[key] : default(T);
     }
 
     public T SafeGet<T>(string key, Func<T> getData)
@@ -32,7 +40,8 @@ namespace ShopMagentoApi.Test
 
     public bool Remove(string key)
     {
-      throw new NotImplementedException();
+      object output;
+      return cache.Remove(key);
     }
   }
 }

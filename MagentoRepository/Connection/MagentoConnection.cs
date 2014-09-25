@@ -2,13 +2,15 @@
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Cache;
 using MagentoRepository.Connection;
+using ShopMagentoApi.Test;
 
 /// <summary>
 /// Classe Singleton per gestire i parametri di connessione alla Api di magento
 /// NOTA: eliminare la dipendenza da HttpContext, ok wrapper CacheManager + iniettare dipendenza attraverso property
 /// verificare inoltre la possibilità di usare una semplice classe statica al posto del singleton
+/// VEDERE PATTERN CONNECTION - ES. connessione a db / verificare se ha senso fare una dispose
 /// </summary>
-public class MagentoConnection: IMagentoConnection
+public class MagentoConnection : IMagentoConnection
 {
   // Singleton
   private static MagentoConnection instance = null;
@@ -22,7 +24,8 @@ public class MagentoConnection: IMagentoConnection
 
   public ICacheManager CacheManager
   {
-    get { return _cacheManager ?? (_cacheManager = new CacheManager()); }
+    // Gestire un cache manager di default
+    get { return _cacheManager ?? (_cacheManager = new FakeCacheManager()); }
     set { _cacheManager = value; }
   }
 
@@ -46,16 +49,7 @@ public class MagentoConnection: IMagentoConnection
   {
     get
     {
-      string sessionId = "";
-      if (!_cacheManager.Contains("sessionId"))
-      {
-        sessionId = Connection.Login(url, userId, password);
-      }
-      else
-      {
-        // from cache
-      }
-      return sessionId;
+      return CacheManager.Contains("sessionId") ? _cacheManager.Get<string>("sessionId") : Connection.Login(url, userId, password);
     }
   }
 
