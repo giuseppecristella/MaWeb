@@ -1,10 +1,12 @@
-﻿using Ez.Newsletter.MagentoApi;
+﻿using System.Collections.Generic;
+using Ez.Newsletter.MagentoApi;
 
 namespace MagentoRepository.Repository
 {
   public interface IRepository
   {
-    CategoryAssignedProduct[] GetProductsByCategoryId(string categoryId);
+    List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId);
     Product GetProductById(string productId);
+    object GetCategory(string categoryId);
   }
 }

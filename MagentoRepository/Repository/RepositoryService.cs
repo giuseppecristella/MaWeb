@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CookComputing.XmlRpc;
@@ -19,8 +20,8 @@ using MagentoRepository.Repository;
 public class RepositoryService : IRepository
 {
 
-  private IMagentoConnection _connection;
-  private ICacheManager _cacheManager;
+  private readonly IMagentoConnection _connection;
+  private readonly ICacheManager _cacheManager;
 
   // Constructor injection
   public RepositoryService(IMagentoConnection connection, ICacheManager cacheMAnager)
@@ -29,16 +30,19 @@ public class RepositoryService : IRepository
     _cacheManager = cacheMAnager;
   }
 
-  public CategoryAssignedProduct[] GetProductsByCategoryId(string categoryId)
+  public List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId)
   {
     // Convenzione: le chiavi in cache avranno il nome della classe (plurale se collection) e l'eventuale id del filtro
-    var key = CreateCacheDictionaryKey("CategoryAssignedProduct", categoryId);
-    if (_cacheManager.Contains(key)) return _cacheManager.Get<CategoryAssignedProduct[]>(key);
+    var key = CreateCacheDictionaryKey("CategoryAssignedProducts", categoryId);
+    if (_cacheManager.Contains(key)) return _cacheManager.Get<List<CategoryAssignedProduct>>(key);
     try
     {
-      var assignedProducts = Category.AssignedProducts(_connection.url, _connection.SessionId, new object[] { categoryId });
-      _cacheManager.Add(key, assignedProducts);
-      return assignedProducts;
+      var assignedProducts = Category.AssignedProducts(_connection.Url, _connection.SessionId, new object[] { categoryId });
+      if (assignedProducts == null) return null;
+      var productsInStock = assignedProducts.Where(p => p.qty_in_stock > 0).ToList();
+      if (!productsInStock.Any()) return null;
+      _cacheManager.Add(key, productsInStock);
+      return productsInStock;
     }
     catch (Exception ex)
     {
@@ -58,7 +62,7 @@ public class RepositoryService : IRepository
 
     try
     {
-      var products = Product.List(_connection.url, _connection.SessionId, new object[] { filterParameters });
+      var products = Product.List(_connection.Url, _connection.SessionId, new object[] { filterParameters });
       if (products == null || !products.Any()) return null;
       _cacheManager.Add(key, products[0]);
       return products[0];
@@ -67,6 +71,11 @@ public class RepositoryService : IRepository
     {
       return null;
     }
+  }
+
+  public object GetCategory(string categoryId)
+  {
+    return Category.Level(_connection.Url, _connection.SessionId, new object[] { categoryId }) as Category;
   }
 
   private static string CreateCacheDictionaryKey(string entity, string filter)

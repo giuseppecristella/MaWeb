@@ -20,9 +20,9 @@ namespace ShopMagentoApi.Test
     public void TestInitialize()
     {
       // Queste informazioni devono essere inizializzate nel global.asax
-      MagentoConnection.Instance.url = "http://www.zoom2cart.com/api/xmlrpc";
-      MagentoConnection.Instance.userId = "ws_user";
-      MagentoConnection.Instance.password = "123456";
+      MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
+      MagentoConnection.Instance.UserId = "ws_user";
+      MagentoConnection.Instance.Password = "123456";
 
     }
 
@@ -33,12 +33,12 @@ namespace ShopMagentoApi.Test
       var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
 
       var products = repository.GetProductsByCategoryId("47");
-      Assert.IsTrue(products.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
+      Assert.IsTrue(products.Count > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
 
       products = repository.GetProductsByCategoryId("47");
-      Assert.IsTrue(products.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
+      Assert.IsTrue(products.Count > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
 
-      var productsFromCache = FakeCacheManager.Get<CategoryAssignedProduct[]>("CategoryAssignedProduct47");
+      var productsFromCache = FakeCacheManager.Get<CategoryAssignedProduct[]>("CategoryAssignedProducts47");
       Assert.AreEqual(products.Count(), productsFromCache.Count(), "");
 
       products = repository.GetProductsByCategoryId("000");

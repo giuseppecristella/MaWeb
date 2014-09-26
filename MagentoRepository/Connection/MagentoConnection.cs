@@ -44,50 +44,19 @@ public class MagentoConnection : IMagentoConnection
     }
   }
 
-
+  // Nota ha senso gestire la cache solo se vogliamo generare un nuovo sessionId ciclicamente allo scadere di un timeout
   public string SessionId
   {
     get
     {
-      return CacheManager.Contains("sessionId") ? _cacheManager.Get<string>("sessionId") : Connection.Login(url, userId, password);
+      // Bug: se scade la sessione chi va a settare nuovamente il sessionId
+      return CacheManager.Contains("sessionId") ? _cacheManager.Get<string>("sessionId") : Connection.Login(Url, UserId, Password);
     }
   }
 
-  public string url { get; set; }
-  public string userId { get; set; }
-  public string password { get; set; }
+  public string Url { get; set; }
+  public string UserId { get; set; }
+  public string Password { get; set; }
 
 }
 
-public class CacheManager : ICacheManager
-{
-  public void Add(string key, object value)
-  {
-    throw new NotImplementedException();
-  }
-
-  public bool Contains(string key)
-  {
-    return false;
-  }
-
-  public int Count()
-  {
-    throw new NotImplementedException();
-  }
-
-  public T Get<T>(string key)
-  {
-    throw new NotImplementedException();
-  }
-
-  public T SafeGet<T>(string key, Func<T> getData)
-  {
-    throw new NotImplementedException();
-  }
-
-  public bool Remove(string key)
-  {
-    throw new NotImplementedException();
-  }
-}

@@ -10,7 +10,10 @@ namespace MagentoBusinessDelegate.Helpers
 
   public static class ConfigurationHelper
   {
+    public const string DefaultCategory = "37";
+
     public const string CartKey = "";
+
     public static readonly Dictionary<CacheKey, string> CacheKeyNames = new Dictionary<CacheKey, string>()
     {
       { CacheKey.Cart, "Cart" }
