@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Cache;
 using MagentoRepository.Connection;
+using MagentoRepository.Repository;
 
 
 /// <summary>
@@ -27,10 +29,10 @@ public class RepositoryService : IRepository
     _cacheManager = cacheMAnager;
   }
 
-  public CategoryAssignedProduct[] GetProductsByCatId(string categoryId)
+  public CategoryAssignedProduct[] GetProductsByCategoryId(string categoryId)
   {
     // Convenzione: le chiavi in cache avranno il nome della classe (plurale se collection) e l'eventuale id del filtro
-    var key = String.Concat("CategoryAssignedProduct", categoryId.ToString());
+    var key = CreateCacheDictionaryKey("CategoryAssignedProduct", categoryId);
     if (_cacheManager.Contains(key)) return _cacheManager.Get<CategoryAssignedProduct[]>(key);
     try
     {
@@ -42,6 +44,35 @@ public class RepositoryService : IRepository
     {
       return null;
     }
+  }
+
+
+  public Product GetProductById(string productId)
+  {
+    var key = CreateCacheDictionaryKey("Product", productId);
+    if (_cacheManager.Contains(key)) return _cacheManager.Get<Product>(key);
+
+    var filterParameters = new XmlRpcStruct();
+    var filterOperator = new XmlRpcStruct { { "eq", productId } };
+    filterParameters.Add("product_id", filterOperator);
+
+    try
+    {
+      var products = Product.List(_connection.url, _connection.SessionId, new object[] { filterParameters });
+      if (products == null || !products.Any()) return null;
+      _cacheManager.Add(key, products[0]);
+      return products[0];
+    }
+    catch (Exception)
+    {
+      return null;
+    }
+  }
+
+  private static string CreateCacheDictionaryKey(string entity, string filter)
+  {
+    var key = String.Concat(entity, filter);
+    return key;
   }
 }
 

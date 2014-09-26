@@ -10,9 +10,14 @@ namespace MagentoRepository.Repository
     /// </summary>
     public class RepositoryMySql: IRepository
     {
-        public CategoryAssignedProduct[] GetProductsByCatId(string categoryId)
+        public CategoryAssignedProduct[] GetProductsByCategoryId(string categoryId)
         {
             throw new System.NotImplementedException();
         }
+
+      public Product GetProductById(string productId)
+      {
+        throw new System.NotImplementedException();
+      }
     }
 }

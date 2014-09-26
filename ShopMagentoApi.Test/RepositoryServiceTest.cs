@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection.Emit;
 using Ez.Newsletter.MagentoApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,6 +14,8 @@ namespace ShopMagentoApi.Test
   [TestClass]
   public class RepositoryServiceTest
   {
+    private static readonly FakeCacheManager FakeCacheManager = new FakeCacheManager();
+
     [TestInitialize]
     public void TestInitialize()
     {
@@ -24,23 +27,45 @@ namespace ShopMagentoApi.Test
     }
 
     [TestMethod]
-    public void GetProductsByCatIdTest()
+    public void GetProductsByCategoryIdTest()
     {
-      var fakeCacheManager = new FakeCacheManager();
-      var repository = new RepositoryService(MagentoConnection.Instance, fakeCacheManager);
-     
-      var products = repository.GetProductsByCatId("47");
+   
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+
+      var products = repository.GetProductsByCategoryId("47");
       Assert.IsTrue(products.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
 
-      products = repository.GetProductsByCatId("47");
+      products = repository.GetProductsByCategoryId("47");
       Assert.IsTrue(products.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
 
-      var productsFromCache = fakeCacheManager.Get<CategoryAssignedProduct[]>("CategoryAssignedProduct47");
-      Assert.AreEqual(products.Count(),productsFromCache.Count(),"");
+      var productsFromCache = FakeCacheManager.Get<CategoryAssignedProduct[]>("CategoryAssignedProduct47");
+      Assert.AreEqual(products.Count(), productsFromCache.Count(), "");
 
-      products = repository.GetProductsByCatId("000");
+      products = repository.GetProductsByCategoryId("000");
       Assert.IsNull(products, "Trovato un prodotto per una categoria non esistente");
+
     }
+
+    [TestMethod]
+    public void GetProductById()
+    {
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+
+      // Carico un prodotto in cache e lo recupero
+      FakeCacheManager.Add("Product1",
+        new Product() { product_id = "1", description = "Descrizione del prodotto 1", name = "Prodotto di test 1" });
+
+      var product = repository.GetProductById("1");
+      Assert.IsNotNull(product, "Nessun risultato trovato per un Id prodotto valido");
+      Assert.AreEqual(product.product_id,"1");
+
+      product = repository.GetProductById("173");
+      Assert.IsNotNull(product, "Nessun risultato trovato per un Id prodotto valido");
+
+      product = repository.GetProductById("bdgb");
+      Assert.IsNull(product, "Trovato un prodotto per un Id non valido");
+    }
+
   }
 }
 

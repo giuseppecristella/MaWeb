@@ -7,15 +7,20 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
+using MagentoBusinessDelegate.Helpers;
+using MagentoComunication.Cache;
+using MagentoRepository.Repository;
+using Cart = MagentoBusinessDelegate.Cart;
 
 public partial class shop_Catalogo : System.Web.UI.Page
 {
-  private bool isShopVerde = true;
-  public int i = 0;
-  private string mainCatName = "";
-  private string _pathUrl = "";
+  private const string DefaultCategory = "47";
+  private bool _isShopVerde = true;
+  private readonly IRepository _repository;
+  private readonly ICacheManager _cache;
+  private List<CategoryAssignedProduct> _products;
 
-  private IRepository _repository;
+  #region Ctor
 
   // Constructor chaining; 
   // centralizzo la creazione dell'istanza della classe repository e del singleton 
@@ -28,155 +33,137 @@ public partial class shop_Catalogo : System.Web.UI.Page
   public shop_Catalogo(RepositoryService repository)
   {
     _repository = repository;
+    // come gestire una singola istanza della classe cache manager?
+    _cache = new AspnetCacheManager();
   }
+
+  #endregion Ctor
+
+  #region Events
 
   protected void Page_Load(object sender, EventArgs e)
   {
     try
     {
-      var cart = Cart;
-      var totale = cart.Sum(p => int.Parse(p.price));
-      ltrTotCart.Text = totale.ToString();
-
-      // Controlla la connessione?  Dovrebbe funzionare con l'introduzione del singleton
-      if (!helper.checkConnection())
-      {
-        HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-      }
-      /*PROVA API EST. AGGIUNTA FUNZIONE PER RECUPER BESTSERLLERS!!!!!
-      Product[] p = Product.Peppe(apiUrl, sessionId);*/
+      ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
     }
     catch (Exception ex)
     {
-      helper.checkConnection();
       // Response.Redirect("Catalogo.html");
-      // lblErr.Text = "apiurl: " + (string)HttpContext.Current.Cache["apiUrl"] + "SessId " + (string)HttpContext.Current.Cache["sessionId"] + ex.Message;//"session-test--> "+(string)Session["test"]+ " " +apiUrl + " sessionId: " + sessionId + " exc: " + ex.Message;
     }
-  }
-
-  private static void CalculateTotal(List<Product> arrayCart, int numItems)
-  {
-    if (arrayCart == null) return;
-
-    for (int i = 0; i < arrayCart.Count; i++)
-    {
-      Product tProd = (Product)arrayCart[i];
-      numItems += int.Parse(tProd.qty);
-    }
-  }
-
-
-  private List<Product> Cart
-  {
-    get
-    {
-      var cart = new List<Product>();
-      if (Session["carrello"] != null)
-      {
-        cart = Session["carrello"] as List<Product>;
-      }
-      return cart;
-    }
-  }
-
-  private string PrintBread(string ID, ArrayList arrBreadCatId, ArrayList arrPathUrl)
-  {
-    /*mi conservo in cache tutte le chiamate all'api category_level per ciascun ID di categoria*/
-    object catBread = null;
-    if (HttpContext.Current.Cache["category_Level_" + ID] == null)
-    {
-      catBread = Category.Level((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { ID });
-      HttpContext.Current.Cache.Insert("category_Level_" + ID, catBread);
-    }
-    System.Collections.Hashtable hashcatBread = (System.Collections.Hashtable)HttpContext.Current.Cache["category_Level_" + ID];
-    string parentID = (string)hashcatBread["parent_id"];
-    //arrBread.Add("<a href=\"Prodotti.aspx?CatId=" + (string)hashcatBread["category_id"] + "\">" + (string)hashcatBread["name"] + "</a>"+"&gt;" );
-    arrBreadCatId.Add((string)hashcatBread["category_id"]);
-    arrPathUrl.Add((string)hashcatBread["name"] + "/");
-    return parentID;
   }
 
   protected void item_dataBound(object sender, ListViewItemEventArgs e)
   {
-    //try
-    //{
-    string _catID = Request.QueryString["CatId"];
-    if (string.IsNullOrEmpty(_catID))
-      _catID = "40";
-    ListViewDataItem dataitem = (ListViewDataItem)e.Item;
-    if (dataitem.DataItemIndex % 4 == 0)
-    // classe margin
+    var item = e.Item as ListViewDataItem;
+    if (item == null) return;
+
+    var product = item.DataItem as CategoryAssignedProduct;
+    if (product != null)
     {
-      HtmlGenericControl box_prodotto = (HtmlGenericControl)e.Item.FindControl("box_prodotto");
-      box_prodotto.Style.Add("margin-left", "30px");
+      var priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
+      var imgProd = (Image)e.Item.FindControl("imgProduct");
+      var descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
+      var linkDettaglio = (HtmlAnchor)e.Item.FindControl("lnkDettaglio_1");
+
+      // Immagine    
+      if (imgProd != null && product.imageurl != null)
+        imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
+      // Descrizione  
+      if (descProduct != null && product.name != null)
+        descProduct.InnerHtml = helper.ShortDesc(product.name, 132);
+      // Prezzo
+      if (priceProduct != null && product.price != null)
+        priceProduct.InnerHtml = helper.FormatCurrency(product.price);
+      // Link pagina dettaglio   
+      if (linkDettaglio != null && product.name != null)
+        linkDettaglio.HRef = string.Format("{0}shop/{1}.html", helper.GetAbsoluteUrl(), product.name.Replace(" ", "-"));
+
+      SetItemStyleAttributes(item);
     }
-    if (dataitem.DataItemIndex % 4 == 3)
-    {
-      HtmlGenericControl box_prodotto = (HtmlGenericControl)e.Item.FindControl("box_prodotto");
-      box_prodotto.Attributes["class"] = "one-fourth view view-first last";
-    }
-    Image imgProd = (Image)e.Item.FindControl("imgProduct");
-    imgProd.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).imageurl + "&W_=215&H_=215";
-    HtmlGenericControl descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
-    string name = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).name;
-    descProduct.InnerHtml = helper.ShortDesc(name, 132);
-    HtmlGenericControl priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
-    HtmlGenericControl divMaskProd = (HtmlGenericControl)e.Item.FindControl("divMaskProd");
-    if (isShopVerde)
-    {
-      priceProduct.Attributes["Class"] = "desc_prezzo_home verde";
-      divMaskProd.Attributes["Class"] = "mask_green";
-    }
-    else
-    {
-      priceProduct.Attributes["Class"] = "desc_prezzo_home rosso";
-      divMaskProd.Attributes["Class"] = "mask_red";
-    }
-    string magento_price = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).price;
-    priceProduct.InnerHtml = helper.FormatCurrency(magento_price);
-    HtmlAnchor linkDettaglio_1 = (HtmlAnchor)e.Item.FindControl("linkDettaglio");
-    HtmlAnchor linkDettaglio = (HtmlAnchor)e.Item.FindControl("lnkDettaglio_1");
-    name = name.Replace(" ", "-");
-    linkDettaglio.HRef = helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
   }
 
   protected void pagerProducts_PreRender(object sender, EventArgs e)
   {
+    // Inizializza i settings relativi allo shop verde o rosso
     var rootCat = SetShopTypeInfo();
+
+    // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria
     HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
     menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
-    var products = _repository.GetProductsByCatId("47");
-    if (products != null && products.Any())
+    if (BindProductsToList())
+      ShowHidePagerForShop();
+  }
+
+  protected void AddToCart(object sender, EventArgs e)
+  {
+    Product product;
+    using (var lnkbtn = (LinkButton)sender)
     {
-      var productsInStock = products.Where(p => p.qty_in_stock > 0);
-      bool isPagerVisible = (productsInStock.Count() > pagerProducts.PageSize);
-      ShowHidePagerForShop(isPagerVisible);
-      lvProducts.DataSource = productsInStock;
-      lvProducts.DataBind();
+      product = _repository.GetProductById(lnkbtn.Text);
     }
+    if (product != null)
+    {
+      product.qty = "1";
+      CartHelper.AddProductToCartAndUpdateCache(product);
+    }
+    Response.Redirect("Carrello.html");
+  }
+
+  #endregion Events
+
+  #region Properties
+
+  private Cart Cart
+  {
+    get
+    {
+      var key = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
+      return (key != null && _cache.Contains(key)) ? _cache.Get<Cart>(key) : null;
+    }
+  }
+  public List<CategoryAssignedProduct> Products
+  {
+    get { return _cache.Get<List<CategoryAssignedProduct>>(DefaultCategory); }
+    set { _products = value; }
+  }
+
+  #endregion Properties
+
+  #region Private Methods
+  private bool BindProductsToList()
+  {
+    var products = _repository.GetProductsByCategoryId(DefaultCategory);
+    if (products == null || !products.Any()) return false;
+
+    Products = products.Where(p => p.qty_in_stock > 0).ToList();
+    if (!Products.Any()) return false;
+    lvProducts.DataSource = Products;
+    lvProducts.DataBind();
+
+    return true;
   }
 
   private string SetShopTypeInfo()
   {
-    string catId = "47";
+    string catId = DefaultCategory;
     if (!string.IsNullOrEmpty(Request.QueryString["CatId"]))
       catId = Request.QueryString["CatId"];
     object[] catIdObj = { catId };
 
-/*Recupero il nome della categoria e lo scrivo nella label*/
+    /*Recupero il nome della categoria e lo scrivo nella label*/
     // Singletone per gestire la connessione a la sessionId
-    object catSubMenu = Category.Level((string) HttpContext.Current.Cache["apiUrl"],
-      (string) HttpContext.Current.Cache["sessionId"], catIdObj);
-    System.Collections.Hashtable hashSubMenu = (System.Collections.Hashtable) catSubMenu;
-    lblCategoria.Text = (string) hashSubMenu["name"];
+    object catSubMenu = Category.Level((string)HttpContext.Current.Cache["apiUrl"],
+      (string)HttpContext.Current.Cache["sessionId"], catIdObj);
+    var hashSubMenu = (System.Collections.Hashtable)catSubMenu;
+    lblCategoria.Text = (string)hashSubMenu["name"];
     string rootCat = "37";
-    if ((string) hashSubMenu["parent_id"] == "47")
+    if ((string)hashSubMenu["parent_id"] == DefaultCategory)
     {
-      isShopVerde = false;
+      _isShopVerde = false;
       //shop rosso
-      rootCat = "47";
+      rootCat = DefaultCategory;
       logo_r.Visible = true;
       main_navigation.Attributes["class"] = "main-menu rosso";
       divCarrello.Style.Add("background", "#D10A11");
@@ -195,9 +182,10 @@ public partial class shop_Catalogo : System.Web.UI.Page
     return rootCat;
   }
 
-  private void ShowHidePagerForShop(bool isPagerVisible)
+  private void ShowHidePagerForShop()
   {
-    if (isShopVerde)
+    bool isPagerVisible = (Products.Count() > pagerProducts.PageSize) && (Products != null);
+    if (_isShopVerde)
     {
       pagerProducts.Visible = isPagerVisible;
       pagerRosso.Visible = false;
@@ -209,30 +197,31 @@ public partial class shop_Catalogo : System.Web.UI.Page
     }
   }
 
-  protected void addToCart(object sender, EventArgs e)
+  private void SetItemStyleAttributes(ListViewDataItem item)
   {
-    LinkButton lnkbtn = (LinkButton)sender;
-    // CategoryAssignedProduct tempproductCart = new CategoryAssignedProduct();
-    // tempproductCart.product_id = lnkbtn.Text;
-    //la product info è veloce ma meglio usarla per il dettaglio del prodotto selezionato
-    //Product myProductInfo = Product.Info(apiUrl, sessionId, new object[] { tempproductCart.product_id });
-    //faccio una product.list con filtro! perchè mi servono meno attributi
-
-    XmlRpcStruct filterParameters = new XmlRpcStruct();
-    XmlRpcStruct filterOperator = new XmlRpcStruct();
-    filterOperator.Add("eq", lnkbtn.Text); // operatore booleano
-    filterParameters.Add("product_id", filterOperator);
-
-    Product[] myProducts = Ez.Newsletter.MagentoApi.Product.List(
-      (string)HttpContext.Current.Cache["apiUrl"],
-      (string)HttpContext.Current.Cache["sessionId"],
-      new object[] { filterParameters });
-
-    myProducts[0].qty = "1";
-    ArrayList tempArrayCart = new ArrayList();
-    helper.addProdToSessionCart(myProducts[0]);
-    tempArrayCart = (ArrayList)Session["carrello"];
-    Session["carrello"] = tempArrayCart;
-    Response.Redirect("Carrello.html");
+    var boxProdotto = (HtmlGenericControl)e.Item.FindControl("box_prodotto");
+    var priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
+    var divMaskProd = (HtmlGenericControl)e.Item.FindControl("divMaskProd");
+    if (item.DataItemIndex % 4 == 0)
+    // classe margin
+    {
+      boxProdotto.Style.Add("margin-left", "30px");
+    }
+    if (item.DataItemIndex % 4 == 3)
+    {
+      boxProdotto.Attributes["class"] = "one-fourth view view-first last";
+    }
+    if (_isShopVerde)
+    {
+      priceProduct.Attributes["Class"] = "desc_prezzo_home verde";
+      divMaskProd.Attributes["Class"] = "mask_green";
+    }
+    else
+    {
+      priceProduct.Attributes["Class"] = "desc_prezzo_home rosso";
+      divMaskProd.Attributes["Class"] = "mask_red";
+    }
   }
+
+  #endregion Private Methods
 }

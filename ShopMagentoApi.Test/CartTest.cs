@@ -50,14 +50,14 @@ namespace ShopMagentoApi.Test
       var product = GetProductById("173");
 
       CartHelper.CacheManager = new AspNetCacheManagerTest();
-      CartHelper.AddProductToSessionCart(product);
-      CartHelper.AddProductToSessionCart(product);
+      CartHelper.AddProductToCartAndUpdateCache(product);
+      CartHelper.AddProductToCartAndUpdateCache(product);
 
       var cartFromCache = cache.Get<Cart>("carrello");
       Assert.AreEqual(cartFromCache.Products.Count(), 1);
 
       product = GetProductById("179");
-      CartHelper.AddProductToSessionCart(product);
+      CartHelper.AddProductToCartAndUpdateCache(product);
 
       cartFromCache = cache.Get<Cart>("carrello");
       Assert.AreEqual(cartFromCache.Products.Count(), 2);

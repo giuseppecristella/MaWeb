@@ -1,4 +1,10 @@
-﻿public interface IRepository
+﻿using Ez.Newsletter.MagentoApi;
+
+namespace MagentoRepository.Repository
 {
-  global::Ez.Newsletter.MagentoApi.CategoryAssignedProduct[] GetProductsByCatId(string categoryId);
+  public interface IRepository
+  {
+    CategoryAssignedProduct[] GetProductsByCategoryId(string categoryId);
+    Product GetProductById(string productId);
+  }
 }
