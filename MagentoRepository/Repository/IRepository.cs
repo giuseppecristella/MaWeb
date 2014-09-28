@@ -6,7 +6,38 @@ namespace MagentoRepository.Repository
   public interface IRepository
   {
     List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId);
-    Product GetProductById(string productId);
-    object GetCategory(string categoryId);
+    Product GetFilteredProducts(Filter filter);
+    object GetCategoryLevel(string categoryId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    Product GetProductInfo(string productId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="categoryId"></param>
+    /// <returns></returns>
+    Category GetCategoryInfo(string categoryId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    Inventory GetInventoryInfo(string productId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    ProductImage GetProductImage(string productId);
+
+    ///
+    ProductLink GetProductLinked(string productId);
   }
 }

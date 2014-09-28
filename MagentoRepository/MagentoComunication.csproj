@@ -48,10 +48,14 @@
     <Compile Include="Cache\FakeCacheManager.cs" />
     <Compile Include="Cache\ICacheManager.cs" />
     <Compile Include="Connection\IMagentoConnection.cs" />
+    <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Repository\RepositoryService + Categories.cs" />
+    <Compile Include="Repository\Filter.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Connection\MagentoConnection.cs" />
     <Compile Include="Repository\RepositoryEF.cs" />
     <Compile Include="Repository\RepositoryMySql.cs" />
+    <Compile Include="Repository\RepositoryService + Products.cs" />
     <Compile Include="Repository\RepositoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

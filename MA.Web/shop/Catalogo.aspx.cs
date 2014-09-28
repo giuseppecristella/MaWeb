@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessDelegate.Helpers;
 using MagentoComunication.Cache;
+using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Cart = MagentoBusinessDelegate.Cart;
 
@@ -86,7 +87,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
     Product product;
     using (var lnkbtn = (LinkButton)sender)
     {
-      product = _repository.GetProductById(lnkbtn.Text);
+      product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = lnkbtn.Text });
     }
     if (product != null)
     {
@@ -112,11 +113,11 @@ public partial class shop_Catalogo : System.Web.UI.Page
   {
     get
     {
-      return _cache.Get<List<CategoryAssignedProduct>>(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.DefaultCategory));
+      return _cache.Get<List<CategoryAssignedProduct>>(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.RootCategory));
     }
     set
     {
-      _cache.Add(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.DefaultCategory), value);
+      _cache.Add(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.RootCategory), value);
     }
   }
 
@@ -125,7 +126,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
   #region Private Methods
   private bool BindProductsToList()
   {
-    var products = _repository.GetProductsByCategoryId(ConfigurationHelper.DefaultCategory);
+    var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
     if (products == null || !products.Any()) return false;
 
     Products = products.Where(p => p.qty_in_stock > 0).ToList();

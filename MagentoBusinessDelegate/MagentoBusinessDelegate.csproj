@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Cart.cs" />
     <Compile Include="Helpers\CartHelper.cs" />
-    <Compile Include="Helpers\ConfigurationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
