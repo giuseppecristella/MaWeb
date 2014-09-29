@@ -4,104 +4,51 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-public partial class shop_Carrello : System.Web.UI.Page
-{
-  private string idCategoria = "";
+using iTextSharp.text.pdf;
 
+public partial class shop_Carrello : BasePage
+{
   protected void Page_Load(object sender, EventArgs e)
   {
-    /*inizio codice da vecchia master page*/
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    if (!helper.checkConnection())
+    ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+
+    if (Cart != null && !Cart.Products.Any())
     {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    int numItems = 0;
-    if (arrayCart != null)
-    {
-      for (int i = 0; i < arrayCart.Count; i++)
-      {
-        Product tProd = (Product)arrayCart[i];
-        numItems += int.Parse(tProd.qty);
-      }
-    }
-    ltrTotCart.Text = numItems.ToString();
-    /*fine codice master page vecchia*/
-    string rootCat = "37";
-    /*l'ultimo elemento del vettore è l'ultimo prodotto aggiunto al carrello*/
-    if (arrayCart.Count > 0)
-    {
-      Product tProd = (Product)arrayCart[arrayCart.Count - 1];
-      bool isShopVerde = true;
-      /*le categorie 44 e 45 sono riservate ai prodotti in vetrina quindi le escludo*/
-      //myProduct.categories
-      foreach (string strCat in tProd.category_ids)
-      {
-        if (strCat != "44" && strCat != "45" && strCat != "37" && strCat != "47")
-          idCategoria = strCat;
-      }
-      if (tProd.category_ids.Contains("47"))
-        isShopVerde = false;
-      if (isShopVerde)
-      {
-        //logo_v.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu verde";
-        //divCarrello.Style.Add("background", "#76A227");
-      }
-      else
-      {
-        rootCat = "47";
-        //logo_r.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu rosso";
-        //divCarrello.Style.Add("background", "#D10A11");
-      }
-      //+ " <li><a  href=\"../Index.html\">Torna al sito</a></li>";        /*visualizzo il dettaglio del prodotto*/
-    }
-    else
-    {
-      bool isShopVerde = true;
-      if ((string)Session["rootCat"] == "47")
-        isShopVerde = false;
-      }
-    if (HttpContext.Current.Cache["htmlMegaMenu"] == null)
-    {
-      if (HttpContext.Current.Cache["sessionId"] == null)
-      {
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-      }
-      HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-    }
-    arrayCart = (ArrayList)Session["carrello"];
-    if (arrayCart.Count == 0)
-    {
-      //btnUpdateCart.Visible = false;
       pnlCartTotal.Visible = false;
       LinkButton1.Enabled = false;
     }
-    if (!IsPostBack)
+    if (IsPostBack) return;
+    ViewState["PreviousPage"] = Request.UrlReferrer; //Saves the Previous page url in ViewState
+    if (Cart != null)
     {
-      ViewState["PreviousPage"] = Request.UrlReferrer; //Saves the Previous page url in ViewState
-      lvCart.DataSource = arrayCart;
+      lvCart.DataSource = Cart.Products;
       lvCart.DataBind();
-      decimal somma = helper.SommaProdotti(arrayCart);
-      ltrSomma.Text = somma.ToString();
     }
+
+    ltrSomma.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
   }
 
-  protected void lnkbtncheckout(object sender, EventArgs e)
+  protected void lnkbtncheckout_Click(object sender, EventArgs e)
   {
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    int i = 0;
     bool blerrore = false;
-    Product tempP = new Product();
     foreach (ListViewDataItem item in lvCart.Items)
     {
-      TextBox txtqty = (TextBox)item.FindControl("txtqta");
-      tempP = (Product)arrayCart[i];
-      int qty = 0;
-      if (!int.TryParse(txtqty.Text, out qty) || qty < 0)
-        qty = 1;
+      var product = item.DataItem as Product;
+      if (product == null) return;
+
+      int qty;
+      var txtqty = item.FindControl("txtqta") as TextBox;
+      if (txtqty == null || (int.TryParse(txtqty.Text, out qty))) return;
+      if (qty < 0) qty = 1;
+
+      var inventories = _repository.GetInventories(product.product_id);
+      if (inventories != null)
+      {
+        int.Parse(inventories.FirstOrDefault().qty);
+
+      }
+      // confronto la quantità richiesta, prendendo il dato dalla listview
+
       Inventory[] scorteProdotto = Inventory.List((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { tempP.product_id });
       if (int.Parse(scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."))) < qty)
       {
@@ -109,11 +56,12 @@ public partial class shop_Carrello : System.Web.UI.Page
         msgError.Visible = true;
         txtqty.BorderColor = System.Drawing.Color.Red;
       }
-      i++;
+
     }
     if (!blerrore)
     {
-      int IdCarrello = Cart.create((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"]);
+
+      int IdCarrello = Ez.Newsletter.MagentoApi.Cart.create((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"]);
       // UserManager dd = new 
       Response.Redirect("Indirizzi.aspx?cartId=" + IdCarrello.ToString());
     }
@@ -222,10 +170,6 @@ public partial class shop_Carrello : System.Web.UI.Page
 
   protected void lnkbtnContinueShop_Click(object sender, EventArgs e)
   {
-    Category CategoryInfo = Category.Info((string)HttpContext.Current.Cache["apiUrl"],
-                                         (string)HttpContext.Current.Cache["sessionId"],
-                                         new object[] { idCategoria });
-    //CategoryInfo.name;
-    Response.Redirect("~/shop/" + CategoryInfo.name + ".html");
+    Response.Redirect("~/shop/Catalogo.aspx");
   }
 }

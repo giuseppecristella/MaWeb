@@ -245,24 +245,6 @@
                                         <!-- COLUMN STARTS-->
                                         <strong>Metodi di Pagamento</strong>
                                         <img src="images/pagamenti.png" />
-                                        <!--<ul id="our-photos-footer">
-                                            <li><a href="#">
-                                                <img src="images/clients/1.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/2.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/3.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li class="last"><a href="#">
-                                                <img src="images/clients/4.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/5.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/6.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/7.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li class="last"><a href="#">
-                                                <img src="images/clients/8.jpg" width="40" height="40" alt=" " /></a></li>
-                                        </ul>-->
                                     </div>
                                     <!-- COLUMN ENDS-->
                                     <div style="margin-right: 10px;" class="one-fourth">

@@ -184,7 +184,7 @@
                                 <br />
                                 <fieldset>
                                     <asp:LinkButton Style="float: right; margin-right: 30px;" CssClass="fancy-button red small"
-                                        ID="LinkButton1" runat="server" OnClick="lnkbtncheckout">Conferma ordine</asp:LinkButton>
+                                        ID="LinkButton1" runat="server" OnClick="lnkbtncheckout_Click">Conferma ordine</asp:LinkButton>
                                 </fieldset>
                                 <br />
                                 <fieldset>

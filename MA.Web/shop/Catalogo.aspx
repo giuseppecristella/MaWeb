@@ -14,7 +14,7 @@
     <asp:Literal runat="server" ID="ltrMetaFB"></asp:Literal>
     <!--CSS FILES STARTS-->
     <link rel="shortcut icon" type="image/gif" href="../images/favicon.png" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" /> 
     <link rel="stylesheet" href="../css/prettyPhoto.css" type="text/css" media="screen" />
     <link href="../css/slider.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../css/jquery.slider.css" />

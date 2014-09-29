@@ -48,19 +48,4 @@ public class BasePage : System.Web.UI.Page
       return (key != null && _cache.Contains(key)) ? _cache.Get<Cart>(key) : null;
     }
   }
-
-  protected void AddToCart(object sender, EventArgs e)
-  {
-    Product product;
-    using (var lnkbtn = (LinkButton)sender)
-    {
-      product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "product_id", Value = lnkbtn.Text });
-    }
-    if (product != null)
-    {
-      product.qty = "1";
-      CartHelper.AddProductToCartAndUpdateCache(product);
-    }
-    Response.Redirect("~/shop/Carrello.html");
-  }
 }
