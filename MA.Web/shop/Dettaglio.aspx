@@ -190,7 +190,7 @@
                             quanti prodotti vuoi acquistare?
                         </label>--%>
                             <asp:ImageButton runat="server" ID="btnaddTocart" ImageUrl="images/tasto-carrello.png"
-                                Style="border: none;" CssClass="btnImageCart" Text="Aggiungi al Carrello" OnClick="btnaddTocart_Click" />
+                                Style="border: none;" CssClass="btnImageCart" Text="Aggiungi al Carrello" OnClick="AddToCart" />
                             <div class="clear">
                             </div>
                             <div class="clear-line">

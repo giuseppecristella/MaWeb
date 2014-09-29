@@ -28,16 +28,16 @@ namespace MagentoRepository.Repository
     /// </summary>
     /// <param name="productId"></param>
     /// <returns></returns>
-    Inventory GetInventoryInfo(string productId);
+    List<Inventory> GetInventories(string productId);
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="productId"></param>
     /// <returns></returns>
-    ProductImage GetProductImage(string productId);
+    List<ProductImage> GetProductImages(string productId);
 
     ///
-    ProductLink GetProductLinked(string productId);
+    List<ProductLink> GetLinkedProducts(string productId);
   }
 }

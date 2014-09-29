@@ -38,17 +38,17 @@ namespace MagentoRepository.Repository
       throw new NotImplementedException();
     }
 
-    public Inventory GetInventoryInfo(string productId)
+    public List<Inventory> GetInventories(string productId)
     {
       throw new NotImplementedException();
     }
 
-    public ProductImage GetProductImage(string productId)
+    public List<ProductImage> GetProductImages(string productId)
     {
       throw new NotImplementedException();
     }
 
-    public ProductLink GetProductLinked(string productId)
+    public List<ProductLink> GetLinkedProducts(string productId)
     {
       throw new NotImplementedException();
     }

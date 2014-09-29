@@ -11,31 +11,9 @@ using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Cart = MagentoBusinessDelegate.Cart;
 
-public partial class shop_Catalogo : System.Web.UI.Page
+public partial class shop_Catalogo : BasePage
 {
   private bool _isShopVerde = true;
-  private readonly IRepository _repository;
-  private readonly ICacheManager _cache;
-
-  #region Ctor
-
-  // Constructor chaining; 
-  // centralizzo la creazione dell'istanza della classe repository e del singleton 
-  public shop_Catalogo()
-    : this(new RepositoryService(MagentoConnection.Instance, new AspnetCacheManager()))
-  {
-
-  }
-
-  public shop_Catalogo(RepositoryService repository)
-  {
-    _repository = repository;
-    // come gestire una singola istanza della classe cache manager?
-    _cache = new AspnetCacheManager();
-
-  }
-
-  #endregion Ctor
 
   #region Events
 
@@ -82,33 +60,10 @@ public partial class shop_Catalogo : System.Web.UI.Page
       ShowHidePagerForShop();
   }
 
-  protected void AddToCart(object sender, EventArgs e)
-  {
-    Product product;
-    using (var lnkbtn = (LinkButton)sender)
-    {
-      product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = lnkbtn.Text });
-    }
-    if (product != null)
-    {
-      product.qty = "1";
-      CartHelper.AddProductToCartAndUpdateCache(product);
-    }
-    Response.Redirect("Carrello.html");
-  }
-
   #endregion Events
 
   #region Properties
 
-  private Cart Cart
-  {
-    get
-    {
-      var key = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
-      return (key != null && _cache.Contains(key)) ? _cache.Get<Cart>(key) : null;
-    }
-  }
   public List<CategoryAssignedProduct> Products
   {
     get
