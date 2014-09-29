@@ -2,9 +2,9 @@
 {
   public interface IMagentoConnection
   {
-    string password { get; set; }
+    string Password { get; set; }
     string SessionId { get; }
-    string url { get; set; }
-    string userId { get; set; }
+    string Url { get; set; }
+    string UserId { get; set; }
   }
 }

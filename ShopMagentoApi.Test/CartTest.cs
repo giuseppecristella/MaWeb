@@ -53,13 +53,13 @@ namespace ShopMagentoApi.Test
       CartHelper.AddProductToCartAndUpdateCache(product);
       CartHelper.AddProductToCartAndUpdateCache(product);
 
-      var cartFromCache = cache.Get<Cart>("carrello");
+      var cartFromCache = cache.Get<Cart>("Cart");
       Assert.AreEqual(cartFromCache.Products.Count(), 1);
 
       product = GetProductById("179");
       CartHelper.AddProductToCartAndUpdateCache(product);
 
-      cartFromCache = cache.Get<Cart>("carrello");
+      cartFromCache = cache.Get<Cart>("Cart");
       Assert.AreEqual(cartFromCache.Products.Count(), 2);
     }
 

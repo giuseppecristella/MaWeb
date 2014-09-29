@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessDelegate.Helpers;
 using MagentoComunication.Cache;
+using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Cart = MagentoBusinessDelegate.Cart;
 
 public partial class shop_Catalogo : System.Web.UI.Page
 {
-  private const string DefaultCategory = "47";
   private bool _isShopVerde = true;
   private readonly IRepository _repository;
   private readonly ICacheManager _cache;
-  private List<CategoryAssignedProduct> _products;
 
   #region Ctor
 
@@ -35,6 +32,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
     _repository = repository;
     // come gestire una singola istanza della classe cache manager?
     _cache = new AspnetCacheManager();
+
   }
 
   #endregion Ctor
@@ -43,14 +41,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
 
   protected void Page_Load(object sender, EventArgs e)
   {
-    try
-    {
-      ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
-    }
-    catch (Exception ex)
-    {
-      // Response.Redirect("Catalogo.html");
-    }
+    ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
   }
 
   protected void item_dataBound(object sender, ListViewItemEventArgs e)
@@ -61,23 +52,19 @@ public partial class shop_Catalogo : System.Web.UI.Page
     var product = item.DataItem as CategoryAssignedProduct;
     if (product != null)
     {
-      var priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
-      var imgProd = (Image)e.Item.FindControl("imgProduct");
-      var descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
-      var linkDettaglio = (HtmlAnchor)e.Item.FindControl("lnkDettaglio_1");
+      var imgProd = item.FindControl("imgProduct") as Image;
+      var descProduct = item.FindControl("descProduct") as HtmlGenericControl;
+      var priceProduct = item.FindControl("priceProduct") as HtmlGenericControl;
+      var linkDettaglio = item.FindControl("lnkDettaglio_1") as HtmlAnchor;
 
       // Immagine    
-      if (imgProd != null && product.imageurl != null)
-        imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
+      if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
       // Descrizione  
-      if (descProduct != null && product.name != null)
-        descProduct.InnerHtml = helper.ShortDesc(product.name, 132);
+      if (descProduct != null && product.name != null) descProduct.InnerHtml = helper.ShortDesc(product.name, 132);
       // Prezzo
-      if (priceProduct != null && product.price != null)
-        priceProduct.InnerHtml = helper.FormatCurrency(product.price);
+      if (priceProduct != null && product.price != null) priceProduct.InnerHtml = helper.FormatCurrency(product.price);
       // Link pagina dettaglio   
-      if (linkDettaglio != null && product.name != null)
-        linkDettaglio.HRef = string.Format("{0}shop/{1}.html", helper.GetAbsoluteUrl(), product.name.Replace(" ", "-"));
+      if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = string.Format("Dettaglio.aspx?Id={0}", product.product_id);
 
       SetItemStyleAttributes(item);
     }
@@ -85,10 +72,9 @@ public partial class shop_Catalogo : System.Web.UI.Page
 
   protected void pagerProducts_PreRender(object sender, EventArgs e)
   {
-    // Inizializza i settings relativi allo shop verde o rosso
-    var rootCat = SetShopTypeInfo();
+    var rootCat = SetMainStyleAttribute();
 
-    // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria
+    // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
     HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
     menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
@@ -101,7 +87,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
     Product product;
     using (var lnkbtn = (LinkButton)sender)
     {
-      product = _repository.GetProductById(lnkbtn.Text);
+      product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = lnkbtn.Text });
     }
     if (product != null)
     {
@@ -125,8 +111,14 @@ public partial class shop_Catalogo : System.Web.UI.Page
   }
   public List<CategoryAssignedProduct> Products
   {
-    get { return _cache.Get<List<CategoryAssignedProduct>>(DefaultCategory); }
-    set { _products = value; }
+    get
+    {
+      return _cache.Get<List<CategoryAssignedProduct>>(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.RootCategory));
+    }
+    set
+    {
+      _cache.Add(string.Format("CategoryAssignedProduct{0}", ConfigurationHelper.RootCategory), value);
+    }
   }
 
   #endregion Properties
@@ -134,7 +126,7 @@ public partial class shop_Catalogo : System.Web.UI.Page
   #region Private Methods
   private bool BindProductsToList()
   {
-    var products = _repository.GetProductsByCategoryId(DefaultCategory);
+    var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
     if (products == null || !products.Any()) return false;
 
     Products = products.Where(p => p.qty_in_stock > 0).ToList();
@@ -145,41 +137,26 @@ public partial class shop_Catalogo : System.Web.UI.Page
     return true;
   }
 
-  private string SetShopTypeInfo()
+  private string SetMainStyleAttribute()
   {
-    string catId = DefaultCategory;
-    if (!string.IsNullOrEmpty(Request.QueryString["CatId"]))
-      catId = Request.QueryString["CatId"];
-    object[] catIdObj = { catId };
 
-    /*Recupero il nome della categoria e lo scrivo nella label*/
-    // Singletone per gestire la connessione a la sessionId
-    object catSubMenu = Category.Level((string)HttpContext.Current.Cache["apiUrl"],
-      (string)HttpContext.Current.Cache["sessionId"], catIdObj);
-    var hashSubMenu = (System.Collections.Hashtable)catSubMenu;
-    lblCategoria.Text = (string)hashSubMenu["name"];
-    string rootCat = "37";
-    if ((string)hashSubMenu["parent_id"] == DefaultCategory)
-    {
-      _isShopVerde = false;
-      //shop rosso
-      rootCat = DefaultCategory;
-      logo_r.Visible = true;
-      main_navigation.Attributes["class"] = "main-menu rosso";
-      divCarrello.Style.Add("background", "#D10A11");
-      divSpotVerde.Visible = true;
-      lblCategoria.CssClass = "colore_rosso";
-    }
-    else
-    {
-      //shop verde
-      lblCategoria.CssClass = "colore_verde";
-      logo_v.Visible = true;
-      main_navigation.Attributes["class"] = "main-menu verde";
-      divSpotRosso.Visible = true;
-      divCarrello.Style.Add("background", "#76A227");
-    }
-    return rootCat;
+    _isShopVerde = false;
+    logo_r.Visible = true;
+    main_navigation.Attributes["class"] = "main-menu rosso";
+    divCarrello.Style.Add("background", "#D10A11");
+    divSpotVerde.Visible = true;
+    lblCategoria.CssClass = "colore_rosso";
+
+    //else
+    //{
+    //  //shop verde
+    //  lblCategoria.CssClass = "colore_verde";
+    //  logo_v.Visible = true;
+    //  main_navigation.Attributes["class"] = "main-menu verde";
+    //  divSpotRosso.Visible = true;
+    //  divCarrello.Style.Add("background", "#76A227");
+    //}
+    return string.Empty;
   }
 
   private void ShowHidePagerForShop()
@@ -199,9 +176,9 @@ public partial class shop_Catalogo : System.Web.UI.Page
 
   private void SetItemStyleAttributes(ListViewDataItem item)
   {
-    var boxProdotto = (HtmlGenericControl)e.Item.FindControl("box_prodotto");
-    var priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
-    var divMaskProd = (HtmlGenericControl)e.Item.FindControl("divMaskProd");
+    var boxProdotto = (HtmlGenericControl)item.FindControl("box_prodotto");
+    var priceProduct = (HtmlGenericControl)item.FindControl("priceProduct");
+    var divMaskProd = (HtmlGenericControl)item.FindControl("divMaskProd");
     if (item.DataItemIndex % 4 == 0)
     // classe margin
     {

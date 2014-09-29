@@ -6,120 +6,64 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
+using MagentoBusinessDelegate.Helpers;
+using MagentoRepository.Helpers;
+
 public partial class shop_Dettaglio : System.Web.UI.Page
 {
   protected void Page_Load(object sender, EventArgs e)
   {
-    if (!helper.checkConnection())
-    {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    /*inizio codice da vecchia master page*/
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    int numItems = 0;
-    if (arrayCart != null)
-    {
-      for (int i = 0; i < arrayCart.Count; i++)
-      {
-        Product tProd = (Product)arrayCart[i];
-        numItems += int.Parse(tProd.qty);
-      }
-    }
-    ltrTotCart.Text = numItems.ToString();
-    /*fine codice master page vecchia*/
-    helper.checkConnection();
+
+    // Totale ---> ltrTotCart.Text = numItems.ToString();
+
     if (!IsPostBack)
     {
-      //try
-      //{
-      string _idProd = Request.QueryString["ProdId"];
-      Product myProduct = Product.Info((string)HttpContext.Current.Cache["apiUrl"],
-                                       (string)HttpContext.Current.Cache["sessionId"], new object[] { _idProd });
-      /*categoria 37 -> SHOP VERDE /
-* categoria 47 -> SHOP ROSSO*/
-      bool isShopVerde = true;
-      /*le categorie 44 e 45 sono riservate ai prodotti in vetrina quindi le escludo*/
-      //myProduct.categories
-      string idCategoria = "";
-      string rootCat = "37";
-      if (myProduct.categories.Contains("47"))
-        isShopVerde = false;
-      foreach (string sCatId in myProduct.categories)
-      {
-        if (sCatId != "44" && sCatId != "45" && sCatId != "37" && sCatId != "47")
-          idCategoria = sCatId;
-      }
-      if (isShopVerde)
-      {
-        logo_v.Visible = true;
-        main_navigation.Attributes["class"] = "main-menu verde";
-        divSpotRosso.Visible = true;
-        divCarrello.Style.Add("background", "#76A227");
-        lblNomeProd.CssClass = "colore_verde";
-      }
-      else
-      {
-        rootCat = "47";
-        logo_r.Visible = true;
-        main_navigation.Attributes["class"] = "main-menu rosso";
-        divCarrello.Style.Add("background", "#D10A11");
-        lblNomeProd.CssClass = "colore_rosso";
-        divSpotVerde.Visible = true;
-      }
-      /*RIPRISTINARE!!*/
-      if (rootCat != (string)Session["rootCat"])
-      {
-        if (HttpContext.Current.Cache["sessionId"] == null)
-        {
-          HttpContext.Current.Cache.Insert("sessionId",
-                                           helper.getConnection(Utility.SearchConfigValue("apiUrl"),
-                                                                Utility.SearchConfigValue("apiUser"),
-                                                                Utility.SearchConfigValue("apiPsw")));
-        }
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-      }
-      if (HttpContext.Current.Cache["htmlMegaMenu"] == null)
-      {
-        if (HttpContext.Current.Cache["sessionId"] == null)
-        {
-          HttpContext.Current.Cache.Insert("sessionId",
-                                           helper.getConnection(Utility.SearchConfigValue("apiUrl"),
-                                                                Utility.SearchConfigValue("apiUser"),
-                                                                Utility.SearchConfigValue("apiPsw")));
-        }
-        HttpContext.Current.Cache.Insert("htmlMegaMenu",
-          helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"],
-          (string)HttpContext.Current.Cache["sessionId"], rootCat));
-      }
+      const bool isShopVerde = true;
+      SetMainStyleAttributes();
       menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-      //+ " <li><a  href=\"../Index.html\">Torna al sito</a></li>";        /*visualizzo il dettaglio del prodotto*/
+
+      string productId = Request.QueryString["Id"];
+      var product = Product.Info(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { productId });
+
+      var categoryId = GetProductCategory(product.categories);
+
+      #region Garbage Shop Verde
+      //if (isShopVerde)
+      //{
+      //  logo_v.Visible = true;
+      //  main_navigation.Attributes["class"] = "main-menu verde";
+      //  divSpotRosso.Visible = true;
+      //  divCarrello.Style.Add("background", "#76A227");
+      //  lblNomeProd.CssClass = "colore_verde";
+      //}
+      #endregion Garbage Shop Verde
+
+
+
       /* visualizzo il nome della categoria di appartenenza del prodotto in dettaglio*/
-      Category CategoryInfo = Category.Info((string)HttpContext.Current.Cache["apiUrl"],
-                                            (string)HttpContext.Current.Cache["sessionId"],
-                                            new object[] { idCategoria });
+      Category CategoryInfo = Category.Info(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { categoryId });
       lblNomeCatProd.Text = CategoryInfo.name;
-      lblNomeProd.Text += myProduct.name;
+      lblNomeProd.Text += product.name;
       /*controllo la disponibilità*/
-      if (myProduct.is_in_stock == "0")
+      if (product.is_in_stock == "0")
       {
         btnaddTocart.Enabled = false;
         btnaddTocart.Visible = false;
         prodDisponibilità.Text = "Il prodotto non è più disponibile.";
       }
-      Inventory[] scorteProdotto = Inventory.List((string)HttpContext.Current.Cache["apiUrl"],
-                                                (string)HttpContext.Current.Cache["sessionId"],
-                                                new object[] { _idProd });
+
+
+      Inventory[] scorteProdotto = Inventory.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { productId });
       prodScorte.Text = scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."));
       //  ltrTitleProd.Text = myProduct.name;
-      prodProduttore.Text = myProduct.produttore;
+      prodProduttore.Text = product.produttore;
       //   prodModel.Text = myProduct.model;
-      prodDescription.Text = myProduct.description;
+      prodDescription.Text = product.description;
       // prodNameDesc.Text = myProduct.name;
-      prodPrice.Text = helper.FormatCurrency(myProduct.price);
-      ProductImage[] myProductImages = ProductImage.List((string)HttpContext.Current.Cache["apiUrl"],
-                                                       (string)HttpContext.Current.Cache["sessionId"],
-                                                       new object[] { int.Parse(_idProd) });
+      prodPrice.Text = helper.FormatCurrency(product.price);
+
+
+      ProductImage[] myProductImages = ProductImage.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { int.Parse(productId) });
       ArrayList ulrImages = new ArrayList();
       foreach (ProductImage p in myProductImages)
       {
@@ -133,10 +77,10 @@ public partial class shop_Dettaglio : System.Web.UI.Page
       }
       rptImages.DataSource = ulrImages;
       rptImages.DataBind();
+
+
       /*recupero gli eventuali prodotti ASSOCIATI*/
-      ProductLink[] prodottiAssociati = ProductLink.List((string)HttpContext.Current.Cache["apiUrl"],
-                                                       (string)HttpContext.Current.Cache["sessionId"],
-                                                       new object[] { "related", int.Parse(_idProd) });
+      ProductLink[] prodottiAssociati = ProductLink.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { "related", int.Parse(productId) });
       if (prodottiAssociati.Length > 0)
       {
         Product[] ArrProdottiAssociati = new Product[prodottiAssociati.Length];
@@ -148,9 +92,7 @@ public partial class shop_Dettaglio : System.Web.UI.Page
           filterParams.Add("eq", prodottiAssociati[i].product_id);
           filterOn.Add("product_id", filterParams);
           Product[] tempProducts =
-              Ez.Newsletter.MagentoApi.Product.List((string)HttpContext.Current.Cache["apiUrl"],
-                                                    (string)HttpContext.Current.Cache["sessionId"],
-                                                    new object[] { filterOn });
+              Ez.Newsletter.MagentoApi.Product.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { filterOn });
           ArrProdottiAssociati[i] = tempProducts[0];
         }
         rptProdAssociati.DataSource = ArrProdottiAssociati;
@@ -162,6 +104,24 @@ public partial class shop_Dettaglio : System.Web.UI.Page
         rptProdAssociati.Visible = false;
       }
     }
+  }
+
+  private static string GetProductCategory(string[] categories)
+  {
+    var categoriesToExclude = ConfigurationHelper.HomeCategories.Union(new[] { ConfigurationHelper.RootCategory });
+    var productSubCategories = categories.Except(categoriesToExclude).ToList();
+
+    if (!productSubCategories.Any()) return null;
+    return productSubCategories[0];
+  }
+
+  private void SetMainStyleAttributes()
+  {
+    logo_r.Visible = true;
+    main_navigation.Attributes["class"] = "main-menu rosso";
+    divCarrello.Style.Add("background", "#D10A11");
+    lblNomeProd.CssClass = "colore_rosso";
+    divSpotVerde.Visible = true;
   }
 
   protected void btnaddTocart_Click(object sender, EventArgs e)

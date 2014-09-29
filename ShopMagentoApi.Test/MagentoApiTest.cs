@@ -1,4 +1,5 @@
-﻿using Ez.Newsletter.MagentoApi;
+﻿using CookComputing.XmlRpc;
+using Ez.Newsletter.MagentoApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShopMagentoApi.Test
@@ -35,6 +36,20 @@ namespace ShopMagentoApi.Test
       string categoryId = "47";
       var assignedProducts = Category.AssignedProducts(_apiUrl, _sessionId, new object[] { categoryId });
       Assert.IsTrue(assignedProducts.Length > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
+    }
+
+    [TestMethod]
+    public void ProducListTest()
+    {
+      
+      var filterParams = new XmlRpcStruct();
+      var filterOperator = new XmlRpcStruct ();
+      filterOperator.Add("eq","173");
+      filterParams.Add("product_id", filterOperator);
+      var products = Product.List(_apiUrl, _sessionId, new object[] { filterParams });
+
+
+
     }
 
     private void CheckConnection()
