@@ -49,6 +49,7 @@
     <Compile Include="Cache\ICacheManager.cs" />
     <Compile Include="Connection\IMagentoConnection.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
+    <Compile Include="Repository\RepositoryService +Customers.cs" />
     <Compile Include="Repository\RepositoryService + Cart.cs" />
     <Compile Include="Repository\RepositoryService + Categories.cs" />
     <Compile Include="Repository\Filter.cs" />

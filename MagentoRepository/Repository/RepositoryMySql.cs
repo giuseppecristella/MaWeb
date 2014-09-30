@@ -36,6 +36,21 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
+    public string CreateCustomer(Customer customer)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public List<Customer> GetCustomerById(string customerId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public string CreateCustomerAddress(int customerId, CustomerAddress customerAddress)
+    {
+      throw new System.NotImplementedException();
+    }
+
     public Product GetProductInfo(string productId)
     {
       throw new System.NotImplementedException();

@@ -81,5 +81,16 @@ namespace MagentoRepository.Repository
     int CreateCart();
 
     #endregion
+
+    #region Customers
+
+    string CreateCustomer(Customer customer);
+
+    List<Customer> GetCustomerById(string customerId); 
+
+    string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
+
+    #endregion
+
   }
 }

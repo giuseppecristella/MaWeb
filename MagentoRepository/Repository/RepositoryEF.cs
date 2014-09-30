@@ -23,12 +23,22 @@ namespace MagentoRepository.Repository
     }
 
 
-    public object GetCategoryLevel(string categoryId)
+    public int CreateCart()
     {
       throw new NotImplementedException();
     }
 
-    public int CreateCart()
+    public string CreateCustomer(Customer customer)
+    {
+      throw new NotImplementedException();
+    }
+
+    public List<Customer> GetCustomerById(string customerId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public string CreateCustomerAddress(int customerId, CustomerAddress customerAddress)
     {
       throw new NotImplementedException();
     }
@@ -59,6 +69,11 @@ namespace MagentoRepository.Repository
     }
 
     public int GetStocksForProduct(string productId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public object GetCategoryLevel(string categoryId)
     {
       throw new NotImplementedException();
     }
