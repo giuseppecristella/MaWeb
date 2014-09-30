@@ -20,8 +20,9 @@ public class BasePage : System.Web.UI.Page
 {
   protected readonly IRepository _repository;
   protected readonly ICacheManager _cache;
+  private static string _cacheKey = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
 
-	 #region Ctor
+  #region Ctor
 
   // Constructor chaining; 
   // centralizzo la creazione dell'istanza della classe repository e del singleton 
@@ -44,8 +45,12 @@ public class BasePage : System.Web.UI.Page
   {
     get
     {
-      var key = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
-      return (key != null && _cache.Contains(key)) ? _cache.Get<Cart>(key) : null;
+      return (_cacheKey != null && _cache.Contains(_cacheKey)) ? _cache.Get<Cart>(_cacheKey) : null;
+    }
+    set
+    {
+      _cache.Remove(_cacheKey);
+      _cache.Add(_cacheKey, value);
     }
   }
 }

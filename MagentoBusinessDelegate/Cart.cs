@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Ez.Newsletter.MagentoApi;
 
- 
+
 namespace MagentoBusinessDelegate
 {
   public class Cart
   {
-    private readonly List<Product> _products;
+    private List<Product> _products;
     private decimal _total;
-       
+
     public Cart()
     {
       _products = new List<Product>();
@@ -22,6 +23,12 @@ namespace MagentoBusinessDelegate
     public decimal Total
     {
       get { return _total; }
+    }
+
+    public List<Product> DeleteProducts(List<Product> productsToDelete)
+    {
+      _products = _products.Except(productsToDelete).ToList();
+      return _products;
     }
 
     public void AddProductAndUpdateTotal(Product product)

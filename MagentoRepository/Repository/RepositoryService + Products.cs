@@ -151,5 +151,14 @@ namespace MagentoRepository.Repository
       }
     }
 
+    public int GetStocksForProduct(string productId)
+    {
+      var inventories = GetInventories(productId);
+      if (inventories == null || inventories.First() == null) return 0;
+      int qty;
+      if ((int.TryParse(inventories.First().qty.Substring(0, inventories.First().qty.IndexOf(".", StringComparison.Ordinal)), out qty)) == false) return 0;
+      return qty;
+    }
+
   }
 }

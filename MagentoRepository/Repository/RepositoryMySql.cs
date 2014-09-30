@@ -31,6 +31,11 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
+    public int CreateCart()
+    {
+      throw new System.NotImplementedException();
+    }
+
     public Product GetProductInfo(string productId)
     {
       throw new System.NotImplementedException();
@@ -52,6 +57,11 @@ namespace MagentoRepository.Repository
     }
 
     public List<ProductLink> GetLinkedProducts(string productId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public int GetStocksForProduct(string productId)
     {
       throw new System.NotImplementedException();
     }
