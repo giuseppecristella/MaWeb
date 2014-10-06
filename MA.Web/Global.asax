@@ -1,4 +1,5 @@
 ﻿<%@ Application Language="C#" %>
+<%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
 <script RunAt="server">
     void Application_Start(object sender, EventArgs e)
     {
@@ -25,6 +26,9 @@
         MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
         MagentoConnection.Instance.Password = "123456";
         MagentoConnection.Instance.UserId = "ws_user";
+
+        CartHelper.CacheManager = new AspnetCacheManager();
+        
         
         Session["carrello"] = new ArrayList();
         Session["numOrdine"] = "000000";

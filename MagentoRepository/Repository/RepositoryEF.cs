@@ -23,7 +23,22 @@ namespace MagentoRepository.Repository
     }
 
 
-    public object GetCategoryLevel(string categoryId)
+    public int CreateCart()
+    {
+      throw new NotImplementedException();
+    }
+
+    public string CreateCustomer(Customer customer)
+    {
+      throw new NotImplementedException();
+    }
+
+    public List<Customer> GetCustomerById(string customerId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public string CreateCustomerAddress(int customerId, CustomerAddress customerAddress)
     {
       throw new NotImplementedException();
     }
@@ -38,17 +53,27 @@ namespace MagentoRepository.Repository
       throw new NotImplementedException();
     }
 
-    public Inventory GetInventoryInfo(string productId)
+    public List<Inventory> GetInventories(string productId)
     {
       throw new NotImplementedException();
     }
 
-    public ProductImage GetProductImage(string productId)
+    public List<ProductImage> GetProductImages(string productId)
     {
       throw new NotImplementedException();
     }
 
-    public ProductLink GetProductLinked(string productId)
+    public List<ProductLink> GetLinkedProducts(string productId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public int GetStocksForProduct(string productId)
+    {
+      throw new NotImplementedException();
+    }
+
+    public object GetCategoryLevel(string categoryId)
     {
       throw new NotImplementedException();
     }

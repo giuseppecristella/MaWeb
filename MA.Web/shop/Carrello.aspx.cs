@@ -1,231 +1,170 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.MobileControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-public partial class shop_Carrello : System.Web.UI.Page
-{
-  private string idCategoria = "";
+using iTextSharp.text.pdf;
+using Cart = MagentoBusinessDelegate.Cart;
+using Image = System.Web.UI.WebControls.Image;
+using Label = System.Web.UI.WebControls.Label;
+using TextBox = System.Web.UI.WebControls.TextBox;
 
+public partial class shop_Carrello : BasePage
+{
   protected void Page_Load(object sender, EventArgs e)
   {
-    /*inizio codice da vecchia master page*/
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    if (!helper.checkConnection())
+    ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+
+    if (Cart != null && !Cart.Products.Any())
     {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    int numItems = 0;
-    if (arrayCart != null)
-    {
-      for (int i = 0; i < arrayCart.Count; i++)
-      {
-        Product tProd = (Product)arrayCart[i];
-        numItems += int.Parse(tProd.qty);
-      }
-    }
-    ltrTotCart.Text = numItems.ToString();
-    /*fine codice master page vecchia*/
-    string rootCat = "37";
-    /*l'ultimo elemento del vettore è l'ultimo prodotto aggiunto al carrello*/
-    if (arrayCart.Count > 0)
-    {
-      Product tProd = (Product)arrayCart[arrayCart.Count - 1];
-      bool isShopVerde = true;
-      /*le categorie 44 e 45 sono riservate ai prodotti in vetrina quindi le escludo*/
-      //myProduct.categories
-      foreach (string strCat in tProd.category_ids)
-      {
-        if (strCat != "44" && strCat != "45" && strCat != "37" && strCat != "47")
-          idCategoria = strCat;
-      }
-      if (tProd.category_ids.Contains("47"))
-        isShopVerde = false;
-      if (isShopVerde)
-      {
-        //logo_v.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu verde";
-        //divCarrello.Style.Add("background", "#76A227");
-      }
-      else
-      {
-        rootCat = "47";
-        //logo_r.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu rosso";
-        //divCarrello.Style.Add("background", "#D10A11");
-      }
-      //+ " <li><a  href=\"../Index.html\">Torna al sito</a></li>";        /*visualizzo il dettaglio del prodotto*/
-    }
-    else
-    {
-      bool isShopVerde = true;
-      if ((string)Session["rootCat"] == "47")
-        isShopVerde = false;
-      }
-    if (HttpContext.Current.Cache["htmlMegaMenu"] == null)
-    {
-      if (HttpContext.Current.Cache["sessionId"] == null)
-      {
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-      }
-      HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-    }
-    arrayCart = (ArrayList)Session["carrello"];
-    if (arrayCart.Count == 0)
-    {
-      //btnUpdateCart.Visible = false;
       pnlCartTotal.Visible = false;
       LinkButton1.Enabled = false;
     }
-    if (!IsPostBack)
+    if (IsPostBack) return;
+    ViewState["PreviousPage"] = Request.UrlReferrer; //Saves the Previous page url in ViewState
+    if (Cart != null)
     {
-      ViewState["PreviousPage"] = Request.UrlReferrer; //Saves the Previous page url in ViewState
-      lvCart.DataSource = arrayCart;
+      lvCart.DataSource = Cart.Products;
       lvCart.DataBind();
-      decimal somma = helper.SommaProdotti(arrayCart);
-      ltrSomma.Text = somma.ToString();
     }
+
+    ltrSomma.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
   }
 
-  protected void lnkbtncheckout(object sender, EventArgs e)
+  protected void lnkbtncheckout_Click(object sender, EventArgs e)
   {
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    int i = 0;
     bool blerrore = false;
-    Product tempP = new Product();
-    foreach (ListViewDataItem item in lvCart.Items)
+    foreach (var item in lvCart.Items)
     {
-      TextBox txtqty = (TextBox)item.FindControl("txtqta");
-      tempP = (Product)arrayCart[i];
-      int qty = 0;
-      if (!int.TryParse(txtqty.Text, out qty) || qty < 0)
-        qty = 1;
-      Inventory[] scorteProdotto = Inventory.List((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { tempP.product_id });
-      if (int.Parse(scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."))) < qty)
-      {
-        blerrore = true;
-        msgError.Visible = true;
-        txtqty.BorderColor = System.Drawing.Color.Red;
-      }
-      i++;
+
+      var product = item.DataItem as Product;
+      if (product == null) continue;
+
+      var qty = GetProductItemQtyFromUI(item);
+      if (!qty.HasValue) continue; // errore non riesco a recuperare la qta dall'interfaccia
+
+      var qtyInStock = _repository.GetStocksForProduct(product.product_id);
+      if (qtyInStock == 0 || qtyInStock >= qty) continue;
+
+      blerrore = true;
+      msgError.Visible = true;
+      var textBox = item.FindControl("txtqty") as TextBox;
+      if (textBox != null)
+        textBox.BorderColor = System.Drawing.Color.Red;
     }
-    if (!blerrore)
-    {
-      int IdCarrello = Cart.create((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"]);
-      // UserManager dd = new 
-      Response.Redirect("Indirizzi.aspx?cartId=" + IdCarrello.ToString());
-    }
+    if (blerrore) return;
+    var cartId = _repository.CreateCart();
+    Response.Redirect(string.Format("Indirizzi.aspx?cartId={0}", cartId));
   }
 
   protected void btnUpdateCart_Click(object sender, EventArgs e)
   {
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    //controllo checkbox
-    string apiUrl = (string)HttpContext.Current.Session.Contents["apiUrl"];
-    string sessionId = (string)HttpContext.Current.Session.Contents["sessionId"];
-    if (arrayCart.Count > 0)
+    if (Cart.Products.Any())
     {
-      //aggiornamento qta
-      int i = 0;
-      bool blerrore = false;
-      Product tempP = new Product();
-      foreach (ListViewDataItem item in lvCart.Items)
-      {
-        TextBox txtqty = (TextBox)item.FindControl("txtqta");
-        int qty = 0;
-        if (!int.TryParse(txtqty.Text, out qty) || qty < 0)
-          qty = 1;
-        tempP = (Product)arrayCart[i];
-        Inventory[] scorteProdotto = Inventory.List((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { tempP.product_id });
-        if (int.Parse(scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."))) >= qty)
-        {
-          if (qty.ToString() != tempP.qty)
-            tempP.qty = qty.ToString();
-          arrayCart.RemoveAt(i);
-          arrayCart.Insert(i, tempP);
-        }
-        else
-        {
-          blerrore = true;
-        }
-        i++;
-      }
-      //controllo gli item da cancellare
-      int j = 0;
-      foreach (ListViewDataItem item in lvCart.Items)
-      {
-        CheckBox chkDelete = (CheckBox)item.FindControl("chkDelete");
-        if (chkDelete.Checked)
-          if (arrayCart.Count == lvCart.Items.Count)
-          {
-            arrayCart.RemoveAt(j);
-          }
-          else
-            arrayCart.RemoveAt(j - 1);
-        j++;
-      }
-      if (blerrore)
-        msgError.Visible = true;
-      else
-      {
-        msgError.Visible = false;
-      }
-      Session["carrello"] = arrayCart;
+      var storedCart = Cart;
+      var productsToDelete = GetItemsToDelete(lvCart.Items);
+      if (productsToDelete.Any()) storedCart.DeleteProducts(productsToDelete);
+      CheckAndUpdateItemsQty(storedCart);
+      Cart = storedCart;
     }
-    if (arrayCart.Count == 0)
+    if (!Cart.Products.Any())
     {
       Response.Redirect("home_r.aspx");
       pnlCartTotal.Visible = false;
       LinkButton1.Enabled = false;
     }
-    lvCart.DataSource = arrayCart;
+    lvCart.DataSource = Cart;
     lvCart.DataBind();
-    int numItems = 0;
-    for (int k = 0; k < arrayCart.Count; k++)
-    {
-      Product tProd = (Product)arrayCart[k];
-      numItems += int.Parse(tProd.qty);
-    }
-    // Literal ltrTotCart = (Literal)Page.Master.FindControl("ltrTotCart");
-    ltrTotCart.Text = numItems.ToString();
-    decimal somma = helper.SommaProdotti(arrayCart);
-    ltrSomma.Text = somma.ToString("c");
+    ltrTotCart.Text = ltrSomma.Text = Cart.Total.ToString("c");
+
   }
 
-  /*costruzione del carrello*/
   protected void lvDataBound(object sender, ListViewItemEventArgs e)
   {
-    ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-    Literal lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
-    lblnomeprod.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).name;
-    //  Label lblmodprod = (Label)e.Item.FindControl("lblmodprod");
-    //  lblmodprod.Text = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).model;
-    Label lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
-    string prezzoUn = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price;
-    lblprezzoun.Text = helper.FormatCurrency(prezzoUn);
-    Image imgprod = (Image)e.Item.FindControl("imgprod");
-    // imgprod.ImageUrl = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).imageurl;
-    imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).imageurl + "&W_=100&H_=100";
-    LinkButton lnkbtnDettProd = (LinkButton)e.Item.FindControl("lnkbtnDettProd");
-    // lnkbtnDettProd.PostBackUrl = "Dettaglio.aspx?CatId=" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).category_ids[0] + "&ProdId=" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).product_id;
-    lnkbtnDettProd.PostBackUrl = helper.GetAbsoluteUrl() + "Shop/" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).name.Replace(" ", "-") + ".html";
-    TextBox txtqtaprod = (TextBox)e.Item.FindControl("txtqta");
-    txtqtaprod.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).qty;
-    decimal tot = decimal.Parse(lblprezzoun.Text) * int.Parse(txtqtaprod.Text);
-    lblprezzoun.Text = "€. " + helper.FormatCurrency(prezzoUn);
-    Label lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
-    //  txtqtaprod.Text = "Qta. "+((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).qty;
-    lblprezzotot.Text = "Tot. €. " + tot.ToString().Replace(".", ",");
+    var item = (ListViewDataItem)e.Item;
+    if (item == null || item.DataItem as Product == null) return;
+    var product = item.DataItem as Product;
+
+    // Nome
+    var lblnomeprod = item.FindControl("lblnomeprod") as Literal;
+    if (lblnomeprod != null) lblnomeprod.Text = product.name;
+
+    // Prezzo unitario
+    var lblprezzoun = item.FindControl("lblprezzoun") as Label;
+    if (lblprezzoun != null) lblprezzoun.Text = string.Format("€. {0}", helper.FormatCurrency(helper.FormatCurrency(product.price)));
+
+    // Q.ta
+    var txtqtaprod = item.FindControl("txtqta") as TextBox;
+    if (txtqtaprod != null) txtqtaprod.Text = product.qty;
+
+    // Prezzo totale
+    var tot = decimal.Parse(product.price) * int.Parse(product.qty);
+    var lblprezzotot = item.FindControl("lblprezzotot") as Label;
+    if (lblprezzotot != null) lblprezzotot.Text = string.Format("Tot. €. {0}", tot.ToString().Replace(".", ","));
+
+    // Immagine principale
+    var imgprod = item.FindControl("imgprod") as Image;
+    if (imgprod != null) imgprod.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=100&H_=100", product.imageurl);
+
+    // Url pagina dettaglio 
+    var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
+    if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio.aspx?CatId={0}&ProdId={1}",
+      product.category_ids[0], product.product_id);
   }
 
   protected void lnkbtnContinueShop_Click(object sender, EventArgs e)
   {
-    Category CategoryInfo = Category.Info((string)HttpContext.Current.Cache["apiUrl"],
-                                         (string)HttpContext.Current.Cache["sessionId"],
-                                         new object[] { idCategoria });
-    //CategoryInfo.name;
-    Response.Redirect("~/shop/" + CategoryInfo.name + ".html");
+    Response.Redirect("~/shop/Catalogo.aspx");
   }
+
+  #region private methods
+
+  private static int? GetProductItemQtyFromUI(ListViewDataItem item)
+  {
+    int qty;
+    var txtqty = item.FindControl("txtqta") as TextBox;
+    if (txtqty == null) return null;
+    if (int.TryParse(txtqty.Text, out qty) == false || qty < 0) return null;
+    return qty;
+  }
+
+  private void CheckAndUpdateItemsQty(Cart storedCart)
+  {
+    foreach (var item in lvCart.Items)
+    {
+      if (item == null || item.DataItem as Product == null) continue;
+      var productId = (item.DataItem as Product).product_id;
+
+      var productQtyFromUI = GetProductItemQtyFromUI(item);
+      if (productQtyFromUI.HasValue == false) continue;
+
+      var productQtyFromStoredCart = int.Parse(
+        storedCart.Products.Where(p => p.product_id == productId).Select(p => p.qty).First());
+      if (productQtyFromUI.Value == productQtyFromStoredCart) continue;
+      if (_repository.GetStocksForProduct(productId) > productQtyFromUI)
+      {
+        var valueToUpdate = storedCart.Products.First(p => p.product_id == productId);
+        valueToUpdate.qty = productQtyFromUI.Value.ToString();
+        Cart = storedCart;
+      }
+    }
+  }
+
+  private List<Product> GetItemsToDelete(IEnumerable<ListViewDataItem> items)
+  {
+    var productToRemove = new List<Product>();
+    foreach (var item in items)
+    {
+      var chkDelete = item.FindControl("chkDelete") as CheckBox;
+      if (chkDelete == null) continue;
+      productToRemove.Add((item.DataItem as Product));
+    }
+    return productToRemove;
+  }
+
+  #endregion
+
 }

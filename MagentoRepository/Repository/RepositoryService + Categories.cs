@@ -39,7 +39,24 @@ namespace MagentoRepository.Repository
     /// <returns></returns>
     public Category GetCategoryInfo(string categoryId)
     {
-      return null;
+      var key = CreateCacheDictionaryKey(ConfigurationHelper.CacheKeyNames[CacheKey.CategoryInfo], categoryId);
+      if (_cacheManager.Contains(key)) return _cacheManager.Get<Category>(key);
+      try
+      {
+        var category = Category.Info(_connection.Url, _connection.SessionId, new object[] { categoryId });
+        if (category == null) return null;
+        _cacheManager.Add(key, category);
+        return category;
+      }
+      catch (Exception ex)
+      {
+        return null;
+      }
+    }
+
+    public T Get<T>(string id)
+    {
+      throw new NotImplementedException();
     }
   }
 }

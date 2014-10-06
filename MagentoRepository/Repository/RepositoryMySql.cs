@@ -31,6 +31,26 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
+    public int CreateCart()
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public string CreateCustomer(Customer customer)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public List<Customer> GetCustomerById(string customerId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public string CreateCustomerAddress(int customerId, CustomerAddress customerAddress)
+    {
+      throw new System.NotImplementedException();
+    }
+
     public Product GetProductInfo(string productId)
     {
       throw new System.NotImplementedException();
@@ -41,17 +61,22 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
-    public Inventory GetInventoryInfo(string productId)
+    public List<Inventory> GetInventories(string productId)
     {
       throw new System.NotImplementedException();
     }
 
-    public ProductImage GetProductImage(string productId)
+    public List<ProductImage> GetProductImages(string productId)
     {
       throw new System.NotImplementedException();
     }
 
-    public ProductLink GetProductLinked(string productId)
+    public List<ProductLink> GetLinkedProducts(string productId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public int GetStocksForProduct(string productId)
     {
       throw new System.NotImplementedException();
     }

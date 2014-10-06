@@ -8,9 +8,9 @@ namespace MagentoRepository.Helpers
     FilteredProducts,
     CategoryAssignedProducts,
     ProductInfo,
-    InventoryInfo,
-    ProductImage,
-    ProductLinked,
+    Inventories,
+    ProductImages,
+    LinkedProducts,
     CategoryLevel,
     CategoryInfo
   }
@@ -28,9 +28,9 @@ namespace MagentoRepository.Helpers
       { CacheKey.FilteredProducts, "FilteredProducts§" },
       { CacheKey.CategoryAssignedProducts, "CategoryAssignedProducts§" },
       { CacheKey.ProductInfo, "ProductInfo§" },
-      { CacheKey.InventoryInfo, "InventoryInfo§" },
-      { CacheKey.ProductImage, "ProductImage§" },
-      { CacheKey.ProductLinked, "ProductLinked§" },
+      { CacheKey.Inventories, "Inventories§" },
+      { CacheKey.ProductImages, "ProductImages§" },
+      { CacheKey.LinkedProducts, "LinkedProducts§" },
       { CacheKey.CategoryLevel, "CategoryLevel§" },
       { CacheKey.CategoryInfo, "CategoryInfo§" }
     };

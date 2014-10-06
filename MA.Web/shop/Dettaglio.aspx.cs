@@ -1,118 +1,153 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessDelegate.Helpers;
 using MagentoRepository.Helpers;
+using MagentoRepository.Repository;
 
-public partial class shop_Dettaglio : System.Web.UI.Page
+public partial class shop_Dettaglio : BasePage
 {
+  private static string _productId;
   protected void Page_Load(object sender, EventArgs e)
   {
+    _productId = Request.QueryString["Id"];
+    if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");  
 
-    // Totale ---> ltrTotCart.Text = numItems.ToString();
+    if (IsPostBack) return;
+    ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+    SetMainStyleAttributes();
+    menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
-    if (!IsPostBack)
+    _repository.GetProductInfo(_productId);
+
+    BindProduct(_productId);
+    BindInventoryInfo(_productId);
+    BindProductImages(_productId);
+    BindLinkedProducts(_productId);
+
+    #region Garbage Shop Verde
+
+    //if (isShopVerde)
+    //{
+    //  logo_v.Visible = true;
+    //  main_navigation.Attributes["class"] = "main-menu verde";
+    //  divSpotRosso.Visible = true;
+    //  divCarrello.Style.Add("background", "#76A227");
+    //  lblNomeProd.CssClass = "colore_verde";
+    //}
+
+    #endregion Garbage Shop Verde
+  }
+
+  protected void _rptImagesItemDataBound(object sender, RepeaterItemEventArgs e)
+  {
+    var imgThumb = e.Item.FindControl("imgThumb") as HtmlImage;
+    if (imgThumb != null) imgThumb.Src = e.Item.DataItem.ToString();
+    var prettyThumb = e.Item.FindControl("prettyThumb") as HtmlAnchor;
+    if (prettyThumb != null)
     {
-      const bool isShopVerde = true;
-      SetMainStyleAttributes();
-      menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-
-      string productId = Request.QueryString["Id"];
-      var product = Product.Info(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { productId });
-
-      var categoryId = GetProductCategory(product.categories);
-
-      #region Garbage Shop Verde
-      //if (isShopVerde)
-      //{
-      //  logo_v.Visible = true;
-      //  main_navigation.Attributes["class"] = "main-menu verde";
-      //  divSpotRosso.Visible = true;
-      //  divCarrello.Style.Add("background", "#76A227");
-      //  lblNomeProd.CssClass = "colore_verde";
-      //}
-      #endregion Garbage Shop Verde
-
-
-
-      /* visualizzo il nome della categoria di appartenenza del prodotto in dettaglio*/
-      Category CategoryInfo = Category.Info(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { categoryId });
-      lblNomeCatProd.Text = CategoryInfo.name;
-      lblNomeProd.Text += product.name;
-      /*controllo la disponibilità*/
-      if (product.is_in_stock == "0")
-      {
-        btnaddTocart.Enabled = false;
-        btnaddTocart.Visible = false;
-        prodDisponibilità.Text = "Il prodotto non è più disponibile.";
-      }
-
-
-      Inventory[] scorteProdotto = Inventory.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { productId });
-      prodScorte.Text = scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."));
-      //  ltrTitleProd.Text = myProduct.name;
-      prodProduttore.Text = product.produttore;
-      //   prodModel.Text = myProduct.model;
-      prodDescription.Text = product.description;
-      // prodNameDesc.Text = myProduct.name;
-      prodPrice.Text = helper.FormatCurrency(product.price);
-
-
-      ProductImage[] myProductImages = ProductImage.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { int.Parse(productId) });
-      ArrayList ulrImages = new ArrayList();
-      foreach (ProductImage p in myProductImages)
-      {
-        if (p.exclude == "1")
-        {
-          mainImage.Src = p.url;
-        }
-        //nel vettore le immagini contengono l'attributo posizione da implementare l'ordine in futuro
-        else
-          ulrImages.Add(p.url);
-      }
-      rptImages.DataSource = ulrImages;
-      rptImages.DataBind();
-
-
-      /*recupero gli eventuali prodotti ASSOCIATI*/
-      ProductLink[] prodottiAssociati = ProductLink.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { "related", int.Parse(productId) });
-      if (prodottiAssociati.Length > 0)
-      {
-        Product[] ArrProdottiAssociati = new Product[prodottiAssociati.Length];
-        for (int i = 0; i < prodottiAssociati.Length; i++)
-        {
-          //    Product tempProduct = Product.Info(apiUrl, sessionId, new object[] { prodottiAssociati[i].product_id });
-          XmlRpcStruct filterOn = new XmlRpcStruct();
-          XmlRpcStruct filterParams = new XmlRpcStruct();
-          filterParams.Add("eq", prodottiAssociati[i].product_id);
-          filterOn.Add("product_id", filterParams);
-          Product[] tempProducts =
-              Ez.Newsletter.MagentoApi.Product.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { filterOn });
-          ArrProdottiAssociati[i] = tempProducts[0];
-        }
-        rptProdAssociati.DataSource = ArrProdottiAssociati;
-        rptProdAssociati.DataBind();
-        rptProdAssociati.Visible = true;
-      }
-      else
-      {
-        rptProdAssociati.Visible = false;
-      }
+      prettyThumb.HRef = e.Item.DataItem.ToString();
+      prettyThumb.Title = string.Empty;
     }
   }
 
-  private static string GetProductCategory(string[] categories)
+  protected void _rptProdAssociatiItemDataBound(object sender, RepeaterItemEventArgs e)
   {
-    var categoriesToExclude = ConfigurationHelper.HomeCategories.Union(new[] { ConfigurationHelper.RootCategory });
-    var productSubCategories = categories.Except(categoriesToExclude).ToList();
+    if (e.Item.ItemType != ListItemType.Header)
+    {
+      var imgProdAss = (HtmlImage)e.Item.FindControl("imgProdAss");
+      imgProdAss.Src = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).imageurl;
+      var linkProd = (HtmlAnchor)e.Item.FindControl("linkProd");
+      linkProd.HRef = string.Format("Dettaglio.aspx?Id={0}", ((Product)(e.Item.DataItem)).product_id);
+    }
+  }
 
-    if (!productSubCategories.Any()) return null;
-    return productSubCategories[0];
+  protected void AddToCart(object sender, EventArgs e)
+  {
+    if (Product != null)
+    {
+      Product.qty = "1";
+      CartHelper.AddProductToCartAndUpdateCache(Product);
+    }
+    Response.Redirect("~/shop/Carrello.aspx");
+  }
+
+  #region private methods
+
+  private void BindProduct(string productId)
+  {
+    if (Product.name != null) lblNomeProd.Text += Product.name;
+
+    prodProduttore.Text = Product.produttore;
+    prodDescription.Text = Product.description;
+    prodPrice.Text = helper.FormatCurrency(Product.price);
+
+    var categoryId = GetProductCategory(Product.categories);
+    BindCategoryName(categoryId);
+    DisableProductWhenIsNotInStock(Product.is_in_stock);
+  }
+
+  private void BindLinkedProducts(string productId)
+  {
+    rptProdAssociati.Visible = false;
+    var linkedProducts = _repository.GetLinkedProducts(productId);
+    if (linkedProducts == null) return;
+
+    var linkedProducstWithCompleteInfos = linkedProducts
+      .Select(product => _repository.GetFilteredProducts
+        (new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = product.product_id }))
+      .Where(p => p != null).ToList();
+
+    // Stesso codice della linq lamba expression
+    //foreach (var product in linkedProducts)
+    //{
+    //  var p = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = product.product_id });
+    //  if (p != null)
+    //    linkedProducstWithCompleteInfos.Add(p);
+    //}
+
+    rptProdAssociati.DataSource = linkedProducstWithCompleteInfos;
+    rptProdAssociati.DataBind();
+    rptProdAssociati.Visible = true;
+  }
+
+  private void BindProductImages(string productId)
+  {
+    mainImage.Src = GetProductMainImageUrl(productId);
+    var images = GetProductImagesUrlExceptMain(productId);
+    if (images == null) return;
+
+    rptImages.DataSource = images;
+    rptImages.DataBind();
+  }
+
+  private void BindInventoryInfo(string productId)
+  {
+    _repository.GetInventories(productId);
+    Inventory[] scorteProdotto = Inventory.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId,
+      new object[] { productId });
+    prodScorte.Text = scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."));
+
+  }
+
+  private void BindCategoryName(string categoryId)
+  {
+    var categoryInfo = _repository.GetCategoryInfo(categoryId);
+    lblNomeCatProd.Text = (categoryInfo.name) ?? string.Empty;
+  }
+
+  private void DisableProductWhenIsNotInStock(string isInStock)
+  {
+    if (isInStock == "0")
+    {
+      btnaddTocart.Enabled = false;
+      btnaddTocart.Visible = false;
+      prodDisponibilità.Text = "Il prodotto non è più disponibile.";
+    }
   }
 
   private void SetMainStyleAttributes()
@@ -124,42 +159,35 @@ public partial class shop_Dettaglio : System.Web.UI.Page
     divSpotVerde.Visible = true;
   }
 
-  protected void btnaddTocart_Click(object sender, EventArgs e)
+  private static string GetProductCategory(string[] categories)
   {
-    string _idProd = Request.QueryString["ProdId"];
-    //faccio una product.list con filtro! perchè mi servono meno attributi
-    XmlRpcStruct filterOn = new XmlRpcStruct();
-    XmlRpcStruct filterParams = new XmlRpcStruct();
-    filterParams.Add("eq", _idProd);
-    filterOn.Add("product_id", filterParams);
-    Product[] myProducts = Ez.Newsletter.MagentoApi.Product.List((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { filterOn });
-    myProducts[0].qty = "1";// in questo caso posso acquistare un solo prodotto alla volta prodQta.Text;
-    ArrayList tempArrayCart = new ArrayList();
-    helper.addProdToSessionCart(myProducts[0]);
-    tempArrayCart = (ArrayList)Session["carrello"];
-    Session["carrello"] = tempArrayCart;
-    Response.Redirect("Carrello.html");
+    var categoriesToExclude = ConfigurationHelper.HomeCategories.Union(new[] { ConfigurationHelper.RootCategory });
+    var productSubCategories = categories.Except(categoriesToExclude).ToList();
+
+    if (!productSubCategories.Any()) return null;
+    return productSubCategories[0];
   }
 
-  protected void _rptImagesItemDataBound(object sender, RepeaterItemEventArgs e)
+  private List<string> GetProductImagesUrlExceptMain(string productId)
   {
-    HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
-    imgThumb.Src = e.Item.DataItem.ToString();
-    HtmlAnchor prettyThumb = (HtmlAnchor)e.Item.FindControl("prettyThumb");
-    prettyThumb.HRef = e.Item.DataItem.ToString();
-    prettyThumb.Title = " ";
-    // e.Item.DataItem
+    var productImages = _repository.GetProductImages(productId);
+    if (productImages == null) return null;
+    return productImages.Where(p => p.exclude != "1").Select(p => p.url).ToList();
   }
 
-  protected void _rptProdAssociatiItemDataBound(object sender, RepeaterItemEventArgs e)
+  private string GetProductMainImageUrl(string productId)
   {
-    if (e.Item.ItemType != ListItemType.Header)
+    var productImages = _repository.GetProductImages(productId);
+    return productImages.First(p => p.exclude == "1").url ?? string.Empty;
+  }
+
+  #endregion private methods
+
+  public Product Product
+  {
+    get
     {
-      HtmlImage imgProdAss = (HtmlImage)e.Item.FindControl("imgProdAss");
-      imgProdAss.Src = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).imageurl;
-      HtmlAnchor linkProd = (HtmlAnchor)e.Item.FindControl("linkProd");
-      linkProd.HRef =
-      helper.GetAbsoluteUrl() + "Shop/" + ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).name.Replace(" ", "-") + ".html";
+      return _repository.GetProductInfo(_productId);
     }
   }
 }

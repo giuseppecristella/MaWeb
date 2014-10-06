@@ -7,7 +7,7 @@ namespace MagentoBusinessDelegate.Helpers
   public static class CartHelper
   {
     private static ICacheManager _cacheManager;
-     
+
     public static ICacheManager CacheManager
     {
       set { _cacheManager = value; }

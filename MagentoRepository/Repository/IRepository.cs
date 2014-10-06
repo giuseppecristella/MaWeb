@@ -5,9 +5,21 @@ namespace MagentoRepository.Repository
 {
   public interface IRepository
   {
+    #region Product
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="categoryId"></param>
+    /// <returns></returns>
     List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     Product GetFilteredProducts(Filter filter);
-    object GetCategoryLevel(string categoryId);
 
     /// <summary>
     /// 
@@ -19,6 +31,38 @@ namespace MagentoRepository.Repository
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    List<Inventory> GetInventories(string productId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    List<ProductImage> GetProductImages(string productId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    List<ProductLink> GetLinkedProducts(string productId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
+    int GetStocksForProduct(string productId);
+
+    #endregion
+
+    #region Category
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="categoryId"></param>
     /// <returns></returns>
     Category GetCategoryInfo(string categoryId);
@@ -26,18 +70,27 @@ namespace MagentoRepository.Repository
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="productId"></param>
+    /// <param name="categoryId"></param>
     /// <returns></returns>
-    Inventory GetInventoryInfo(string productId);
+    object GetCategoryLevel(string categoryId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    ProductImage GetProductImage(string productId);
+    #endregion Category
 
-    ///
-    ProductLink GetProductLinked(string productId);
+    #region Cart
+
+    int CreateCart();
+
+    #endregion
+
+    #region Customers
+
+    string CreateCustomer(Customer customer);
+
+    List<Customer> GetCustomerById(string customerId); 
+
+    string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
+
+    #endregion
+
   }
 }
