@@ -4,64 +4,54 @@ using System.Web;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using WSCryptDecrypt = it.sella.ecomms2s.WSCryptDecrypt;
-public partial class Riepilogo : System.Web.UI.Page
+public partial class Riepilogo : BasePage
 {
   string totale = "0";
-  string cartId = "";
+
+  public int CartId { get;  set; }
 
   protected void Page_Load(object sender, EventArgs e)
   {
-    if (!helper.checkConnection())
-    {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    //+ " <li><a  href=\"../Index.html\">Torna al sito</a></li>";
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    cartId = Request.QueryString["cartId"];
-    string utente = Page.User.Identity.Name;
-    // ProfileCommon profile = Profile.GetProfile(utente);
-    if (!string.IsNullOrEmpty(utente))
-    {
-      if (!IsPostBack)
-      {
-        if (!string.IsNullOrEmpty(cartId))
-        {
-          ShippingMethod[] shippingMethods = Cart.cartShippingList((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId) });
-          lvCart.DataSource = arrayCart;
-          lvCart.DataBind();
-          decimal somma = helper.SommaProdotti(arrayCart);
-          ltrSubTot.Text = somma.ToString();
-          ltrSped.Text = helper.FormatCurrency(shippingMethods[0].price);
-          ltrSomma.Text = (decimal.Parse(ltrSubTot.Text) + decimal.Parse(ltrSped.Text)).ToString();
-        }
-        else
-        {
-          Response.Redirect("Carrello.html");
-        }
-      }
-    }
-    else
-    {
-      Response.Redirect("~/Shop/Accedi.html");
-    }
+    var arrayCart = (ArrayList)Session["carrello"];
+   // CartId = Request.QueryString["cartId"];
+    var utente = Page.User.Identity.Name;
+
+    if (string.IsNullOrEmpty(utente)) Response.Redirect("~/Shop/Accedi.aspx");
+
+    if (IsPostBack) return;
+    if (string.IsNullOrEmpty(cartId)) Response.Redirect("Carrello.aspx");
+
+    var shippingMethods =
+      Ez.Newsletter.MagentoApi.Cart.cartShippingList((string)HttpContext.Current.Cache["apiUrl"],
+        (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId) });
+
+    // Binding carrello
+    lvCart.DataSource = Cart;
+    lvCart.DataBind();
+
+    ltrSubTot.Text = Cart.Total.ToString();
+    ltrSped.Text = helper.FormatCurrency(shippingMethods[0].price);
+    // totale + spese spedizione
+    ltrSomma.Text = (decimal.Parse(ltrSped.Text) + decimal.Parse(ltrSubTot.Text)).ToString();
+
   }
 
   protected void lvDataBound(object sender, ListViewItemEventArgs e)
   {
-    ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-    Literal lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
-    lblnomeprod.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).name;
-    Label lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
+    var dataItem = (ListViewDataItem)e.Item;
+    var lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
+    lblnomeprod.Text = ((Product)(dataItem.DataItem)).name;
+    var lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
     lblprezzoun.Text = helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
-    Image imgprod = (Image)e.Item.FindControl("imgprod");
+    var imgprod = (Image)e.Item.FindControl("imgprod");
     imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).imageurl + "&W_=100&H_=100";
-    Label txtqta = (Label)e.Item.FindControl("txtqta");
-    txtqta.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).qty;
-    Label lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
+    var txtqta = (Label)e.Item.FindControl("txtqta");
+    txtqta.Text = ((Product)(dataItem.DataItem)).qty;
+    var lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
     totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqta.Text)).ToString();
-    lblprezzoun.Text = "€. " + lblprezzoun.Text;
-    lblprezzotot.Text = "Tot. €. " + totale.Replace(".", ",");
+    // usare string.Format currency
+    lblprezzoun.Text = string.Format("€. {0}", lblprezzoun.Text);
+    lblprezzotot.Text = string.Format("Tot. €. {0}", totale.Replace(".", ","));
   }
 
   protected void rptCart_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -74,7 +64,7 @@ public partial class Riepilogo : System.Web.UI.Page
     string orderNum = "0";
     try
     {
-      orderNum = Cart.cartOrder((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId) });
+      orderNum = Ez.Newsletter.MagentoApi.Cart.cartOrder((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(_cartId) });
       Session["numOrdine"] = orderNum;
       // bool blOrderStatus = Ez.Newsletter.MagentoApi.OrderStatus.SetStatus(apiUrl, sessionId, new object[] { orderNum, "canceled" });
     }
@@ -84,12 +74,12 @@ public partial class Riepilogo : System.Web.UI.Page
       // annullo quel numero di ordine mettendolo in uno stato x e faccio una redirect al carrello!!!
       bool blOrderStatus = Ez.Newsletter.MagentoApi.OrderStatus.SetStatus((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { orderNum, "canceled" });
     }
-    it.sella.ecomms2s.WSCryptDecrypt wsCrypt = new WSCryptDecrypt();
+    var wsCrypt = new WSCryptDecrypt();
     // it.sella.testecomm.WSCryptDecrypt wsCrypt = new WSCryptDecrypt();
     string myshoplogin = Utility.SearchConfigValue("SELLACODE");
     int mycurrency = 242;//cod euro
-    string myamount = ltrSomma.Text.Replace(",", ".");
-    string myshoptransactionID = orderNum + Guid.NewGuid().ToString();//"34az85ord19";
+    var myamount = ltrSomma.Text.Replace(",", ".");
+    var myshoptransactionID = orderNum + Guid.NewGuid().ToString();//"34az85ord19";
     System.Xml.XmlNode tempNode = wsCrypt.Encrypt(myshoplogin, mycurrency.ToString(), myamount, myshoptransactionID, "", "", "", "", "", "", "", "");
     System.Xml.XmlNode nodeCrypstedString = tempNode.SelectSingleNode("descendant::CryptDecryptString");
     System.Xml.XmlNode nodeTransactionResult = tempNode.SelectSingleNode("descendant::TransactionResult");

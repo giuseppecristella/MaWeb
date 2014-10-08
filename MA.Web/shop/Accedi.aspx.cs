@@ -33,7 +33,6 @@ public partial class shop_Accedi : BasePage
     var passwordFromUI = CreateUserWizard1.Password;
     var membershipUser = Membership.GetUser(usernameFromUI);
     if (membershipUser == null) return;
-    bool ok = true;
     try
     {
       Roles.AddUserToRole(usernameFromUI, "User");
