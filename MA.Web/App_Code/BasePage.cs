@@ -32,7 +32,7 @@ public class BasePage : System.Web.UI.Page
 
   }
 
-  public BasePage(RepositoryService repository)
+  public BasePage(IRepository repository)
   {
     _repository = repository;
     // come gestire una singola istanza della classe cache manager?

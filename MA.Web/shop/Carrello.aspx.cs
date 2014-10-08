@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI.MobileControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-using iTextSharp.text.pdf;
 using Cart = MagentoBusinessDelegate.Cart;
 using Image = System.Web.UI.WebControls.Image;
 using Label = System.Web.UI.WebControls.Label;

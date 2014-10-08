@@ -5,28 +5,26 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Cache;
 
-public partial class Indirizzi : System.Web.UI.Page
+public partial class Indirizzi : BasePage
 {
   //in query string mi arriva l'id del carrello dalla pagina precedente (carrello.aspx) in cui ho fatto la create
   private string idUserMagento = "";
   string cartId = "";
   Customer customer;
   CustomerAddress[] myCustomerAddresses = null;
+
   protected void Page_Load(object sender, EventArgs e)
   {
-    if (!helper.checkConnection())
-    {
-      HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-      HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-    }
-    string cartId = Request.QueryString["cartId"];
-    ArrayList arrayCart = (ArrayList)Session["carrello"];
-    Customer customer = new Customer();
+   
+    var cartId = Request.QueryString["cartId"];
+    
+    var customer = new Customer();
     string utente = Page.User.Identity.Name;
     if (!string.IsNullOrEmpty(utente))
     {
-      MembershipUser userAspNet = Membership.GetUser(utente);
+      var userAspNet = Membership.GetUser(utente);
       //a questo punto l'utente sarà già loggato quindi devo fare una Customer Info per recuperare gli eventuali indirizzi
       idUserMagento = userAspNet.Comment;
       if (!IsPostBack)

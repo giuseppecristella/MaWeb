@@ -5,11 +5,7 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-using MagentoBusinessDelegate.Helpers;
-using MagentoComunication.Cache;
 using MagentoRepository.Helpers;
-using MagentoRepository.Repository;
-using Cart = MagentoBusinessDelegate.Cart;
 
 public partial class shop_Catalogo : BasePage
 {
