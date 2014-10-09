@@ -6,14 +6,11 @@ using Ez.Newsletter.MagentoApi;
 using WSCryptDecrypt = it.sella.ecomms2s.WSCryptDecrypt;
 public partial class Riepilogo : BasePage
 {
-  string totale = "0";
-
-  public int CartId { get;  set; }
 
   protected void Page_Load(object sender, EventArgs e)
   {
-    var arrayCart = (ArrayList)Session["carrello"];
-   // CartId = Request.QueryString["cartId"];
+     
+    var cartId = Request.QueryString["cartId"];
     var utente = Page.User.Identity.Name;
 
     if (string.IsNullOrEmpty(utente)) Response.Redirect("~/Shop/Accedi.aspx");
@@ -23,7 +20,7 @@ public partial class Riepilogo : BasePage
 
     var shippingMethods =
       Ez.Newsletter.MagentoApi.Cart.cartShippingList((string)HttpContext.Current.Cache["apiUrl"],
-        (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId) });
+        (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse("cartId") });
 
     // Binding carrello
     lvCart.DataSource = Cart;
@@ -48,7 +45,7 @@ public partial class Riepilogo : BasePage
     var txtqta = (Label)e.Item.FindControl("txtqta");
     txtqta.Text = ((Product)(dataItem.DataItem)).qty;
     var lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
-    totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqta.Text)).ToString();
+    var totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqta.Text)).ToString();
     // usare string.Format currency
     lblprezzoun.Text = string.Format("€. {0}", lblprezzoun.Text);
     lblprezzotot.Text = string.Format("Tot. €. {0}", totale.Replace(".", ","));
@@ -64,7 +61,7 @@ public partial class Riepilogo : BasePage
     string orderNum = "0";
     try
     {
-      orderNum = Ez.Newsletter.MagentoApi.Cart.cartOrder((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(_cartId) });
+      orderNum = Ez.Newsletter.MagentoApi.Cart.cartOrder((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse("cartId") });
       Session["numOrdine"] = orderNum;
       // bool blOrderStatus = Ez.Newsletter.MagentoApi.OrderStatus.SetStatus(apiUrl, sessionId, new object[] { orderNum, "canceled" });
     }

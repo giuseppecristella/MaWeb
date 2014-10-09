@@ -36,17 +36,47 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
+    public bool AssociateCustomerToCart(int cartId,Customer customer)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public bool AddCustomerAddressesToCart(int cartId, List<CustomerAddress> customerAddresses)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public bool AddProductToCart(int cartId, Product product)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public List<PaymentMethod> GetPaymentMethods(int cartId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public bool AddShippingMethodToCart(string shippingMethod)
+    {
+      throw new System.NotImplementedException();
+    }
+
     public string CreateCustomer(Customer customer)
     {
       throw new System.NotImplementedException();
     }
 
-    public List<Customer> GetCustomerById(string customerId)
+    public Customer GetCustomerById(int customerId)
     {
       throw new System.NotImplementedException();
     }
 
     public string CreateCustomerAddress(int customerId, CustomerAddress customerAddress)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public List<CustomerAddress> GetCustomerAddresses(int customerId)
     {
       throw new System.NotImplementedException();
     }

@@ -12,7 +12,11 @@ namespace MagentoRepository.Helpers
     ProductImages,
     LinkedProducts,
     CategoryLevel,
-    CategoryInfo
+    CategoryInfo,
+    ShippingMethods,
+    SessionId,
+    Customer,
+    CustomerAddresses
   }
 
   public static class ConfigurationHelper
@@ -25,6 +29,7 @@ namespace MagentoRepository.Helpers
     public static readonly Dictionary<CacheKey, string> CacheKeyNames = new Dictionary<CacheKey, string>()
     {
       { CacheKey.Cart, "Cart" },
+      { CacheKey.SessionId, "SessionId" },
       { CacheKey.FilteredProducts, "FilteredProducts§" },
       { CacheKey.CategoryAssignedProducts, "CategoryAssignedProducts§" },
       { CacheKey.ProductInfo, "ProductInfo§" },
@@ -32,7 +37,10 @@ namespace MagentoRepository.Helpers
       { CacheKey.ProductImages, "ProductImages§" },
       { CacheKey.LinkedProducts, "LinkedProducts§" },
       { CacheKey.CategoryLevel, "CategoryLevel§" },
-      { CacheKey.CategoryInfo, "CategoryInfo§" }
+      { CacheKey.CategoryInfo, "CategoryInfo§" },
+      { CacheKey.ShippingMethods, "ShippingMethods§" },
+      { CacheKey.Customer, "Customer§" },
+      { CacheKey.CustomerAddresses, "CustomerAddresses§" }
     };
   }
 }

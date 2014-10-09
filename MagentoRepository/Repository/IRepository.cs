@@ -80,15 +80,26 @@ namespace MagentoRepository.Repository
 
     int CreateCart();
 
+    bool AssociateCustomerToCart(int cartId, Customer customer);
+
+    bool AddCustomerAddressesToCart(int cartId, List<CustomerAddress> customerAddresses);
+
+    bool AddProductToCart(int cartId, Product product);
+    List<PaymentMethod> GetPaymentMethods(int cartId);
+    // usare enum per shipping method
+    bool AddShippingMethodToCart(string shippingMethod);
+
     #endregion
 
     #region Customers
 
     string CreateCustomer(Customer customer);
 
-    List<Customer> GetCustomerById(string customerId); 
+    Customer GetCustomerById(int customerId);
 
     string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
+
+    List<CustomerAddress> GetCustomerAddresses(int customerId);
 
     #endregion
 
