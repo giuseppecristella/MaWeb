@@ -1,33 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessApi.Test;
 using MagentoBusinessDelegate.Helpers;
+using MagentoRepository.Helpers;
+using MagentoRepository.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cart = MagentoBusinessDelegate.Cart;
 using CookComputing.XmlRpc;
+ 
 
 namespace ShopMagentoApi.Test
 {
   [TestClass]
   public class CartTest
   {
-    private string _apiUrl;
-    private string _apiUser;
-    private string _apiPassword;
-    private string _sessionId;
+    private static readonly int testCartId = 482;
+    private static readonly FakeCacheManager FakeCacheManager = new FakeCacheManager();
 
     [TestInitialize]
     public void TestInitialize()
     {
-      _apiUrl = "http://www.zoom2cart.com/api/xmlrpc";
-      _apiUser = "ws_user";
-      _apiPassword = "123456";
-
-      HttpContext.Current = new HttpContext(
-        new HttpRequest(null, "http://tempuri.org", null),
-        new HttpResponse(null));
+      MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
+      MagentoConnection.Instance.UserId = "ws_user";
+      MagentoConnection.Instance.Password = "123456";
+      MagentoConnection.Instance.CacheManager = FakeCacheManager;
+      MagentoConnection.Instance.Login();
     }
 
     [TestMethod]
@@ -106,14 +104,48 @@ namespace ShopMagentoApi.Test
       Assert.AreEqual(cartFromCache.Products.First().product_id, "179");
     }
 
+    [TestMethod]
+    public void Should_Get_All_Shipping_Methods()
+    {
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+    }
+
+    /// <summary>
+    /// Solo per creare un carrello di test
+    /// </summary>
+    [TestMethod]
+    public void Should_Create_Cart_In_Magento()
+    {
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+      var cart = repository.CreateCart();
+    }
+
+    [TestMethod]
+    public void Should_Associate_Customer_To_Cart()
+    {
+      var key = ConfigurationHelper.CacheKeyNames;
+
+      //var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+      //var cartId = repository.CreateCart();
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+      var customer = repository.GetCustomerById(33);
+      customer.mode = "register";
+      var result = repository.AssociateCustomerToCart(testCartId, customer);
+
+      Assert.IsTrue(result, "Non è stato possibile associare un carrello valido ad un utente esistente");
+    }
+
+    #region Private Methods
+
     private Product GetProductById(string productId)
     {
-      _sessionId = Connection.Login(_apiUrl, _apiUser, _apiPassword);
+
       var filterParameters = new XmlRpcStruct();
       var filterOperator = new XmlRpcStruct { { "eq", productId } };
       filterParameters.Add("product_id", filterOperator);
-      var products = Product.List(_apiUrl, _sessionId, new object[] { filterParameters });
+      var products = Product.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId, new object[] { filterParameters });
       return products[0];
     }
+    #endregion
   }
 }

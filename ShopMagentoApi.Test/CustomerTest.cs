@@ -16,29 +16,21 @@ namespace ShopMagentoApi.Test
   [TestClass]
   public class CustomerTest
   {
-    private string _apiUrl;
-    private string _apiUser;
-    private string _apiPassword;
-    private string _sessionId;
 
     [TestInitialize]
     public void TestInitialize()
     {
-      _apiUrl = "http://www.zoom2cart.com/api/xmlrpc";
-      _apiUser = "ws_user";
-      _apiPassword = "123456";
-
-      //HttpContext.Current = new HttpContext(
-      //  new HttpRequest(null, "http://tempuri.org", null),
-      //  new HttpResponse(null));
+      MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
+      MagentoConnection.Instance.UserId = "ws_user";
+      MagentoConnection.Instance.Password = "123456";
     }
 
     [TestMethod]
     public void Should_Create_A_Customer_In_Magento_Repository()
     {
-      //var customer = CreateCustomer();
-      //var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
-
+      var customer = CreateCustomer();
+      var repository = new RepositoryService(MagentoConnection.Instance, new FakeCacheManager());
+      var result = repository.CreateCustomer(customer);
 
     }
 
@@ -46,9 +38,10 @@ namespace ShopMagentoApi.Test
     {
       return new Customer()
       {
-        firstname = "Giuseppe",
-        lastname = "Cristella",
-        email = "giuseppe.cristella@libero.it",
+        firstname = "Test User FirstName",
+        lastname = "Test User LastName",
+        email = "giuseppe.cristella@fromtest.it",
+        mode = "register",
         created_at = DateTime.Now.ToString(CultureInfo.InvariantCulture),
       };
     }

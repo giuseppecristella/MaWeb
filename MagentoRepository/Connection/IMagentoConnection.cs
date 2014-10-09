@@ -6,5 +6,6 @@
     string SessionId { get; }
     string Url { get; set; }
     string UserId { get; set; }
+    bool Login();
   }
 }

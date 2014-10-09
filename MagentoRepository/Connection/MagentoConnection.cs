@@ -2,6 +2,7 @@
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Cache;
 using MagentoRepository.Connection;
+using MagentoRepository.Helpers;
 using ShopMagentoApi.Test;
 
 /// <summary>
@@ -19,7 +20,8 @@ public class MagentoConnection : IMagentoConnection
 
   MagentoConnection()
   {
-
+    // nel costruttore stabilisco una connessione con magento e salvo in cache il session Id
+    // se faccio injection di url e psw
   }
 
   public ICacheManager CacheManager
@@ -50,7 +52,9 @@ public class MagentoConnection : IMagentoConnection
     get
     {
       // Bug: se scade la sessione chi va a settare nuovamente il sessionId
-      return CacheManager.Contains("sessionId") ? _cacheManager.Get<string>("sessionId") : Connection.Login(Url, UserId, Password);
+      return CacheManager.Contains(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId])
+        ? _cacheManager.Get<string>(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId]) 
+        : Connection.Login(Url, UserId, Password);
     }
   }
 
@@ -58,5 +62,12 @@ public class MagentoConnection : IMagentoConnection
   public string UserId { get; set; }
   public string Password { get; set; }
 
+  public bool Login()
+  {
+    var sessionId = Connection.Login(Url, UserId, Password);
+    if (sessionId == null) return false; // exception connessione non effettuata con magento
+    CacheManager.Add(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId], sessionId);
+    return true;
+  }
 }
 

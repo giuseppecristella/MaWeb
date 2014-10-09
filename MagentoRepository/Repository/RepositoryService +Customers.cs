@@ -21,11 +21,16 @@ namespace MagentoRepository.Repository
       }
     }
 
-    public List<Customer> GetCustomerById(string customerId)
+    public Customer GetCustomerById(int customerId)
     {
+      var key = CreateCacheDictionaryKey(ConfigurationHelper.CacheKeyNames[CacheKey.Customer], customerId.ToString());
+      if (_cacheManager.Contains(key)) return _cacheManager.Get<Customer>(key);
       try
       {
-        return Customer.List(_connection.Url, _connection.SessionId, new object[] { customerId }).ToList();
+        var customer = Customer.Info(_connection.Url, _connection.SessionId, customerId);
+        if (customer == null) return null;
+        _cacheManager.Add(key, customer);
+        return customer;
       }
       catch (Exception)
       {
@@ -45,5 +50,21 @@ namespace MagentoRepository.Repository
       }
     }
 
+    public List<CustomerAddress> GetCustomerAddresses(int customerId)
+    {
+      var key = CreateCacheDictionaryKey(ConfigurationHelper.CacheKeyNames[CacheKey.CustomerAddresses], customerId.ToString());
+      if (_cacheManager.Contains(key)) return _cacheManager.Get<List<CustomerAddress>>(key);
+      try
+      {
+        var customersAddresses = CustomerAddress.List(_connection.Url, _connection.SessionId, new object[] { customerId });
+        if (customersAddresses == null) return null;
+        _cacheManager.Add(key, customersAddresses.ToList());
+        return customersAddresses.ToList();
+      }
+      catch (Exception ex)
+      {
+        return null;
+      }
+    }
   }
 }
