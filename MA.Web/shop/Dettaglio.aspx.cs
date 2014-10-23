@@ -14,8 +14,9 @@ public partial class shop_Dettaglio : BasePage
   private static string _productId;
   protected void Page_Load(object sender, EventArgs e)
   {
+    // dettaglio/Id/
     _productId = Request.QueryString["Id"];
-    if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");  
+    if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");
 
     if (IsPostBack) return;
     ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;

@@ -4,182 +4,200 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
 using System.IO;
-//using FileHelpers.RunTime;
-//using FileHelpers;
+using Ez.Newsletter.MagentoApi;
+
+public enum MessageType
+{
+    Success,
+    Error
+}
+
 public partial class Admin_ManageLinks : System.Web.UI.Page
 {
-  protected void Page_Load(object sender, EventArgs e)
-  {
-    if (!IsPostBack)
+    protected void Page_Load(object sender, EventArgs e)
     {
-      //carico il template
-      FCKeditor1.Value = readTemplateFromFile("template_matera.html");
-
+        if (IsPostBack) return;
+        //carico il template
+        fckEdtTemplateNewsLetter.Value = ReadTemplateFromFile("template_matera.html");
     }
-  }
 
-  static string readTemplateFromFile(string templateType)
-  {
-    string fileName = HttpContext.Current.Server.MapPath("~\\public\\" + templateType);
-    string output = "";
-    if (!File.Exists(fileName))
-      return output;
-    StreamReader stFile = File.OpenText(fileName);
-    output = stFile.ReadToEnd();
-    stFile.Close();
-    return output;
-  }
+    #region Event Handler
 
-  static string saveTemplateToFile(string templateType, string template_content)
-  {
-    string fileName = HttpContext.Current.Server.MapPath("~\\public\\" + templateType);
-    string output = "";
-    if (!File.Exists(fileName))
-      return output;
-    File.WriteAllText(fileName, template_content);
-    return output;
-  }
-
-  protected void _OnCreated(object sender, ListViewItemEventArgs e)
-  {
-  }
-
-  protected void _OnItemCommand(object sender, ListViewCommandEventArgs e)
-  {
-    ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-    string mailID = ListViewMail.DataKeys[dataItem.DisplayIndex].Value.ToString();
-    if (e.CommandName == "cancella")
+    protected void btnAnnulla_Click(object sender, EventArgs e)
     {
-      DivSuccess.Visible = false;
-      DivError.Visible = false;
-      DataSetVepAdminTableAdapters.NewsLetterTableAdapter taNl = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-      taNl.DeletebyId(int.Parse(mailID));
-      ListViewMail.DataBind();
     }
-    else if (e.CommandName == "modifica")
+
+    protected void btnInsert_Click(object sender, EventArgs e)
     {
-      DivSuccess.Visible = false;
-      DivError.Visible = false;
-      DataSetVepAdminTableAdapters.NewsLetterTableAdapter taNl = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-      DataTable dtMail = taNl.GetDataById(int.Parse(mailID));
-      txtEmail.Text = dtMail.Rows[0]["email"].ToString();
-      ButtonAgg.Visible = true;
-      ButtonInsert.Visible = false;
-      hdnmailID.Value = mailID;
-    }
-  }
-
-  protected void ButtonAnnulla_Click(object sender, EventArgs e)
-  {
-  }
-
-  protected void ButtonInsert_Click(object sender, EventArgs e)
-  {
-    DataSetVepAdminTableAdapters.NewsLetterTableAdapter taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-    if (!Utility.emailValida(txtEmail.Text))
-    {
-      LabelError.Text = "Wrong format. [accepted: mail@host.it].";
-      DivSuccess.Visible = false;
-      DivError.Visible = true;
-    }
-    else
-    {
-      taNewsletter.Insert(txtEmail.Text);
-      txtEmail.Text = "";
-      LabelSuccess.Text = "e-mail added to archive.";
-      DivSuccess.Visible = true;
-      DivError.Visible = false;
-      ListViewMail.DataBind();
-    }
-  }
-
-  protected void ButtonAgg_Click(object sender, EventArgs e)
-  {
-    DataSetVepAdminTableAdapters.NewsLetterTableAdapter taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-    // faccio l'update!
-    taNewsletter.Update(txtEmail.Text, int.Parse(hdnmailID.Value));
-    txtEmail.Text = "";
-    ButtonAgg.Visible = false;
-    LabelSuccess.Text = "Update Success.";
-    ButtonInsert.Visible = true;
-    DivSuccess.Visible = true;
-    DivError.Visible = false;
-    ListViewMail.DataBind();
-    //updpnlListaProg.Update();
-  }
-
-  protected void ButtonInviaNl_Click(object sender, EventArgs e)
-  {
-    if (!string.IsNullOrEmpty(FCKeditor1.Value))
-    {
-      try
-      {
-        MailAddress from = new MailAddress("web@materarredamenti.it", "Matera Arredamenti");
-        MailAddress to = new MailAddress("info@materarredamenti.it", "test invio");
-        MailMessage EMAIL = new MailMessage(from, to);
-        EMAIL.Subject = "Newsletter Matera Arredamenti";
-        EMAIL.IsBodyHtml = true;
-        EMAIL.Body = FCKeditor1.Value;
-
-        DataSetVepAdminTableAdapters.NewsLetterTableAdapter taNewsLett = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-        DataTable dtNewsLetter = taNewsLett.GetListaMailNewsLetter();
-        int numDestinatari = 0;
-        int sent = 0;
-        if (dtNewsLetter.Rows.Count > 0)
+        var taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
+        if (!Utility.emailValida(txtEmail.Text))
         {
-          for (numDestinatari = 0; numDestinatari < dtNewsLetter.Rows.Count; numDestinatari++)
-          {
-            try
+            ShowMessage(MessageType.Error, "Formato e-mail non valido. [Formato valido es. mail@host.it].");
+            return;
+        }
+        taNewsletter.Insert(txtEmail.Text);
+        txtEmail.Text = string.Empty;
+        ShowMessage(MessageType.Success, "Utente aggiunto in archivio.");
+        lvUsersSubscribed.DataBind();
+    }
+
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        var taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
+        taNewsletter.Update(txtEmail.Text, int.Parse(hdnmailID.Value));
+        txtEmail.Text = string.Empty;
+
+        ShowMessage(MessageType.Success, "Aggiornamento effettuato con successo.");
+        lvUsersSubscribed.DataBind();
+
+        btnUpdate.Visible = false;
+        btnInsert.Visible = true;
+    }
+
+    protected void lnkbtnSendNewsletter_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(fckEdtTemplateNewsLetter.Value))
+        {
+            ShowMessage(MessageType.Error, "Nessun template caricato per la newsletter.");
+            return;
+        }
+        try
+        {
+            DataSetVepAdmin.NewsLetterDataTable dtNewsLetter;
+      
+            var dtSubscribedUsers = GetSubscibedUsers();
+            if (dtSubscribedUsers.Rows.Count == 0)
             {
-              EMAIL.Bcc.Add(dtNewsLetter.Rows[numDestinatari][0].ToString());
+                ShowMessage(MessageType.Error, "Nessun utente in archivio.");
+                return;
             }
-            catch (Exception ex) { }
-            // sarà inviata la newsletter a i destinatari
-            SmtpClient SmtpMail = new SmtpClient();
-            try
-            {
-              SmtpMail.Send(EMAIL);
-              sent++;
-            }
-            catch (Exception ex)
-            {
-            }
-            //invio OK
-          }
-          LabelSuccess.Text = "Newsletter sended to " + sent + " users.";
-          DivSuccess.Visible = true;
-          DivError.Visible = false;
+            var from = new MailAddress("web@materarredamenti.it", "Matera Arredamenti");
+            var to = new MailAddress("info@materarredamenti.it", "test invio");
+            SendNewsletterToSubscribedUsers(@from, to, dtSubscribedUsers);
+        }
+        catch (Exception Ex)
+        {
+            ShowMessage(MessageType.Error, Ex.Message);
+        }
+    }
+
+    protected void lnkbtnSaveTemplate_OnClick(object sender, EventArgs e)
+    {
+        SaveTemplateToFile("template_matera.html", fckEdtTemplateNewsLetter.Value);
+    }
+
+    protected void lvUsersSubscribed_OnCreated(object sender, ListViewItemEventArgs e)
+    {
+    }
+
+    protected void lvUsersSubscribed_OnItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+        var dataItem = e.Item as ListViewDataItem;
+        if (dataItem == null) return;
+
+        var dataKey = lvUsersSubscribed.DataKeys[dataItem.DisplayIndex];
+        if (dataKey == null) return;
+
+        var mailId = dataKey.Value.ToString();
+        var taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
+        DivSuccess.Visible = false;
+        DivError.Visible = false;
+        switch (e.CommandName)
+        {
+            case "cancella":
+                {
+                    taNewsletter.DeletebyId(int.Parse(mailId));
+                    lvUsersSubscribed.DataBind();
+                }
+                break;
+            case "modifica":
+                {
+                    DataTable dtNewsLetter = taNewsletter.GetDataById(int.Parse(mailId));
+                    txtEmail.Text = dtNewsLetter.Rows[0]["email"].ToString();
+                    btnUpdate.Visible = true;
+                    btnInsert.Visible = false;
+                    hdnmailID.Value = mailId;
+                }
+                break;
+        }
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private string ReadTemplateFromFile(string fileName)
+    {
+        var path = HttpContext.Current.Server.MapPath("~\\public\\" + fileName);
+        if (!File.Exists(path)) return string.Empty;
+
+        using (var stFile = File.OpenText(path))
+        {
+            return stFile.ReadToEnd();
+            // stFile.Close();
+        }
+    }
+
+    private bool SaveTemplateToFile(string fileName, string template)
+    {
+        var path = HttpContext.Current.Server.MapPath("~\\public\\" + fileName);
+        if (!File.Exists(path)) return false;
+        try
+        {
+            File.WriteAllText(path, template);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private void ShowMessage(MessageType type, string message)
+    {
+        if (type == MessageType.Error)
+        {
+            LabelError.Text = message;
         }
         else
         {
-          //errore nessun destinatario presente
-
-          LabelError.Text = "Error: no users in archive. ";
-          DivError.Visible = true;
-          DivSuccess.Visible = false;
+            LabelSuccess.Text = message;
         }
-      }
-      catch (Exception Ex)
-      {
-        LabelError.Text = Ex.Message;
-        DivError.Visible = true;
-        DivSuccess.Visible = false;
-      }
+        DivError.Visible = (type == MessageType.Error);
+        DivSuccess.Visible = (type == MessageType.Success);
     }
-    else
+
+    private DataTable GetSubscibedUsers()
     {
-      LabelError.Text = "Empty message.";
-      DivError.Visible = true;
-      DivSuccess.Visible = false;
+        var taNewsLett = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
+        return taNewsLett.GetListaMailNewsLetter();
     }
-  }
 
-  protected void gotosliderPage(object sender, EventArgs e)
-  {
-  }
+    private void SendNewsletterToSubscribedUsers(MailAddress @from, MailAddress to, DataTable dtSubscribedUsers)
+    {
+        int sent = 0;
+        using (var email = new MailMessage(@from, to))
+        {
+            email.Subject = "Newsletter Matera Arredamenti";
+            email.IsBodyHtml = true;
+            email.Body = fckEdtTemplateNewsLetter.Value;
 
-  protected void ButtonSave_template(object sender, EventArgs e)
-  {
-    saveTemplateToFile("template_matera.html", FCKeditor1.Value);
-  }
+            for (var numDestinatari = 0; numDestinatari < dtSubscribedUsers.Rows.Count; numDestinatari++)
+            {
+                email.Bcc.Add(dtSubscribedUsers.Rows[numDestinatari][0].ToString());
+                var SmtpMail = new SmtpClient();
+                SmtpMail.Send(email);
+                sent++;
+            }
+            ShowMessage(MessageType.Success, string.Format("Newsletter sended to {0} users.", sent));
+        }
+    }
+
+    #endregion
+
+    protected void gotosliderPage(object sender, EventArgs e)
+    {
+    }
+
+
 }
