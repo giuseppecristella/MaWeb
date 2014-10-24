@@ -1,11 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Matera Arredamenti", "MA.Web\", "{48600333-950F-4C98-89BB-1C6E5A21F985}"
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MA.Web", "MA.Web\", "{48600333-950F-4C98-89BB-1C6E5A21F985}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		Frontpage = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{884400f1-60bd-4e00-9272-30f1988365a2}|MagentoRepository.dll;{04a4ac2a-2865-473d-86d7-b71991380025}|MagentoBusinessDelegate.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/materarredamenti.it"
 		Debug.AspNetCompiler.PhysicalPath = "MA.Web\"
@@ -22,7 +21,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Matera Arredamenti", "MA.We
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "11410"
-		SlnRelativePath = "MA.Web\"
+		VWDVirtualPath = "/"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
 		{04A4AC2A-2865-473D-86D7-B71991380025} = {04A4AC2A-2865-473D-86D7-B71991380025}
