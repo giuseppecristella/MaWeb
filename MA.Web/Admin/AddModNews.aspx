@@ -9,7 +9,7 @@
   
     <li class="active"><a href="ManageNews.aspx">Gestione Contenuti</a> </li>
     <li><a href="Albums.aspx">Gallerie | Slider Homepage</a> </li>
-    <li><a href="Newsletter.aspx">Newsletter</a> </li>
+    <li><a href="../App_Code/Newsletter.aspx">Newsletter</a> </li>
  
     
      

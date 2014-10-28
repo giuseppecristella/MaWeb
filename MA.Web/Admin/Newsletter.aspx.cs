@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI.WebControls;
-using System.Net.Mail;
-using System.IO;
-using Ez.Newsletter.MagentoApi;
+using MagentoBusinessDelegate;
 
-public enum MessageType
-{
-    Success,
-    Error
-}
 
 public partial class Admin_ManageLinks : System.Web.UI.Page
 {

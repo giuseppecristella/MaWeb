@@ -60,6 +60,8 @@
     <Compile Include="Cache\AspNetCacheManagerTest.cs" />
     <Compile Include="CustomerTest.cs" />
     <Compile Include="MagentoApiTest.cs" />
+    <Compile Include="OrderTest.cs" />
+    <Compile Include="Other Tests\LayoutBuilderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryServiceTest.cs" />
     <Compile Include="CartTest.cs" />

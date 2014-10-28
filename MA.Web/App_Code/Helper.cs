@@ -202,10 +202,10 @@ ToDo: fare una pulizia del nome e sostituire gli spazi con trattino
   {
     string htmlString = "";
     if (rootCat == "37")
-      htmlString = Utility.readTemplateFromFile("pathTemplateShopVerde");
+      htmlString = Utility.ReadTemplateFromFile("pathTemplateShopVerde");
     else
     {
-      htmlString = Utility.readTemplateFromFile("pathTemplateShopRosso");
+      htmlString = Utility.ReadTemplateFromFile("pathTemplateShopRosso");
     }
 
     return htmlString;

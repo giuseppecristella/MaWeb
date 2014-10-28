@@ -29,7 +29,7 @@ public partial class peppe : System.Web.UI.Page
         if (true == true)
         {//class="simple-notice"
           //000000065
-          string mailBody = Utility.readTemplateFromFile("pathTemplateMail");
+          string mailBody = Utility.ReadTemplateFromFile("pathTemplateMail");
           string trDettaglioOrd = "";
           string MainMailAddress = Utility.SearchConfigValue("MainMailAddress");
           string MainMailAlias = Utility.SearchConfigValue("MainMailAlias");

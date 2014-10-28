@@ -30,6 +30,7 @@
         MagentoConnection.Instance.Password = "123456";
         MagentoConnection.Instance.UserId = "ws_user";
 
+        // DI
         CartHelper.CacheManager = new AspnetCacheManager();
         
         

@@ -129,7 +129,7 @@
                                 id="mainImage" />
                             <div class="clear-line">
                             </div>
-                            <asp:Repeater OnItemDataBound="_rptImagesItemDataBound" runat="server" ID="rptImages">
+                            <asp:Repeater OnItemDataBound="rptImages_OnItemDataBound" runat="server" ID="rptImages">
                                 <ItemTemplate>
                                     <%-- <div class="psimages">--%>
                                     <ul id="clients">
@@ -143,7 +143,7 @@
                             <div class="clear-line">
                             </div>
                             <div class="one-half">
-                                <asp:Repeater OnItemDataBound="_rptProdAssociatiItemDataBound" Visible="false" runat="server"
+                                <asp:Repeater OnItemDataBound="rptProdAssociati_OnItemDataBound" Visible="false" runat="server"
                                     ID="rptProdAssociati">
                                     <HeaderTemplate>
                                         <h4>
@@ -190,7 +190,7 @@
                             quanti prodotti vuoi acquistare?
                         </label>--%>
                             <asp:ImageButton runat="server" ID="btnaddTocart" ImageUrl="images/tasto-carrello.png"
-                                Style="border: none;" CssClass="btnImageCart" Text="Aggiungi al Carrello" OnClick="AddToCart" />
+                                Style="border: none;" CssClass="btnImageCart" Text="Aggiungi al Carrello" OnClick="btnaddTocart_Click" />
                             <div class="clear">
                             </div>
                             <div class="clear-line">

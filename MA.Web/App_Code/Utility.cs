@@ -66,13 +66,13 @@ public static class Utility
       _doc.Save(xmlFileName);
     }
   }
-  public static string readTemplateFromFile(string html_template)
+  public static string ReadTemplateFromFile(string html_template)
   {
-    string fileName = HttpContext.Current.Server.MapPath(Utility.SearchConfigValue(html_template));
-    string output = "";
+    var fileName = HttpContext.Current.Server.MapPath(Utility.SearchConfigValue(html_template));
+    var output = "";
     if (!File.Exists(fileName))
       return output;
-    StreamReader stFile = File.OpenText(fileName);
+    var stFile = File.OpenText(fileName);
     output = stFile.ReadToEnd();
     stFile.Close();
     return output;

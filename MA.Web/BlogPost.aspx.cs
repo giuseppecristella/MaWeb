@@ -17,7 +17,7 @@ public partial class BlogPost : System.Web.UI.Page
         if (!string.IsNullOrEmpty(idEvento))
         {
             
-           ltrSocial.Text = Utility.readTemplateFromFile("pathSocial");
+           ltrSocial.Text = Utility.ReadTemplateFromFile("pathSocial");
 
             DataSetMateraArredamentiTableAdapters.NewsTableAdapter taArticoli = new DataSetMateraArredamentiTableAdapters.NewsTableAdapter();
             DataTable dtArticolo = taArticoli.GetDataByID(int.Parse(idEvento));

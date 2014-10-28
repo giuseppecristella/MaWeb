@@ -44,7 +44,7 @@ public partial class shop_Dettaglio : BasePage
     #endregion Garbage Shop Verde
   }
 
-  protected void _rptImagesItemDataBound(object sender, RepeaterItemEventArgs e)
+  protected void rptImages_OnItemDataBound(object sender, RepeaterItemEventArgs e)
   {
     var imgThumb = e.Item.FindControl("imgThumb") as HtmlImage;
     if (imgThumb != null) imgThumb.Src = e.Item.DataItem.ToString();
@@ -56,7 +56,7 @@ public partial class shop_Dettaglio : BasePage
     }
   }
 
-  protected void _rptProdAssociatiItemDataBound(object sender, RepeaterItemEventArgs e)
+  protected void rptProdAssociati_OnItemDataBound(object sender, RepeaterItemEventArgs e)
   {
     if (e.Item.ItemType != ListItemType.Header)
     {
@@ -67,7 +67,7 @@ public partial class shop_Dettaglio : BasePage
     }
   }
 
-  protected void AddToCart(object sender, EventArgs e)
+  protected void btnaddTocart_Click(object sender, EventArgs e)
   {
     if (Product != null)
     {

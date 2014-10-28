@@ -15,7 +15,7 @@ public partial class mobile_HomeShopV : System.Web.UI.Page
 
 
 
-        ltrMenu.Text = Utility.readTemplateFromFile("pathTemplatemShopVerde");
+        ltrMenu.Text = Utility.ReadTemplateFromFile("pathTemplatemShopVerde");
     }
 
     protected void IsPagerVisible(object sender, EventArgs e)
