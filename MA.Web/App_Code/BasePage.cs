@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Web;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using CookComputing.XmlRpc;
-using Ez.Newsletter.MagentoApi;
-using MagentoBusinessDelegate.Helpers;
-using MagentoComunication.Cache;
+﻿using MagentoComunication.Cache;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Cart = MagentoBusinessDelegate.Cart;

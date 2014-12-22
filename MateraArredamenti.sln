@@ -1,12 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Matera Arredamenti", "MA.Web\", "{48600333-950F-4C98-89BB-1C6E5A21F985}"
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MA.Web", "MA.Web\", "{48600333-950F-4C98-89BB-1C6E5A21F985}"
 	ProjectSection(WebsiteProperties) = preProject
+		Frontpage = "false"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
-		ProjectReferences = "{884400f1-60bd-4e00-9272-30f1988365a2}|MagentoRepository.dll;{04a4ac2a-2865-473d-86d7-b71991380025}|MagentoBusinessDelegate.dll;"
+		ProjectReferences = "{884400f1-60bd-4e00-9272-30f1988365a2}|MagentoRepository.dll;{04a4ac2a-2865-473d-86d7-b71991380025}|MagentoBusinessDelegate.dll;{5F081B09-2791-4F75-B3B1-4396CA89E8B6}|Ez.Newsletter.MagentoApi.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/materarredamenti.it"
 		Debug.AspNetCompiler.PhysicalPath = "MA.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\materarredamenti.it\"
@@ -21,10 +20,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Matera Arredamenti", "MA.We
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "11410"
-		SlnRelativePath = "MA.Web\"
+		VWDPort = "27596"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6} = {5F081B09-2791-4F75-B3B1-4396CA89E8B6}
 		{04A4AC2A-2865-473D-86D7-B71991380025} = {04A4AC2A-2865-473D-86D7-B71991380025}
 	EndProjectSection
 EndProject
@@ -33,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagentoComunication", "MagentoRepository\MagentoComunication.csproj", "{884400F1-60BD-4E00-9272-30F1988365A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagentoBusinessDelegate", "MagentoBusinessDelegate\MagentoBusinessDelegate.csproj", "{04A4AC2A-2865-473D-86D7-B71991380025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ez.Newsletter.MagentoApi", "MagentoApi\Ez.Newsletter.MagentoApi.csproj", "{5F081B09-2791-4F75-B3B1-4396CA89E8B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,8 +88,21 @@ Global
 		{04A4AC2A-2865-473D-86D7-B71991380025}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04A4AC2A-2865-473D-86D7-B71991380025}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{04A4AC2A-2865-473D-86D7-B71991380025}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|.NET.ActiveCfg = Release|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Database.5.0.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35
 	EndGlobalSection
 EndGlobal

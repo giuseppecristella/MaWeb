@@ -34,9 +34,6 @@
     <Reference Include="CookComputing.XmlRpcV2">
       <HintPath>..\MA.Web\Bin\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
-    <Reference Include="Ez.Newsletter.MagentoApi">
-      <HintPath>..\MA.Web\Bin\Ez.Newsletter.MagentoApi.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +57,12 @@
     <Compile Include="Repository\RepositoryService + Products.cs" />
     <Compile Include="Repository\RepositoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MagentoApi\Ez.Newsletter.MagentoApi.csproj">
+      <Project>{5f081b09-2791-4f75-b3b1-4396ca89e8b6}</Project>
+      <Name>Ez.Newsletter.MagentoApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

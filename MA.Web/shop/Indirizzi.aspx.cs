@@ -10,6 +10,9 @@ using Ez.Newsletter.MagentoApi;
 /// <summary>
 /// Accedo a questa pagina con l'Id carrello in query string
 /// workflow: 
+/// 1) binding indirizzi utente per eventuale modifica 
+/// 2) preparazione carrello associa customer - indirizzi customer - prodotti - metodi pagamento - spedizione
+/// 3) Nota: rendere logica business indipendente dall'ìnterfaccia
 /// </summary>
 public partial class Indirizzi : BasePage
 {
@@ -29,11 +32,9 @@ public partial class Indirizzi : BasePage
     if (aspNetUser == null) Response.Redirect("~/Shop/accedi.aspx");
     var magentoUserId = aspNetUser.Comment;
 
-    //int customerId;
     if (!int.TryParse(magentoUserId, out _customerId)) return;
     var customer = _repository.GetCustomerById(_customerId);
     customer.mode = "register";
-
 
     var customerAddresses = _repository.GetCustomerAddresses(_customerId);
     BindCustomerAddresses(customerAddresses);
@@ -63,7 +64,7 @@ public partial class Indirizzi : BasePage
 
   }
 
-  private void BindCustomerAddresses(List<CustomerAddress> myCustomerAddresses)
+ private void BindCustomerAddresses(List<CustomerAddress> myCustomerAddresses)
   {
     /*billing*/
     txtbphone.Text = myCustomerAddresses[0].telephone;
@@ -83,7 +84,6 @@ public partial class Indirizzi : BasePage
     txtszip.Text = myCustomerAddresses[1].postcode;
     txtsstate.Text = myCustomerAddresses[1].region;
   }
-
 
   protected void lnkbtnOrder_Click(object sender, EventArgs e)
   {

@@ -13,7 +13,7 @@ namespace ShopMagentoApi.Test
     private string _apiUrl;
     private string _apiUser;
     private string _apiPassword;
-    private string _sessionId;
+    private string _sessionId; 
 
     [TestInitialize]
     public void TestInitialize()

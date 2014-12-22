@@ -31,7 +31,7 @@ public partial class Riepilogo : BasePage
     // totale + spese spedizione
     ltrSomma.Text = (decimal.Parse(ltrSped.Text) + decimal.Parse(ltrSubTot.Text)).ToString();
 
-  }
+   }
 
   protected void lvDataBound(object sender, ListViewItemEventArgs e)
   {

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using Ez.Newsletter.MagentoApi;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
+using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ShopMagentoApi.Test
@@ -28,6 +26,20 @@ namespace ShopMagentoApi.Test
       MagentoConnection.Instance.UserId = "ws_user";
       MagentoConnection.Instance.Password = "123456";
 
+    }
+
+    // to delete
+    [TestMethod]
+    public void AddProductToELCacheManager()
+    {
+      var cacheManager = CacheFactory.GetCacheManager();
+      var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
+
+      var products = repository.GetProductsByCategoryId("47");
+      //    var result = cacheManager.GetData("test_products") as List<CategoryAssignedProduct>;
+      //  Assert.IsNotNull(result);
+      cacheManager.Add("test_products", products);
+      //  Assert.IsNotNull(products, "Nessun prodoto trovato");
     }
 
     [TestMethod]
@@ -104,7 +116,7 @@ namespace ShopMagentoApi.Test
       var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
 
       var fakeInventories = new List<Inventory>();
-      fakeInventories.Add(new Inventory(){ product_id = "173", is_in_stock = "0", qty = "10", sku = ""});
+      fakeInventories.Add(new Inventory() { product_id = "173", is_in_stock = "0", qty = "10", sku = "" });
 
       // Carico un prodotto in cache e lo recupero
       FakeCacheManager.Add(string.Format("{0}173", ConfigurationHelper.CacheKeyNames[CacheKey.Inventories]),
@@ -174,8 +186,8 @@ namespace ShopMagentoApi.Test
       FakeCacheManager.Remove(string.Format("{0}539", ConfigurationHelper.CacheKeyNames[CacheKey.LinkedProducts]));
       linkedProducts = repository.GetLinkedProducts("539");
       Assert.IsNotNull(linkedProducts, "Nessun risultato per un prodotto che possiede dei prodotti correlati");
-      
-      
+
+
     }
 
 

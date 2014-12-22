@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ez.Newsletter.MagentoApi">
-      <HintPath>..\Libs\Ez.Newsletter.MagentoApi.dll</HintPath>
+      <HintPath>..\MagentoApi\bin\Debug\Ez.Newsletter.MagentoApi.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

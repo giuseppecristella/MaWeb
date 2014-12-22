@@ -30,8 +30,7 @@ namespace MagentoRepository.Repository
     #region private methods
     private static string CreateCacheDictionaryKey(string entity, string filter)
     {
-      var key = String.Concat(entity, filter);
-      return key;
+        return String.Concat(entity, filter);
     }
 
     private static XmlRpcStruct CreateParameters(Filter filter)
