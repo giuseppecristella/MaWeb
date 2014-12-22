@@ -21,7 +21,7 @@ public partial class EventoDettaglio : System.Web.UI.Page
       string sHTML = Server.MapPath("public/html_articolo_" + dtArticolo.Rows[0]["News_ID"].ToString() + ".html");//articolo in html mod il path
       try
       {
-        ltrSocial.Text = Utility.readTemplateFromFile("pathSocial");
+        ltrSocial.Text = Utility.ReadTemplateFromFile("pathSocial");
         string url = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");//Page.Request.Url.ToString();
         string imagePath = url + dtArticolo.Rows[0]["UrlFotoHome"];// "img/logo_w.png";
         //BlogPost.aspx?Id

@@ -7,7 +7,7 @@ public partial class ListaNozzeDettaglio : System.Web.UI.Page
 {
   protected void Page_Load(object sender, EventArgs e)
   {
-    ltrSocial.Text = Utility.readTemplateFromFile("pathSocial");
+    ltrSocial.Text = Utility.ReadTemplateFromFile("pathSocial");
     string id = Request.QueryString["Id"];
     DataSetVepAdminTableAdapters.NewsTableAdapter taN = new DataSetVepAdminTableAdapters.NewsTableAdapter();
     DataTable dtArticolo = taN.GetDataByID(int.Parse(id));

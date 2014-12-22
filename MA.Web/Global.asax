@@ -1,4 +1,6 @@
 ﻿<%@ Application Language="C#" %>
+<%@ Import Namespace="System.Web.Routing" %>
+
 <%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
 <script RunAt="server">
     void Application_Start(object sender, EventArgs e)
@@ -18,6 +20,7 @@
 
     void Session_Start(object sender, EventArgs e)
     {
+        RouteConfig.RegisterRoutes(RouteTable.Routes);
         // Code that runs when a new session is started
         // api settings
         // Session["apiUrl"] = "http://localhost/magento/api/xmlrpc";
@@ -27,6 +30,7 @@
         MagentoConnection.Instance.Password = "123456";
         MagentoConnection.Instance.UserId = "ws_user";
 
+        // DI
         CartHelper.CacheManager = new AspnetCacheManager();
         
         

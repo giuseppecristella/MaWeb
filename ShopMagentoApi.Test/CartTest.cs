@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessApi.Test;
 using MagentoBusinessDelegate.Helpers;
@@ -8,7 +9,7 @@ using MagentoRepository.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cart = MagentoBusinessDelegate.Cart;
 using CookComputing.XmlRpc;
- 
+
 
 namespace ShopMagentoApi.Test
 {
@@ -83,7 +84,7 @@ namespace ShopMagentoApi.Test
     }
 
     [TestMethod]
-    public void Sould_Delete_Products_From_Cart()
+    public void Should_Delete_Products_From_Cart()
     {
       var productsToDelete = new List<Product>();
 

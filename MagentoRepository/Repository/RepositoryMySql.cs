@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Enum;
 
 namespace MagentoRepository.Repository
 {
@@ -77,6 +78,16 @@ namespace MagentoRepository.Repository
     }
 
     public List<CustomerAddress> GetCustomerAddresses(int customerId)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public OrderInfo GetOrderInfos(int orderNumber)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    public bool SetOrderStatus(int orderNumber, OrderStatusType status)
     {
       throw new System.NotImplementedException();
     }

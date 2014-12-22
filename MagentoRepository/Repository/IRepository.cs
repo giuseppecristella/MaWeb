@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Enum;
 
 namespace MagentoRepository.Repository
 {
@@ -100,6 +101,14 @@ namespace MagentoRepository.Repository
     string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
 
     List<CustomerAddress> GetCustomerAddresses(int customerId);
+
+    #endregion
+
+    #region Orders
+
+    OrderInfo GetOrderInfos(int orderNumber);
+
+    bool SetOrderStatus(int orderNumber, OrderStatusType status);
 
     #endregion
 
