@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:LinkButton ID="lbUpdateCatalog" runat="server" OnClick="lbUpdateCatalog_Click">Aggiorna Catalogo Prodotti</asp:LinkButton>
+        <asp:Button ID="lbUpdateCatalog" runat="server" OnClick="lbUpdateCatalog_Click" Text="Aggiorna Catalogo Prodotti"></asp:Button>
         <br />
         <asp:LinkButton ID="lbRewriteMenu" runat="server" OnClick="lbRewriteMenu_Click">Riscrivi Menu delle Categorie</asp:LinkButton>
         <br />

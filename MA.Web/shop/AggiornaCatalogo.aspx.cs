@@ -19,10 +19,11 @@ public partial class shop_AggiornaCatalogo : BasePage
     protected void lbUpdateCatalog_Click(object sender, EventArgs e)
     {
         var products = _repository.GetProductsByCategoryId("47");
-        if (products == null) return;
+        lblUpdateCatalog.Text = "num prodotti: " + products.Count.ToString();
+        // if (products == null) return;
         var cacheManager = CacheFactory.GetCacheManager();
         var cachedProducts = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;
-         
+
         var images = new List<string>();
         cachedProducts = null;
         if (cachedProducts != null)
@@ -54,7 +55,7 @@ public partial class shop_AggiornaCatalogo : BasePage
         HttpContext.Current.Cache.Remove("myAssignedProducts56");
         HttpContext.Current.Cache.Remove("myAssignedProducts58");
         #endregion
-        lblUpdateCatalog.Text = "<br>Le modifiche al catalogo sono state eseguite correttamente!";
+        //  lblUpdateCatalog.Text = "<br>Le modifiche al catalogo sono state eseguite correttamente!";
     }
 
     private void DownloadImages(IEnumerable<string> images)

@@ -101,7 +101,7 @@ public partial class shop_Catalogo : BasePage
         // test Enterprise Library Caching Block
         //cacheManager.GetData("test_products") as List<CategoryAssignedProduct>;
         var products = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;//_repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
-        cacheManager.Add("products", products);
+        cacheManager.Add("productspepp", products);
         if (products == null || !products.Any()) return false;
 
         Products = products.Where(p => p.qty_in_stock > 0).ToList();
