@@ -10,14 +10,14 @@ namespace ShopMagentoApi.Test
     /// Summary description for ELCacheApplicatoinBlockTest
     /// </summary>
     [TestClass]
-    public class ELCacheApplicatoinBlockTest
+    public class ELCachingApplicatoinBlockTest
     {
         private string _apiUrl;
         private string _apiUser;
         private string _apiPassword;
         private string _sessionId;
 
-        public ELCacheApplicatoinBlockTest()
+        public ELCachingApplicatoinBlockTest()
         {
             _apiUrl = "http://www.zoom2cart.com/api/xmlrpc";
             _apiUser = "ws_user";

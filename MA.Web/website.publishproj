@@ -19,9 +19,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <ProjectGuid>{e47c82fe-a057-43b4-86f7-0c04268f1e97}</ProjectGuid>
     <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
     <SourceWebVirtualPath>/MA.Web</SourceWebVirtualPath>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SourceWebProject>D:\Sviluppo\MateraArredamenti\MA.Web</SourceWebProject>
-    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/35/ROOT</SourceWebMetabasePath>
+    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/58/ROOT</SourceWebMetabasePath>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -42,6 +42,14 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     </AssemblyAttributes>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MagentoApi\Ez.Newsletter.MagentoApi.csproj">
+      <Project>{5F081B09-2791-4F75-B3B1-4396CA89E8B6}</Project>
+      <Name>Ez.Newsletter.MagentoApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MagentoBusinessDelegate\MagentoBusinessDelegate.csproj">
+      <Project>{04A4AC2A-2865-473D-86D7-B71991380025}</Project>
+      <Name>MagentoBusinessDelegate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MagentoRepository\MagentoComunication.csproj">
       <Project>{884400F1-60BD-4E00-9272-30F1988365A2}</Project>
       <Name>MagentoComunication</Name>

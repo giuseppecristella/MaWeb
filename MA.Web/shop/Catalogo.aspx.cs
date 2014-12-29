@@ -33,7 +33,10 @@ public partial class shop_Catalogo : BasePage
             var linkDettaglio = item.FindControl("lnkDettaglio_1") as HtmlAnchor;
 
             // Immagine    
-            if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
+            //if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
+            // if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = product.imageurl;
+            var imagePath = GetFolderAndImageName(product.imageurl);
+            if (imgProd != null && imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Public/", imagePath);
             // Descrizione  
             if (descProduct != null && product.name != null) descProduct.InnerHtml = helper.ShortDesc(product.name, 132);
             // Prezzo
@@ -43,6 +46,21 @@ public partial class shop_Catalogo : BasePage
 
             SetItemStyleAttributes(item);
         }
+    }
+
+    public static string GetFolderAndImageName(string imageurl)
+    {
+        var uri = new Uri(imageurl);
+        var segments = uri.Segments;
+        //var imageFolder = string.Empty;
+        //foreach (var segment in segments)
+        //{
+        //    Guid guidValue;
+        //    if (!Guid.TryParse(segment.Remove(segment.Length - 1, 1), out guidValue)) continue;
+        //    imageFolder = segment.Remove(segment.Length - 1, 1);
+        //}
+        //if (string.IsNullOrEmpty(imageFolder)) return null;
+        return segments.LastOrDefault();
     }
 
     protected void pagerProducts_PreRender(object sender, EventArgs e)
@@ -80,8 +98,9 @@ public partial class shop_Catalogo : BasePage
     {
         var cacheManager = CacheFactory.GetCacheManager();
         
+        // test Enterprise Library Caching Block
         //cacheManager.GetData("test_products") as List<CategoryAssignedProduct>;
-        var products = cacheManager.GetData("test_products") as List<CategoryAssignedProduct>;//_repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
+        var products = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;//_repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
         cacheManager.Add("products", products);
         if (products == null || !products.Any()) return false;
 
@@ -103,6 +122,7 @@ public partial class shop_Catalogo : BasePage
         divSpotVerde.Visible = true;
         lblCategoria.CssClass = "colore_rosso";
 
+        #region Garbage Shop Verde
         //else
         //{
         //  //shop verde
@@ -111,7 +131,8 @@ public partial class shop_Catalogo : BasePage
         //  main_navigation.Attributes["class"] = "main-menu verde";
         //  divSpotRosso.Visible = true;
         //  divCarrello.Style.Add("background", "#76A227");
-        //}
+        //} 
+        #endregion
         return string.Empty;
     }
 
