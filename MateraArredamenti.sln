@@ -22,6 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MA.Web(1)", "MA.Web\", "{48
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "27596"
+		VWDVirtualPath = "/"
 		SlnRelativePath = "MA.Web\"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
