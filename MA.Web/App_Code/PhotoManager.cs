@@ -36,7 +36,7 @@ public class PhotoManager
   {
     using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
     {
-      using (SqlCommand command = new SqlCommand("MSSql34290.GetPhoto", connection))
+      using (SqlCommand command = new SqlCommand("dbo.GetPhoto", connection))
       {
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add(new SqlParameter("@PhotoID", photoid));
