@@ -20,7 +20,7 @@
             <!-- MAIN CONTAINER -->
             <!-- HEADER ENDS-->
             <!--  HEADER ENDS-->
-            <div id="content">
+            <div id="content"> 
                 <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
                     <!-- COLUMNS CONTAINER STARTS-->
