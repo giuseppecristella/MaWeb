@@ -15,10 +15,10 @@ public class PhotoManager
   //GetPhotoSliderHome
   public static DataTable GetPhotoSliderHome()
   {
-    /*modifica per altri siti! devo recuperare l'album home in base al tipo*/
-    DataSetVepAdminTableAdapters.AlbumsTableAdapter taAlbum = new DataSetVepAdminTableAdapters.AlbumsTableAdapter();
+    var taAlbum = new DataSetVepAdminTableAdapters.AlbumsTableAdapter();
     DataTable dtAlbum = taAlbum.GetAlbumByCaption("HOME");
-    DataSetVepAdminTableAdapters.PhotosTableAdapter taPhotos = new DataSetVepAdminTableAdapters.PhotosTableAdapter();
+    var taPhotos = new DataSetVepAdminTableAdapters.PhotosTableAdapter();
+    if (dtAlbum.Rows.Count == 0) return null;
     DataTable dtPhotos = taPhotos.GetPhotosByPos(int.Parse(dtAlbum.Rows[0]["AlbumID"].ToString()));
     return dtPhotos;
   }
