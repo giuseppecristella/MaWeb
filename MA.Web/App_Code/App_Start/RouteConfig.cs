@@ -12,7 +12,15 @@ namespace ASP
         {
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
-            routes.EnableFriendlyUrls(settings);
+            try
+            {
+                routes.EnableFriendlyUrls(settings);
+            }
+            catch (Exception)
+            {
+                
+                 
+            } 
         }
     }
 }
