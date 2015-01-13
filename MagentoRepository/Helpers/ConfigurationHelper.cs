@@ -17,7 +17,8 @@ namespace MagentoRepository.Helpers
     SessionId,
     Customer,
     CustomerAddresses,
-    OrderInfo
+    OrderInfo,
+    Orders
   }
 
   public static class ConfigurationHelper
@@ -42,7 +43,8 @@ namespace MagentoRepository.Helpers
       { CacheKey.ShippingMethods, "ShippingMethods§" },
       { CacheKey.Customer, "Customer§" },
       { CacheKey.CustomerAddresses, "CustomerAddresses§" },
-      { CacheKey.OrderInfo, "OrderInfo§" }
+      { CacheKey.OrderInfo, "OrderInfo§" },
+      { CacheKey.Orders, "Orders" }
     };
   }
 }

@@ -1,110 +1,80 @@
 ﻿using System;
 using System.Collections;
-using System.Web;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
+using Microsoft.AspNet.FriendlyUrls;
 
-public partial class Ordini : System.Web.UI.Page
+public partial class Ordini : BasePage
 {
-    protected void Page_Load(object sender, EventArgs e)
+  protected void Page_Load(object sender, EventArgs e)
+  {
+    var orders = new ArrayList();
+    if (IsPostBack) return;
+    var incrementId = Request.GetFriendlyUrlSegments()[0];
+
+    lblNumOrdine.Text = incrementId;
+    var orderDetail = _repository.GetOrderInfos(int.Parse(incrementId));
+    var serializer = new Conversive.PHPSerializationLibrary.Serializer();
+    foreach (var orderProduct in orderDetail.items)
     {
+      var deserializedProductOptionsBuyRequest = (Hashtable)serializer.Deserialize(orderProduct.product_options);
+      var deserializedProductOptions = (Hashtable)deserializedProductOptionsBuyRequest["info_buyRequest"];
+      var p = new Product
+      {
+        product_id = (string)deserializedProductOptions["product_id"],
+        price = (string)deserializedProductOptions["price"],
+        qty = (string)deserializedProductOptions["qty"],
+        name = (string)deserializedProductOptions["name"],
+        imageurl = string.Empty
+      };
+      orders.Add(p);
+    }
+    BindOrderToForm(orderDetail);
+    lvOrders.DataSource = orders;
+    lvOrders.DataBind();
+  }
 
-          if (!Helper.checkConnection())
-           {
-               HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-               HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+  private void BindOrderToForm(OrderInfo orderDetail)
+  {
+    ltrSpedNome.Text = string.Format("{0} {1}", orderDetail.shipping_address.firstname,
+      orderDetail.shipping_address.lastname);
+    ltrSpedIndirizzo.Text = orderDetail.shipping_address.street;
+    ltrSpedCitta.Text = orderDetail.shipping_address.city;
+    ltrSpedCap.Text = orderDetail.shipping_address.postcode;
+    ltrBillNome.Text = string.Format("{0} {1}", orderDetail.billing_address.firstname,
+      orderDetail.billing_address.lastname);
+    ltrBillIndirizzo.Text = orderDetail.billing_address.street;
+    ltrBillCitta.Text = orderDetail.billing_address.city;
+    ltrBillCap.Text = orderDetail.billing_address.postcode;
+    ltrSubTot.Text = Helper.FormatCurrency(orderDetail.subtotal);
+    ltrSomma.Text = Helper.FormatCurrency(orderDetail.grand_total);
+    ltrSped.Text = Helper.FormatCurrency(orderDetail.shipping_amount);
+  }
 
-           }
+  protected void lvDataBound(object sender, ListViewItemEventArgs e)
+  {
+    var item = (ListViewDataItem)e.Item;
+    var product = (Product) item.DataItem;
+    if (product == null) return;
 
+    var lblnomeprod = e.Item.FindControl("ltrnomeprod") as Literal;
+    if (lblnomeprod != null) lblnomeprod.Text = product.name;
 
+    var lblprezzoun = item.FindControl("ltrprezzoun") as Literal;
+    if (lblprezzoun != null) lblprezzoun.Text = Helper.FormatCurrency(product.price);
+
+    var ltrProdId = item.FindControl("ltrProdId") as Literal;
+    if (ltrProdId != null) ltrProdId.Text = product.product_id;
+
+    var txtqtaprod = item.FindControl("txtqtaprod") as Literal;
+    if (txtqtaprod != null) txtqtaprod.Text = product.qty;
      
+    var lblprezzotot = item.FindControl("ltrprezzotot") as Literal;
 
-
-        //in query string leggerò l'id dell'utente per ora prendo l'utente id=2
-        
-        ArrayList arrDettOrdine = new ArrayList();
-        if (!IsPostBack)
-        {
-
-           
-            string incrementId = Request.QueryString["IncrementId"];
-            lblNumOrdine.Text = incrementId;
-            OrderInfo DettOrdine = Ez.Newsletter.MagentoApi.Order.Info((string)HttpContext.Current.Cache["apiUrl"],(string) HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(incrementId) });
-            var serializer = new Conversive.PHPSerializationLibrary.Serializer();
-
-            foreach (var orderProduct in DettOrdine.items)
-            {
-                //orderProduct.product_options
-                Hashtable ht = (Hashtable)serializer.Deserialize(orderProduct.product_options);
-                Hashtable ht2 = (Hashtable)ht["info_buyRequest"];
-
-                Product p = new Product();
-                p.product_id = (string)ht2["product_id"];
-                p.price = (string)ht2["price"];
-                p.qty = (string)ht2["qty"];
-                p.name = (string)ht2["name"];
-                p.imageurl = "";
-                arrDettOrdine.Add(p);
-            }
-            ltrSpedNome.Text =
-                DettOrdine.shipping_address.firstname + " " + DettOrdine.shipping_address.lastname;
-            
-            ltrSpedIndirizzo.Text = DettOrdine.shipping_address.street;
-            ltrSpedCitta.Text = DettOrdine.shipping_address.city;
-            ltrSpedCap.Text = DettOrdine.shipping_address.postcode;
-
-
-            ltrBillNome.Text =
-            DettOrdine.billing_address.firstname + " " + DettOrdine.billing_address.lastname;
-
-            ltrBillIndirizzo.Text = DettOrdine.billing_address.street;
-            ltrBillCitta.Text = DettOrdine.billing_address.city;
-            ltrBillCap.Text = DettOrdine.billing_address.postcode;
-
-            ltrSubTot.Text = Helper.FormatCurrency(DettOrdine.subtotal);
-            ltrSomma.Text = Helper.FormatCurrency(DettOrdine.grand_total);
-            ltrSped.Text = Helper.FormatCurrency(DettOrdine.shipping_amount);
-            lvOrd.DataSource = arrDettOrdine;
-            lvOrd.DataBind();
-           
-        }
-    }
-
-    protected void lvDataBound(object sender, ListViewItemEventArgs e)
+    if (lblprezzoun != null && lblprezzotot != null)
     {
-        ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-        //Literal lblIdOrd = (Literal)e.Item.FindControl("lblIdOrd");
-        //lblIdOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).increment_id;
-
-
-        //Literal lblDataOrd = (Literal)e.Item.FindControl("lblDataOrd");
-        //lblDataOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).created_at;
-
-        Literal lblnomeprod = (Literal)e.Item.FindControl("ltrnomeprod");
-
-        lblnomeprod.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).name;
-
-        //  Label lblmodprod = (Label)e.Item.FindControl("lblmodprod");
-        //  lblmodprod.Text = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).model;
-
-        Literal lblprezzoun = (Literal)e.Item.FindControl("ltrprezzoun");
-        lblprezzoun.Text = Helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
-
-
-
-        Literal ltrProdId = (Literal)e.Item.FindControl("ltrProdId");
-        ltrProdId.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).product_id;
-
-        Literal txtqtaprod = (Literal)e.Item.FindControl("txtqtaprod");
-
-        txtqtaprod.Text = ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).qty;
-
-        Literal lblprezzotot = (Literal)e.Item.FindControl("ltrprezzotot");
-        string totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqtaprod.Text)).ToString();
-
-        lblprezzotot.Text = totale.Replace(".", ",");
-
-
-        
+      var totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqtaprod.Text)).ToString();
+      lblprezzotot.Text = totale.Replace(".", ",");
     }
+  }
 }

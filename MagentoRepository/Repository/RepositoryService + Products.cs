@@ -17,7 +17,8 @@ namespace MagentoRepository.Repository
     public List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId)
     {
       var key = CreateCacheDictionaryKey(ConfigurationHelper.CacheKeyNames[CacheKey.CategoryAssignedProducts], categoryId);
-     // if (_cacheManager.Contains(key)) return _cacheManager.Get<List<CategoryAssignedProduct>>(key);
+      // Ripristinare la Cache
+      // if (_cacheManager.Contains(key)) return _cacheManager.Get<List<CategoryAssignedProduct>>(key);
       try
       {
         var assignedProducts = Category.AssignedProducts(_connection.Url, _connection.SessionId, new object[] { categoryId });

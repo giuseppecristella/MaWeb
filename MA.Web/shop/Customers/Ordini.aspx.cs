@@ -1,123 +1,75 @@
 ﻿using System;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI.WebControls;
-using CookComputing.XmlRpc;
 using Ez.Newsletter.MagentoApi;
+using MagentoRepository.Repository;
 
-public partial class Ordini : System.Web.UI.Page
-{   
-       
-    protected void Page_Load(object sender, EventArgs e)
+public partial class Ordini : BasePage
+{
+  protected void Page_Load(object sender, EventArgs e)
+  { }
+  protected void pagerOrdini_PreRender(object sender, EventArgs e)
+  {
+    var utente = Page.User.Identity.Name;
+    var user = Membership.GetUser(utente);
+    
+    if (user == null) return;
+    string idMagentoUser = user.Comment;
+
+    var orders = _repository.GetOrders(new Filter { FilterOperator = LogicalOperator.Eq, Key = "customer_id", Value = idMagentoUser });
+    pagerOrdini.Visible = (orders.Count > pagerOrdini.PageSize);
+
+    lvOrd.DataSource = orders;
+    lvOrd.DataBind();
+  }
+
+  protected void lvDataBound(object sender, ListViewItemEventArgs e)
+  {
+    var item = (ListViewDataItem)e.Item;
+    var order = item.DataItem as Order;
+    if (order == null) return;
+
+    var lblIdOrd = item.FindControl("lblIdOrd") as Literal;
+    if (lblIdOrd != null) lblIdOrd.Text = order.increment_id;
+
+    var lblDataOrd = item.FindControl("lblDataOrd") as Literal;
+    var orderDate = Convert.ToDateTime(order.created_at);
+    if (lblDataOrd != null) lblDataOrd.Text = orderDate.ToString();
+
+    var lblSpedOrd = item.FindControl("lblSpedOrd") as Literal;
+    if (lblSpedOrd != null) lblSpedOrd.Text = order.shipping_name;
+
+    var lblQty = item.FindControl("lblQty") as Literal;
+    if (lblQty != null)
     {
-
-        if (!Helper.checkConnection())
-        {
-            HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
-
-        }
-
- 
-            //+ " <li><a  href=\"../Index.html\">Torna al sito</a></li>";
-        
-
-        if (!IsPostBack)
-        {
-           
-        }
+      lblQty.Text = order.total_qty_ordered;
+      lblQty.Text = lblQty.Text.Substring(0, lblQty.Text.IndexOf('.'));
     }
 
-    protected void pagerOrdini_PreRender(object sender, EventArgs e)
+    var lblTotOrd = item.FindControl("lblTotOrd") as Literal;
+    if (lblTotOrd != null)
     {
-
-         
-        //// list orders with filter
-        XmlRpcStruct filterOn = new XmlRpcStruct();
-        XmlRpcStruct filterParams = new XmlRpcStruct();
-        //confronto e valore che voglio cercare in questo caso id=2
-        var profile = HttpContext.Current.Profile;
-        string utente = Page.User.Identity.Name;
-        MembershipUser user = Membership.GetUser(utente);
-
-        string idMagentoUser = user.Comment;
-
-        filterParams.Add("eq", idMagentoUser);
-        //nome del parametro
-        filterOn.Add("customer_id", filterParams);
-
-        Order[] myOrders = Ez.Newsletter.MagentoApi.Order.List((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { filterOn });
-
-
-        bool isPagerVisible = (myOrders.Length > pagerOrdini.PageSize);
-        pagerOrdini.Visible = isPagerVisible;
-
-
-        Order[] ListaOrdini = myOrders;
-
-        int j = 0;
-
-        for (int i = myOrders.Length-1; i > 0; i--)
-        {
-            ListaOrdini[j] = myOrders[i];
-            j++;
-        }
-
-        lvOrd.DataSource = ListaOrdini;
-        lvOrd.DataBind();
-
+      lblTotOrd.Text = order.grand_total;
+      lblTotOrd.Text = Helper.FormatCurrency(lblTotOrd.Text);
     }
 
-     
+    var lblStatoOrd = item.FindControl("lblStatoOrd") as Literal;
+    if (lblStatoOrd == null) return;
 
-    protected void lvDataBound(object sender, ListViewItemEventArgs e)
+    var statoOrd = order.status;
+    switch (statoOrd)
     {
-        ListViewDataItem dataItem = (ListViewDataItem)e.Item;
-        Literal lblIdOrd = (Literal)e.Item.FindControl("lblIdOrd");
-        lblIdOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).increment_id;
-
-
-        Literal lblDataOrd = (Literal)e.Item.FindControl("lblDataOrd");
-
-        DateTime dataOrdine = System.Convert.ToDateTime(((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).created_at);
-        lblDataOrd.Text = dataOrdine.ToString();
-
-        Literal lblSpedOrd = (Literal)e.Item.FindControl("lblSpedOrd");
-        lblSpedOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).shipping_name;
-
-        Literal lblQty = (Literal)e.Item.FindControl("lblQty");
-        lblQty.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).total_qty_ordered;
-        lblQty.Text = lblQty.Text.Substring(0, lblQty.Text.IndexOf('.'));
-        Literal lblTotOrd = (Literal)e.Item.FindControl("lblTotOrd");
-        lblTotOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).grand_total;
-
-        lblTotOrd.Text = Helper.FormatCurrency(lblTotOrd.Text);
-
-        Literal lblStatoOrd = (Literal)e.Item.FindControl("lblStatoOrd");
-
-        string statoOrd = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).status;
-
-        if (statoOrd=="canceled")
-        {
-            lblStatoOrd.Text = "annullato";
-            
-
-
-        }
-        else if (statoOrd=="pending")
-        {
-            lblStatoOrd.Text = "in carico";
-
-        }
-        else if (statoOrd == "completo")
-        {
-            lblStatoOrd.Text = "completo";
-        }
-
-        
-
-        LinkButton lnkbtnInfoOrdine = (LinkButton)e.Item.FindControl("lnkbtnInfoOrdine");
-        lnkbtnInfoOrdine.PostBackUrl = "InfoOrdine.aspx?IncrementId=" +
-                                    ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).increment_id;
+      case "canceled":
+        lblStatoOrd.Text = "annullato";
+        break;
+      case "pending":
+        lblStatoOrd.Text = "in carico";
+        break;
+      case "completo":
+        lblStatoOrd.Text = "completo";
+        break;
     }
+    var lnkbtnInfoOrdine = e.Item.FindControl("lnkbtnInfoOrdine") as LinkButton;
+    if (lnkbtnInfoOrdine != null) lnkbtnInfoOrdine.PostBackUrl = string.Format("InfoOrdine.aspx?IncrementId={0}", order.increment_id);
+  }
 }

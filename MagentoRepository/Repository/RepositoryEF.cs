@@ -84,6 +84,11 @@ namespace MagentoRepository.Repository
       throw new NotImplementedException();
     }
 
+    public List<Order> GetOrders(Filter filter)
+    {
+      throw new NotImplementedException();
+    }
+
     public Product GetProductInfo(string productId)
     {
       throw new NotImplementedException();

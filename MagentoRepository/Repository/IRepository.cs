@@ -110,6 +110,8 @@ namespace MagentoRepository.Repository
 
     bool SetOrderStatus(int orderNumber, OrderStatusType status);
 
+    List<Order> GetOrders(Filter filter);
+
     #endregion
 
   }

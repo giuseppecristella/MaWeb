@@ -15,7 +15,7 @@
                 </div>
  
                 <div class="one">
-                    <asp:ListView runat="server" ID="lvOrd" OnItemDataBound="lvDataBound">
+                    <asp:ListView runat="server" ID="lvOrders" OnItemDataBound="lvDataBound">
                         <EmptyDataTemplate>
                             <div class="ribbonbig" style="margin-bottom: 300px;">
                                 <div class="lijevo fl" style="padding-left: 20px;">

@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/shop/Default_r.master" AutoEventWireup="true"
-    CodeFile="Default.aspx.cs" Inherits="shop_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/shop/Default_r.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="shop_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -103,3 +102,4 @@
         </asp:ListView>
     </div>--%>
 </asp:Content>
+
