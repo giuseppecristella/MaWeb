@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery JavaScript Library v1.8.2
  * http://jquery.com/
  *
@@ -1186,7 +1186,7 @@ jQuery.extend({
 		return deferred;
 	},
 
-	// Deferred helper
+	// Deferred Helper
 	when: function( subordinate /* , ..., subordinateN */ ) {
 		var i = 0,
 			resolveValues = core_slice.call( arguments ),

@@ -61,7 +61,7 @@ public partial class mobile_ProdDett : System.Web.UI.Page
             //   prodModel.Text = myProduct.model;
             prodDescription.Text = myProduct.description;
             // prodNameDesc.Text = myProduct.name;
-            prodPrice.Text = helper.FormatCurrency(myProduct.price);
+            prodPrice.Text = Helper.FormatCurrency(myProduct.price);
 
 
 

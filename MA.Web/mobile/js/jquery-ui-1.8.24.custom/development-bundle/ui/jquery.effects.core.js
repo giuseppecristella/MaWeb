@@ -547,7 +547,7 @@ $.fn.extend({
 		}
 	},
 
-	// helper functions
+	// Helper functions
 	cssUnit: function(key) {
 		var style = this.css(key), val = [];
 		$.each( ['em','px','%','pt'], function(i, unit){

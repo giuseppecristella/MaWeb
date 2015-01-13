@@ -126,7 +126,7 @@ $.widget("ui.dialog", {
 					'ui-dialog-titlebar ' +
 					'ui-widget-header ' +
 					'ui-corner-all ' +
-					'ui-helper-clearfix'
+					'ui-Helper-clearfix'
 				)
 				.prependTo(uiDialog),
 
@@ -356,7 +356,7 @@ $.widget("ui.dialog", {
 				.addClass(
 					'ui-dialog-buttonpane ' +
 					'ui-widget-content ' +
-					'ui-helper-clearfix'
+					'ui-Helper-clearfix'
 				),
 			uiButtonSet = $( "<div></div>" )
 				.addClass( "ui-dialog-buttonset" )

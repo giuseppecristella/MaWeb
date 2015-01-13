@@ -11,10 +11,10 @@ public partial class Ordini : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-            HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
 
         }
 
@@ -91,7 +91,7 @@ public partial class Ordini : System.Web.UI.Page
         Literal lblTotOrd = (Literal)e.Item.FindControl("lblTotOrd");
         lblTotOrd.Text = ((Ez.Newsletter.MagentoApi.Order)(dataItem.DataItem)).grand_total;
 
-        lblTotOrd.Text = helper.FormatCurrency(lblTotOrd.Text);
+        lblTotOrd.Text = Helper.FormatCurrency(lblTotOrd.Text);
 
         Literal lblStatoOrd = (Literal)e.Item.FindControl("lblStatoOrd");
 

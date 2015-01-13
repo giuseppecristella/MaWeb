@@ -20,10 +20,10 @@ public partial class mobile_Catalogo : System.Web.UI.Page
             _catID = Request.QueryString["CatId"];
         object[] catIdObj = { _catID };
 
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-            HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
 
         }
 
@@ -63,10 +63,10 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
         if (HttpContext.Current.Cache["sessionId"] == null)
         {
-            HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
         }
 
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+        HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
 
 
 
@@ -113,7 +113,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
         //catch (Exception ex)
         //{ 
         //    //lblErr.Text = ex.Message;
-        //    //helper.checkConnection();
+        //    //Helper.checkConnection();
         //    //Response.Redirect("Catalogo.html");
 
         //}
@@ -159,7 +159,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
         HtmlGenericControl descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
         string name = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).name;
-        descProduct.InnerHtml = helper.ShortDesc(name, 132);
+        descProduct.InnerHtml = Helper.ShortDesc(name, 132);
         HtmlGenericControl priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
         HtmlGenericControl divMaskProd = (HtmlGenericControl)e.Item.FindControl("divMaskProd");
         if (isShopVerde)
@@ -180,7 +180,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
 
         string magento_price = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).price;
-        priceProduct.InnerHtml ="€. "+ helper.FormatCurrency(magento_price);
+        priceProduct.InnerHtml ="€. "+ Helper.FormatCurrency(magento_price);
 
 
         HtmlAnchor linkDettaglio_1 = (HtmlAnchor)e.Item.FindControl("linkDettaglio");
@@ -189,7 +189,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
         name = name.Replace(" ", "-");
 
  
-       // linkDettaglio.HRef = helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
+       // linkDettaglio.HRef = Helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
         linkDettaglio.HRef = "mProdDettaglio.aspx?CatId=" + _catID + "&ProdId=" + ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).product_id;
 
         
@@ -198,7 +198,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
 
 
-        //helper.writeXmlRewriterRules(_catID.ToString(), ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).product_id, name, _pathUrl);
+        //Helper.writeXmlRewriterRules(_catID.ToString(), ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).product_id, name, _pathUrl);
 
         /*per gestire il tasto aggiungi al carrello direttamente dalla lista dei prodotti in catalogo
         LinkButton lnkbrnAddToCart = (LinkButton)e.Item.FindControl("lnkbrnAddToCart");

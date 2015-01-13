@@ -16,5 +16,5 @@ window.log = function(){
 {console.log();return window.console;}catch(err){return window.console={};}})());
 
 
-// place any jQuery/helper plugins in here, instead of separate, slower script files.
+// place any jQuery/Helper plugins in here, instead of separate, slower script files.
 

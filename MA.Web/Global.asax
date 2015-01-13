@@ -36,7 +36,7 @@
         Session["carrello"] = new ArrayList();
         Session["numOrdine"] = "000000";
         //Session["rootCat"] = "37";
-        //Session["htmlMegaMenu"] = helper.setMegaMenu((string)Session["apiUrl"], (string)Session["sessionId"], (string)Session["rootCat"]);
+        //Session["htmlMegaMenu"] = Helper.setMegaMenu((string)Session["apiUrl"], (string)Session["sessionId"], (string)Session["rootCat"]);
 
         Session["NewsIDInserita"] = 0;
         Session["CaptionAlbumNews"] = "";

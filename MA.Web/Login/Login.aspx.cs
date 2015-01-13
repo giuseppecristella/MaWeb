@@ -10,7 +10,7 @@ public partial class Login : System.Web.UI.Page
 
         string returnUrlOnline = "/Shop/Customers/Account.html";
 
-        string absUrl = helper.GetAbsoluteUrl();
+        string absUrl = Helper.GetAbsoluteUrl();
 
         if (absUrl.Contains("www.materarredamenti.it"))
         {

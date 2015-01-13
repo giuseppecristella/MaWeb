@@ -9,10 +9,10 @@ public partial class Ordini : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-          if (!helper.checkConnection())
+          if (!Helper.checkConnection())
            {
                HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-               HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+               HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
 
            }
 
@@ -61,9 +61,9 @@ public partial class Ordini : System.Web.UI.Page
             ltrBillCitta.Text = DettOrdine.billing_address.city;
             ltrBillCap.Text = DettOrdine.billing_address.postcode;
 
-            ltrSubTot.Text = helper.FormatCurrency(DettOrdine.subtotal);
-            ltrSomma.Text = helper.FormatCurrency(DettOrdine.grand_total);
-            ltrSped.Text = helper.FormatCurrency(DettOrdine.shipping_amount);
+            ltrSubTot.Text = Helper.FormatCurrency(DettOrdine.subtotal);
+            ltrSomma.Text = Helper.FormatCurrency(DettOrdine.grand_total);
+            ltrSped.Text = Helper.FormatCurrency(DettOrdine.shipping_amount);
             lvOrd.DataSource = arrDettOrdine;
             lvOrd.DataBind();
            
@@ -88,7 +88,7 @@ public partial class Ordini : System.Web.UI.Page
         //  lblmodprod.Text = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).model;
 
         Literal lblprezzoun = (Literal)e.Item.FindControl("ltrprezzoun");
-        lblprezzoun.Text = helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
+        lblprezzoun.Text = Helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
 
 
 

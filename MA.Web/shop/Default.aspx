@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/shop/Default_r.master" AutoEventWireup="true"
-    CodeFile="Home_r.aspx.cs" Inherits="shop_Home_r" %>
+    CodeFile="Default.aspx.cs" Inherits="shop_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -55,7 +55,7 @@
             <h4>
                 Le offerte del <span style="color: #D10A11;" class="colored">Mese</span></h4>
         </div>
-        <asp:ListView runat="server" ID="lvVetrinaRossa" OnItemDataBound="item_dataBound2">
+        <asp:ListView runat="server" ID="lvProductsShowCase" OnItemDataBound="lvProductsShowCase_OnItemDataBound">
             <LayoutTemplate>
                 <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
             </LayoutTemplate>
@@ -63,25 +63,25 @@
                 <div runat="server" id="box_prodotto2" style="margin-top: 5px; margin-right: 10px;
                     border: 1px solid #dfdfdf;" class="one-fourth view view-first">
                     <div style="width: 215px; height: 215px; overflow: hidden;">
-                        <p runat="server" id="priceProduct2" class="desc_prezzo_home rosso">
+                        <p runat="server" id="pProductPrice" class="desc_prezzo_home rosso">
                         </p>
-                        <asp:Image ImageUrl="../Handler.ashx" Width="215" Height="215" runat="server" ID="imgProduct2" />
+                        <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
                     </div>
                     <div class="mask_red">
                         <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lnkDettaglio_2">
-                            <span runat="server" id="descProduct2" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
+                            <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
                                 Vedi dettaglio</span> </a>
                     </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>
     </div>
-    <div style="padding-top: 40px; padding-bottom: 20px;" class="one">
+   <%-- <div style="padding-top: 40px; padding-bottom: 20px;" class="one">
         <div class="headline">
             <h4>
                 Le offerte dello Shop <span class="colored">Tradizione</span></h4>
         </div>
-        <asp:ListView runat="server" ID="lvVetrinaVerde" OnItemDataBound="item_dataBound">
+        <asp:ListView runat="server" ID="lvGreenShowCase" OnItemDataBound="lvGreenShowCase_OnItemDataBound">
             <LayoutTemplate>
                 <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
             </LayoutTemplate>
@@ -89,17 +89,17 @@
                 <div runat="server" id="box_prodotto" style="margin-top: 5px; margin-right: 10px;
                     border: 1px solid #dfdfdf;" class="one-fourth view view-first">
                     <div style="width: 215px; height: 215px; overflow: hidden;">
-                        <p runat="server" id="priceProduct" class="desc_prezzo_home verde">
+                        <p runat="server" id="pProductPrice" class="desc_prezzo_home verde">
                         </p>
-                        <asp:Image ImageUrl="../Handler.ashx" Width="215" Height="215" runat="server" ID="imgProduct" />
+                        <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
                     </div>
                     <div class="mask_green">
-                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lnkDettaglio_1">
-                            <span runat="server" id="descProduct" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
+                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lbGreenProductDetail">
+                            <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
                                 Vedi dettaglio</span> </a>
                     </div>
                 </div>
             </ItemTemplate>
         </asp:ListView>
-    </div>
+    </div>--%>
 </asp:Content>

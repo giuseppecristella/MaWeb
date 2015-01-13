@@ -337,13 +337,13 @@ footer .currency {text-align: right} footer .currency a {padding-left: 5px}
 .fancybox-nav:hover span { visibility: visible }
 .fancybox-tmp { position: absolute; top: -9999px; left: -9999px; visibility: hidden; }
 
-/* Overlay helper */
+/* Overlay Helper */
 .fancybox-lock { overflow: hidden }
 .fancybox-overlay { position: absolute; top: 0; left: 0; overflow: hidden; display: none; z-index: 8010; background: url('../img/fancybox_overlay.png'); }
 .fancybox-overlay-fixed { position: fixed; bottom: 0; right: 0; }
 .fancybox-lock .fancybox-overlay { overflow: auto; overflow-y: scroll; }
 
-/* Title helper */
+/* Title Helper */
 .fancybox-title { visibility: hidden; position: relative; text-shadow: none; z-index: 8050; }
 .fancybox-opened .fancybox-title { visibility: visible }
 .fancybox-title-float-wrap { position: absolute; bottom: 0; right: 50%; margin-bottom: -35px; z-index: 8050; text-align: center; }

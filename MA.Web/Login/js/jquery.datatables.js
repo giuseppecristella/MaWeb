@@ -2836,8 +2836,8 @@
 			var nInsertNode = nWrapper;
 			
 			/* Substitute any constants in the dom string */
-			var sDom = oSettings.sDom.replace( "H", "fg-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix" );
-			sDom = sDom.replace( "F", "fg-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix" );
+			var sDom = oSettings.sDom.replace( "H", "fg-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-Helper-clearfix" );
+			sDom = sDom.replace( "F", "fg-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-Helper-clearfix" );
 			
 			/* Loop over the user set positioning and place the elements as needed */
 			var aDom = sDom.split('');

@@ -7,14 +7,14 @@ public partial class peppe : System.Web.UI.Page
   protected void Page_Load(object sender, EventArgs e)
   {
     string myshoplogin = Utility.SearchConfigValue("SELLACODE");//"GESPAY54218"; //da web.config
-    helper.checkConnection();
+    Helper.checkConnection();
     if (HttpContext.Current.Cache["htmlMegaMenu"] == null)
     {
       if (HttpContext.Current.Cache["sessionId"] == null)
       {
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+        HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
       }
-      HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
+      HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
     }
     menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
     // + " <li><a  href=\"../Index.html\">Torna al sito</a></li>";

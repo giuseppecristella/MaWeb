@@ -48,8 +48,6 @@ namespace ShopMagentoApi.Test
       filterParams.Add("product_id", filterOperator);
       var products = Product.List(_apiUrl, _sessionId, new object[] { filterParams });
 
-
-
     }
 
     private void CheckConnection()

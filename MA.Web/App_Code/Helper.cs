@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Xml;
 using System.Xml.XPath;
 using Ez.Newsletter.MagentoApi;
 using System.Collections;
-public static class helper
+public static class Helper
 {
   public static string test()
   {
@@ -256,9 +257,24 @@ ToDo: fare una pulizia del nome e sostituire gli spazi con trattino
     for (int i = 0; i < arrCart.Count; i++)
     {
       tempProd = (Product)arrCart[i];
-      decimal tot = decimal.Parse(helper.FormatCurrency(tempProd.price)) * int.Parse(tempProd.qty);
+      decimal tot = decimal.Parse(Helper.FormatCurrency(tempProd.price)) * int.Parse(tempProd.qty);
       somma += tot;
     }
     return somma;
+  }
+
+  public static string GetFolderAndImageName(string imageurl)
+  {
+    var uri = new Uri(imageurl);
+    var segments = uri.Segments;
+    //var imageFolder = string.Empty;
+    //foreach (var segment in segments)
+    //{
+    //    Guid guidValue;
+    //    if (!Guid.TryParse(segment.Remove(segment.Length - 1, 1), out guidValue)) continue;
+    //    imageFolder = segment.Remove(segment.Length - 1, 1);
+    //}
+    //if (string.IsNullOrEmpty(imageFolder)) return null;
+    return segments.LastOrDefault();
   }
 }

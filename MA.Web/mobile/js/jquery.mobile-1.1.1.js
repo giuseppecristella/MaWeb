@@ -1522,14 +1522,14 @@ $.widget( "mobile.widget", {
 		$(elem).jqmData( 'dependents', $.merge(dependents, newDependents) );
 	};
 
-	// note that this helper doesn't attempt to handle the callback
+	// note that this Helper doesn't attempt to handle the callback
 	// or setting of an html elements text, its only purpose is
 	// to return the html encoded version of the text in all cases. (thus the name)
 	$.fn.getEncodedText = function() {
 		return $( "<div/>" ).text( $(this).text() ).html();
 	};
 
-	// fluent helper function for the mobile namespaced equivalent
+	// fluent Helper function for the mobile namespaced equivalent
 	$.fn.jqmEnhanceable = function() {
 		return $.mobile.enhanceable( this );
 	};
@@ -3839,7 +3839,7 @@ $.mobile.getMaxScrollForTransition = $.mobile.getMaxScrollForTransition || defau
 	$( document ).one( "mobileinit", $.proxy( mobileinitDeferred, "resolve" ) );
 
 	$.extend( pushStateHandler, {
-		// TODO move to a path helper, this is rather common functionality
+		// TODO move to a path Helper, this is rather common functionality
 		initialFilePath: (function() {
 			return url.pathname + url.search;
 		})(),

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -63,9 +64,14 @@ public partial class shop_Dettaglio : BasePage
     if (e.Item.ItemType != ListItemType.Header)
     {
       var imgProdAss = (HtmlImage)e.Item.FindControl("imgProdAss");
-      imgProdAss.Src = ((Ez.Newsletter.MagentoApi.Product)(e.Item.DataItem)).imageurl;
+      var product = (e.Item.DataItem) as Product;
+      if (product == null) return;
+      imgProdAss.Src = product.imageurl;
       var linkProd = (HtmlAnchor)e.Item.FindControl("linkProd");
-      linkProd.HRef = string.Format("Dettaglio.aspx?Id={0}", ((Product)(e.Item.DataItem)).product_id);
+      if (linkProd != null)
+      {
+        linkProd.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", product.name);
+      }
     }
   }
 
@@ -87,7 +93,7 @@ public partial class shop_Dettaglio : BasePage
 
     prodProduttore.Text = Product.produttore;
     prodDescription.Text = Product.description;
-    prodPrice.Text = helper.FormatCurrency(Product.price);
+    prodPrice.Text = Helper.FormatCurrency(Product.price);
 
     var categoryId = GetProductCategory(Product.categories);
     BindCategoryName(categoryId);
@@ -102,7 +108,7 @@ public partial class shop_Dettaglio : BasePage
 
     var linkedProducstWithCompleteInfos = linkedProducts
       .Select(product => _repository.GetFilteredProducts
-        (new Filter { FilterOperator = LogicalOperator.Eq, Key = "producId", Value = product.product_id }))
+        (new Filter { FilterOperator = LogicalOperator.Eq, Key = "product_id", Value = product.product_id }))
       .Where(p => p != null).ToList();
 
     // Stesso codice della linq lamba expression

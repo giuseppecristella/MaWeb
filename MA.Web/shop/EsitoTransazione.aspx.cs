@@ -145,8 +145,8 @@ public partial class shop_EsitoTransazione : BasePage
       orderDetails.billing_address.lastname);
     var invoiceAddress = string.Format("{0} {1}", orderDetails.billing_address.firstname,
       orderDetails.billing_address.lastname);
-    var totalShipment = "€. " + helper.FormatCurrency(orderDetails.shipping_amount);
-    var total = helper.FormatCurrency(orderDetails.grand_total);
+    var totalShipment = "€. " + Helper.FormatCurrency(orderDetails.shipping_amount);
+    var total = Helper.FormatCurrency(orderDetails.grand_total);
 
     var layoutBuilder = new LayoutBuilder(fileName);
     var templateHtml = layoutBuilder.AddName(name)
@@ -173,7 +173,7 @@ public partial class shop_EsitoTransazione : BasePage
         , (string)deserializedBuyRequest["name"]
         , (string)deserializedBuyRequest["product_id"]
         , (string)deserializedBuyRequest["qty"]
-        , helper.FormatCurrency((string)deserializedBuyRequest["price"])
+        , Helper.FormatCurrency((string)deserializedBuyRequest["price"])
         , itemTotal);
   }
 
@@ -182,7 +182,7 @@ public partial class shop_EsitoTransazione : BasePage
     int qty;
     decimal price;
     if (int.TryParse((string)deserializedBuyRequest["qty"], out qty) == false) return null;
-    return decimal.TryParse(helper.FormatCurrency((string)deserializedBuyRequest["price"]), out price) == false ? null : (qty * price).ToString().Replace(".", ",");
+    return decimal.TryParse(Helper.FormatCurrency((string)deserializedBuyRequest["price"]), out price) == false ? null : (qty * price).ToString().Replace(".", ",");
   }
 
   private static Hashtable DeserializeOrderInfos(OrderProduct orderProduct)

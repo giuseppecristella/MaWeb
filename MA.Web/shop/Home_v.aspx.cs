@@ -16,19 +16,19 @@ public partial class shop_Home_v : System.Web.UI.Page
       {
         Session["carrello"] = new ArrayList();
       }
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
       {
         HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+        HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
       }
         //if (HttpContext.Current.Cache["htmlMegaMenu"] == null)
       //{
       //}
       if (HttpContext.Current.Cache["sessionId"] == null)
       {
-        HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+        HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
       }
-      HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
+      HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
         menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
             CategoryAssignedProduct[] tempmyAssignedProducts = Category.AssignedProducts((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { 45 });
       lvVetrinaVerde.DataSource = tempmyAssignedProducts;// (ArrayList)HttpContext.Current.Cache["myAssignedProducts" + _catID.ToString()];
@@ -41,7 +41,7 @@ public partial class shop_Home_v : System.Web.UI.Page
     }
     catch (Exception ex)
     {
-      helper.checkConnection();
+      Helper.checkConnection();
       //  Response.Redirect("Catalogo.html");
       //  lblErr.Text = "apiurl: " + (string)HttpContext.Current.Cache["apiUrl"] + "SessId " + (string)HttpContext.Current.Cache["sessionId"] + ex.Message;//"session-test--> "+(string)Session["test"]+ " " +apiUrl + " sessionId: " + sessionId + " exc: " + ex.Message;
     }
@@ -73,14 +73,14 @@ public partial class shop_Home_v : System.Web.UI.Page
     imgProd.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).imageurl + "&W_=215&H_=215";
     HtmlGenericControl descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
     string name = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).name;
-    descProduct.InnerHtml = helper.ShortDesc(name, 132);
+    descProduct.InnerHtml = Helper.ShortDesc(name, 132);
     HtmlGenericControl priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
     string magento_price = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).price;
-    priceProduct.InnerHtml = helper.FormatCurrency(magento_price);
+    priceProduct.InnerHtml = Helper.FormatCurrency(magento_price);
     HtmlAnchor linkDettaglio_1 = (HtmlAnchor)e.Item.FindControl("linkDettaglio");
     HtmlAnchor linkDettaglio = (HtmlAnchor)e.Item.FindControl("lnkDettaglio_1");
     name = name.Replace(" ", "-");
-    linkDettaglio.HRef = helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
+    linkDettaglio.HRef = Helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
     }
   protected void item_dataBound2(object sender, ListViewItemEventArgs e)
   {
@@ -105,13 +105,13 @@ public partial class shop_Home_v : System.Web.UI.Page
       imgProd.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).imageurl + "&W_=215&H_=215";
     HtmlGenericControl descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct2");
     string name = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).name;
-    descProduct.InnerHtml = helper.ShortDesc(name, 132);
+    descProduct.InnerHtml = Helper.ShortDesc(name, 132);
     HtmlGenericControl priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct2");
     string magento_price = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).price;
-    priceProduct.InnerHtml = helper.FormatCurrency(magento_price);
+    priceProduct.InnerHtml = Helper.FormatCurrency(magento_price);
     //  HtmlAnchor linkDettaglio_1 = (HtmlAnchor)e.Item.FindControl("linkDettaglio2");
     HtmlAnchor linkDettaglio = (HtmlAnchor)e.Item.FindControl("lnkDettaglio_2");
     name = name.Replace(" ", "-");
-    linkDettaglio.HRef = helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
+    linkDettaglio.HRef = Helper.GetAbsoluteUrl() + "shop" + _pathUrl + "/" + name + ".html";
     }
 }

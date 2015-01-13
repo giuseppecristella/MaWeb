@@ -27,7 +27,7 @@ public partial class Riepilogo : BasePage
     lvCart.DataBind();
 
     ltrSubTot.Text = Cart.Total.ToString();
-    ltrSped.Text = helper.FormatCurrency(shippingMethods[0].price);
+    ltrSped.Text = Helper.FormatCurrency(shippingMethods[0].price);
     // totale + spese spedizione
     ltrSomma.Text = (decimal.Parse(ltrSped.Text) + decimal.Parse(ltrSubTot.Text)).ToString();
 
@@ -39,7 +39,7 @@ public partial class Riepilogo : BasePage
     var lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
     lblnomeprod.Text = ((Product)(dataItem.DataItem)).name;
     var lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
-    lblprezzoun.Text = helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
+    lblprezzoun.Text = Helper.FormatCurrency(((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).price);
     var imgprod = (Image)e.Item.FindControl("imgprod");
     imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Ez.Newsletter.MagentoApi.Product)(dataItem.DataItem)).imageurl + "&W_=100&H_=100";
     var txtqta = (Label)e.Item.FindControl("txtqta");

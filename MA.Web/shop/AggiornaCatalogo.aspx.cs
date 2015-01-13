@@ -79,11 +79,11 @@ public partial class shop_AggiornaCatalogo : BasePage
 
     protected void lbUpdateMagentoSessionId_Click(object sender, EventArgs e)
     {
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
             HttpContext.Current.Cache.Insert("sessionId",
-                                             helper.getConnection(Utility.SearchConfigValue("apiUrl"),
+                                             Helper.getConnection(Utility.SearchConfigValue("apiUrl"),
                                                                   Utility.SearchConfigValue("apiUser"),
                                                                   Utility.SearchConfigValue("apiPsw")));
         }
@@ -141,11 +141,11 @@ public partial class shop_AggiornaCatalogo : BasePage
     {
         var strMegaMenu = string.Empty;
         var strMenuMobile = string.Empty;
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
             HttpContext.Current.Cache.Insert("sessionId",
-                                             helper.getConnection(Utility.SearchConfigValue("apiUrl"),
+                                             Helper.getConnection(Utility.SearchConfigValue("apiUrl"),
                                                                   Utility.SearchConfigValue("apiUser"),
                                                                   Utility.SearchConfigValue("apiPsw")));
         }
@@ -162,8 +162,8 @@ public partial class shop_AggiornaCatalogo : BasePage
         for (int i = 0; i < figli.Length; i++)
         {
             var figlio = (System.Collections.Hashtable)figli[i];
-            strMegaMenu += "<li>" + "<a href=\"" + helper.GetAbsoluteUrl() + "shop/" + figlio["name"].ToString().Replace(" ", "-") + ".html" + "\">" + figlio["name"] + "</a>";
-            strMenuMobile += "<li>" + "<a style=\"font-size: 18px;\" href=\"" + helper.GetAbsoluteUrl() + "mobile/mCatalogo.aspx?CatId=" + figlio["category_id"] + "\">" + figlio["name"] + "</a>";
+            strMegaMenu += "<li>" + "<a href=\"" + Helper.GetAbsoluteUrl() + "shop/" + figlio["name"].ToString().Replace(" ", "-") + ".html" + "\">" + figlio["name"] + "</a>";
+            strMenuMobile += "<li>" + "<a style=\"font-size: 18px;\" href=\"" + Helper.GetAbsoluteUrl() + "mobile/mCatalogo.aspx?CatId=" + figlio["category_id"] + "\">" + figlio["name"] + "</a>";
             //  GetTree(figlio, arrCategories, 3, htmlString);
             strMegaMenu += "</li>";
             strMenuMobile += "</li>";

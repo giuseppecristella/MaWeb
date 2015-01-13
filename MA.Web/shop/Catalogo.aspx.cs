@@ -36,41 +36,27 @@ public partial class shop_Catalogo : BasePage
       // Immagine    
       //if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
       // if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = product.imageurl;
-      var imagePath = GetFolderAndImageName(product.imageurl);
+      var imagePath = Helper.GetFolderAndImageName(product.imageurl);
       if (imgProd != null && imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Public/", imagePath);
       // Descrizione  
-      if (descProduct != null && product.name != null) descProduct.InnerHtml = helper.ShortDesc(product.name, 132);
+      if (descProduct != null && product.name != null) descProduct.InnerHtml = Helper.ShortDesc(product.name, 132);
       // Prezzo
-      if (priceProduct != null && product.price != null) priceProduct.InnerHtml = helper.FormatCurrency(product.price);
+      if (priceProduct != null && product.price != null) priceProduct.InnerHtml = Helper.FormatCurrency(product.price);
       // Link pagina dettaglio   
 
-      if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Shop/Dettaglio", "Id", product.product_id);
+      if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", product.name);
 
       SetItemStyleAttributes(item);
     }
   }
 
-  public static string GetFolderAndImageName(string imageurl)
-  {
-    var uri = new Uri(imageurl);
-    var segments = uri.Segments;
-    //var imageFolder = string.Empty;
-    //foreach (var segment in segments)
-    //{
-    //    Guid guidValue;
-    //    if (!Guid.TryParse(segment.Remove(segment.Length - 1, 1), out guidValue)) continue;
-    //    imageFolder = segment.Remove(segment.Length - 1, 1);
-    //}
-    //if (string.IsNullOrEmpty(imageFolder)) return null;
-    return segments.LastOrDefault();
-  }
 
   protected void pagerProducts_PreRender(object sender, EventArgs e)
   {
     var rootCat = SetMainStyleAttribute();
 
     // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
-    HttpContext.Current.Cache.Insert("htmlMegaMenu", helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+    HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
     menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
     if (BindProductsToList())

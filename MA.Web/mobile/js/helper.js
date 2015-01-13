@@ -1,5 +1,5 @@
 ﻿/*
- * MBP - Mobile boilerplate helper functions
+ * MBP - Mobile boilerplate Helper functions
  */
 (function(document){
 

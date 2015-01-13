@@ -8,10 +8,10 @@ public partial class shop_Customers_Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (!helper.checkConnection())
+        if (!Helper.checkConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-            HttpContext.Current.Cache.Insert("sessionId", helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
 
         }
 
@@ -48,7 +48,7 @@ public partial class shop_Customers_Default : System.Web.UI.Page
                                                                                                                       (idUserMagento)
                                                                                                               });
 
-                //funzione in helper per verificare che esistano gli indirizzi associati all'utente se si vado a riempire l'array indirizzi
+                //funzione in Helper per verificare che esistano gli indirizzi associati all'utente se si vado a riempire l'array indirizzi
                 //importante settare addressTest.mode = "shipping / billing";
 
 

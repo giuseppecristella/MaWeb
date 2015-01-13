@@ -90,7 +90,7 @@ public partial class shop_Carrello : BasePage
 
     // Prezzo unitario
     var lblprezzoun = item.FindControl("lblprezzoun") as Label;
-    if (lblprezzoun != null) lblprezzoun.Text = string.Format("€. {0}", helper.FormatCurrency(helper.FormatCurrency(product.price)));
+    if (lblprezzoun != null) lblprezzoun.Text = string.Format("€. {0}", Helper.FormatCurrency(Helper.FormatCurrency(product.price)));
 
     // Q.ta
     var txtqtaprod = item.FindControl("txtqta") as TextBox;
