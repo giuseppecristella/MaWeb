@@ -3,119 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-
-public partial class Blog : System.Web.UI.Page
+public partial class Blog : BaseBlogPage
 {
+
   protected void Page_Load(object sender, EventArgs e)
   {
-    if (!IsPostBack)
-    {
-      string[] randomVignette = randomImage();
-      string url = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");//Page.Request.Url.ToString();
-      string imagePath = url + "img/outlet/" + Path.GetFileName(randomVignette[0]);
-      //BlogPost.aspx?Id
-      string templateHtml = readTemplateFromFile("template_tagFb.htm");
-      string replaceImage_p = templateHtml.Replace("##image##", imagePath);
-      string replaceUrl_p = replaceImage_p.Replace("##url##", url + "Blog.html");
-      string replaceTitle_p = replaceUrl_p.Replace("##titolo##", "Matera Arredamenti > Blog");
-      string replaceDesc_p = replaceTitle_p.Replace("##caption##", "Il Blog di Giovanni Matera. E in edicola puoi trovare il libro La cassetta degli attrezzi - Strumenti per il marketing e l'imprenditoria. Anche su amazon e ibs.");
-      Session["metatagFB"] = replaceDesc_p;
-    }
+    if (IsPostBack) return;
+
+    var fbMetaTagsTemplate = ReadTemplateFromFile("template_tagFb.htm");
+    if (string.IsNullOrEmpty(fbMetaTagsTemplate)) return;
+
+    var randomVignette = Utility.GetRandomImages(Server.MapPath("~/img/outlet/"));
+    var imagePath = string.Format("{0}img/outlet/{1}", Url, Path.GetFileName(randomVignette.FirstOrDefault()));
+
+    CreateFacebookMetaTags(fbMetaTagsTemplate, imagePath, Url);
   }
 
-  public string readTemplateFromFile(string _filename)
+  protected void OnPagerPrerender(object sender, EventArgs e)
   {
-    string fileName = HttpContext.Current.Server.MapPath("~\\public\\templates\\" + _filename);
-    string output = "";
-    if (!File.Exists(fileName))
-      return output;
-    StreamReader stFile = File.OpenText(fileName);
-    output = stFile.ReadToEnd();
-    stFile.Close();
-    return output;
-  }
-
-  string[] randomImage()
-  {
-    string pathimg = Server.MapPath("~/img/outlet/");
-    // string[] filePaths = Directory.GetFiles(@"c:\img\outlet", "*.jpg");
-    string[] vignette = Directory.GetFiles(@pathimg, "*.jpg");
-
-    Random rand = new Random();
-    List<Int32> result = new List<Int32>();
-    for (Int32 i = 0; i < 3; i++)
-    {
-      Int32 curValue = rand.Next(0, vignette.Length);
-      while (result.Exists(value => value == curValue))
-      {
-        curValue = rand.Next(0, vignette.Length);
-      }
-      result.Add(curValue);
-    }
-    string[] randomVignette = { vignette[result[0]], vignette[result[1]], vignette[result[2]] };
-    return randomVignette;
-  }
-
-  protected void pagerPrerender(object sender, EventArgs e)
-  {
-    string[] randomVignette = randomImage();
-    DataSetVepAdminTableAdapters.NewsTableAdapter taNews = new DataSetVepAdminTableAdapters.NewsTableAdapter();
-    DataTable dtNews =
-        taNews.GetListaNews("0");
-    ArrayList arrayBlogPosts = new ArrayList();
-    int k = 0;
-
-    int j = 0;
-    for (int i = 0; i < dtNews.Rows.Count; i++)
+    var randomVignette = Utility.GetRandomImages(Server.MapPath("~/img/outlet/"));
+    var taNews = new DataSetVepAdminTableAdapters.NewsTableAdapter();
+    DataTable dtNews = taNews.GetListaNews("0");
+    var arrayBlogPosts = new ArrayList();
+    var k = 0;
+    var j = 0;
+    for (var i = 0; i < dtNews.Rows.Count; i++)
     {
       if (j > 0 && j % 12 == 0)
         k++;
-      if (j == 0 + 12 * k && j % 4 == 0)
+      if (IsFirstBox(j, k) || IsSecondBox(j, k) || IsThirdBox(j, k))
       {
-        //metto la prima immmagine
-
-        arrayBlogPosts.Insert(j, "<img width=\"217\"  height=\"235\" src=\"img/outlet/" + Path.GetFileName(randomVignette[0]) + "\"" + "/>");
+        AddCartoons(arrayBlogPosts, j, randomVignette[0]);
+        AddBlogPost(arrayBlogPosts, j, dtNews.Rows[i]);
         j++;
-        arrayBlogPosts.Insert(j, "<h6 style=\"height:50px;\">" + dtNews.Rows[i]["Titolo"].ToString() + "</h6>" +
-            "<p style=\"height:150px;overflow:hidden;\">" +
-            Utility.ShortDesc(dtNews.Rows[i]["Descrizione"].ToString(), 255).ToString() + "</p>" +
-            //"<a  href=\"" + dtNews.Rows[i]["Titolo"].ToString().Replace("%", "").Replace("?", "").Replace(" ", "-") + ".html\">" +
-            "<a  href=\"BlogPost.aspx?Id="+ dtNews.Rows[i]["News_ID"].ToString()+"\">" +
-            "[+ Leggi Tutto]" + "</a>");
-      }
-      //else if (i == 6)
-      else if (j == 6 + 12 * k && j % 4 == 2)
-      {
-        arrayBlogPosts.Insert(j, "<img  width=\"217\"  height=\"235\"  src=\"img/outlet/" + Path.GetFileName(randomVignette[1]) + "\"" + "/>");
-        j++;
-        arrayBlogPosts.Insert(j, "<h6 style=\"height:50px;\">" + dtNews.Rows[i]["Titolo"].ToString() + "</h6>" +
-            "<p style=\"height:150px;overflow:hidden;\">" +
-            Utility.ShortDesc(dtNews.Rows[i]["Descrizione"].ToString(), 255).ToString() + "</p>" +
-            //"<a  href=\"" + dtNews.Rows[i]["Titolo"].ToString().Replace("%", "").Replace("?", "").Replace(" ", "-") + ".html\">" +
-            "<a  href=\"BlogPost.aspx?Id=" + dtNews.Rows[i]["News_ID"].ToString() + "\">" +
-            "[+ Leggi Tutto]" + "</a>");
-      }
-      else if (j == 9 + 12 * k && j % 4 == 1)
-      {
-        arrayBlogPosts.Insert(j, "<img  width=\"217\"  height=\"235\"  src=\"img/outlet/" + Path.GetFileName(randomVignette[2]) + "\"" + "/>");
-        j++;
-        arrayBlogPosts.Insert(j, "<h6 style=\"height:50px;\">" + dtNews.Rows[i]["Titolo"].ToString() + "</h6>" +
-            "<p style=\"height:150px;overflow:hidden;\">" +
-            Utility.ShortDesc(dtNews.Rows[i]["Descrizione"].ToString(), 255).ToString() + "</p>" +
-            //"<a  href=\"" + dtNews.Rows[i]["Titolo"].ToString().Replace("%", "").Replace("?", "").Replace(" ", "-") + ".html\">" +
-            "<a  href=\"BlogPost.aspx?Id=" + dtNews.Rows[i]["News_ID"].ToString() + "\">" +
-            "[+ Leggi Tutto]" + "</a>");
       }
       else
       {
-        arrayBlogPosts.Insert(j, "<h6 style=\"height:50px;\">" + dtNews.Rows[i]["Titolo"].ToString() + "</h6>" +
-            "<p style=\"height:150px;overflow:hidden;\">" +
-            Utility.ShortDesc(dtNews.Rows[i]["Descrizione"].ToString(), 255).ToString() + "</p>" +
-            //"<a  href=\"" + dtNews.Rows[i]["Titolo"].ToString().Replace("%", "").Replace("?", "").Replace(" ", "-") + ".html\">" +
-            "<a  href=\"BlogPost.aspx?Id=" + dtNews.Rows[i]["News_ID"].ToString() + "\">" +
-            "[+ Leggi Tutto]" + "</a>");
+        AddBlogPost(arrayBlogPosts, j, dtNews.Rows[i]);
       }
       j++;
     }
@@ -123,10 +50,47 @@ public partial class Blog : System.Web.UI.Page
     lvBlogPosts.DataBind();
   }
 
-  protected void lvBlogPosts_ItemDataBound(object sender, ListViewItemEventArgs e)
+  protected void lvBlogPostsOnItemDataBound(object sender, ListViewItemEventArgs e)
   {
-    ListViewDataItem dataitem = (ListViewDataItem)e.Item;
-    Literal ltrItemBlog = (Literal)e.Item.FindControl("ltrItemBlog");
+    var dataitem = (ListViewDataItem)e.Item;
+    var ltrItemBlog = (Literal)e.Item.FindControl("ltrItemBlog");
     ltrItemBlog.Text = (string)dataitem.DataItem;
   }
+
+  #region Private Methods
+
+  private static bool IsThirdBox(int j, int k)
+  {
+    return j == 9 + 12 * k && j % 4 == 1;
+  }
+
+  private static bool IsSecondBox(int j, int k)
+  {
+    return j == 6 + 12 * k && j % 4 == 2;
+  }
+
+  private static bool IsFirstBox(int j, int k)
+  {
+    return j == 0 + 12 * k && j % 4 == 0;
+  }
+
+  private static void AddBlogPost(IList arrayBlogPosts, int j, DataRow drBlogPost)
+  {
+    DataTable dtNews;
+    arrayBlogPosts.Insert(j,
+      string.Format(
+        "<h6 style=\"height:50px;\">{0}</h6><p style=\"height:150px;overflow:hidden;\">{1}</p><a  href=\"BlogPost/{2}/{3}\">[+ Leggi Tutto]</a>",
+       drBlogPost["Titolo"],
+        Utility.ShortDesc(drBlogPost["Descrizione"].ToString(), 255),
+        drBlogPost["News_ID"],
+        drBlogPost["Titolo"]));
+  }
+
+  private static void AddCartoons(ArrayList arrayBlogPosts, int j, string imgPath)
+  {
+    arrayBlogPosts.Insert(j, string.Format("<img width=\"217\"  height=\"235\" src=\"img/outlet/{0}\"/>",
+      Path.GetFileName(imgPath)));
+  }
+
+  #endregion
 }

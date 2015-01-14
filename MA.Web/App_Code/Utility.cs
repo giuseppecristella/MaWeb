@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Collections;
 using System.Data;
@@ -465,4 +466,21 @@ public static class Utility
     string paramOk = "SetPrjID('" + param + "');";
     return paramOk;
   }
+  public static string[] GetRandomImages(string path)
+  {
+    var vignette = Directory.GetFiles(path, "*.jpg");
+    var rand = new Random();
+    var result = new List<Int32>();
+    for (var i = 0; i < 3; i++)
+    {
+      var curValue = rand.Next(0, vignette.Length);
+      while (result.Exists(value => value == curValue))
+      {
+        curValue = rand.Next(0, vignette.Length);
+      }
+      result.Add(curValue);
+    }
+    string[] randomVignette = { vignette[result[0]], vignette[result[1]], vignette[result[2]] };
+    return randomVignette;
+  } 
 }

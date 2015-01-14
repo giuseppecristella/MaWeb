@@ -1,237 +1,132 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Web;
+using System.Linq;
 using System.IO;
 using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-
-public partial class BlogPost : System.Web.UI.Page
+using Microsoft.AspNet.FriendlyUrls;
+public partial class BlogPost : BaseBlogPage
 {
-    protected void Page_Load(object sender, EventArgs e)
+  protected void Page_Load(object sender, EventArgs e)
+  {
+
+    var idEvento = Request.GetFriendlyUrlSegments()[0];
+    Session["BlogPostID"] = idEvento;
+    if (!string.IsNullOrEmpty(idEvento))
     {
-        //QueryStringField="Evento"
-        string idEvento = Request.QueryString["Id"];
+      ltrSocial.Text = Utility.ReadTemplateFromFile("pathSocial");
+      var taArticoli = new DataSetMateraArredamentiTableAdapters.NewsTableAdapter();
+      DataTable dtArticolo = taArticoli.GetDataByID(int.Parse(idEvento));
+      var blogPostHtmlDocument = Server.MapPath(string.Format("~/public/HTML_Articoli/MateraArredamentiBlogPost_{0}.html", dtArticolo.Rows[0]["News_ID"]));
+      try
+      {
+        CreatePrintableHtml(blogPostHtmlDocument, dtArticolo.Rows[0]);
 
-        if (!string.IsNullOrEmpty(idEvento))
-        {
-            
-           ltrSocial.Text = Utility.ReadTemplateFromFile("pathSocial");
-
-            DataSetMateraArredamentiTableAdapters.NewsTableAdapter taArticoli = new DataSetMateraArredamentiTableAdapters.NewsTableAdapter();
-            DataTable dtArticolo = taArticoli.GetDataByID(int.Parse(idEvento));
-            string sHTML = Server.MapPath("public/html_articolo_" + dtArticolo.Rows[0]["News_ID"].ToString() + ".html");//articolo in html mod il path
-            try
-            {
-
-                Encoding myEnconding = Encoding.GetEncoding(1252);
-                StreamWriter sWriter = new StreamWriter(sHTML, false, Encoding.UTF8);
-                sWriter.Write("<html style='background:#fff;padding-left:0px;margin-left:10px;'>");
-                sWriter.Write("<body style='margin-left:15px;margin-top:10px;'>");
-                sWriter.Write("<b style='color:#bf0000;font-size:1.2em;'>" + dtArticolo.Rows[0]["Titolo"].ToString() + "</b></br></br>");
-                sWriter.Write("a cura di <b>" + "Giovanni Matera" + "</b></br></br>");
-                sWriter.Write("<div style='width:530px;text-align:justify;'>");
-                sWriter.Write(dtArticolo.Rows[0]["Testo"].ToString());
-                sWriter.Write("</div>");
-                sWriter.Write("</br></br><input id='stampa' type='button' value='stampa' style='text-align:center' onclick='window.print();' />");
-                sWriter.Write("</body>");
-                sWriter.Write("</html>");
-
-                sWriter.Close();
-                sWriter.Dispose();
-
-
-                /*creo i meta tag per fb*/
-
-                string[] randomVignette = randomImage();
-                string url = Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");//Page.Request.Url.ToString();
-                string imagePath = url + "img/outlet/" + Path.GetFileName(randomVignette[0]);
-                 
-                //BlogPost.aspx?Id
-
-                string templateHtml = readTemplateFromFile("template_tagFb.htm");
-                string replaceImage_p = templateHtml.Replace("##image##", imagePath);
-                string replaceUrl_p = replaceImage_p.Replace("##url##", url + "BlogPost.aspx?Id=" + dtArticolo.Rows[0]["News_ID"].ToString());
-                string replaceTitle_p = replaceUrl_p.Replace("##titolo##", dtArticolo.Rows[0]["Titolo"].ToString());
-                string replaceDesc_p = replaceTitle_p.Replace("##caption##", Utility.ShortDesc(Utility.cleanTagFromString(dtArticolo.Rows[0]["Testo"].ToString()), 200));
-                Session["metatagFB"] = replaceDesc_p;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-
-        Session["AlbumID"] = 0;
-        try
-        {
-            DataSetMateraArredamentiTableAdapters.AlbumsTableAdapter taAlbums = new DataSetMateraArredamentiTableAdapters.AlbumsTableAdapter();
-            DataTable dtAlbumID = taAlbums.GetIdAlbum(int.Parse(idEvento));
-            Session["AlbumID"] = int.Parse(dtAlbumID.Rows[0][0].ToString());
-
-
-
-
-
-        }
-        catch (Exception)
-        {
-
-        }
-
-  
+        var fbMetaTagsTemplate = ReadTemplateFromFile("template_tagFb.htm");
+        if (string.IsNullOrEmpty(fbMetaTagsTemplate)) return;
+        var randomVignette = Utility.GetRandomImages(Server.MapPath("~/img/outlet/"));
+        var imagePath = string.Format("{0}img/outlet/{1}", Url, Path.GetFileName(randomVignette.FirstOrDefault()));
+        CreateFacebookMetaTags(fbMetaTagsTemplate, imagePath, Url);
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
     }
-
-    string[] randomImage()
+    Session["AlbumID"] = 0;
+    try
     {
-
-
-
-        string pathimg = Server.MapPath("~/img/outlet/");
-        // string[] filePaths = Directory.GetFiles(@"c:\img\outlet", "*.jpg");
-        string[] vignette = Directory.GetFiles(@pathimg, "*.jpg");
-
-
-
-        Random rand = new Random();
-        List<Int32> result = new List<Int32>();
-        for (Int32 i = 0; i < 3; i++)
-        {
-            Int32 curValue = rand.Next(0, vignette.Length);
-            while (result.Exists(value => value == curValue))
-            {
-                curValue = rand.Next(0, vignette.Length);
-            }
-            result.Add(curValue);
-        }
-
-        string[] randomVignette = { vignette[result[0]], vignette[result[1]], vignette[result[2]] };
-        return randomVignette;
+      var taAlbums = new DataSetMateraArredamentiTableAdapters.AlbumsTableAdapter();
+      DataTable dtAlbumID = taAlbums.GetIdAlbum(int.Parse(idEvento));
+      if (dtAlbumID.Rows.Count > 0) Session["AlbumID"] = int.Parse(dtAlbumID.Rows[0][0].ToString());
     }
-    public string readTemplateFromFile(string _filename)
+    catch (Exception)
     {
-
-        string fileName = HttpContext.Current.Server.MapPath("~\\public\\templates\\" + _filename);
-        string output = "";
-
-        if (!File.Exists(fileName))
-            return output;
-        StreamReader stFile = File.OpenText(fileName);
-        output = stFile.ReadToEnd();
-        stFile.Close();
-
-
-        return output;
-
     }
+  }
 
+  public string GetPrintUrl(string blogPostId)
+  {
+    return string.Format("{0}/public/html_articolo_{1}", Request.Url.GetLeftPart(UriPartial.Authority), blogPostId);
+  }
 
-    protected void CreaPdf(object sender, EventArgs e)
+  private static void CreatePrintableHtml(string blogPostHtmlDocument, DataRow drBlogPost)
+  {
+    using (var sWriter = new StreamWriter(blogPostHtmlDocument, false, Encoding.UTF8))
     {
-
-        DataView dvArticolo = (DataView)objPost.Select();
-        DataTable dtArticolo = dvArticolo.ToTable();
-
-        // Document document = new Document(PageSize.A4, 80, 50, 30, 65);
-        Document document = new Document(PageSize.A4);
-        document.AddAuthor("Giovanni Matera");
-        document.AddSubject("Ricerca e formazione");
-
-        //string sHTML = Server.MapPath("public/html_articolo_"+dtArticolo.Rows[0]["News_ID"].ToString()+".html");//articolo in html mod il path
-        string sPDF = Server.MapPath("public/pdf_articolo_" + dtArticolo.Rows[0]["News_ID"].ToString() + ".pdf");//articolo in pdf mod il path
-
-
-        try
-        {
-
-            Encoding myEnconding = Encoding.GetEncoding(1252);
-
-            //StreamWriter sWriter = new StreamWriter(sHTML, false, Encoding.UTF8);
-            //sWriter.Write("<html>");
-            //sWriter.Write(dtArticolo.Rows[0]["Titolo"].ToString()+"<br>");
-            //sWriter.Write(dtArticolo.Rows[0]["Testo"].ToString());
-            //sWriter.Write("</br></br><input id='stampa' type='button' value='stampa' style='text-align:center' onclick='window.print();' />");
-            //sWriter.Write("</html>");
-
-            //sWriter.Close();
-            //sWriter.Dispose();
-            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(sPDF, FileMode.Create));
-            document.Open();
-            string html = dtArticolo.Rows[0]["Testo"].ToString();
-
-            string decodedHtml = Server.HtmlDecode(html);
-
-            //HtmlParser.Parse(document, decodedHtml);
-
-            decodedHtml = decodedHtml.Replace("<br />", "");
-            decodedHtml = decodedHtml.Replace("<strong>", "");
-            decodedHtml = decodedHtml.Replace("</strong>", "");
-            decodedHtml = decodedHtml.Replace("<em>", "");
-            decodedHtml = decodedHtml.Replace("</em>", "");
-            iTextSharp.text.Image marchio = iTextSharp.text.Image.GetInstance(Server.MapPath("img/MARCHIO Ridotto.jpg"));
-
-            marchio.Alignment = iTextSharp.text.Image.ALIGN_LEFT;
-            marchio.ScalePercent(40);
-
-
-
-            document.Add(marchio);
-
-
-            Phrase ricerca = new Phrase("\n\nRicerca e Formazione ", new Font(Font.TIMES_ROMAN, 14, Font.BOLD, Color.RED));
-            document.Add(ricerca);
-            Phrase acura = new Phrase("a cura di Giovanni Matera\n\n", new Font(Font.TIMES_ROMAN, 12, Font.NORMAL));
-            document.Add(acura);
-            Phrase titolo = new Phrase(dtArticolo.Rows[0]["Titolo"].ToString() + "\n\n", new Font(Font.TIMES_ROMAN, 10, Font.BOLD, Color.RED));
-            document.Add(titolo);
-
-            Phrase myPhrase = new Phrase(decodedHtml, new Font(Font.TIMES_ROMAN, 8, Font.NORMAL));
-
-            document.Add(myPhrase);
-
-
-            Phrase firma = new Phrase("\n\n Giovanni Matera", new Font(Font.TIMES_ROMAN, 10, Font.BOLD, Color.BLACK));
-
-            document.Add(firma);
-            Phrase footer = new Phrase("\n\n www.materarredamenti.it", new Font(Font.TIMES_ROMAN, 7, Font.NORMAL, Color.RED));
-
-            document.Add(footer);
-
-
-            //StreamWriter sWriter1 = new StreamWriter(sHTML, false, Encoding.UTF8);
-            //sWriter1.Write("<html>");
-            //sWriter1.Write(decodedHtml);
-            //sWriter1.Write("</html>");
-            //sWriter1.Close();
-            //sWriter1.Dispose();
-            //HtmlParser.Parse(document, sHTML);
-
-            //xtr.Close();
-            document.Close();
-
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        finally
-        {
-
-            Response.Write(Server.MapPath("pdffilename.pdf"));
-            Response.ClearContent();
-            Response.BufferOutput = true;
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            string headerAttFileName = "attachment; filename=" + "pdf_articolo_" + dtArticolo.Rows[0]["News_ID"].ToString() + ".pdf";
-            Response.AppendHeader("Content-Disposition", headerAttFileName);
-            Response.Flush();
-            Response.WriteFile(Server.MapPath("public/pdf_articolo_" + dtArticolo.Rows[0]["News_ID"].ToString() + ".pdf"));
-            Response.End();
-
-        }
+      sWriter.Write("<html style='background:#fff;padding-left:0px;margin-left:10px;'><body style='margin-left:15px;margin-top:10px;'>");
+      sWriter.Write("<b style='color:#bf0000;font-size:1.2em;'>{0}</b></br></br>", drBlogPost["Titolo"]);
+      sWriter.Write("a cura di <b>Giovanni Matera</b></br></br><div style='width:530px;text-align:justify;'>");
+      sWriter.Write(drBlogPost["Testo"].ToString());
+      sWriter.Write("</div>");
+      sWriter.Write("</br></br><input id='stampa' type='button' value='stampa' style='text-align:center' onclick='window.print();' /></body></html>");
+      sWriter.Close();
+      sWriter.Dispose();
     }
+  }
+
+  protected void CreatePDF(object sender, EventArgs e)
+  {
+    var dvBlogPost = (DataView)objPost.Select();
+    if (dvBlogPost == null) return;
+    var dtBlogPost = dvBlogPost.ToTable();
+
+    var document = new Document(PageSize.A4);
+    document.AddAuthor("Giovanni Matera");
+    document.AddSubject("Ricerca e formazione");
+    var sPDF = Server.MapPath("~/public/PDF_Articoli/pdf_articolo_" + dtBlogPost.Rows[0]["News_ID"].ToString() + ".pdf");//articolo in pdf mod il path
+    try
+    {
+      PdfWriter.GetInstance(document, new FileStream(sPDF, FileMode.Create));
+      document.Open();
+     
+      var logoImage = Image.GetInstance(Server.MapPath("~/img/logo_w.png"));
+      logoImage.Alignment = Element.ALIGN_LEFT;
+      logoImage.ScalePercent(40);
+      document.Add(logoImage);
+
+      document.Add(new Phrase("\n\nRicerca e Formazione ", new Font(Font.TIMES_ROMAN, 14, Font.BOLD, Color.RED)));
+      document.Add(new Phrase("a cura di Giovanni Matera\n\n", new Font(Font.TIMES_ROMAN, 12, Font.NORMAL)));
+      document.Add(new Phrase(dtBlogPost.Rows[0]["Titolo"] + "\n\n", new Font(Font.TIMES_ROMAN, 10, Font.BOLD, Color.RED)));
+      var decodedBlogPostText = DecodeBlogPostText(dtBlogPost.Rows[0]["Testo"].ToString());
+      document.Add(new Phrase(decodedBlogPostText, new Font(Font.TIMES_ROMAN, 8, Font.NORMAL)));
+      document.Add(new Phrase("\n\n Giovanni Matera", new Font(Font.TIMES_ROMAN, 10, Font.BOLD, Color.BLACK)));
+      document.Add(new Phrase("\n\n www.materarredamenti.it", new Font(Font.TIMES_ROMAN, 7, Font.NORMAL, Color.RED)));
+      document.Close();
+    }
+    catch (Exception ex)
+    {
+      // Log Exception
+    }
+    finally
+    {
+      Response.Write(Server.MapPath("pdffilename.pdf"));
+      Response.ClearContent();
+      Response.BufferOutput = true;
+      Response.Clear();
+      Response.ContentType = "application/pdf";
+      var headerAttFileName = "attachment; filename=" + "BlogMateraArredamenti_" + dtBlogPost.Rows[0]["News_ID"] + ".pdf";
+      Response.AppendHeader("Content-Disposition", headerAttFileName);
+      Response.Flush();
+      Response.WriteFile(Server.MapPath("~/public/PDF_Articoli/pdf_articolo_" + dtBlogPost.Rows[0]["News_ID"] + ".pdf"));
+      try
+      {
+        //Trappo il solito errore del response.end
+        Response.End();
+      }
+      catch
+      { }
+    }
+  }
+
+  private string DecodeBlogPostText(string blogPostText)
+  {
+    return Server.HtmlDecode(blogPostText)
+      .Replace("<br />", string.Empty)
+      .Replace("<strong>", string.Empty)
+      .Replace("</strong>", string.Empty)
+      .Replace("<em>", string.Empty)
+      .Replace("</em>", string.Empty);
+  }
 }

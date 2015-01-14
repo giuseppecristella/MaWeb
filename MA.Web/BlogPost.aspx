@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="BlogPost.aspx.cs"
     Inherits="BlogPost" Title="Matera Arredamenti - Mobili per la vita" %>
-
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavigoss" runat="Server">
@@ -21,24 +21,12 @@
             <!-- HEADER ENDS-->
             <!--  HEADER ENDS-->
             <div id="content">
-                <%-- <div class="one">
-                    
-                    <div class="intro-pages">
-                       
-                        <h3>
-                            Benvenuti nel nostro<span class="colored">Blog</span>, periodicamente pubblicheremo
-                            gli articoli della rubrica Ricerca e Formazione
-                            
-                        </h3>
-                    </div>
-                   
-                </div>--%>
                 <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
                     <div class="inner-content">
                         <p style="background-image: url('images/footer_shadow_M.png'); background-position: bottom;
                             background-repeat: no-repeat; border: none;" class="intro-pages">
-                            <img src="images/blog-1.jpg" alt=" " width="710" height="210" />
+                            <asp:Image runat="server" ImageUrl="~/images/blog-1.jpg" alt=" " width="710" height="210"/>
                         </p>
                         <asp:Repeater ID="rptBlogPost" DataSourceID="objPost" runat="server">
                             <ItemTemplate>
@@ -47,31 +35,19 @@
                                         <%#Eval("Titolo") %>
                                     </h3>
                                 </p>
-                                <!--POST TITLE-->
                                 <p>
-                                
-                      
-                                <%--
-                                    Pubblicato da: <b>Giovanni Matera</b> il
-                                    <%# System.Convert.ToDateTime(Eval("Data").ToString()).ToShortDateString() %>
-                                    <a href="#"></a>--%>
-                                    
-                                    
-                                    
-                                     
                                 </p>
-                                <!--POST DETAILS-->
-                                <!--POST INTRO-->
                                 <p class="blog-testo" style="text-align: justify;">
                                     <%# Eval("Testo") %>
                                 </p>
                                 <p>
-                                    <asp:LinkButton runat="server"  ID="lnkbtnPDF" OnClick="CreaPdf">Visualizza Pdf</asp:LinkButton>
-                                    | <a target="_blank" href="public/html_articolo_<%# Eval("News_ID")%>.html">Stampa Articolo.
+                                    <asp:LinkButton runat="server"  ID="lnkbtnPDF" OnClick="CreatePDF">Visualizza Pdf</asp:LinkButton>|
+                                    <a target="_blank" href="<%# GetPrintUrl(Eval("News_ID").ToString()).ToString() %>.html">Stampa Articolo.
                                     </a>
+                                     
                                 </p>
                                 <p style="text-align: right;">
-                                    <a href='blog.aspx'>[- Ritorna agli articoli]</a></p>
+                                    <a href="<%# FriendlyUrl.Href("~/Blog") %>">[- Ritorna agli articoli]</a></p>
                             </ItemTemplate>
                         </asp:Repeater>
                         <asp:Literal runat="server" ID="ltrSocial" Text=""></asp:Literal>
@@ -84,7 +60,6 @@
                         </asp:ScriptManager>
                         <asp:UpdatePanel runat="server" ID="updFB">
                             <ContentTemplate>
-                                <%--<ul style="margin: auto;" class="simple-nav">--%>
                                 <asp:ObjectDataSource ID="objPostList" runat="server" OldValuesParameterFormatString="original_{0}"
                                     SelectMethod="GetListaNews" TypeName="DataSetMateraArredamentiTableAdapters.NewsTableAdapter">
                                     <SelectParameters>
@@ -98,24 +73,19 @@
                                     </LayoutTemplate>
                                     <ItemTemplate>
                                         <div class="one-fourth last">
-                                            <%--<a style="text-decoration: none;"  href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.html'>--%>
                                             <h6 class="grigio">
                                                 <%#Eval("Titolo") %>
                                             </h6>
                                             <p>
-                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),250).ToString() %>
+                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),250) %>
                                             </p>
-                                           <%-- <a href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.html'>
-                                                Leggi tutto →</a>--%>
-                                              <a href='BlogPost.aspx?Id=<%# Eval("News_ID").ToString()%>'>
+                                              <a href="<%# FriendlyUrl.Href("~/BlogPost/",Eval("News_ID"),Eval("Titolo")) %>">
                                                 Leggi tutto →</a>
-                                             </a> 
                                         </div>
                                         <div class="horizontal-line">
                                         </div>
                                     </ItemTemplate>
                                 </asp:ListView>
-                                <%-- </ul>--%>
                                 <asp:DataPager runat="server" ID="pagerFB" PageSize="5" PagedControlID="lvLastFromBlog">
                                     <Fields>
                                         <asp:NumericPagerField CurrentPageLabelCssClass="my-blog-pagination-current" NumericButtonCssClass="my-blog-pagination" />
@@ -126,16 +96,13 @@
                         <div class="clear-line">
                         </div>
                     </div>
-                    <!-- COLUMNS CONTAINER ENDS-->
-                    <!-- COLUMNS CONTAINER ENDS-->
                 </div>
             </div>
-            <!-- CONTENT ENDS-->
         </div>
         <asp:ObjectDataSource ID="objPost" runat="server" OldValuesParameterFormatString="original_{0}"
             SelectMethod="GetDataByID" TypeName="DataSetMateraArredamentiTableAdapters.NewsTableAdapter">
             <SelectParameters>
-                <asp:QueryStringParameter DefaultValue="0" Name="News_ID" QueryStringField="Id" Type="Int32" />
+                <asp:SessionParameter DefaultValue="0" Name="News_ID" SessionField="BlogPostID" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
     </div>

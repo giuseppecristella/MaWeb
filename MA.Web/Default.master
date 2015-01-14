@@ -106,7 +106,8 @@
     <div class="head_bar">
         <div class="center">
             <a style="margin-top: -20px; background: #fff;" id="logo" title="Homepage" href="default.aspx">
-                <img style="margin-left: auto; margin-right: auto;" src="img/logo_w.png" alt=" " /></a>
+                <asp:Image style="margin-left: auto; margin-right: auto;" ImageUrl="~/img/logo_w.png" alt="" runat="server"/>
+            </a>
             <div id="main_navigation" style="float: left; margin-left: 10px; margin-top: 3px;"
                 class="main-menu">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolderNavigoss" runat="server">

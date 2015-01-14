@@ -34,7 +34,7 @@
                 <div id="portfolio_ok">
                     <div class="portfolio-container_ok" id="columns">
                         <ul>
-                            <asp:ListView runat="server" ID="lvBlogPosts" OnItemDataBound="lvBlogPosts_ItemDataBound">
+                            <asp:ListView runat="server" ID="lvBlogPosts" OnItemDataBound="lvBlogPostsOnItemDataBound">
                                 <LayoutTemplate>
                                     <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
                                 </LayoutTemplate>
@@ -42,15 +42,7 @@
                                     <li class="one-fourth web">
                                         <div style="height: 265px;">
                                             <asp:Literal ID="ltrItemBlog" runat="server"></asp:Literal>
-                                            <%--  
-                               <h5 style="height: 40px;" class="colored" >  <%#Eval("Titolo") %></h5>
-                            
-                                
-                                <p>
-                                    <%# Utility.ShortDesc(Eval("Testo").ToString(),400).ToString() %>
-                                    ...
-                                </p>
-                                <a href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.aspx'>[+ Leggi Tutto]</a>--%>
+                                            
                                         </div>
                                     </li>
                                 </ItemTemplate>
@@ -59,7 +51,7 @@
                     </div>
                     <div class="one">
                         <asp:DataPager runat="server" ID="pagerBlogPost" PageSize="12" PagedControlID="lvBlogPosts"
-                            OnPreRender="pagerPrerender">
+                            OnPreRender="OnPagerPrerender">
                             <Fields>
                                 <asp:NumericPagerField NextPreviousButtonCssClass="my-blog-pagination" CurrentPageLabelCssClass="my-blog-pagination-current"
                                     NumericButtonCssClass="my-blog-pagination" />
