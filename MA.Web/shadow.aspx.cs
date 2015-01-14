@@ -11,7 +11,7 @@ public partial class shadow : System.Web.UI.Page
   {
     Page.Session["mailNewsLetter"] = txtNL_1.Text;
 
-    if (Utility.emailValida(txtNL_1.Text))
+    if (Utility.IsValidMailAddress(txtNL_1.Text))
     { Response.Redirect("~/newsletter.aspx"); }
     else
     { Response.Redirect("~/Index.html"); }

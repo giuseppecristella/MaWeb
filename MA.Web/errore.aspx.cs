@@ -8,14 +8,14 @@ public partial class errore : System.Web.UI.Page
 
   protected void btnIndietro_Click(object sender, EventArgs e)
   {
-    if (Utility.emailValida(txtNewsLettererr.Text))
+    if (Utility.IsValidMailAddress(txtNewsLettererr.Text))
     {
       Page.Session["mailNewsLetter"] = txtNewsLettererr.Text;
-      Response.Redirect("~/newsletter.html");
+      Response.Redirect("~/NewsLetter");
     }
     else
     {
-      Response.Redirect("~/errore.aspx");
+      Response.Redirect("~/errore");
     }
   }
-}
+} 

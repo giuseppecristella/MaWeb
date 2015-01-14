@@ -30,7 +30,7 @@ public partial class SchedaProd : System.Web.UI.Page
           {
             if (chkPrivacy.Checked)
             {
-              if (Utility.emailValida(txtMail.Text))
+              if (Utility.IsValidMailAddress(txtMail.Text))
               {
                 string idProdotto = Request.QueryString["IdProdotto"];
                 DataSetMateraArredamentiTableAdapters.OutletTableAdapter taOutlet = new DataSetMateraArredamentiTableAdapters.OutletTableAdapter();

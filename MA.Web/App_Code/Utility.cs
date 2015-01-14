@@ -356,19 +356,10 @@ public static class Utility
     page.ClientScript.RegisterStartupScript(typeof(Utility), "shadowbox",
         "Shadowbox.open({content:" + "ciao" + ",player:" + "html" + ",title:Condividere});", true);
   }
-  public static bool emailValida(string email)
+  public static bool IsValidMailAddress(string email)
   {
-    Regex emailregexp = new Regex("(?<user>[^@]+)@(?<host>.+)");
-    String mail = email;
-    Match controllo = emailregexp.Match(mail);
-    if (controllo.Success)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    var reMailAddress = new Regex("(?<user>[^@]+)@(?<host>.+)");
+    return reMailAddress.Match(email).Success;
   }
   public static bool isVisible(string stringa)
   {

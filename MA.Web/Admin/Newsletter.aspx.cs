@@ -25,7 +25,7 @@ public partial class Admin_ManageLinks : System.Web.UI.Page
     protected void btnInsert_Click(object sender, EventArgs e)
     {
         var taNewsletter = new DataSetVepAdminTableAdapters.NewsLetterTableAdapter();
-        if (!Utility.emailValida(txtEmail.Text))
+        if (!Utility.IsValidMailAddress(txtEmail.Text))
         {
             ShowMessage(MessageType.Error, "Formato e-mail non valido. [Formato valido es. mail@host.it].");
             return;

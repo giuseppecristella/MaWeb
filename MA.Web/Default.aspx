@@ -157,24 +157,6 @@
                     </div>
                     <div style="height: 10px; background-image: url('images/footer_shadow.png'); background-position: bottom;
                         background-repeat: no-repeat;" class="slider">
-                        <%--           <asp:Repeater runat="server" ID="rptPromozioni" DataSourceID="objPromo">
-                            <ItemTemplate>
-                                <div>
-                                    <div class="caption">
-                                        <%# Eval("Descrizione") %>
-                                    </div>
-                                    <a href='PromoDettaglio.aspx?Id=<%# Eval("News_ID") %>'>
-                                        <img src='<%#(Eval("UrlFotoHome").ToString().Replace("\\","/")) %>' alt="" />
-                                    </a>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                        <asp:ObjectDataSource ID="objPromo" runat="server" OldValuesParameterFormatString="original_{0}"
-                            SelectMethod="GetEventiHome" TypeName="DataSetMateraArredamentiTableAdapters.NewsTableAdapter">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="5" Name="Tipo" Type="String" />
-                            </SelectParameters>
-                        </asp:ObjectDataSource>--%>
                         <asp:Repeater runat="server" ID="rptFotoHOME" DataSourceID="objFotoHOME">
                             <ItemTemplate>
                                 <div>
@@ -322,15 +304,12 @@
                                 class="portfolio-item-preview">
                                 <img src="img/stosa_logo.png" alt=" " width="168" height="145" class="portfolio-img pretty-box" /></a>
                         </div>
-                        <%-- <a href="javascript:scegliShop();">  <img src="images/shop.png" alt="" width="168" class="portfolio-img pretty-box" /></a>--%>
+                      
                     </div>
                 </div>
                 <div class="horizontal-line">
                 </div>
-                <%--  <div class="clear-line left">
-                </div>--%>
                 <div id="portfolio">
-                    <%--<p><a class="ex1" href="default.asp">This link changes color</a></p>--%>
                     <div class="one-third">
                         <a href="javascript:scegliShop();" class="tasto shop"></a>
                     </div>
@@ -345,7 +324,6 @@
         </div>
     </div>
     <!-- CONTAINER ENDS-->
-    <%-- </div>--%>
     <asp:ObjectDataSource ID="objPost" runat="server" OldValuesParameterFormatString="original_{0}"
         SelectMethod="GetNewsPopUp" TypeName="DataSetVepAdminTableAdapters.NewsTableAdapter">
     </asp:ObjectDataSource>

@@ -67,7 +67,6 @@
                     </asp:Panel>
                     <asp:Panel ID="notificationpnl" runat="server" Visible="false">
                         <div class="simple-error one-half">
-                            <%--<a href="#" class="close"><img src="admin_MA/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>--%>
                             <div>
                                 <asp:Label ID="lblErr" runat="server" Text=""></asp:Label>
                             </div>
@@ -84,8 +83,8 @@
                             e il Suo indirizzo e-mail sarà cancellato da questo servizio.&nbsp;
                         </p>
                         <p class="right">
-                            <asp:Button ID="btnCancella" CssClass="fancy-button red small" runat="server" Text="Cancella"
-                                OnClick="btnCancella_Click" />
+                            <asp:Button ID="btnDeleteSubscribedUser" CssClass="fancy-button red small" runat="server" Text="Cancella"
+                                OnClick="btnDeleteSubscribedUser_OnClick" />
                         </p>
                     </div>
                 </div>

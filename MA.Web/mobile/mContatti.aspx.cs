@@ -20,7 +20,7 @@ public partial class mobile_Contatti : System.Web.UI.Page
     protected void btnInvioMail_Click(object sender, EventArgs e)
     {
 
-        if (Utility.emailValida(email.Text))
+        if (Utility.IsValidMailAddress(email.Text))
         {
             try
             {

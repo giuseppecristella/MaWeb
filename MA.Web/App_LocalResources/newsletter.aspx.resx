@@ -117,31 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MetaTagFB_Description" xml:space="preserve">
-    <value>Il Blog di Giovanni Matera. E in edicola puoi trovare il libro La cassetta degli attrezzi - Strumenti per il marketing e l'imprenditoria. Anche su amazon e ibs</value>
-  </data>
-  <data name="MetaTagFB_Titolo" xml:space="preserve">
-    <value>Matera Arredamenti &gt; Blog</value>
-  </data>
-  <data name="SendMessageSuccess" xml:space="preserve">
-    <value>Il messaggio è stato inviato con successo.</value>
-  </data>
-  <data name="WrongMailFormatMessage" xml:space="preserve">
-    <value>Attenzione: l'indirizzo e-mail inserito non rispetta il formato corretto. &lt;/br&gt;Verificare che sia stato digitato correttamente es. nome@host.it</value>
-  </data>
-  <data name="NewsletterSubscribeMessageSuccess" xml:space="preserve">
-    <value>L'iscrizione al nostro servizio Newsletter è avvenuta con successo.&lt;br /&gt; Riceverà a breve una e-mail di notifica.</value>
-  </data>
-  <data name="NewsletterMessageAlreadySubscribed" xml:space="preserve">
-    <value>Attenzione: l'indirizzo e-mail inserito risulta già presente nei nostri archivi, pertanto non è possibile procedere con la registrazione.</value>
-  </data>
-  <data name="NewsletterMessageAccord" xml:space="preserve">
-    <value>Per poter iscriversi al nostro servizio Newsletter è necessario prestare il consenso.</value>
-  </data>
-  <data name="NewsletterMessageDeleteMessageSuccess" xml:space="preserve">
-    <value>La cancellazione dal nostro servizio Newsletter è avvenuta con successo.</value>
-  </data>
-  <data name="NewsletterMessageDeleteMessageError" xml:space="preserve">
-    <value>Attenzione: l'indirizzo e-mail inserito non è presente nei nostri archivi.</value>
-  </data>
 </root>

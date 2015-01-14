@@ -145,7 +145,7 @@
                     <!-- COLUMN STARTS-->
                     <!-- SOCIAL LINKS STARTS-->
                     <div class="button_container text_white">
-                        <asp:TextBox runat="server" ID="txtNL_1" Text="indirizzo e-mail" CssClass="newsletter"
+                        <asp:TextBox runat="server" ID="txtNewsLetter" Text="indirizzo e-mail" CssClass="newsletter"
                             onclick="if(this.value=='indirizzo e-mail') {this.value='';}" onblur="if(this.value=='') {this.value='indirizzo e-mail';}"></asp:TextBox>
                         <%--<input id="email_address_" type="text" name="fields_email" class="searchtext" value="indirizzo e-mail"
                             onclick="if(this.value=='indirizzo e-mail') {this.value='';}" onblur="if(this.value=='') {this.value='indirizzo e-mail';}" />
