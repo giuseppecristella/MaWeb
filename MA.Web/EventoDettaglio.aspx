@@ -162,7 +162,7 @@
         <asp:ObjectDataSource ID="objPost" runat="server" OldValuesParameterFormatString="original_{0}"
             SelectMethod="GetDataByID" TypeName="DataSetMateraArredamentiTableAdapters.NewsTableAdapter">
             <SelectParameters>
-                <asp:QueryStringParameter DefaultValue="1" Name="News_ID" QueryStringField="Id" Type="Int32" />
+                <asp:SessionParameter DefaultValue="1" Name="News_ID" SessionField="BlogPostID" Type="Int32" />
             </SelectParameters>
         </asp:ObjectDataSource>
         <asp:ObjectDataSource ID="objPostList" runat="server" OldValuesParameterFormatString="original_{0}"

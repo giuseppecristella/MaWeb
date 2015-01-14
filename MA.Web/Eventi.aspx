@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true"
     CodeFile="eventi.aspx.cs" Inherits="Eventi" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -17,11 +18,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div class="wrapper_pepp">
         <div id="container">
-            <!-- MAIN CONTAINER -->
-            <!-- HEADER ENDS-->
-            <!--  HEADER ENDS-->
             <div id="content">
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div class="intro-pages">
                     <blockquote>
                         <h3>
@@ -31,7 +28,6 @@
                     </blockquote>
                 </div>
                 <div id="portfolio">
-                    <!--END filtering-nav-->
                     <div class="portfolio-container_ok">
                         <ul>
                             <asp:ObjectDataSource ID="objEventi" runat="server" OldValuesParameterFormatString="original_{0}"
@@ -40,7 +36,7 @@
                                     <asp:Parameter DefaultValue="1" Name="Tipo" Type="String" />
                                 </SelectParameters>
                             </asp:ObjectDataSource>
-                            <asp:ListView ID="lvEventi" OnItemDataBound="lvEventiItemDataBound" OnDataBound="IsPagerVisible"
+                            <asp:ListView ID="lvEventi" OnDataBound="IsPagerVisible"
                                 DataSourceID="objEventi" runat="server">
                                 <LayoutTemplate>
                                     <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
@@ -49,9 +45,10 @@
                                     <div class="one">
                                         <div class="inner-content">
                                                 <p style="background-image: url('images/footer_shadow_M.png'); background-position: bottom;
-                        background-repeat: no-repeat;border:none;padding-top:0px;width:710px; height: 259px;" class="intro-pages">
-                                                <%--<a href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.aspx'>--%>
-                                                    <a href='EventoDettaglio.aspx?Id=<%# Eval("News_ID").ToString() %>'>
+                                                          background-repeat: no-repeat;border:none;
+                                                          padding-top:0;width:710px; height: 259px;" class="intro-pages">
+                                                        <a href="<%# FriendlyUrl.Href("~/EventoDettaglio/",Eval("News_ID"),Eval("Titolo")) %>">
+                                                   
                                                     <img src='<%#(Eval("UrlFotoHome").ToString().Replace("\\","/")) %>' alt=""  />
                                                 </a>
                                             </p>
@@ -60,16 +57,10 @@
                                             <h6 class="colored">
                                                 <%#Eval ("Titolo") %></h6>
                                             <p class="testo_cl_dx">
-                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300) %>
                                             </p>
-                                            
-                                            <%-- <a 
-                                            
-                                            href='EventoDettaglio.aspx?Id=<%# Eval("News_ID")%>'>Leggi tutto →</a>--%>
                                         </div>
-                                        <%--<a href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.aspx'>
-                                                Leggi tutto →</a>--%>
-                                        <a href='EventoDettaglio.aspx?Id=<%# Eval("News_ID").ToString() %>'>
+                                        <a href="<%# FriendlyUrl.Href("~/EventoDettaglio/",Eval("News_ID"),Eval("Titolo")) %>">
                                                 Leggi tutto →</a>
                                     </div>
                                     <div class="horizontal-line">
@@ -77,9 +68,7 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </ul>
-                        <!--END ul-->
                     </div>
-                    <!--END portfolio-wrap-->
                 </div>
             </div>
             <asp:DataPager runat="server" ID="pagerEventi" PageSize="5" PagedControlID="lvEventi">
@@ -88,7 +77,6 @@
                         NumericButtonCssClass="my-blog-pagination" />
                 </Fields>
             </asp:DataPager>
-            <!-- CONTENT ENDS-->
         </div>
     </div>
 </asp:Content>
