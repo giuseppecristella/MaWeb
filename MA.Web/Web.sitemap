@@ -18,6 +18,6 @@
       <siteMapNode url="~/suggerimenti.html" title="Dettaglio articolo"  description="Dettaglio articolo"/>
     </siteMapNode>
     <siteMapNode url="~/questionario.aspx" title="Questionario"  description="Questionario" />
-    <siteMapNode url="~/contact.aspx" title="Contattaci"  description="contattaci" />
+    <siteMapNode url="~/contatti.aspx" title="Contattaci"  description="contattaci" />
   </siteMapNode>
 </siteMap>

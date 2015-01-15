@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true"
-    CodeFile="errore.aspx.cs" Inherits="errore" %>
+    CodeFile="Errore.aspx.cs" Inherits="errore" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMenu" runat="Server">
     <ul class="navigation">
         <li><a href="default.aspx">Home</a></li>
@@ -8,7 +8,7 @@
         <li><a href="eventi.html?Tipo=1">EVENTI</a></li>
         <li><a href="RicForm.aspx?Tipo=0">RICERCA E FORMAZIONE</a></li>
         <li><a href="questionario.aspx">QUESTIONARIO</a></li>
-        <li><a href="contact.aspx">CONTATTACI</a></li>
+        <li><a href="Contatti.aspx">CONTATTACI</a></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentMain" runat="Server">

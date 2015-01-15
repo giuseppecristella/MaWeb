@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="contact.aspx.cs"
+﻿<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Contatti.aspx.cs"
     Inherits="contact" Title="Matera Arredamenti - Mobili per la vita" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

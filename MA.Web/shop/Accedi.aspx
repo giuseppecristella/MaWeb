@@ -82,7 +82,7 @@
                 DuplicateEmailErrorMessage="email già presente" ID="CreateUserWizard1" runat="server"
                 OnCreatedUser="CreateMagentoUser" CompleteSuccessText="Registrazione effettuata con successo."
                 ContinueButtonText="Continua lo shopping" ContinueButtonType="Link" ContinueDestinationPageUrl="~/shop/Catalogo.html"
-                FinishDestinationPageUrl="~/contact.aspx">
+                FinishDestinationPageUrl="~/Contatti.aspx">
                 <WizardSteps>
                     <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                         <ContentTemplate>

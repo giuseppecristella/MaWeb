@@ -1,23 +1,16 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true"
     CodeFile="ManageNews.aspx.cs" Inherits="Admin_ManageNews" Title="Matera Arredamenti - Gestione News" %>
-
- 
 <asp:Content ID="ContentMenu" runat="server" ContentPlaceHolderID="cphAdminMenu">
-   
     <li class="active"><a href="ManageNews.aspx">Gestione Contenuti</a> </li>
     <li><a href="Albums.aspx">Gallerie | Slider Homepage</a> </li>
     <li><a href="../App_Code/Newsletter.aspx">Newsletter</a> </li>
-    
-    
 </asp:Content>
 <asp:Content ID="ContentBody" runat="server" ContentPlaceHolderID="cphAdminBody">
-
     <script type="text/javascript" language="javascript">
         function DeleteConfirmation() {
             if (!window.confirm('Cancellare la news?')) return false;
         }
     </script>
-
     <div class="content-box">
         <div class="box-body">
             <div class="box-header clear">
@@ -39,19 +32,13 @@
                 <p>
                     <asp:Button ID="Nuovo" runat="server" Text="Aggiungi" CssClass="button green size-80"
                         OnClick="Nuovo_Click" />
-                        
-                   
-                        
                 </p>
-                 
-
                 <script type="text/javascript">
                     function pageLoad() {
                         InitBoxSlide();
                         InitFancybox();
                     }
                 </script>
-
                 <asp:UpdatePanel runat="server" ID="updPnlListaNews" UpdateMode="Conditional">
                     <ContentTemplate>
                         <asp:ListView ID="ListViewNews" runat="server" DataKeyNames="News_ID" DataSourceID="ObjectDataSource1"
@@ -86,7 +73,6 @@
                                                 Visibile
                                             </th>
                                             <th>
-                                                
                                             </th>
                                         </tr>
                                     </thead>
@@ -108,8 +94,6 @@
                                     </td>
                                     <td>
                                         <%# Eval("Titolo") %>
-                                        
-                                       <%-- <%# Utility.GetShortStringAndCleanTags_(Eval("Testo").ToString(),50).ToString() %>--%>
                                     </td>
                                     <td>
                                         <%# System.Convert.ToDateTime(Eval("Data")).Date.ToShortDateString()%>
@@ -122,7 +106,6 @@
                                                     CssClass="fl-space2" />
                                                      <asp:Image runat="server" Visible="false" ID="imgPhoto" ImageUrl="~/Admin/images/photo.png"
                                                     CssClass="fl-space2" />
-                                            
                                     </td>
                                     <td>
                                     <%# Utility.VisibleContentFlagDescription(int.Parse(Eval("News_ID").ToString())) %>

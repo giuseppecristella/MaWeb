@@ -117,7 +117,7 @@
             <div style="text-align: left; float: left; margin-left: 55px;">
                 <div style="margin-top: -8px;" class="social_icons">
                     <%--<a href="default.aspx" class="social-home">home</a>--%>
-                    <a href="contact.aspx" class="social-mail">mail</a> <a href="blog.aspx" class="social-blog">
+                    <a href="Contatti.aspx" class="social-mail">mail</a> <a href="blog.aspx" class="social-blog">
                         blog</a> <a href="video.aspx" class="social-youtube">youtube</a>
                     <a target="_blank" href="http://www.facebook.com/matearredamenti" class="social-facebook">
                         Facebook</a>

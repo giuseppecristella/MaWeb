@@ -11,7 +11,7 @@
             <br />
             <%--     <label>Puoi pagare con: </label>--%>
             <p>
-                <img width="217" src="images/gestpay.gif" />
+                <img width="217" src="images/gestpay.gif" alt=""/>
             </p>
             <br />
             <fieldset>
