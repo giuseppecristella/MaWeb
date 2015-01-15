@@ -10,7 +10,7 @@ public partial class contact : System.Web.UI.Page
 
   protected void btnInvioMail_Click(object sender, EventArgs e)
   {
-    if (Utility.IsValidMailAddress(email.Text))
+    if (Helper.IsValidMailAddress(email.Text))
     {
       try
       {

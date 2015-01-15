@@ -81,7 +81,7 @@ public partial class Blog : BaseBlogPage
       string.Format(
         "<h6 style=\"height:50px;\">{0}</h6><p style=\"height:150px;overflow:hidden;\">{1}</p><a  href=\"BlogPost/{2}/{3}\">[+ Leggi Tutto]</a>",
        drBlogPost["Titolo"],
-        Utility.ShortDesc(drBlogPost["Descrizione"].ToString(), 255),
+        Helper.GetShortStringAndCleanTags(drBlogPost["Descrizione"].ToString(), 255),
         drBlogPost["News_ID"],
         drBlogPost["Titolo"]));
   }

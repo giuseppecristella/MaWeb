@@ -116,9 +116,9 @@
                         
                         
                         <p>
-				<strong> <%# Utility.ShortDesc(Eval("Titolo").ToString(),1000).ToString() %></strong>
+				<strong> <%# Helper.GetShortStringAndCleanTags(Eval("Titolo").ToString(),1000).ToString() %></strong>
 				 <br/>
-				 <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+				 <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300).ToString() %>
 				 <br/>
                     
 				<a class="no-border" data-transition="slide" href='Blog_detail.aspx?Id=<%# Eval("News_ID") %>'>[+] Leggi tutto</a>

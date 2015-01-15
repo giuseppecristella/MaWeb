@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="PromoDettaglio.aspx.cs"
     Inherits="PromoDettaglio" Title="Matera Arredamenti - Mobili per la vita" %>
- <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavigoss" runat="Server">
     <ul>
@@ -16,11 +17,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div class="wrapper_pepp">
         <div id="container">
-            <!-- MAIN CONTAINER -->
-            <!-- HEADER ENDS-->
-            <!--  HEADER ENDS-->
             <div id="content">
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
                     <div class="inner-content">
                         <asp:Repeater ID="rptPromo" DataSourceID="objPromo" runat="server">
@@ -30,9 +27,6 @@
                                         <%#Eval("Titolo") %>
                                     </h3>
                                 </p>
-                                <!--POST TITLE-->
-                                <!--POST DETAILS-->
-                                <!--POST INTRO-->
                                 <p class="blog-testo" style="text-align: justify;">
                                     <%# Eval("Testo") %>
                                 </p>
@@ -41,7 +35,6 @@
                             </ItemTemplate>
                         </asp:Repeater>
                         <asp:Literal runat="server" ID="ltrSocial" Text=""></asp:Literal>
-                        <!--PAGINATION ENDS-->
                     </div>
                     <div class="one-fourth last">
                         <h4 class="blog-category intro-pages">
@@ -60,11 +53,10 @@
                                         <%#Eval ("Titolo") %>
                                     </h6>
                                     <p>
-                                        <%# Utility.ShortDesc(Eval("Testo").ToString(),300).ToString() %>
+                                        <%# Helper.GetShortStringAndCleanTags(Eval("Testo").ToString(),300) %>
                                         ...
                                     </p>
-                                    <%--a href='<%# Eval("Titolo").ToString().Replace("%","").Replace("?","").Replace(" ","-") %>.aspx'>--%>
-                                        <a href='PromoDettaglio.aspx?Id=<%# Eval("News_ID").ToString()%>'>
+                                         <a href="<%# FriendlyUrl.Href("PromoDettaglio",Eval("News_ID"), Eval("Titolo")) %>">
                                         Scopri tutti i dettagli →</a>
                                 </div>
                                 <div class="horizontal-line">
@@ -79,10 +71,8 @@
                             </Fields>
                         </asp:DataPager>
                     </div>
-                    <!-- COLUMNS CONTAINER ENDS-->
                 </div>
             </div>
-            <!-- CONTENT ENDS-->
         </div>
         <asp:ObjectDataSource ID="objPromoss" runat="server" OldValuesParameterFormatString="original_{0}"
             SelectMethod="GetListaNews" TypeName="DataSetVepAdminTableAdapters.NewsTableAdapter">

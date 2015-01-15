@@ -39,7 +39,7 @@ public partial class shop_Catalogo : BasePage
       var imagePath = Helper.GetFolderAndImageName(product.imageurl);
       if (imgProd != null && imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Public/", imagePath);
       // Descrizione  
-      if (descProduct != null && product.name != null) descProduct.InnerHtml = Helper.ShortDesc(product.name, 132);
+      if (descProduct != null && product.name != null) descProduct.InnerHtml = Helper.GetShortString(product.name, 132);
       // Prezzo
       if (priceProduct != null && product.price != null) priceProduct.InnerHtml = Helper.FormatCurrency(product.price);
       // Link pagina dettaglio   
@@ -56,7 +56,7 @@ public partial class shop_Catalogo : BasePage
     var rootCat = SetMainStyleAttribute();
 
     // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
-    HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+    HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
     menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
     if (BindProductsToList())

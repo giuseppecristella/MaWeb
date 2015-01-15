@@ -68,7 +68,7 @@
                                         
                                             <%#Eval ("Titolo") %> </h6>
                                     <p>
-                                        <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+                                        <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300).ToString() %>
                                          
                                          
                                        
@@ -108,7 +108,7 @@
                                         
                                             <%#Eval ("Titolo") %> </h6>
                                     <p>
-                                        <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+                                        <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300).ToString() %>
                                         
                                         
                                     </p>
@@ -144,7 +144,7 @@
                                         
                                             <%#Eval ("Titolo") %> </h6>
                                     <p>
-                                        <%# Utility.ShortDesc(Eval("Descrizione").ToString(),3100).ToString() %>
+                                        <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),3100).ToString() %>
                                         
                                         
                                     </p>

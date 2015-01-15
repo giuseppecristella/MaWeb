@@ -16,7 +16,7 @@ public static class ListVideos
     }
     public static IEnumerable<Video> YourVideos()
     {
-        YouTubeQuery ytQuery = new YouTubeQuery("http://gdata.youtube.com/feeds/api/users/giovanni21228/uploads");
+        var ytQuery = new YouTubeQuery("http://gdata.youtube.com/feeds/api/users/giovanni21228/uploads");
         return GetVideos(ytQuery);
     }
     public static IEnumerable<Video> MostCommented()

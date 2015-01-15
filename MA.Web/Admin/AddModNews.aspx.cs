@@ -183,27 +183,27 @@ public partial class AddModNews : System.Web.UI.Page
             casa.           2
             manu.           3
             cucina.         4   */
-      switch (idTipo)
-      {
-        case "0":
-          Utility.writeXmlRewriterRules("BlogPost", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-        case "1":
-          Utility.writeXmlRewriterRules("EventoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-        case "2":
-          Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-        case "3":
-          Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-        case "4":
-          Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-        case "5":
-          Utility.writeXmlRewriterRules("PromoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-          break;
-      }
+      //switch (idTipo)
+      //{
+      //  case "0":
+      //    Utility.writeXmlRewriterRules("BlogPost", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //  case "1":
+      //    Utility.writeXmlRewriterRules("EventoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //  case "2":
+      //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //  case "3":
+      //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //  case "4":
+      //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //  case "5":
+      //    Utility.writeXmlRewriterRules("PromoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+      //    break;
+      //}
       Response.Redirect("~/Admin/ManageNews.aspx?tipo=" + idTipo);
     }
     catch (Exception ex)
@@ -233,27 +233,27 @@ public partial class AddModNews : System.Web.UI.Page
           casa.           2
           manu.           3
           cucina.         4   */
-    switch (idTipo)
-    {
-      case "0":
-        Utility.writeXmlRewriterRules("BlogPost", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-      case "1":
-        Utility.writeXmlRewriterRules("EventoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-      case "2":
-        Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-      case "3":
-        Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-      case "4":
-        Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-      case "5":
-        Utility.writeXmlRewriterRules("PromoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
-        break;
-    }
+    //switch (idTipo)
+    //{
+    //  case "0":
+    //    Utility.writeXmlRewriterRules("BlogPost", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //  case "1":
+    //    Utility.writeXmlRewriterRules("EventoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //  case "2":
+    //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //  case "3":
+    //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //  case "4":
+    //    Utility.writeXmlRewriterRules("SuggDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //  case "5":
+    //    Utility.writeXmlRewriterRules("PromoDettaglio", "Id", idNews.ToString(), txtTitoloNews.Text, "");
+    //    break;
+    //}
     try
     {
       News_ID.Text = idNews.ToString();

@@ -1,10 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true"
     CodeFile="Video.aspx.cs" Inherits="Video" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
     <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-
     <script type="text/javascript">
         jQuery.noConflict()(function($) {
             $(document).ready(function() {
@@ -31,13 +28,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div class="wrapper_pepp">
         <div id="container">
-            <!-- MAIN CONTAINER -->
-            <!-- HEADER ENDS-->
-            <!--  HEADER ENDS-->
             <div id="content">
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
-                    <!-- COLUMNS CONTAINER STARTS-->
                     <div class="intro-pages">
                         <img src="images/youtube_large.png" alt="" height="90" class="right" />
                         <blockquote>
@@ -48,11 +40,9 @@
                             </h3>
                         </blockquote>
                     </div>
-                    <!-- INTRO ENDS-->
                 </div>
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div id="portfolio_ok">
-                    <asp:ObjectDataSource ID="objVideo" runat="server" SelectMethod="youtubeToDataTable"
+                    <asp:ObjectDataSource ID="objVideo" runat="server" SelectMethod="YouTubeToDataTable"
                         TypeName="Utility"></asp:ObjectDataSource>
                     <div class="portfolio-container_ok" id="columns">
                         <ul>
@@ -64,13 +54,13 @@
                                     <li class="one-fourth">
                                         <div style="height: 350px;">
                                             <p>
-                                                <a rel="prettyPhoto" target="_blank" title='<%#Utility.ShortDesc(Eval("Title").ToString(), 300).ToString()%>'
+                                                <a rel="prettyPhoto" target="_blank" title='<%#Helper.GetShortStringAndCleanTags(Eval("Title").ToString(), 300).ToString()%>'
                                                     href='<%#Eval("WatchPage") %>'>
                                                     <img width="210" height="145" class="portfolio-img pretty-box" alt="" title="" src='<%#Eval("Thumbnails") %>' />
                                                 </a>
                                             </p>
                                             <h6 style="height: 90px; font-size: 19px; line-height: 20px;">
-                                                <%#Utility.ShortDesc(Eval("Title").ToString(), 80).ToString()%>...</h6>
+                                                <%#Helper.GetShortStringAndCleanTags(Eval("Title").ToString(), 80).ToString()%>...</h6>
                                             <p>
                                                 <%# Eval("ViewCount") %>
                                                 visualizzazioni</p>
@@ -79,18 +69,14 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </ul>
-                        <!--END ul-->
                     </div>
-                    <!--END portfolio-wrap-->
                 </div>
-                <!--PAGINATION-->
                 <asp:DataPager runat="server" ID="pagerYT" PageSize="8" PagedControlID="lvYouTube">
                     <Fields>
                         <asp:NumericPagerField NextPreviousButtonCssClass="my-blog-pagination" CurrentPageLabelCssClass="my-blog-pagination-current"
                             NumericButtonCssClass="my-blog-pagination" />
                     </Fields>
                 </asp:DataPager>
-                <!-- CONTENT ENDS-->
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ public partial class ListaNozzeDettaglio : System.Web.UI.Page
     string replaceImage_p = templateHtml.Replace("##image##", imagePath);
     string replaceUrl_p = replaceImage_p.Replace("##url##", url + "SuggDettaglio.aspx?Id=" + dtArticolo.Rows[0]["News_ID"].ToString());
     string replaceTitle_p = replaceUrl_p.Replace("##titolo##", dtArticolo.Rows[0]["Titolo"].ToString());
-    string replaceDesc_p = replaceTitle_p.Replace("##caption##", Utility.ShortDesc(Utility.cleanTagFromString(dtArticolo.Rows[0]["Testo"].ToString()), 200));
+    string replaceDesc_p = replaceTitle_p.Replace("##caption##", Helper.GetShortStringAndCleanTags(Utility.CleanHtmlTagsFromString(dtArticolo.Rows[0]["Testo"].ToString()), 200));
     Session["metatagFB"] = replaceDesc_p;
   }
 

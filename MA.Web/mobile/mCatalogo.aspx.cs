@@ -20,10 +20,10 @@ public partial class mobile_Catalogo : System.Web.UI.Page
             _catID = Request.QueryString["CatId"];
         object[] catIdObj = { _catID };
 
-        if (!Helper.checkConnection())
+        if (!Helper.CheckConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
-            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.GetConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
 
         }
 
@@ -63,10 +63,10 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
         if (HttpContext.Current.Cache["sessionId"] == null)
         {
-            HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+            HttpContext.Current.Cache.Insert("sessionId", Helper.GetConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
         }
 
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
 
 
 
@@ -113,7 +113,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
         //catch (Exception ex)
         //{ 
         //    //lblErr.Text = ex.Message;
-        //    //Helper.checkConnection();
+        //    //Helper.CheckConnection();
         //    //Response.Redirect("Catalogo.html");
 
         //}
@@ -159,7 +159,7 @@ public partial class mobile_Catalogo : System.Web.UI.Page
 
         HtmlGenericControl descProduct = (HtmlGenericControl)e.Item.FindControl("descProduct");
         string name = ((Ez.Newsletter.MagentoApi.CategoryAssignedProduct)(dataitem.DataItem)).name;
-        descProduct.InnerHtml = Helper.ShortDesc(name, 132);
+        descProduct.InnerHtml = Helper.GetShortString(name, 132);
         HtmlGenericControl priceProduct = (HtmlGenericControl)e.Item.FindControl("priceProduct");
         HtmlGenericControl divMaskProd = (HtmlGenericControl)e.Item.FindControl("divMaskProd");
         if (isShopVerde)

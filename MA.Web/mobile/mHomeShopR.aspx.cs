@@ -8,10 +8,10 @@ public partial class mobile_HomeShopR : System.Web.UI.Page
 
         //if (HttpContext.Current.Cache["sessionId"] == null)
         //{
-        //    HttpContext.Current.Cache.Insert("sessionId", Helper.getConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
+        //    HttpContext.Current.Cache.Insert("sessionId", Helper.GetConnection(Utility.SearchConfigValue("apiUrl"), Utility.SearchConfigValue("apiUser"), Utility.SearchConfigValue("apiPsw")));
         //}
 
-        //HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], "47"));
+        //HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], "47"));
 
 
 

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true"
     CodeFile="promozioni.aspx.cs" Inherits="Promozioni" %>
+<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -17,15 +18,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div class="wrapper_pepp">
         <div id="container">
-            <!-- MAIN CONTAINER -->
-            <!-- HEADER ENDS-->
-            <!--  HEADER ENDS-->
             <div id="content">
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
-                    <!-- COLUMNS CONTAINER STARTS-->
                     <div class="intro-pages">
-                        <!-- INTRO DIV STARTS-->
                         <blockquote>
                             <h3>
                                 Visita questa pagina e resta aggiornato su tutte le nostre fantastiche promozioni.<br />
@@ -33,7 +28,6 @@
                                 a te.</h3>
                         </blockquote>
                     </div>
-                    <!-- INTRO ENDS-->
                 </div>
                 <asp:ObjectDataSource ID="objPromo" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetListaNews" TypeName="DataSetVepAdminTableAdapters.NewsTableAdapter">
@@ -51,21 +45,20 @@
                                 <p style="background-image: url('images/footer_shadow_M.png'); background-position: bottom;
                                     background-repeat: no-repeat; border: none; padding-top: 0px; width: 710px; height: 259px;"
                                     class="intro-pages">
-                                    <a href='PromoDettaglio.aspx?Id=<%# Eval("News_ID").ToString()%>'>
+                                    <a href="<%# FriendlyUrl.Href("PromoDettaglio", Eval("News_ID"), Eval("Titolo")) %>" >
                                         <img style="margin: auto;" src='<%#(Eval("UrlFotoHome").ToString().Replace("\\","/")) %>'
                                             alt="" /></a>
-                                     <%--<a href='PromoDettaglio.aspx?Id=<%# Eval("News_ID").ToString()%>'>
-                                        Scopri tutti i dettagli →</a>--%>
+
                                 </p>
                             </div>
                             <div style="height: 245px;" class="one-fourth last">
                                 <h6 class="colored">
                                     <%#Eval ("Titolo") %></h6>
                                 <p class="testo_cl_dx">
-                                    <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+                                    <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300) %>
                                 </p>
                             </div>
-                             <a href='PromoDettaglio.aspx?Id=<%# Eval("News_ID").ToString()%>'>
+                             <a href="<%# FriendlyUrl.Href("PromoDettaglio", Eval("News_ID"), Eval("Titolo")) %>">
                                         Scopri tutti i dettagli →</a>
                         </div>
                         <div class="horizontal-line">
@@ -79,7 +72,6 @@
                         NumericButtonCssClass="my-blog-pagination" />
                 </Fields>
             </asp:DataPager>
-            <!-- CONTENT ENDS-->
         </div>
     </div>
 </asp:Content>

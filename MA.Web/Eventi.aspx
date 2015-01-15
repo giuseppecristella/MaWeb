@@ -57,7 +57,7 @@
                                             <h6 class="colored">
                                                 <%#Eval ("Titolo") %></h6>
                                             <p class="testo_cl_dx">
-                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300) %>
+                                                <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300) %>
                                             </p>
                                         </div>
                                         <a href="<%# FriendlyUrl.Href("~/EventoDettaglio/",Eval("News_ID"),Eval("Titolo")) %>">

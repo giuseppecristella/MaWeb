@@ -102,7 +102,7 @@
              <asp:Repeater DataSourceID="objPost" runat="server" ID="rptblog">
         <ItemTemplate>
         <h1><%#Eval("Titolo") %></h1>
-            <p>  <%# System.Convert.ToDateTime(Eval("Data").ToString()).Day.ToString() %> <%# Utility.GetMese(System.Convert.ToDateTime (Eval("Data")).Month.ToString()) %></p>
+            <p>  <%# System.Convert.ToDateTime(Eval("Data").ToString()).Day.ToString() %> <%# Utility.GetMonth(System.Convert.ToDateTime (Eval("Data")).Month.ToString()) %></p>
             
             
  

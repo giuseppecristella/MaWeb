@@ -14,7 +14,7 @@ public partial class shop_Default : BasePage
   {
     try
     {
-      HttpContext.Current.Cache.Insert("htmlMegaMenu", Helper.setMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
+      HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
       menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
       var showcaseProducts = _repository.GetProductsByCategoryId(redProductCategoryId);
@@ -42,7 +42,7 @@ public partial class shop_Default : BasePage
 
     var spanProductDescription = item.FindControl("spanProductDescription") as HtmlGenericControl;
     var name = ((CategoryAssignedProduct)(item.DataItem)).name;
-    if (spanProductDescription != null) spanProductDescription.InnerHtml = Helper.ShortDesc(name, 132);
+    if (spanProductDescription != null) spanProductDescription.InnerHtml = Helper.GetShortString(name, 132);
    
     var pProductPrice = item.FindControl("pProductPrice") as HtmlGenericControl;
     var magentoPrice = ((CategoryAssignedProduct)(item.DataItem)).price;

@@ -17,15 +17,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div class="wrapper_pepp">
         <div id="container">
-            <!-- MAIN CONTAINER -->
-            <!-- HEADER ENDS-->
-            <!--  HEADER ENDS-->
             <div id="content"> 
-                <!-- COLUMNS CONTAINER ENDS-->
                 <div class="one">
-                    <!-- COLUMNS CONTAINER STARTS-->
                     <div class="intro-pages">
-                        <!-- INTRO DIV STARTS-->
                         <blockquote>
                             <h3>
                                 La <span class="colored">Matera Arredamenti</span> è attenta ad ogni tua esigenza
@@ -33,10 +27,8 @@
                                 e ti propone i migliori servizi per soddisfare la tua voglia d&#39;arredo.</h3>
                         </blockquote>
                     </div>
-                    <!-- INTRO ENDS-->
                 </div>
                 <div id="portfolio_ok">
-                    <!--END filtering-nav-->
                     <div class="portfolio-container_ok" id="columns">
                         <ul>
                             <li class="one-fourth web">
@@ -81,12 +73,9 @@
                                 </p>
                             </li>
                         </ul>
-                        <!--END ul-->
                     </div>
-                    <!--END portfolio-wrap-->
                 </div>
             </div>
-            <!-- CONTENT ENDS-->
         </div>
     </div>
 </asp:Content>

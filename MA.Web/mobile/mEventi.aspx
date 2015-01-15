@@ -123,7 +123,7 @@
 					    <strong> <%#Eval ("Titolo") %></strong>
 					    <br/>
 					    <p>
-					     <%# Utility.ShortDesc(Eval("Descrizione").ToString(),300).ToString() %>
+					     <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),300).ToString() %>
 					    </p>
 					    
 					</a>

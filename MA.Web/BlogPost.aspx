@@ -77,7 +77,7 @@
                                                 <%#Eval("Titolo") %>
                                             </h6>
                                             <p>
-                                                <%# Utility.ShortDesc(Eval("Descrizione").ToString(),250) %>
+                                                <%# Helper.GetShortStringAndCleanTags(Eval("Descrizione").ToString(),250) %>
                                             </p>
                                               <a href="<%# FriendlyUrl.Href("~/BlogPost/",Eval("News_ID"),Eval("Titolo")) %>">
                                                 Leggi tutto →</a>

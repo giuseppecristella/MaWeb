@@ -77,7 +77,7 @@
        
        
 		        <asp:ObjectDataSource ID="objVideo" runat="server" 
-                        SelectMethod="youtubeToDataTable" TypeName="Utility"></asp:ObjectDataSource>
+                        SelectMethod="YouTubeToDataTable" TypeName="Utility"></asp:ObjectDataSource>
 		
 		
 		
@@ -111,12 +111,12 @@
                                     <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
                                 </LayoutTemplate>
                                 <ItemTemplate> 
-                                          <li> <a title='<%#Utility.ShortDesc(Eval("Title").ToString(), 100).ToString()%>' href='<%#Eval("WatchPage") %>'>
+                                          <li> <a title='<%#Helper.GetShortStringAndCleanTags(Eval("Title").ToString(), 100).ToString()%>' href='<%#Eval("WatchPage") %>'>
                                             <img width="210" height="145"
                                                        src='<%#Eval("Thumbnails") %>' /> </a>
                                        
                                        
-                                            <%-- <%#Utility.ShortDesc(Eval("Title").ToString(), 10).ToString()%>
+                                            <%-- <%#Utility.GetShortStringAndCleanTags_(Eval("Title").ToString(), 10).ToString()%>
                                        <%# Eval("ViewCount") %> --%>
                                        
                                       

@@ -14,7 +14,7 @@ public partial class newsletter : System.Web.UI.Page
   protected void btnIscrivi_Click(object sender, EventArgs e)
   {
     var mail = (string)Session["mailNewsLetter"];
-    var isValid = Utility.IsValidMailAddress(mail);
+    var isValid = Helper.IsValidMailAddress(mail);
     if (!isValid)
     {
       lblErr.Text = Resource.WrongMailFormatMessage;
@@ -85,7 +85,7 @@ public partial class newsletter : System.Web.UI.Page
   protected void btnDeleteSubscribedUser_OnClick(object sender, EventArgs e)
   {
     var mail = (string)Session["mailNewsLetter"];
-    var isValid = Utility.IsValidMailAddress(mail);
+    var isValid = Helper.IsValidMailAddress(mail);
     if (isValid)
     {
       var taNewsLetter = new DataSetMateraArredamentiTableAdapters.NewsLetterTableAdapter();

@@ -109,7 +109,7 @@
                                     <td>
                                         <%# Eval("Titolo") %>
                                         
-                                       <%-- <%# Utility.ShortDesc(Eval("Testo").ToString(),50).ToString() %>--%>
+                                       <%-- <%# Utility.GetShortStringAndCleanTags_(Eval("Testo").ToString(),50).ToString() %>--%>
                                     </td>
                                     <td>
                                         <%# System.Convert.ToDateTime(Eval("Data")).Date.ToShortDateString()%>
@@ -125,9 +125,7 @@
                                             
                                     </td>
                                     <td>
-                                    <%# Utility.isVisible(int.Parse(Eval("News_ID").ToString())).ToString() %>
-
-                                     
+                                    <%# Utility.VisibleContentFlagDescription(int.Parse(Eval("News_ID").ToString())) %>
                                     </td>
                                     <td>   
                                     <asp:LinkButton ImageUrl="images/ico_edit_16.png" CommandName="modifica" ID="lnkButtonModifica"

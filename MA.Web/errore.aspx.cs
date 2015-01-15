@@ -8,7 +8,7 @@ public partial class errore : System.Web.UI.Page
 
   protected void btnIndietro_Click(object sender, EventArgs e)
   {
-    if (Utility.IsValidMailAddress(txtNewsLettererr.Text))
+    if (Helper.IsValidMailAddress(txtNewsLettererr.Text))
     {
       Page.Session["mailNewsLetter"] = txtNewsLettererr.Text;
       Response.Redirect("~/NewsLetter");

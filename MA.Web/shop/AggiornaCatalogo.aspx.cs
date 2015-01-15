@@ -79,11 +79,11 @@ public partial class shop_AggiornaCatalogo : BasePage
 
     protected void lbUpdateMagentoSessionId_Click(object sender, EventArgs e)
     {
-        if (!Helper.checkConnection())
+        if (!Helper.CheckConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
             HttpContext.Current.Cache.Insert("sessionId",
-                                             Helper.getConnection(Utility.SearchConfigValue("apiUrl"),
+                                             Helper.GetConnection(Utility.SearchConfigValue("apiUrl"),
                                                                   Utility.SearchConfigValue("apiUser"),
                                                                   Utility.SearchConfigValue("apiPsw")));
         }
@@ -141,11 +141,11 @@ public partial class shop_AggiornaCatalogo : BasePage
     {
         var strMegaMenu = string.Empty;
         var strMenuMobile = string.Empty;
-        if (!Helper.checkConnection())
+        if (!Helper.CheckConnection())
         {
             HttpContext.Current.Cache.Insert("apiUrl", Utility.SearchConfigValue("apiUrl"));
             HttpContext.Current.Cache.Insert("sessionId",
-                                             Helper.getConnection(Utility.SearchConfigValue("apiUrl"),
+                                             Helper.GetConnection(Utility.SearchConfigValue("apiUrl"),
                                                                   Utility.SearchConfigValue("apiUser"),
                                                                   Utility.SearchConfigValue("apiPsw")));
         }

@@ -11,8 +11,7 @@ public partial class Promozioni : System.Web.UI.Page
 
   protected void IsPagerVisible(object sender, EventArgs e)
   {
-    pagerPromo.Visible =
-    Utility.IsPagerVisible(pagerPromo, objPromo);
+    pagerPromo.Visible = Utility.IsPagerVisible(pagerPromo, objPromo);
   }
 
 }

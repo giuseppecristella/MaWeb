@@ -10,6 +10,6 @@ public partial class _Default : System.Web.UI.MasterPage
   protected void _goNewsLetter(object sender, EventArgs e)
   {
     Page.Session["mailNewsLetter"] = txtNewsLetter.Text;
-    Response.Redirect(Utility.IsValidMailAddress(txtNewsLetter.Text) ? "~/newsletter" : "/");
+    Response.Redirect(Helper.IsValidMailAddress(txtNewsLetter.Text) ? "~/newsletter" : "/");
   }
 }
