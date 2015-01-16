@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagentoBusinessDelegate", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ez.Newsletter.MagentoApi", "MagentoApi\Ez.Newsletter.MagentoApi.csproj", "{5F081B09-2791-4F75-B3B1-4396CA89E8B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.Shop.MVP", "MA.Shop.MVP\MA.Shop.MVP.csproj", "{FB4943F0-78DC-4C71-BC02-16CC822D5D07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -101,6 +103,16 @@ Global
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|.NET.ActiveCfg = Release|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
