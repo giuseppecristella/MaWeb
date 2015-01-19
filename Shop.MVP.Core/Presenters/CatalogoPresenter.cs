@@ -10,7 +10,7 @@ namespace Shop.MVP.Core.Presenters
     private ICatalogoView _view;
     public CatalogoPresenter(ICatalogoView catalogoView)
     {
-
+       
     }
 
     public void OnViewLoaded()
