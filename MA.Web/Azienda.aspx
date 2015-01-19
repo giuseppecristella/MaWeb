@@ -25,7 +25,7 @@
 	    wrapper_class: 'clients-wrapper',
 	    visible: 5,
 	    slide: 4
-	});
+	});    
 
         }); 
     </script>
