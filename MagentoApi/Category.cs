@@ -35,6 +35,7 @@ using CookComputing.XmlRpc;
 
 namespace Ez.Newsletter.MagentoApi
 {
+    [Serializable]
     [XmlRpcMissingMapping(MappingAction.Ignore)]
     public class Category
     {
