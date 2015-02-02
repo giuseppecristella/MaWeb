@@ -108,7 +108,8 @@ public partial class shop_Carrello : BasePage
     // Url pagina dettaglio 
     var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
     if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio.aspx?CatId={0}&ProdId={1}",
-      product.category_ids[0], product.product_id);
+         product.categories[0], product.product_id);
+      //product.category_ids[0], product.product_id);
   }
 
   protected void lnkbtnContinueShop_Click(object sender, EventArgs e)

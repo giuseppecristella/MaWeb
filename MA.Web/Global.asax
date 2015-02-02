@@ -1,5 +1,6 @@
 ﻿<%@ Application Language="C#" %>
 <%@ Import Namespace="System.Web.Routing" %>
+<%@ Import Namespace="Cache" %>
 <%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
 <script RunAt="server">
     void Application_Start(object sender, EventArgs e)

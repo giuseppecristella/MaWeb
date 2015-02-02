@@ -20,10 +20,10 @@ namespace MagentoRepository.Repository
     private readonly ICacheManager _cacheManager;
 
     // Constructor injection
-    public RepositoryService(IMagentoConnection connection, ICacheManager cacheMAnager)
+    public RepositoryService(IMagentoConnection connection, ICacheManager cacheManager)
     {
       _connection = connection;
-      _cacheManager = cacheMAnager;
+      _cacheManager = cacheManager;
     }
 
 
