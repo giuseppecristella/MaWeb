@@ -38,7 +38,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagentoBusinessDelegate", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ez.Newsletter.MagentoApi", "MagentoApi\Ez.Newsletter.MagentoApi.csproj", "{5F081B09-2791-4F75-B3B1-4396CA89E8B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MA.Shop.MVP", "MA.Shop.MVP\MA.Shop.MVP.csproj", "{FB4943F0-78DC-4C71-BC02-16CC822D5D07}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shop.MVP", "Shop.MVP", "{71E8A78A-08E1-4395-A5CE-072F86A0976A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.MVP.Web", "Shop.MVP.Web\Shop.MVP.Web.csproj", "{073E5BDB-C188-421D-8F31-FB2545860D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.MVP.Core", "Shop.MVP.Core\Shop.MVP.Core.csproj", "{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,19 +107,33 @@ Global
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5F081B09-2791-4F75-B3B1-4396CA89E8B6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|.NET.ActiveCfg = Release|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{FB4943F0-78DC-4C71-BC02-16CC822D5D07}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Release|.NET.ActiveCfg = Release|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{073E5BDB-C188-421D-8F31-FB2545860D44}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|.NET.ActiveCfg = Release|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{073E5BDB-C188-421D-8F31-FB2545860D44} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
+		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Database.5.0.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35;packages\EnterpriseLibrary.Security.Cryptography.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Cryptography.5.0.505.0\lib\NET35
