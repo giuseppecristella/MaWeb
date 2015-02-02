@@ -25,31 +25,19 @@
     <!--CSS FILES ENDS-->
 
     <script type="text/javascript">document.getElementsByTagName('html')[0].className += ' js';</script>
-
     <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
-
     <script type="text/javascript" src="../js/slider.js"></script>
-
     <script type="text/javascript" src="../js/jquery.slider.js"></script>
-
     <script type="text/javascript" src="../js/custom.js"></script>
-
     <script src="../js/jquery.prettyPhoto.js" type="text/javascript"></script>
-
     <script type="text/javascript">
-        /***************************************************
-        PRETTY PHOTO
-        ***************************************************/
+        //PRETTY PHOTO
         jQuery.noConflict()(function ($) {
             $(document).ready(function () {
-
                 $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80, default_width: 500, default_height: 344, hideflash: false, modal: false });
-
             });
         });
-
     </script>
-
 </head>
 
 <script type="text/javascript">

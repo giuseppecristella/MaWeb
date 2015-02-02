@@ -11,7 +11,7 @@ public class BasePage : System.Web.UI.Page
 {
   protected readonly IRepository _repository;
   protected readonly ICacheManager _cache;
-  private static string _cacheKey = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
+  private static readonly string _cacheKey = ConfigurationHelper.CacheKeyNames[CacheKey.Cart];
 
   #region Ctor
 
