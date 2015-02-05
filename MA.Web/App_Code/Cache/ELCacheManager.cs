@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
-using ICacheManager = MagentoComunication.Cache.ICacheManager;
+using ICacheManager = Shop.Infrastructure.Cache.ICacheManager;
 using IELCacheManager = Microsoft.Practices.EnterpriseLibrary.Caching.ICacheManager;
 
 namespace Cache

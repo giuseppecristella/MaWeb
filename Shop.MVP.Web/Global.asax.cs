@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using MagentoRepository.Connection;
 
 namespace Shop.Web.Mvp
 {
@@ -22,6 +23,11 @@ namespace Shop.Web.Mvp
     protected void Session_Start(object sender, EventArgs e)
     {
       RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+     // MagentoConnection.Instance.CacheManager = new AspnetCacheManager();
+      MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
+      MagentoConnection.Instance.Password = "123456";
+      MagentoConnection.Instance.UserId = "ws_user";
     }
 
     protected void Application_BeginRequest(object sender, EventArgs e)

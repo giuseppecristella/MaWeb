@@ -37,7 +37,7 @@ public partial class shop_Default : BasePage
     SetProductsBoxStyle(item);
 
     var imgProd = (Image)item.FindControl("imgProduct");
-    var imagePath = Helper.GetFolderAndImageName(product.imageurl);
+    var imagePath = Helper.GetImageName(product.imageurl);
     if (imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Public/", imagePath);
 
     var spanProductDescription = item.FindControl("spanProductDescription") as HtmlGenericControl;

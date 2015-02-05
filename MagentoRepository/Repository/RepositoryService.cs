@@ -1,7 +1,7 @@
 ﻿using System;
 using CookComputing.XmlRpc;
-using MagentoComunication.Cache;
 using MagentoRepository.Connection;
+using Shop.Infrastructure.Cache;
 
 namespace MagentoRepository.Repository
 {
@@ -30,7 +30,7 @@ namespace MagentoRepository.Repository
     #region private methods
     private static string CreateCacheDictionaryKey(string entity, string filter)
     {
-        return String.Concat(entity, filter);
+      return String.Concat(entity, filter);
     }
 
     private static XmlRpcStruct CreateParameters(Filter filter)

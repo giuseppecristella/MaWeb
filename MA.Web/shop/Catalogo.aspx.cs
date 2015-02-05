@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using MagentoRepository.Helpers;
 using Microsoft.AspNet.FriendlyUrls;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 public partial class shop_Catalogo : BasePage
 {
@@ -36,7 +35,7 @@ public partial class shop_Catalogo : BasePage
             // Immagine    
             //if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
             // if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = product.imageurl;
-            var imagePath = Helper.GetFolderAndImageName(product.imageurl);
+            var imagePath = Helper.GetImageName(product.imageurl);
             if (imgProd != null && imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Public/", imagePath);
             // Descrizione  
             if (descProduct != null && product.name != null) descProduct.InnerHtml = Helper.GetShortString(product.name, 132);

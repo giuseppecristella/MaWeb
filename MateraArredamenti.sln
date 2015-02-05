@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MA.Web(1)", "MA.Web\", "{48600333-950F-4C98-89BB-1C6E5A21F985}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		ProjectReferences = "{884400f1-60bd-4e00-9272-30f1988365a2}|MagentoRepository.dll;{04a4ac2a-2865-473d-86d7-b71991380025}|MagentoBusinessDelegate.dll;{5F081B09-2791-4F75-B3B1-4396CA89E8B6}|Ez.Newsletter.MagentoApi.dll;"
+		ProjectReferences = "{884400f1-60bd-4e00-9272-30f1988365a2}|MagentoRepository.dll;{04a4ac2a-2865-473d-86d7-b71991380025}|MagentoBusinessDelegate.dll;{5F081B09-2791-4F75-B3B1-4396CA89E8B6}|Ez.Newsletter.MagentoApi.dll;{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}|Shop.Infrastructure.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/materarredamenti.it"
 		Debug.AspNetCompiler.PhysicalPath = "MA.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\materarredamenti.it\"
@@ -48,6 +48,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		WebEssentials-Settings.json = WebEssentials-Settings.json
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.MVP.Test", "Shop.MVP.Test\Shop.MVP.Test.csproj", "{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +136,26 @@ Global
 		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Release|.NET.ActiveCfg = Release|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Release|.NET.ActiveCfg = Release|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +163,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{073E5BDB-C188-421D-8F31-FB2545860D44} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
 		{DA5C799D-7170-452B-ABF2-0F2C4E7EAACF} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
+		{AE8DEF92-6CA5-4FA0-91E6-FC1494C00954} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
+		{70C9AD67-CDA2-4D60-A7E2-B628A640D4F9} = {71E8A78A-08E1-4395-A5CE-072F86A0976A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Data.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Database.5.0.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35;packages\Unity.Interception.2.1.505.2\lib\NET35;packages\EnterpriseLibrary.Security.Cryptography.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Caching.Cryptography.5.0.505.0\lib\NET35

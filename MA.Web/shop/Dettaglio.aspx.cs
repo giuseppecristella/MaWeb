@@ -6,6 +6,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessDelegate.Helpers;
+using MagentoRepository.Connection;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.AspNet.FriendlyUrls;

@@ -4,9 +4,11 @@ using System.Web;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessApi.Test;
 using MagentoBusinessDelegate.Helpers;
+using MagentoRepository.Connection;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shop.Infrastructure.Cache;
 using Cart = MagentoBusinessDelegate.Cart;
 using CookComputing.XmlRpc;
 

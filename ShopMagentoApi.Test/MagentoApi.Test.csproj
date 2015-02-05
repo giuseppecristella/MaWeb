@@ -107,6 +107,10 @@
       <Project>{884400f1-60bd-4e00-9272-30f1988365a2}</Project>
       <Name>MagentoComunication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{ae8def92-6ca5-4fa0-91e6-fc1494c00954}</Project>
+      <Name>Shop.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

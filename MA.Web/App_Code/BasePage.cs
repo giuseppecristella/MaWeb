@@ -1,7 +1,8 @@
 ﻿using Cache;
-using MagentoComunication.Cache;
+using MagentoRepository.Connection;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
+using Shop.Infrastructure.Cache;
 using Cart = MagentoBusinessDelegate.Cart;
 
 
@@ -19,7 +20,7 @@ public class BasePage : System.Web.UI.Page
   // Constructor chaining; 
   // centralizzo la creazione dell'istanza della classe repository e del singleton 
   public BasePage()
-        : this(new RepositoryService(MagentoConnection.Instance, new ELCacheManager()))
+    : this(new RepositoryService(MagentoConnection.Instance, new Cache.ELCacheManager()))
   {
 
   }
@@ -28,7 +29,7 @@ public class BasePage : System.Web.UI.Page
   {
     _repository = repository;
     // come gestire una singola istanza della classe cache manager?
-        _cache = new AspnetCacheManager(); // uso questa istanza per gestire il carrello mentre uso la cache di EL per i metodi del repo; analizzare meglio
+    _cache = new AspnetCacheManager(); // uso questa istanza per gestire il carrello mentre uso la cache di EL per i metodi del repo; analizzare meglio
   }
 
   #endregion Ctor

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using MagentoComunication.Cache;
+using Shop.Infrastructure.Cache;
 
 namespace Cache
 {

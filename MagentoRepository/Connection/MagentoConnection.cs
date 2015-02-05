@@ -1,73 +1,72 @@
-﻿using System;
-using Ez.Newsletter.MagentoApi;
-using MagentoComunication.Cache;
-using MagentoRepository.Connection;
-using MagentoRepository.Helpers;
-using ShopMagentoApi.Test;
+﻿using MagentoRepository.Helpers;
+using Shop.Infrastructure.Cache;
 
-/// <summary>
-/// Classe Singleton per gestire i parametri di connessione alla Api di magento
-/// NOTA: eliminare la dipendenza da HttpContext, ok wrapper CacheManager + iniettare dipendenza attraverso property
-/// verificare inoltre la possibilità di usare una semplice classe statica al posto del singleton
-/// VEDERE PATTERN CONNECTION - ES. connessione a db / verificare se ha senso fare una dispose
-/// </summary>
-public class MagentoConnection : IMagentoConnection
+namespace MagentoRepository.Connection
 {
-  // Singleton
-  private static MagentoConnection instance = null;
-  private static readonly object padlock = new object();
-  private ICacheManager _cacheManager;
-
-  MagentoConnection()
+  /// <summary>
+  /// Classe Singleton per gestire i parametri di connessione alla Api di magento
+  /// NOTA: eliminare la dipendenza da HttpContext, ok wrapper CacheManager + iniettare dipendenza attraverso property
+  /// verificare inoltre la possibilità di usare una semplice classe statica al posto del singleton
+  /// VEDERE PATTERN CONNECTION - ES. connessione a db / verificare se ha senso fare una dispose
+  /// </summary>
+  public class MagentoConnection : IMagentoConnection
   {
-    // nel costruttore stabilisco una connessione con magento e salvo in cache il session Id
-    // se faccio injection di url e psw
-  }
+    // Singleton
+    private static MagentoConnection instance = null;
+    private static readonly object padlock = new object();
+    private ICacheManager _cacheManager;
 
-  public ICacheManager CacheManager
-  {
-    // Gestire un cache manager di default
-    get { return _cacheManager ?? (_cacheManager = new FakeCacheManager()); }
-    set { _cacheManager = value; }
-  }
-
-  public static MagentoConnection Instance
-  {
-    get
+    MagentoConnection()
     {
-      lock (padlock)
+      // nel costruttore stabilisco una connessione con magento e salvo in cache il session Id
+      // se faccio injection di url e psw
+    }
+
+    public ICacheManager CacheManager
+    {
+      // Gestire un cache manager di default
+      get { return _cacheManager ?? (_cacheManager = new FakeCacheManager()); }
+      set { _cacheManager = value; }
+    }
+
+    public static MagentoConnection Instance
+    {
+      get
       {
-        if (instance == null)
+        lock (padlock)
         {
-          instance = new MagentoConnection();
+          if (instance == null)
+          {
+            instance = new MagentoConnection();
+          }
+          return instance;
         }
-        return instance;
       }
     }
-  }
 
-  // Nota ha senso gestire la cache solo se vogliamo generare un nuovo sessionId ciclicamente allo scadere di un timeout
-  public string SessionId
-  {
-    get
+    // Nota ha senso gestire la cache solo se vogliamo generare un nuovo sessionId ciclicamente allo scadere di un timeout
+    public string SessionId
     {
-      // Bug: se scade la sessione chi va a settare nuovamente il sessionId
-      return CacheManager.Contains(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId])
-        ? _cacheManager.Get<string>(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId]) 
-        : Connection.Login(Url, UserId, Password);
+      get
+      {
+        // Bug: se scade la sessione chi va a settare nuovamente il sessionId
+        return CacheManager.Contains(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId])
+          ? _cacheManager.Get<string>(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId]) 
+          : Ez.Newsletter.MagentoApi.Connection.Login(Url, UserId, Password);
+      }
     }
-  }
 
-  public string Url { get; set; }
-  public string UserId { get; set; }
-  public string Password { get; set; }
+    public string Url { get; set; }
+    public string UserId { get; set; }
+    public string Password { get; set; }
 
-  public bool Login()
-  {
-    var sessionId = Connection.Login(Url, UserId, Password);
-    if (sessionId == null) return false; // exception connessione non effettuata con magento
-    CacheManager.Add(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId], sessionId);
-    return true;
+    public bool Login()
+    {
+      var sessionId = Ez.Newsletter.MagentoApi.Connection.Login(Url, UserId, Password);
+      if (sessionId == null) return false; // exception connessione non effettuata con magento
+      CacheManager.Add(ConfigurationHelper.CacheKeyNames[CacheKey.SessionId], sessionId);
+      return true;
+    }
   }
 }
 

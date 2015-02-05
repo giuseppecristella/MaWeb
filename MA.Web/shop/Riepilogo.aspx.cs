@@ -94,7 +94,7 @@ public partial class Riepilogo : BasePage
       lblSella.Text = errore;
       //annullo l'ordine orderNum perchè ci sono stati problemi con  il gateway quindi ritorno al carrello per 
       // creare un altro cartID
-      bool blOrderStatus = Ez.Newsletter.MagentoApi.OrderStatus.SetStatus((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { orderNum, "canceled" });
+      bool blOrderStatus = OrderStatus.SetStatus((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { orderNum, "canceled" });
       //  Response.Redirect("Carrello.html");
     }
 

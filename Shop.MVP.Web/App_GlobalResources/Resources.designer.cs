@@ -68,5 +68,14 @@ namespace Resources {
                 return ResourceManager.GetString("Header_Address", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShopTitle.
+        /// </summary>
+        internal static string ShopTitle {
+            get {
+                return ResourceManager.GetString("ShopTitle", resourceCulture);
+            }
+        }
     }
 }

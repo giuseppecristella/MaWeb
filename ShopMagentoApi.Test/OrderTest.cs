@@ -1,6 +1,8 @@
 ﻿using MagentoComunication.Enum;
+using MagentoRepository.Connection;
 using MagentoRepository.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shop.Infrastructure.Cache;
 
 namespace ShopMagentoApi.Test
 {

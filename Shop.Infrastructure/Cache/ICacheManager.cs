@@ -1,6 +1,7 @@
 ﻿
 using System;
-namespace MagentoComunication.Cache
+
+namespace Shop.Infrastructure.Cache
 {
   public interface ICacheManager
   { 

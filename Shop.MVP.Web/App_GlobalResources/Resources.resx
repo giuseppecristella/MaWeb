@@ -120,4 +120,7 @@
   <data name="Header_Address" xml:space="preserve">
     <value>T: +39 821 39 36 E: shop@materarredamenti.it</value>
   </data>
+  <data name="ShopTitle" xml:space="preserve">
+    <value>ShopTitle</value>
+  </data>
 </root>

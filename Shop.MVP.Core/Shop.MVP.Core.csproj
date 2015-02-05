@@ -31,27 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
-      <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
-      <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,15 +42,21 @@
     <Compile Include="Presenters\CatalogoPresenter.cs" />
     <Compile Include="Models\CategoryAssignedProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactory.cs" />
     <Compile Include="Views\ICatalogoView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MagentoApi\Ez.Newsletter.MagentoApi.csproj">
-      <Project>{5F081B09-2791-4F75-B3B1-4396CA89E8B6}</Project>
+      <Project>{5f081b09-2791-4f75-b3b1-4396ca89e8b6}</Project>
       <Name>Ez.Newsletter.MagentoApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MagentoRepository\MagentoComunication.csproj">
+      <Project>{884400f1-60bd-4e00-9272-30f1988365a2}</Project>
+      <Name>MagentoComunication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{ae8def92-6ca5-4fa0-91e6-fc1494c00954}</Project>
+      <Name>Shop.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

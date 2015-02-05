@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MagentoComunication.Cache;
 
-namespace ShopMagentoApi.Test
+namespace Shop.Infrastructure.Cache
 {
   public class FakeCacheManager : ICacheManager
   {

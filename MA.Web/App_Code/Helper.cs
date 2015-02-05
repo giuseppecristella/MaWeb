@@ -23,7 +23,7 @@ public static class Helper
 
   #region URI
 
-  public static string GetFolderAndImageName(string imageurl)
+  public static string GetImageName(string imageurl)
   {
     var uri = new Uri(imageurl);
     var segments = uri.Segments;

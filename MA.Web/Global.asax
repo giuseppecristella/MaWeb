@@ -2,6 +2,7 @@
 <%@ Import Namespace="System.Web.Routing" %>
 <%@ Import Namespace="Cache" %>
 <%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
+<%@ Import Namespace="MagentoRepository.Connection" %>
 <script RunAt="server">
     void Application_Start(object sender, EventArgs e)
     {

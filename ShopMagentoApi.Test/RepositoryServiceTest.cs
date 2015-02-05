@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Net;
 using Ez.Newsletter.MagentoApi;
+using MagentoRepository.Connection;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shop.Infrastructure.Cache;
 
 namespace ShopMagentoApi.Test
 {

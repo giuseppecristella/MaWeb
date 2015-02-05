@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Shop.Infrastructure.Cache;
+using System;
 using System.Web;
-using MagentoComunication.Cache;
 
 namespace MagentoBusinessApi.Test
 {

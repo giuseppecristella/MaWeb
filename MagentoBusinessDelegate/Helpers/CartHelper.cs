@@ -1,6 +1,6 @@
 ﻿using Ez.Newsletter.MagentoApi;
-using MagentoComunication.Cache;
 using MagentoRepository.Helpers;
+using Shop.Infrastructure.Cache;
 
 namespace MagentoBusinessDelegate.Helpers
 {
