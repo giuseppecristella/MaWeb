@@ -14,7 +14,7 @@ namespace Shop.Infrastructure.Cache
             _cacheManager = CacheFactory.GetCacheManager();
         }
 
-        public void Add(string key, object value 
+        public void Add(string key, object value )
         {
             _cacheManager.Add(key, value);
         }
