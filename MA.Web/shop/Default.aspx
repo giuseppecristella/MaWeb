@@ -67,7 +67,7 @@
                         <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
                     </div>
                     <div class="mask_red">
-                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lnkDettaglio_2">
+                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lbProductDetail">
                             <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
                                 Vedi dettaglio</span> </a>
                     </div>
@@ -75,31 +75,5 @@
             </ItemTemplate>
         </asp:ListView>
     </div>
-   <%-- <div style="padding-top: 40px; padding-bottom: 20px;" class="one">
-        <div class="headline">
-            <h4>
-                Le offerte dello Shop <span class="colored">Tradizione</span></h4>
-        </div>
-        <asp:ListView runat="server" ID="lvGreenShowCase" OnItemDataBound="lvGreenShowCase_OnItemDataBound">
-            <LayoutTemplate>
-                <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
-            </LayoutTemplate>
-            <ItemTemplate>
-                <div runat="server" id="box_prodotto" style="margin-top: 5px; margin-right: 10px;
-                    border: 1px solid #dfdfdf;" class="one-fourth view view-first">
-                    <div style="width: 215px; height: 215px; overflow: hidden;">
-                        <p runat="server" id="pProductPrice" class="desc_prezzo_home verde">
-                        </p>
-                        <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
-                    </div>
-                    <div class="mask_green">
-                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lbGreenProductDetail">
-                            <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">
-                                Vedi dettaglio</span> </a>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:ListView>
-    </div>--%>
 </asp:Content>
 

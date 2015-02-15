@@ -2,33 +2,39 @@
 
 namespace MagentoRepository.Helpers
 {
-  public enum CacheKey
-  {
-    Cart,
-    FilteredProducts,
-    CategoryAssignedProducts,
-    ProductInfo,
-    Inventories,
-    ProductImages,
-    LinkedProducts,
-    CategoryLevel,
-    CategoryInfo,
-    ShippingMethods,
-    SessionId,
-    Customer,
-    CustomerAddresses,
-    OrderInfo,
-    Orders
-  }
+    public enum CacheKey
+    {
+        Cart,
+        FilteredProducts,
+        CategoryAssignedProducts,
+        ProductInfo,
+        Inventories,
+        ProductImages,
+        LinkedProducts,
+        CategoryLevel,
+        CategoryInfo,
+        ShippingMethods,
+        SessionId,
+        Customer,
+        CustomerAddresses,
+        OrderInfo,
+        Orders
+    }
 
-  public static class ConfigurationHelper
-  {
-    public const string RootCategory = "47";
-    public static readonly string[] HomeCategories = { "44", "45" };
+    public static class ConfigurationHelper
+    {
+        public const string RootCategory = "47";
+        // Da rifattorizzare
+        public const string ComplementiCatId = "40";
+        public const string Arredi = "48";
+        public const string IdeeRegalo = "49";
+        public const string Materassi = "50";
+        public const string Originali = "51";
+        public static readonly string[] HomeCategories = { "44", "45" };
 
-    public const string CartKey = "";
+        public const string CartKey = "";
 
-    public static readonly Dictionary<CacheKey, string> CacheKeyNames = new Dictionary<CacheKey, string>()
+        public static readonly Dictionary<CacheKey, string> CacheKeyNames = new Dictionary<CacheKey, string>()
     {
       { CacheKey.Cart, "Cart" },
       { CacheKey.SessionId, "SessionId" },
@@ -46,5 +52,6 @@ namespace MagentoRepository.Helpers
       { CacheKey.OrderInfo, "OrderInfo§" },
       { CacheKey.Orders, "Orders" }
     };
-  }
+
+    }
 }

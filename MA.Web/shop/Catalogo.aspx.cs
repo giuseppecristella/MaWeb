@@ -19,6 +19,44 @@ public partial class shop_Catalogo : BasePage
         ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
     }
 
+    protected void pagerProducts_PreRender(object sender, EventArgs e)
+    {
+        var rootCat = SetMainStyleAttribute();
+
+        // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
+        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
+        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
+
+        if (!Request.GetFriendlyUrlSegments().Any()) return;
+        //var categoryId = (Request.GetFriendlyUrlSegments().Count == 2)
+        //    ? GetCategoryIdByName(Request.GetFriendlyUrlSegments()[1])
+        //    : ConfigurationHelper.RootCategory;
+
+        if (BindProductsToList(GetCategoryIdByName(Request.GetFriendlyUrlSegments()[0])))
+            ShowHidePagerForShop();
+    }
+
+    private string GetCategoryIdByName(string categoryName)
+    {
+        // level mapping nome id
+
+        switch (categoryName)
+        {
+            case "Complementi":
+                return ConfigurationHelper.ComplementiCatId;
+            case "Arredi":
+                return ConfigurationHelper.Arredi;
+            case "IdeeRegalo":
+                return ConfigurationHelper.IdeeRegalo;
+            case "Materassi":
+                return ConfigurationHelper.Materassi;
+            case "Originali":
+                return ConfigurationHelper.Originali;
+            default:
+                return ConfigurationHelper.RootCategory;
+        }
+    }
+
     protected void item_dataBound(object sender, ListViewItemEventArgs e)
     {
         var item = e.Item as ListViewDataItem;
@@ -49,19 +87,6 @@ public partial class shop_Catalogo : BasePage
         }
     }
 
-
-    protected void pagerProducts_PreRender(object sender, EventArgs e)
-    {
-        var rootCat = SetMainStyleAttribute();
-
-        // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-
-        if (BindProductsToList())
-            ShowHidePagerForShop();
-    }
-
     #endregion Events
 
     #region Properties
@@ -81,10 +106,10 @@ public partial class shop_Catalogo : BasePage
     #endregion Properties
 
     #region Private Methods
-    private bool BindProductsToList()
+    private bool BindProductsToList(string categoryId)
     {
 
-        var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
+        var products = _repository.GetProductsByCategoryId(categoryId);
         if (products == null || !products.Any()) return false;
 
         Products = products.Where(p => p.qty_in_stock > 0).ToList();

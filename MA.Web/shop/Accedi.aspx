@@ -8,7 +8,7 @@
         <div style="margin-left: 30px; width: 305px; min-height: 580px;" class="one-third">
             <h4>
                 Accedi</h4>
-            <asp:Login RenderOuterTable="false" CssClass="table_reset" ID="Login1" runat="server"
+            <asp:Login  CssClass="table_reset" ID="Login1" runat="server"
                 OnLoggedIn="btnLogin_Click">
                 <LayoutTemplate>
                     <fieldset>

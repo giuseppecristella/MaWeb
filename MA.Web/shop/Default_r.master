@@ -94,27 +94,17 @@
                 <div id="header">
                     <!-- HEADER  -->
                     <!-- LOGO -->
-                    <a id="logo_r" class="logoRosso" title="Homepage" href="design.html"></a>
+                    <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>
                     <!--LOGO ENDS  -->
                     <div id="main_navigation" class="main-menu rosso">
-                        <!--  MAIN  NAVIGATION-->
-                        <%--  <ul></ul>--%>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderNavigoss" runat="server">
                         </asp:ContentPlaceHolder>
-                        <%-- <li><a href="index-2.html" title="Home">Maioliche</a></li>
-                            <li><a href="#">Succhi di Puglia</a> </li>
-                            <li><a href="#">Antichi Sapori</a> </li>
-                            <li><a href="#">Specialità</a> </li>
-                            <li><a href="#">Idee Regalo</a> </li>--%>
                     </div>
-                    <!-- MAIN NAVIGATION ENDS-->
                     <div style="background: #D10A11;" id="carrello">
                         <a href="Carrello.aspx" class="carrello_titolo">
                             <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                     </div>
                 </div>
-                <!-- HEADER ENDS-->
-                <!-- MAIN CONTAINER -->
                 <div id="content">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
                     </asp:ContentPlaceHolder>

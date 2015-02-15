@@ -78,7 +78,7 @@
                     <div id="header">
                         <a id="logo_v" runat="server" class="logoVerde" visible="false" title="Homepage"
                             href="tradizione.html"></a><a id="logo_r" runat="server" class="logoRosso" visible="false"
-                                title="Homepage" href="design.html"></a>
+                                title="Homepage" href="/shop"></a>
                         <div runat="server" id="main_navigation" class="">
                             <ul runat="server" id="menuCatShop">
                             </ul>

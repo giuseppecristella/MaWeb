@@ -137,11 +137,9 @@ public partial class shop_Dettaglio : BasePage
 
     private void BindInventoryInfo(string productId)
     {
-        _repository.GetInventories(productId);
-        Inventory[] scorteProdotto = Inventory.List(MagentoConnection.Instance.Url, MagentoConnection.Instance.SessionId,
-          new object[] { productId });
-        prodScorte.Text = scorteProdotto[0].qty.Substring(0, scorteProdotto[0].qty.IndexOf("."));
-
+        var inventories =_repository.GetInventories(productId);
+        if (!inventories.Any() || inventories.FirstOrDefault() == null) return;
+        prodScorte.Text = inventories[0].qty.Substring(0, inventories.FirstOrDefault().qty.IndexOf(".", StringComparison.Ordinal));
     }
 
     private void BindCategoryName(string categoryId)
@@ -188,7 +186,8 @@ public partial class shop_Dettaglio : BasePage
     private string GetProductMainImageUrl(string productId)
     {
         var productImages = _repository.GetProductImages(productId);
-        return productImages.First(p => p.exclude == "1").url ?? string.Empty;
+        if (productImages.FirstOrDefault(p => p.exclude == "1") == default(ProductImage)) return string.Empty;
+        return productImages.First(p => p.exclude == "1").url;
     }
 
     #endregion private methods

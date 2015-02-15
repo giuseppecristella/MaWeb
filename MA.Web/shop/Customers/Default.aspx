@@ -75,7 +75,7 @@
 
             <fieldset>
                 <asp:Button runat="server" ID="btnUpdateBilling" CssClass="fancy-button red small"
-                    Text="Modifica indirizzi" OnClick="btnUpdateBilling_Click" />
+                    Text="Modifica indirizzi" OnClick="btnUpdateCustomerAddresses_Click" />
             </fieldset>
         </div>
     </div>

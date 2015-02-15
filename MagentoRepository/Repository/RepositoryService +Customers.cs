@@ -32,7 +32,7 @@ namespace MagentoRepository.Repository
         _cacheManager.Add(key, customer);
         return customer;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
         return null;
       }
@@ -66,5 +66,10 @@ namespace MagentoRepository.Repository
         return null;
       }
     }
+
+      public bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId)
+      {
+          return CustomerAddress.Update(_connection.Url, _connection.SessionId, addressBillingId, billingAddress);
+      }
   }
 }

@@ -47,9 +47,9 @@ public partial class shop_Default : BasePage
     var pProductPrice = item.FindControl("pProductPrice") as HtmlGenericControl;
     var magentoPrice = ((CategoryAssignedProduct)(item.DataItem)).price;
     if (pProductPrice != null) pProductPrice.InnerHtml = Helper.FormatCurrency(magentoPrice);
-    
-    var lbGreenProductDetail = item.FindControl("lbGreenProductDetail") as HtmlAnchor;
-    if (lbGreenProductDetail != null) lbGreenProductDetail.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", name.Replace(" ", "-"));
+
+    var lbGreenProductDetail = item.FindControl("lbProductDetail") as HtmlAnchor;
+    if (lbGreenProductDetail != null) lbGreenProductDetail.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", name);
   }
 
   private static void SetProductsBoxStyle(ListViewItem dataitem)

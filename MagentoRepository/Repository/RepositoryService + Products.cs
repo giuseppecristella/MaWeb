@@ -121,6 +121,7 @@ namespace MagentoRepository.Repository
             {
                 var productImages = ProductImage.List(_connection.Url, _connection.SessionId, new object[] { productId });
                 if (productImages == null || !productImages.Any()) return null;
+                _cacheManager.Add(key, productImages.ToList());
                 return productImages.ToList();
             }
             catch (Exception)
@@ -144,6 +145,7 @@ namespace MagentoRepository.Repository
                 var pId = int.Parse(productId);
                 var linkedProducts = ProductLink.List(_connection.Url, _connection.SessionId, new object[] { "related", pId });
                 if (linkedProducts == null || !linkedProducts.Any()) return null;
+                _cacheManager.Add(key, linkedProducts.ToList());
                 return linkedProducts.ToList();
             }
             catch (Exception)

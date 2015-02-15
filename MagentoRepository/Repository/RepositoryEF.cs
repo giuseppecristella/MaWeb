@@ -74,7 +74,12 @@ namespace MagentoRepository.Repository
       throw new NotImplementedException();
     }
 
-    public OrderInfo GetOrderInfos(int orderNumber)
+      public bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId)
+      {
+          throw new NotImplementedException();
+      }
+
+      public OrderInfo GetOrderInfos(int orderNumber)
     {
       throw new NotImplementedException();
     }

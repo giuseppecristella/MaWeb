@@ -47,24 +47,45 @@ namespace MagentoRepository.Repository
       }
       catch (Exception ex)
       {
-
         return false;
       }
     }
 
     public bool AddCustomerAddressesToCart(int cartId, List<CustomerAddress> customerAddresses)
     {
-      throw new NotImplementedException();
+        try
+        {
+            return Cart.cartCustomerAddresses(_connection.Url, _connection.SessionId, customerAddresses.ToArray());
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 
     public bool AddProductToCart(int cartId, Product product)
     {
-      throw new NotImplementedException();
+        try
+        {
+            return Cart.cartProductAdd(_connection.Url, _connection.SessionId, new object[] { product });
+        }
+        catch (Exception ex)
+        {
+            return false;
+        } 
     }
 
     public List<PaymentMethod> GetPaymentMethods(int cartId)
     {
-      throw new NotImplementedException();
+        try
+        {
+          //  Cart.cartPaymentList(_connection.Url, _connection.SessionId, new object[] { product });
+        }
+        catch (Exception ex)
+        {
+             
+        } 
+        return null;
     }
 
     public bool AddShippingMethodToCart(string shippingMethod)

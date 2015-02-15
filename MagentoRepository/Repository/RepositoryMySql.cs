@@ -82,7 +82,12 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
-    public OrderInfo GetOrderInfos(int orderNumber)
+      public bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId)
+      {
+          throw new System.NotImplementedException();
+      }
+
+      public OrderInfo GetOrderInfos(int orderNumber)
     {
       throw new System.NotImplementedException();
     }

@@ -102,6 +102,8 @@ namespace MagentoRepository.Repository
 
     List<CustomerAddress> GetCustomerAddresses(int customerId);
 
+    bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId);
+
     #endregion
 
     #region Orders

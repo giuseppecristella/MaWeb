@@ -35,6 +35,7 @@ using CookComputing.XmlRpc;
 
 namespace Ez.Newsletter.MagentoApi
 {
+    [Serializable]
     public class ProductLink
     {
         #region Private Member Variables

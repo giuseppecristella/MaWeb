@@ -10,10 +10,11 @@
             <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
         </LayoutTemplate>
         <ItemTemplate>
-            <div>
-                <div>
-                    <p><%# Eval("Price") %></p>
-                    <asp:Image ImageUrl="<%# Eval("ImageUrl") %>" Width="215" Height="215" runat="server" ID="imgProduct"></asp:Image>
+           <div runat="server" id="box_prodotto" style="margin-top: 40px; margin-right: 10px; border: 1px solid #dfdfdf;"
+                                        class="one-fourth view view-first">
+                <div style="width: 215px; height: 215px; overflow: hidden;">
+                    <p  class="desc_prezzo_home verde"><%# Eval("Price") %></p>
+                    <asp:Image ImageUrl='<%# Eval("ImageUrl") %>' Width="215" Height="215" runat="server" ID="imgProduct"></asp:Image>
                 </div>
                 <div>
                     <span><%# Eval("Name") %></span>
