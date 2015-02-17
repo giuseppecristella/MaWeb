@@ -38,7 +38,8 @@ public class BasePage : System.Web.UI.Page
   {
     get
     {
-      return (_cacheKey != null && _cache.Contains(_cacheKey)) ? _cache.Get<Cart>(_cacheKey) : null;
+      return Session["Cart"] as Cart != null ? (Cart) Session["cart"] : null;
+      //return (_cacheKey != null && _cache.Contains(_cacheKey)) ? _cache.Get<Cart>(_cacheKey) : null;
     }
     set
     {

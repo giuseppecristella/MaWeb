@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
+using Microsoft.AspNet.FriendlyUrls;
 using Cart = MagentoBusinessDelegate.Cart;
 using Image = System.Web.UI.WebControls.Image;
 using Label = System.Web.UI.WebControls.Label;
@@ -52,8 +53,9 @@ public partial class shop_Carrello : BasePage
         textBox.BorderColor = System.Drawing.Color.Red;
     }
     if (blerrore) return;
-    var cartId = _repository.CreateCart();
-    Response.Redirect(string.Format("Indirizzi.aspx?cartId={0}", cartId));
+   // var cartId = _repository.CreateCart();
+   // Response.Redirect(string.Format("Indirizzi.aspx?cartId={0}"));
+    FriendlyUrl.Resolve("~/Indirizzi");
   }
 
   protected void btnUpdateCart_Click(object sender, EventArgs e)

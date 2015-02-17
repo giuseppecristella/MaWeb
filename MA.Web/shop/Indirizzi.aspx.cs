@@ -21,11 +21,8 @@ public partial class Indirizzi : BasePage
   protected void Page_Load(object sender, EventArgs e)
   {
     if (IsPostBack) return;
-    var cartId = Request.QueryString["cartId"];
-    // redirect pagina di errore nel caso non si trova l'id del carrello
-    if (string.IsNullOrEmpty(cartId)) Response.Redirect("~/Shop/Carrello.aspx");
 
-    var utente = Page.User.Identity.Name; // questa info è valorizzata nel caso di utenti loggati
+    var utente = Page.User.Identity.Name; 
     if (string.IsNullOrEmpty(utente)) Response.Redirect("~/Shop/accedi.aspx");
 
     var aspNetUser = Membership.GetUser(utente);
@@ -36,24 +33,26 @@ public partial class Indirizzi : BasePage
     var customer = _repository.GetCustomerById(_customerId);
     customer.mode = "register";
 
+    var cartId = _repository.CreateCart();
+    var areCustomerAssociatedToCart = _repository.AssociateCustomerToCart(cartId, customer);
+    if (!areCustomerAssociatedToCart) return; // trace log
+
     var customerAddresses = _repository.GetCustomerAddresses(_customerId);
     BindCustomerAddresses(customerAddresses);
-
-    var result = _repository.AssociateCustomerToCart(int.Parse(cartId), customer);
-
     customerAddresses[0].mode = "billing";
     customerAddresses[1].mode = "shipping";
 
-    var resultAddCustomerAddresses = _repository.AddCustomerAddressesToCart(int.Parse(cartId), customerAddresses);
+    var areCustomerAddressesAddedToCart = _repository.AddCustomerAddressesToCart(cartId, customerAddresses);
+    if (!areCustomerAddressesAddedToCart) return; // trace log
 
-    //aggiungo i prodotti al carrello
+    // aggiungo i prodotti al carrello
     foreach (var product in Cart.Products)
     {
       Ez.Newsletter.MagentoApi.Cart.cartProductAdd((string)HttpContext.Current.Cache["apiUrl"],
-        (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId), product });
+        (string)HttpContext.Current.Cache["sessionId"], new object[] { cartId, product });
     }
 
-    var paymentMethods = _repository.GetPaymentMethods(int.Parse(cartId));
+    var paymentMethods = _repository.GetPaymentMethods(cartId);
 
     rdbtnListPayMethods.DataSource = paymentMethods.Select(p => p.title).ToList();
     rdbtnListPayMethods.DataBind();
