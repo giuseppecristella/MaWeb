@@ -48,63 +48,63 @@ namespace ShopMagentoApi.Test
     [TestMethod]
     public void Add_Some_Products_To_Cart()
     {
-      var cache = new AspNetCacheManagerTest();
-      var product = GetProductById("173");
+      //var cache = new AspNetCacheManagerTest();
+      //var product = GetProductById("173");
 
-      CartHelper.CacheManager = new AspNetCacheManagerTest();
-      CartHelper.AddProductToCartAndUpdateCache(product);
-      CartHelper.AddProductToCartAndUpdateCache(product);
+      //CartHelper.CacheManager = new AspNetCacheManagerTest();
+      //CartHelper.AddProductToCartAndUpdateCache(product);
+      //CartHelper.AddProductToCartAndUpdateCache(product);
 
-      var cartFromCache = cache.Get<Cart>("Cart");
-      Assert.AreEqual(cartFromCache.Products.Count(), 1);
+      //var cartFromCache = cache.Get<Cart>("Cart");
+      //Assert.AreEqual(cartFromCache.Products.Count(), 1);
 
-      product = GetProductById("179");
-      CartHelper.AddProductToCartAndUpdateCache(product);
+      //product = GetProductById("179");
+      //CartHelper.AddProductToCartAndUpdateCache(product);
 
-      cartFromCache = cache.Get<Cart>("Cart");
-      Assert.AreEqual(cartFromCache.Products.Count(), 2);
+      //cartFromCache = cache.Get<Cart>("Cart");
+      //Assert.AreEqual(cartFromCache.Products.Count(), 2);
     }
 
     [TestMethod]
     public void Update_Product_Qty_Of_Items_In_Cart()
     {
-      var cache = new AspNetCacheManagerTest();
-      var product = GetProductById("173");
+      //var cache = new AspNetCacheManagerTest();
+      //var product = GetProductById("173");
 
-      CartHelper.CacheManager = new AspNetCacheManagerTest();
-      CartHelper.AddProductToCartAndUpdateCache(product);
-      product = GetProductById("179");
-      CartHelper.AddProductToCartAndUpdateCache(product);
+      //CartHelper.CacheManager = new AspNetCacheManagerTest();
+      //CartHelper.AddProductToCartAndUpdateCache(product);
+      //product = GetProductById("179");
+      //CartHelper.AddProductToCartAndUpdateCache(product);
 
-      var cartFromCache = cache.Get<Cart>("Cart");
-      Assert.AreEqual(cartFromCache.Products.Count(), 2);
+      //var cartFromCache = cache.Get<Cart>("Cart");
+      //Assert.AreEqual(cartFromCache.Products.Count(), 2);
 
-      Assert.IsNull(cartFromCache.Products.First(p => p.product_id == "173").qty);
-      var itemToUpdate = cartFromCache.Products.First(p => p.product_id == "173");
-      itemToUpdate.qty = "100";
-      Assert.AreEqual(cartFromCache.Products.First(p => p.product_id == "173").qty, "100");
+      //Assert.IsNull(cartFromCache.Products.First(p => p.product_id == "173").qty);
+      //var itemToUpdate = cartFromCache.Products.First(p => p.product_id == "173");
+      //itemToUpdate.qty = "100";
+      //Assert.AreEqual(cartFromCache.Products.First(p => p.product_id == "173").qty, "100");
     }
 
     [TestMethod]
     public void Should_Delete_Products_From_Cart()
     {
-      var productsToDelete = new List<Product>();
+      //var productsToDelete = new List<Product>();
 
-      // Creo un carrello con 2 prodotti
-      var cache = new AspNetCacheManagerTest();
-      var product = GetProductById("173");
-      productsToDelete.Add(product);
-
-      CartHelper.CacheManager = new AspNetCacheManagerTest();
-      CartHelper.AddProductToCartAndUpdateCache(product);
-      product = GetProductById("179");
+      //// Creo un carrello con 2 prodotti
+      //var cache = new AspNetCacheManagerTest();
+      //var product = GetProductById("173");
       //productsToDelete.Add(product);
-      CartHelper.AddProductToCartAndUpdateCache(product);
 
-      var cartFromCache = cache.Get<Cart>("Cart");
-      cartFromCache.DeleteProducts(productsToDelete);
-      Assert.AreEqual(cartFromCache.Products.Count(), 1);
-      Assert.AreEqual(cartFromCache.Products.First().product_id, "179");
+      //CartHelper.CacheManager = new AspNetCacheManagerTest();
+      //CartHelper.AddProductToCartAndUpdateCache(product);
+      //product = GetProductById("179");
+      ////productsToDelete.Add(product);
+      //CartHelper.AddProductToCartAndUpdateCache(product);
+
+      //var cartFromCache = cache.Get<Cart>("Cart");
+      //cartFromCache.DeleteProducts(productsToDelete);
+      //Assert.AreEqual(cartFromCache.Products.Count(), 1);
+      //Assert.AreEqual(cartFromCache.Products.First().product_id, "179");
     }
 
     [TestMethod]

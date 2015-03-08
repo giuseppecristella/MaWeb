@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart.cs" />
-    <Compile Include="Helpers\CartHelper.cs" />
     <Compile Include="Helpers\TemplatePlaceholder.cs" />
     <Compile Include="LayoutBuilder.cs" />
     <Compile Include="Enum\MessageType.cs" />

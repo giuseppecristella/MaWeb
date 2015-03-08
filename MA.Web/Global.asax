@@ -32,7 +32,7 @@
         MagentoConnection.Instance.UserId = "ws_user";
 
         // DI
-        CartHelper.CacheManager = new AspnetCacheManager();
+//        CartHelper.CacheManager = new AspnetCacheManager();
         
         
         Session["carrello"] = new ArrayList();
