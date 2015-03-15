@@ -57,12 +57,22 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
-    public bool AddShippingMethodToCart(string shippingMethod)
+    public bool AddShippingMethodToCart(int cartId, string shippingMethod)
     {
       throw new System.NotImplementedException();
     }
 
-    public string CreateCustomer(Customer customer)
+      public List<ShippingMethod> GetShippingMethods(int cartId)
+      {
+          throw new System.NotImplementedException();
+      }
+
+      public bool AddPaymentMethodsToCart(int cartId, PaymentMethod paymentMethod)
+      {
+          throw new System.NotImplementedException();
+      }
+
+      public string CreateCustomer(Customer customer)
     {
       throw new System.NotImplementedException();
     }
@@ -102,7 +112,12 @@ namespace MagentoRepository.Repository
       throw new System.NotImplementedException();
     }
 
-    public Product GetProductInfo(string productId)
+      public int CreateOrder(int cartId)
+      {
+          throw new System.NotImplementedException();
+      }
+
+      public Product GetProductInfo(string productId)
     {
       throw new System.NotImplementedException();
     }

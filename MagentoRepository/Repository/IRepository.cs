@@ -4,117 +4,123 @@ using MagentoComunication.Enum;
 
 namespace MagentoRepository.Repository
 {
-  public interface IRepository
-  {
-    #region Product
+    public interface IRepository
+    {
+        #region Product
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="categoryId"></param>
-    /// <returns></returns>
-    List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        List<CategoryAssignedProduct> GetProductsByCategoryId(string categoryId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="filter"></param>
-    /// <returns></returns>
-    Product GetFilteredProducts(Filter filter);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        Product GetFilteredProducts(Filter filter);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    Product GetProductInfo(string productId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        Product GetProductInfo(string productId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    List<Inventory> GetInventories(string productId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        List<Inventory> GetInventories(string productId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    List<ProductImage> GetProductImages(string productId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        List<ProductImage> GetProductImages(string productId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    List<ProductLink> GetLinkedProducts(string productId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        List<ProductLink> GetLinkedProducts(string productId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="productId"></param>
-    /// <returns></returns>
-    int GetStocksForProduct(string productId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        int GetStocksForProduct(string productId);
 
-    #endregion
+        #endregion
 
-    #region Category
+        #region Category
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="categoryId"></param>
-    /// <returns></returns>
-    Category GetCategoryInfo(string categoryId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        Category GetCategoryInfo(string categoryId);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="categoryId"></param>
-    /// <returns></returns>
-    object GetCategoryLevel(string categoryId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        object GetCategoryLevel(string categoryId);
 
-    #endregion Category
+        #endregion Category
 
-    #region Cart
+        #region Cart
 
-    int CreateCart();
+        int CreateCart();
 
-    bool AssociateCustomerToCart(int cartId, Customer customer);
+        bool AssociateCustomerToCart(int cartId, Customer customer);
 
-    bool AddCustomerAddressesToCart(int cartId, List<CustomerAddress> customerAddresses);
+        bool AddCustomerAddressesToCart(int cartId, List<CustomerAddress> customerAddresses);
 
-    bool AddProductToCart(int cartId, Product product);
-    List<PaymentMethod> GetPaymentMethods(int cartId);
-    // usare enum per shipping method
-    bool AddShippingMethodToCart(string shippingMethod);
+        bool AddProductToCart(int cartId, Product product);
+        List<PaymentMethod> GetPaymentMethods(int cartId);
+        // usare enum per shipping method
+        bool AddShippingMethodToCart(int cartId, string shippingMethod);
 
-    #endregion
+        List<ShippingMethod> GetShippingMethods(int cartId);
 
-    #region Customers
+        bool AddPaymentMethodsToCart(int cartId, PaymentMethod paymentMethod);
 
-    string CreateCustomer(Customer customer);
+        #endregion
 
-    Customer GetCustomerById(int customerId);
+        #region Customers
 
-    string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
+        string CreateCustomer(Customer customer);
 
-    List<CustomerAddress> GetCustomerAddresses(int customerId);
+        Customer GetCustomerById(int customerId);
 
-    bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId);
+        string CreateCustomerAddress(int customerId, CustomerAddress customerAddress);
 
-    #endregion
+        List<CustomerAddress> GetCustomerAddresses(int customerId);
 
-    #region Orders
+        bool UpdateCustomerAddress(CustomerAddress billingAddress, int addressBillingId);
 
-    OrderInfo GetOrderInfos(int orderNumber);
+        #endregion
 
-    bool SetOrderStatus(int orderNumber, OrderStatusType status);
+        #region Orders
 
-    List<Order> GetOrders(Filter filter);
+        OrderInfo GetOrderInfos(int orderNumber);
 
-    #endregion
+        bool SetOrderStatus(int orderNumber, OrderStatusType status);
 
-  }
+        List<Order> GetOrders(Filter filter);
+
+        int CreateOrder(int cartId);
+
+        #endregion
+
+    }
 }

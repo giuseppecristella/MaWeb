@@ -40,4 +40,16 @@ public static class SessionFacade
             }
         }
     }
+
+    public static int CartId
+    {
+        get
+        {
+            return Get<int>("CartId");
+        }
+        set
+        {
+            Set("CartId", value);
+        }
+    }
 }

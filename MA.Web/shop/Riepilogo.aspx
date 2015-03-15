@@ -24,7 +24,7 @@
         </div>
         <div class="three-third">
             <asp:Label runat="server" ID="lblSella"></asp:Label>
-            <asp:ListView runat="server" ID="lvCart" OnItemDataBound="lvDataBound">
+            <asp:ListView runat="server" ID="lvCart" OnItemDataBound="lvCartOnItemDataBound">
                 <LayoutTemplate>
                     <table class="carrello">
                         <tr runat="server" id="itemPlaceholder" />
@@ -73,7 +73,7 @@
             <br />
             <fieldset>
                 <asp:LinkButton runat="server" Text="Vai a pagare" ID="lnkbtnOrder" CssClass="fancy-button red small"
-                    Style="float: right; margin-right: 30px;" OnClick="lnkbtnOrder_Click"></asp:LinkButton>
+                    Style="float: right; margin-right: 30px;" OnClick="lbOrder_Click"></asp:LinkButton>
             </fieldset>
             <div class="clear">
             </div>

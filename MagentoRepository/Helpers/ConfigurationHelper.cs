@@ -31,6 +31,7 @@ namespace MagentoRepository.Helpers
         public const string Materassi = "50";
         public const string Originali = "51";
         public static readonly string[] HomeCategories = { "44", "45" };
+        public const string SellaCurrencyCode = "242";
 
         public const string CartKey = "";
 

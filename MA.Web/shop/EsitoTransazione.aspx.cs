@@ -3,10 +3,8 @@ using System.Collections;
 using System.Net.Mail;
 using System.Web;
 using System.Xml;
-using Conversive.PHPSerializationLibrary;
 using Ez.Newsletter.MagentoApi;
 using MagentoBusinessDelegate;
-using MagentoBusinessDelegate.Helpers;
 using MagentoComunication.Enum;
 using WSCryptDecrypt = it.sella.ecomms2s.WSCryptDecrypt;
 
@@ -78,23 +76,21 @@ public partial class shop_EsitoTransazione : BasePage
   private bool CheckTransactionResult(XmlNode decryptedNode)
   {
     var transactionResultNode = decryptedNode.SelectSingleNode("descendant::TransactionResult");
-    if (transactionResultNode == null || transactionResultNode.InnerText != "OK") return false;
-    return true;
+    return transactionResultNode != null && transactionResultNode.InnerText == "OK";
   }
 
   private string GetOrderNumber(XmlNode decryptedNode)
   {
     var nodeTransactionId = decryptedNode.SelectSingleNode("descendant::ShopTransactionID");
-    if (nodeTransactionId == null) return null;
-    return nodeTransactionId.InnerText.Substring(0, 9);
+    return nodeTransactionId == null ? null : nodeTransactionId.InnerText.Substring(0, 9);
   }
 
   private static void SendMailToUser(OrderInfo orderDetails, Customer customer, string numOrdine, string mailBody)
   {
-    var MainMailAddress = Utility.SearchConfigValue("MainMailAddress");
-    var MainMailAlias = Utility.SearchConfigValue("MainMailAlias");
+    var mainMailAddress = Utility.SearchConfigValue("MainMailAddress");
+    var mainMailAlias = Utility.SearchConfigValue("MainMailAlias");
 
-    var from = new MailAddress(MainMailAddress, MainMailAlias);
+    var from = new MailAddress(mainMailAddress, mainMailAlias);
     var to = new MailAddress(orderDetails.customer_email, string.Format("{0} {1}", customer.firstname, customer.lastname));
 
     var mailMessage = new MailMessage(@from, to)
@@ -104,8 +100,8 @@ public partial class shop_EsitoTransazione : BasePage
       Body = mailBody
     };
     // EMAIL.Bcc.Add("giuseppe.cristella@libero.it");
-    var SmtpMail = new SmtpClient();
-    SmtpMail.Send(mailMessage);
+    var smtpMail = new SmtpClient();
+    smtpMail.Send(mailMessage);
   }
 
   private static string CreateMailLayout(Customer customer, OrderInfo orderDetails, string numOrdine)
