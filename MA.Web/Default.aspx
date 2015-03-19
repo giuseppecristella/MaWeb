@@ -9,8 +9,8 @@
     <script src="js/prova_nuovo_slider.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(function() {
+        jQuery(document).ready(function ($) {
+            $(function () {
                 // open a welcome message as soon as the window loads
             });
             if ($('#nuovo_slider_prova ul li').size() > 0) { jQuery("#nuovo_slider_prova ul").bxSlider({ infiniteLoop: true, pager: false, controls: true, auto: true, autoHover: true, speed: '800', pause: '4000', displaySlideQty: 4, moveSlideQty: 1 }); }
@@ -78,9 +78,10 @@
     </script>--%>
 
     <script type="text/javascript">
-        jQuery.noConflict()(function($) {
-            $(document).ready(function() {
-                $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80,
+        jQuery.noConflict()(function ($) {
+            $(document).ready(function () {
+                $("a[rel^='prettyPhoto']").prettyPhoto({
+                    opacity: 0.80,
                     hideflash: false, modal: true, default_width: 710, default_height: 525
                 });
                 $('div.portfolio-container ul.portfolio-container-items li').show();
@@ -155,8 +156,8 @@
                 <div class="one">
                     <div class="clear-line">
                     </div>
-                    <div style="height: 10px; background-image: url('images/footer_shadow.png'); background-position: bottom;
-                        background-repeat: no-repeat;" class="slider">
+                    <div style="height: 10px; background-image: url('images/footer_shadow.png'); background-position: bottom; background-repeat: no-repeat;"
+                        class="slider">
                         <asp:Repeater runat="server" ID="rptFotoHOME" DataSourceID="objFotoHOME">
                             <ItemTemplate>
                                 <div>
@@ -304,12 +305,22 @@
                                 class="portfolio-item-preview">
                                 <img src="img/stosa_logo.png" alt=" " width="168" height="145" class="portfolio-img pretty-box" /></a>
                         </div>
-                      
+
                     </div>
                 </div>
                 <div class="horizontal-line">
                 </div>
                 <div id="portfolio">
+                    <div class="one-third">
+                        <a href="javascript:scegliShop();" class="tasto shop"></a>
+                    </div>
+                    <div class="one-third">
+                        <a href="#" class="tasto magazine"></a>
+                    </div>
+                    <div class="one-third last">
+                        <a href="http://www.materaservice.it" target="_blank" class="tasto traslochi"></a>
+                    </div>
+                    <div class="line-separator"></div>
                     <div class="one-third">
                         <a href="javascript:scegliShop();" class="tasto shop"></a>
                     </div>
@@ -325,6 +336,5 @@
     </div>
     <!-- CONTAINER ENDS-->
     <asp:ObjectDataSource ID="objPost" runat="server" OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetNewsPopUp" TypeName="DataSetVepAdminTableAdapters.NewsTableAdapter">
-    </asp:ObjectDataSource>
+        SelectMethod="GetNewsPopUp" TypeName="DataSetVepAdminTableAdapters.NewsTableAdapter"></asp:ObjectDataSource>
 </asp:Content>
