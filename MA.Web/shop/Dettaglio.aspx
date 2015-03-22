@@ -31,7 +31,7 @@
 
     <script type="text/javascript" src="../js/slider.js"></script>
 
-    <script type="text/javascript" src="../js/jquery.slider.js"></script>
+    <script type="text/javascript" src="../js/jquery.slider.js"></script> 
 
     <script type="text/javascript" src="../js/custom.js"></script>
 
