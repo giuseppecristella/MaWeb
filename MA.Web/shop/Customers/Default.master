@@ -13,17 +13,17 @@
     <meta name="robots" content="index,follow" />
     <asp:Literal runat="server" ID="ltrMetaFB"></asp:Literal>
     <!--CSS FILES STARTS-->
-     <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/prettyPhoto.css" type="text/css" media="screen" />
     <link href="../css/slider.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../css/jquery.slider.css" />
- 
+
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,regularitalic,600,600italic,bold,bolditalic'
         type='text/css' />
-         <%-- <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:bold:400,700' rel='stylesheet' type='text/css'/>--%>
+    <%-- <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:bold:400,700' rel='stylesheet' type='text/css'/>--%>
     <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
- 
- 
+
+
     <!--CSS FILES ENDS-->
 
     <script type="text/javascript">        document.getElementsByTagName('html')[0].className += ' js';</script>
@@ -41,10 +41,10 @@
         /***************************************************
         PRETTY PHOTO
         ***************************************************/
-        jQuery.noConflict()(function($) {
-            $(document).ready(function() {
+        jQuery.noConflict()(function ($) {
+            $(document).ready(function () {
 
-                $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80, default_width: 500, default_height: 344,  hideflash: false, modal: false });
+                $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80, default_width: 500, default_height: 344, hideflash: false, modal: false });
 
             });
         });
@@ -68,148 +68,115 @@
 
 <body onload="load()">
     <form id="form1" runat="server">
-   
-     <div id="wrapper">
-        <div class="center">
-            <p class="header-text-left">
-                T: +39 821 39 36 E: shop@materarredamenti.it
-            </p>
-            <ul id="header-icons">
-                <li><a href="Default.aspx">Account Info</a></li>
-                <li><a href="Ordini.aspx">Ordini</a></li>
-               <asp:LoginView ID="loginView1" runat="server">
-                    <LoggedInTemplate>
-                         <li> 
-                              <asp:LoginName  CssClass="colored" runat="server" ID="loginName" FormatString="{0}" />
-                           
-                            <asp:LoginStatus   Style="float:right;margin-left:10px;" runat="server" ID="logStatus" LoginText="Login" LogoutText="Logout"
-                                LogoutPageUrl="~/shop/Catalogo.aspx" CssClass="loginsubmit" />
-                         
-                          </li>
-                    </LoggedInTemplate>
-                    <AnonymousTemplate>
-                        <li><a href="Accedi.aspx">Accedi</a></li>
-                    </AnonymousTemplate>
-                </asp:LoginView>
-            </ul>
-            <div id="container">
-                <!--WRAPPER-->
-                <div id="header">
-                    <!-- HEADER  -->
-                    <!-- LOGO -->
-                    <a id="logoss" class="logoArancio" title="Homepage" href="#"></a>
-                    <!--LOGO ENDS  -->
-                    <div id="main_navigation" class="main-menu arancio">
-                        <!--  MAIN  NAVIGATION-->
-                       
-                          <ul>
-                            <li><a href="../design.html" title="Home">Design Casa</a></li>
-                            <li><a href="../tradizione.html">La Tradizione</a> </li>
-                        </ul>
-                        
+
+        <div id="wrapper">
+            <div class="center">
+                <p class="header-text-left">
+                    T: +39 821 39 36 E: shop@materarredamenti.it
+                </p>
+                <ul id="header-icons">
+                    <li><a href="Default.aspx">Account Info</a></li>
+                    <li><a href="Ordini.aspx">Ordini</a></li>
+                    <asp:LoginView ID="loginView1" runat="server">
+                        <LoggedInTemplate>
+                            <li>
+                                <asp:LoginName CssClass="colored" runat="server" ID="loginName" FormatString="{0}" />
+
+                                <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus" LoginText="Login" LogoutText="Logout"
+                                    LogoutPageUrl="~/shop/Catalogo.aspx" CssClass="loginsubmit" />
+
+                            </li>
+                        </LoggedInTemplate>
+                        <AnonymousTemplate>
+                            <li><a href="Accedi.aspx">Accedi</a></li>
+                        </AnonymousTemplate>
+                    </asp:LoginView>
+                </ul>
+                <div id="container">
+                    <div id="header">
+                        <a id="logo_v" class="logoRosso" title="Homepage"
+                            href="/shop"></a>
+                        <div id="main_navigation" class="main-menu rosso">
+                            <ul runat="server" id="menuCatShop">
+                            </ul>
+                        </div>
+                        <div style="background: #D10A11;" id="carrello">
+                            <a href="Carrello.aspx" class="carrello_titolo">
+                                <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
+                        </div>
                     </div>
-                    <!-- MAIN NAVIGATION ENDS-->
-                    <div style="background: #F9B233;" id="carrello">
-                        <a href="Carrello.aspx" class="carrello_titolo"><asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
-                    </div>
-                </div>
-                <!-- HEADER ENDS-->
-                <!-- MAIN CONTAINER -->
-                <div id="content">
-                     
-                      <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
-        </asp:ContentPlaceHolder>
-                     
-                      <div id="footer-wrapper">
-                        <!-- FOOTER WRAPPER STARTS-->
-                        <div id="footer-container">
-                            <!-- FOOTER CONTAINER STARTS-->
-                            <div id="footer">
-                                <!-- FOOTER STARTS-->
-                                <div class="one">
-                                    <!-- COLUMN CONTAINER STARTS-->
-                                    <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
-                                        <!-- COLUMN STARTS-->
-                                        <strong>Metodi di Pagamento</strong>
-                                        <img src="../images/pagamenti.png" />
-                                        <!--<ul id="our-photos-footer">
-                                            <li><a href="#">
-                                                <img src="images/clients/1.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/2.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/3.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li class="last"><a href="#">
-                                                <img src="images/clients/4.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/5.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/6.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li><a href="#">
-                                                <img src="images/clients/7.jpg" width="40" height="40" alt=" " /></a></li>
-                                            <li class="last"><a href="#">
-                                                <img src="images/clients/8.jpg" width="40" height="40" alt=" " /></a></li>
-                                        </ul>-->
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div style="margin-right: 10px;" class="one-fourth">
-                                       <strong style="padding-left: 10px;">Termini e condizioni</strong>
-                                        <ul class="simple-nav">
-                                            <li><a href="#">Shop Design</a></li>
-                                            <li><a href="#">Shop Tradizione</a></li>
-                                            <li><a href="#">Pagamenti</a></li>
-                                            <li><a href="#">Spedizioni</a></li>
-                                        </ul>
-                                      
-                                      
-                                        
-                                        <!--END UL-->
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div style="margin-right: 10px;" class="one-fourth">
-                                        <!-- COLUMN STARTS-->
-                                        <strong style="padding-left: 10px;">Contatti</strong>
-                                        <ul style="padding-left: 10px;" id="footer-info">
-                                            <li>A: Via Selva S. Vito, 23 - Laterza (TA)</li>
-                                            <li>T: + 39 099 82 16 774</li>
-                                            <li>C: +39 338 49 01 627 </li>
-                                            <li>E: <a href="#">info@materarredamenti.it</a></li>
-                                            <li>E-2: <a href="#">shop@materarredamenti.it</a></li>
-                                            <!-- SOCIAL LINKS ENDS-->
-                                        </ul>
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div class="one-fourth last">
-                                        <!-- COLUMN STARTS-->
-                                       <!-- COLUMN STARTS-->
-                                        <strong style="padding-left: 10px;">Dove Siamo</strong>
-                                        <div id="Gmap__" style="width: 215px; height: 150px">
-                                            <iframe width="215" height="150" frameborder="0" scrolling="no" marginheight="0"
-                                                marginwidth="0" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=laterza+via+selva+san+vito+23&amp;aq=&amp;sll=40.354131,18.174294&amp;sspn=0.107007,0.222988&amp;ie=UTF8&amp;hq=laterza+via+selva+san+vito+23&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=40.619624,16.808159&amp;spn=0.071946,0.071946&amp;output=embed">
-                                            </iframe>
+
+                    <div id="content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <div id="footer-wrapper">
+                            <div id="footer-container">
+                                <div id="footer">
+                                    <div class="one">
+                                        <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                            <!-- COLUMN STARTS-->
+                                            <strong>Metodi di Pagamento</strong>
+                                            <img src="../images/pagamenti.png" />
+
                                         </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <strong style="padding-left: 10px;">Termini e condizioni</strong>
+                                            <ul class="simple-nav">
+                                                <li><a href="#">Shop Design</a></li>
+                                                <li><a href="#">Shop Tradizione</a></li>
+                                                <li><a href="#">Pagamenti</a></li>
+                                                <li><a href="#">Spedizioni</a></li>
+                                            </ul>
+
+
+
+                                            <!--END UL-->
+                                        </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <!-- COLUMN STARTS-->
+                                            <strong style="padding-left: 10px;">Contatti</strong>
+                                            <ul style="padding-left: 10px;" id="footer-info">
+                                                <li>A: Via Selva S. Vito, 23 - Laterza (TA)</li>
+                                                <li>T: + 39 099 82 16 774</li>
+                                                <li>C: +39 338 49 01 627 </li>
+                                                <li>E: <a href="#">info@materarredamenti.it</a></li>
+                                                <li>E-2: <a href="#">shop@materarredamenti.it</a></li>
+                                                <!-- SOCIAL LINKS ENDS-->
+                                            </ul>
+                                        </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div class="one-fourth last">
+                                            <!-- COLUMN STARTS-->
+                                            <!-- COLUMN STARTS-->
+                                            <strong style="padding-left: 10px;">Dove Siamo</strong>
+                                            <div id="Gmap__" style="width: 215px; height: 150px">
+                                                <iframe width="215" height="150" frameborder="0" scrolling="no" marginheight="0"
+                                                    marginwidth="0" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=laterza+via+selva+san+vito+23&amp;aq=&amp;sll=40.354131,18.174294&amp;sspn=0.107007,0.222988&amp;ie=UTF8&amp;hq=laterza+via+selva+san+vito+23&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=40.619624,16.808159&amp;spn=0.071946,0.071946&amp;output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                        <!-- COLUMN ENDS-->
                                     </div>
-                                    <!-- COLUMN ENDS-->
+                                    <!-- COLUMN CONTAINER ENDS-->
                                 </div>
-                                <!-- COLUMN CONTAINER ENDS-->
-                            </div>
-                            <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
-                                  <p>
-                                   <%-- <a style="color: #000;" href="#">Maioliche</a> / <a style="color: #000;" href="#">Succhi di Puglia</a>
+                                <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
+                                    <p>
+                                        <%-- <a style="color: #000;" href="#">Maioliche</a> / <a style="color: #000;" href="#">Succhi di Puglia</a>
                                     / <a style="color: #000;" href="#">Antichi Sapori</a> / <a style="color: #000;" href="#">Specialità</a>
                                     / <a style="color: #000;" href="#">Idee Regalo</a>--%>
-                                </p>
+                                    </p>
+                                </div>
+                                <!-- FOOTER ENDS-->
                             </div>
-                            <!-- FOOTER ENDS-->
+                            <!-- FOOTER CONTAINER ENDS-->
                         </div>
-                        <!-- FOOTER CONTAINER ENDS-->
-                    </div>
-                    <!-- FOOTER WRAPPER ENDS-->
-                    <div id="copyright-wrapper">
-                        <!-- COPYRIGHTS WRAPPER STARTS-->
-                        <div id="copyright">
-                            <a id="logo-copyright" title="Homepage" href="#"></a>
-                       <!--     <div class="right">
+                        <!-- FOOTER WRAPPER ENDS-->
+                        <div id="copyright-wrapper">
+                            <!-- COPYRIGHTS WRAPPER STARTS-->
+                            <div id="copyright">
+                                <a id="logo-copyright" title="Homepage" href="#"></a>
+                                <!--     <div class="right">
                                 <p>
                                     <a href="#">Home</a> / <a href="#">Features</a> / <a href="#">Pages</a> / <a href="#">
                                         Portfolio</a> / <a href="#">Blog</a> / <a href="#">Typography &amp; Columns</a>
@@ -217,30 +184,21 @@
                                 </p>
                                 <span>© Copyright 2011. All rights reserved. Template created by:<a href="http://themeforest.net/user/trendyWebStar">trendyWebStar</a></span>
                             </div>-->
+                            </div>
+                            <!-- COPYRIGHTS ENDS-->
                         </div>
-                        <!-- COPYRIGHTS ENDS-->
+                        <!-- COPYRIGHTS WRAPPER ENDS-->
                     </div>
-                    <!-- COPYRIGHTS WRAPPER ENDS-->
                 </div>
             </div>
         </div>
-    </div>
-   
-   
-   
-   
-   
-   
-  <%-- FINE NUOVA MASTER--%>
-   
-   
-   
-   
-   
-   
-   
-   
-    
+
+
+
+
+
+
+        <%-- FINE NUOVA MASTER--%>
     </form>
 </body>
 </html>

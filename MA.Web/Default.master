@@ -177,28 +177,28 @@
                     </ul>
                 </div>
                 <div class="one-fourth">
-                    <!-- COLUMN STARTS-->
+                    <!-- COLUMN STARTS--> 
                     <h6>
                         Info</h6>
                     <ul class="social-links">
                         <!-- SOCIAL LINKS STARTS-->
                         <li class="address">
                             <div style="width: 25px; float: left; height: 16px;">
-                                <img style="margin-left: 3px;" src="images/address.png" alt="#" />
+                                <img style="margin-left: 3px;" src="<%= Page.ResolveClientUrl("images")  %>/address.png" alt="#" />
                             </div>
                             <span style="color: #BABDC0;">&nbsp;Via Selva San Vito 23</span></li>
                         <li class="address">
-                            <img src="images/iphone.png" alt="#" /><span style="color: #BABDC0;">Laterza, Taranto
+                            <img src="<%= Page.ResolveClientUrl("images")  %>/iphone.png" alt="#" /><span style="color: #BABDC0;">Laterza, Taranto
                                 74014</span> </li>
                         <li class="address">
-                            <img src="images/mail_ok.png" alt="#" /><a style="color: #BABDC0; height: 6px;" href="mailto:#">info@materarredamenti.it</a>
+                            <img src="<%= Page.ResolveClientUrl("images")  %>/mail_ok.png" alt="#" /><a style="color: #BABDC0; height: 6px;" href="mailto:#">info@materarredamenti.it</a>
                         </li>
                         <li class="address">
-                            <img src="images/tel.png" alt="#" /><span style="color: #BABDC0;">+39 099 82 16 774</span>
+                            <img src="<%= Page.ResolveClientUrl("images") %>/tel.png" alt="#" /><span style="color: #BABDC0;">+39 099 82 16 774</span>
                         </li>
                         <li class="address">
                             <div style="width: 28px; float: left; height: 16px;">
-                                <img style="margin-left: 3px;" src="images/iphone2.png" alt="#" />
+                                <img style="margin-left: 3px;" src="<%= Page.ResolveClientUrl("images") %>/iphone2.png"" alt="#" />
                             </div>
                             <span style="color: #BABDC0;">+39 338 49 01 627</span> </li>
                     </ul>

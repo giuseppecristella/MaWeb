@@ -40,8 +40,8 @@
         /***************************************************
         PRETTY PHOTO
         ***************************************************/
-        jQuery.noConflict()(function($) {
-            $(document).ready(function() {
+        jQuery.noConflict()(function ($) {
+            $(document).ready(function () {
 
                 $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80, default_width: 500, default_height: 344, hideflash: false, modal: false });
 
@@ -65,157 +65,147 @@
 
 <body>
     <form id="form1" runat="server">
-    <div id="wrapper">
-        <div class="center">
-            <p class="header-text-left">
-                T: +39 821 39 36 E: shop@materarredamenti.it
-            </p>
-            <ul id="header-icons">
-                <li><a href="Customers/Default.aspx">Account Info</a></li>
-                <li><a href="Customers/Ordini.aspx">Ordini</a></li>
-                <asp:LoginView ID="loginView1" runat="server">
-                    <LoggedInTemplate>
-                        <li>
-                            <asp:LoginName CssClass="colored" runat="server" ID="loginName" FormatString="{0}" />
-                            <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
-                                LoginText="Login" LogoutText="Logout" LogoutPageUrl="~/shop/Catalogo.aspx" CssClass="loginsubmit" />
-                        </li>
-                    </LoggedInTemplate>
-                    <AnonymousTemplate>
-                        <li><a href="Accedi.aspx">Accedi</a></li>
-                    </AnonymousTemplate>
-                </asp:LoginView>
-            </ul>
-            <div id="container">
-                <!--WRAPPER-->
-                <div id="header">
-                    <!-- HEADER  -->
-                    <!-- LOGO -->
-                    <a id="logo_v" class="logoArancioCar" title="Homepage" href="#"></a>
-                    <!--LOGO ENDS  -->
-                    <div id="main_navigation" class="main-menu arancio">
-                        <!--  MAIN  NAVIGATION-->
-                        <ul id="menuCatShop">
-                            <li><a href="design.html" title="Home">Design Casa</a></li>
-                            <li><a href="tradizione.html">La Tradizione</a> </li>
-                        </ul>
-                    </div>
-                    <!-- MAIN NAVIGATION ENDS-->
-                    <div style="background: #F9B233" class="divCarrello" id="divCarrello">
-                        <a href="Carrello.aspx" class="carrello_titolo">
-                            <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
-                    </div>
-                </div>
-                <!-- HEADER ENDS-->
-                <!-- MAIN CONTAINER -->
-                <div id="content">
-                    <div style="padding: 20px 0 20px 0;" class="one">
-                        <div class="headline">
-                            <h4>
-                                Il tuo > Carrello
-                            </h4>
+        <div id="wrapper">
+            <div class="center">
+                <p class="header-text-left">
+                    T: +39 821 39 36 E: shop@materarredamenti.it
+                </p>
+                <ul id="header-icons">
+                    <li><a href="Customers/Default.aspx">Account Info</a></li>
+                    <li><a href="Customers/Ordini.aspx">Ordini</a></li>
+                    <asp:LoginView ID="loginView1" runat="server">
+                        <LoggedInTemplate>
+                            <li>
+                                <asp:LoginName CssClass="colored" runat="server" ID="loginName" FormatString="{0}" />
+                                <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
+                                    LoginText="Login" LogoutText="Logout" LogoutPageUrl="~/shop/Catalogo.aspx" CssClass="loginsubmit" />
+                            </li>
+                        </LoggedInTemplate>
+                        <AnonymousTemplate>
+                            <li><a href="Accedi.aspx">Accedi</a></li>
+                        </AnonymousTemplate>
+                    </asp:LoginView>
+                </ul>
+                <div id="container">
+                    <div id="header">
+                        <a id="logo_v" class="logoRosso" title="Homepage"
+                            href="/shop"></a>
+                        <div id="main_navigation" class="main-menu rosso">
+                            <ul runat="server" id="menuCatShop">
+                            </ul>
+                        </div>
+                        <div style="background: #D10A11;" id="carrello">
+                            <a href="Carrello.aspx" class="carrello_titolo">
+                                <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                         </div>
                     </div>
-                    <div style="min-height: 580px;" class="one">
-                        <div style="margin-left: 30px; width: 195px;" class="one-fourth">
-                            <p>
-                                Stai visualizzando i prodotti che intendi acquistare.
-                            </p>
-                            <p>
-                                Puoi modificare la quantità dei prodotti o cancellarne alcuni.
-                                <br />
-                                Per confermare queste operazioni clicca il link 'Aggiorna il Carrello'.
-                            </p>
+                    <div id="content">
+                        <div style="padding: 20px 0 20px 0;" class="one">
+                            <div class="headline">
+                                <h4>Il tuo > Carrello
+                                </h4>
+                            </div>
                         </div>
-                        <div class="three-third">
-                            <asp:ListView runat="server" ID="lvCart" OnItemDataBound="lvDataBound">
-                                <EmptyDataTemplate>
-                                    <div style="float: right; margin: auto; text-align: center; width: 700px;" class="simple-notice">
-                                        <strong>Attenzione: </strong>il tuo carrello è vuoto.
-                                    </div>
-                                </EmptyDataTemplate>
-                                <LayoutTemplate>
-                                    <table class="carrello">
-                                        <tr runat="server" id="itemPlaceholder" />
-                                    </table>
-                                </LayoutTemplate>
-                                <ItemTemplate>
-                                    <tr>
-                                        <td>
-                                            <asp:Image runat="server" ID="imgprod" Width="100" />
-                                        </td>
-                                        <td>
-                                            <fieldset>
-                                                <label style="width: 320px;" class="cartLabel">
-                                                    <asp:Literal runat="server" ID="lblnomeprod"></asp:Literal></label>
-                                                <asp:Label runat="server" ID="lblprezzoun" Style="width: 60px;" class="cartLabel"></asp:Label>
-                                                <asp:Label runat="server" ID="Label1" Style="width: 5px;" class="cartLabel_noborder">x</asp:Label>
-                                                <asp:TextBox runat="server" ID="txtqta" CssClass="cartLabel" Style="width: 20px;
-                                                    height: 20px"></asp:TextBox>
-                                                <asp:Label runat="server" ID="lblprezzotot" Style="width: 70px;" class="cartLabel"></asp:Label>
-                                            </fieldset>
-                                            <br />
-                                            <fieldset>
-                                                <asp:CheckBox runat="server" ID="chkDelete" Style="float: left;" />
-                                                <label style="margin-left: 5px; float: left;">
-                                                    voglio eliminare questo articolo dal carrello.</label>
-                                                <asp:LinkButton runat="server" Style="float: right;" ID="lnkbtnDettProd" Text="visualizza dettagli articolo" />
-                                            </fieldset>
-                                            <fieldset>
-                                            </fieldset>
-                                        </td>
-                                    </tr>
-                                </ItemTemplate>
-                            </asp:ListView>
-                            <asp:Panel runat="server" ID="pnlCartTotal">
+                        <div style="min-height: 580px;" class="one">
+                            <div style="margin-left: 30px; width: 195px;" class="one-fourth">
+                                <p>
+                                    Stai visualizzando i prodotti che intendi acquistare.
+                                </p>
+                                <p>
+                                    Puoi modificare la quantità dei prodotti o cancellarne alcuni.
                                 <br />
-                                <fieldset runat="server" id="msgError" visible="false" style="text-align: left" class="simple-error">
-                                    <strong>Attenzione: </strong>non è stato possibile completare l'operazione in quanto
+                                    Per confermare queste operazioni clicca il link 'Aggiorna il Carrello'.
+                                </p>
+                            </div>
+                            <div class="three-third">
+                                <asp:ListView runat="server" ID="lvCart" OnItemDataBound="lvDataBound">
+                                    <EmptyDataTemplate>
+                                        <div style="float: right; margin: auto; text-align: center; width: 700px;" class="simple-notice">
+                                            <strong>Attenzione: </strong>il tuo carrello è vuoto.
+                                        </div>
+                                    </EmptyDataTemplate>
+                                    <LayoutTemplate>
+                                        <table class="carrello">
+                                            <tr runat="server" id="itemPlaceholder" />
+                                        </table>
+                                    </LayoutTemplate>
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td>
+                                                <asp:Image runat="server" ID="imgprod" Width="100" />
+                                            </td>
+                                            <td>
+                                                <fieldset>
+                                                     <asp:HiddenField runat="server" ID="hfProductId"/>
+                                                    <label style="width: 320px;" class="cartLabel">
+                                                        <asp:Literal runat="server" ID="lblnomeprod"></asp:Literal></label>
+                                                    <asp:Label runat="server" ID="lblprezzoun" Style="width: 60px;" class="cartLabel"></asp:Label>
+                                                    <asp:Label runat="server" ID="Label1" Style="width: 5px;" class="cartLabel_noborder">x</asp:Label>
+                                                    <asp:TextBox runat="server" ID="txtqta" CssClass="cartLabel" Style="width: 20px; height: 20px"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="lblprezzotot" Style="width: 70px;" class="cartLabel"></asp:Label>
+                                                </fieldset>
+                                                <br />
+                                                <fieldset>
+                                                    <asp:CheckBox runat="server" ID="chkDelete" Style="float: left;" />
+                                                    <label style="margin-left: 5px; float: left;">
+                                                        desidero eliminare questo articolo dal carrello</label>
+                                                    <asp:LinkButton runat="server" Style="float: right;" ID="lnkbtnDettProd" Text="visualizza dettagli articolo" />
+                                                </fieldset>
+                                                <fieldset>
+                                                </fieldset>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:ListView>
+                                <asp:Panel runat="server" ID="pnlCartTotal">
+                                    <br />
+                                    <fieldset runat="server" id="msgError" visible="false" style="text-align: left" class="simple-error">
+                                        <strong>Attenzione: </strong>non è stato possibile completare l'operazione in quanto
                                     i prodotti evidenziati in rosso non sono disponbili nella quantità richiesta. Si
                                     prega di consultare la disponibilità nel dettaglio del prodotto.
-                                </fieldset>
-                                <fieldset>
-                                    <asp:LinkButton runat="server" ID="btnUpdateCart" Style="margin-left: 30px;" Text="Aggiorna il Carrello"
-                                        OnClick="btnUpdateCart_Click" />
-                                    <label class="cartLabel" style="float: right; margin-right: 30px;">
-                                        Totale €.&nbsp;
+                                    </fieldset>
+                                    <fieldset>
+                                        <asp:LinkButton runat="server" ID="btnUpdateCart" Style="margin-left: 30px;" Text="Aggiorna il Carrello"
+                                            OnClick="btnUpdateCart_Click" />
+                                        <label class="cartLabel" style="float: right; margin-right: 30px;">
+                                            Tot.&nbsp;
                                         <asp:Literal runat="server" ID="ltrSomma"></asp:Literal></label>
-                                </fieldset>
-                                <br />
-                                <fieldset>
-                                    <asp:LinkButton Style="float: right; margin-right: 30px;" CssClass="fancy-button red small"
-                                        ID="LinkButton1" runat="server" OnClick="lnkbtncheckout_Click">Conferma ordine</asp:LinkButton>
-                                </fieldset>
-                                <br />
-                                <fieldset>
-                                    <asp:LinkButton runat="server" Text="Continua lo shopping" ID="lnkbtnContinueShop"
-                                        CssClass="fancy-button_ red small" Style="float: right; margin-right: 30px;"
-                                        OnClick="lnkbtnContinueShop_Click"></asp:LinkButton>
-                                </fieldset>
-                                <div class="clear">
-                                </div>
-                            </asp:Panel>
+                                    </fieldset>
+                                    <br />
+                                    <fieldset>
+                                        <asp:LinkButton Style="float: right; margin-right: 30px;" CssClass="fancy-button red small"
+                                            ID="LinkButton1" runat="server" OnClick="lnkbtncheckout_Click">Conferma ordine</asp:LinkButton>
+                                    </fieldset>
+                                    <br />
+                                    <fieldset>
+                                        <asp:LinkButton runat="server" Text="Continua lo shopping" ID="lnkbtnContinueShop"
+                                            CssClass="fancy-button red small" Style="float: right; margin-right: 30px;"
+                                            OnClick="lnkbtnContinueShop_Click"></asp:LinkButton>
+                                    </fieldset>
+                                    <div class="clear">
+                                    </div>
+                                </asp:Panel>
+                            </div>
+                            <div class="one-third">
+                            </div>
+                            <div class="one-third">
+                            </div>
+                            <div class="one-third last">
+                            </div>
                         </div>
-                        <div class="one-third">
-                        </div>
-                        <div class="one-third">
-                        </div>
-                        <div class="one-third last">
-                        </div>
-                    </div>
-                    <div id="footer-wrapper">
-                        <!-- FOOTER WRAPPER STARTS-->
-                        <div id="footer-container">
-                            <!-- FOOTER CONTAINER STARTS-->
-                            <div id="footer">
-                                <!-- FOOTER STARTS-->
-                                <div class="one">
-                                    <!-- COLUMN CONTAINER STARTS-->
-                                    <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
-                                        <!-- COLUMN STARTS-->
-                                        <strong>Metodi di Pagamento</strong>
-                                        <img src="images/pagamenti.png" />
-                                        <!--<ul id="our-photos-footer">
+                        <div id="footer-wrapper">
+                            <!-- FOOTER WRAPPER STARTS-->
+                            <div id="footer-container">
+                                <!-- FOOTER CONTAINER STARTS-->
+                                <div id="footer">
+                                    <!-- FOOTER STARTS-->
+                                    <div class="one">
+                                        <!-- COLUMN CONTAINER STARTS-->
+                                        <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                            <!-- COLUMN STARTS-->
+                                            <strong>Metodi di Pagamento</strong>
+                                            <img src="images/pagamenti.png" />
+                                            <!--<ul id="our-photos-footer">
                                             <li><a href="#">
                                                 <img src="images/clients/1.jpg" width="40" height="40" alt=" " /></a></li>
                                             <li><a href="#">
@@ -233,63 +223,62 @@
                                             <li class="last"><a href="#">
                                                 <img src="images/clients/8.jpg" width="40" height="40" alt=" " /></a></li>
                                         </ul>-->
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div style="margin-right: 10px;" class="one-fourth">
-                                        <strong style="padding-left: 10px;">Termini e condizioni</strong>
-                                        <ul class="simple-nav">
-                                            <li><a href="#">Shop Design</a></li>
-                                            <li><a href="#">Shop Tradizione</a></li>
-                                            <li><a href="#">Pagamenti</a></li>
-                                            <li><a href="#">Spedizioni</a></li>
-                                        </ul>
-                                        <!--END UL-->
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div style="margin-right: 10px;" class="one-fourth">
-                                        <!-- COLUMN STARTS-->
-                                        <strong style="padding-left: 10px;">Contatti</strong>
-                                        <ul style="padding-left: 10px;" id="footer-info">
-                                            <li>A: Via Selva S. Vito, 23 - Laterza (TA)</li>
-                                            <li>T: + 39 099 82 16 774</li>
-                                            <li>C: +39 338 49 01 627 </li>
-                                            <li>E: <a href="#">info@materarredamenti.it</a></li>
-                                            <li>E-2: <a href="#">shop@materarredamenti.it</a></li>
-                                            <!-- SOCIAL LINKS ENDS-->
-                                        </ul>
-                                    </div>
-                                    <!-- COLUMN ENDS-->
-                                    <div class="one-fourth last">
-                                        <!-- COLUMN STARTS-->
-                                        <!-- COLUMN STARTS-->
-                                        <strong style="padding-left: 10px;">Dove Siamo</strong>
-                                        <div id="Gmap__" style="width: 215px; height: 150px">
-                                            <iframe width="215" height="150" frameborder="0" scrolling="no" marginheight="0"
-                                                marginwidth="0" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=laterza+via+selva+san+vito+23&amp;aq=&amp;sll=40.354131,18.174294&amp;sspn=0.107007,0.222988&amp;ie=UTF8&amp;hq=laterza+via+selva+san+vito+23&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=40.619624,16.808159&amp;spn=0.071946,0.071946&amp;output=embed">
-                                            </iframe>
                                         </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <strong style="padding-left: 10px;">Termini e condizioni</strong>
+                                            <ul class="simple-nav">
+                                                <li><a href="#">Shop Design</a></li>
+                                                <li><a href="#">Shop Tradizione</a></li>
+                                                <li><a href="#">Pagamenti</a></li>
+                                                <li><a href="#">Spedizioni</a></li>
+                                            </ul>
+                                            <!--END UL-->
+                                        </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <!-- COLUMN STARTS-->
+                                            <strong style="padding-left: 10px;">Contatti</strong>
+                                            <ul style="padding-left: 10px;" id="footer-info">
+                                                <li>A: Via Selva S. Vito, 23 - Laterza (TA)</li>
+                                                <li>T: + 39 099 82 16 774</li>
+                                                <li>C: +39 338 49 01 627 </li>
+                                                <li>E: <a href="#">info@materarredamenti.it</a></li>
+                                                <li>E-2: <a href="#">shop@materarredamenti.it</a></li>
+                                                <!-- SOCIAL LINKS ENDS-->
+                                            </ul>
+                                        </div>
+                                        <!-- COLUMN ENDS-->
+                                        <div class="one-fourth last">
+                                            <!-- COLUMN STARTS-->
+                                            <!-- COLUMN STARTS-->
+                                            <strong style="padding-left: 10px;">Dove Siamo</strong>
+                                            <div id="Gmap__" style="width: 215px; height: 150px">
+                                                <iframe width="215" height="150" frameborder="0" scrolling="no" marginheight="0"
+                                                    marginwidth="0" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=laterza+via+selva+san+vito+23&amp;aq=&amp;sll=40.354131,18.174294&amp;sspn=0.107007,0.222988&amp;ie=UTF8&amp;hq=laterza+via+selva+san+vito+23&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=40.619624,16.808159&amp;spn=0.071946,0.071946&amp;output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                        <!-- COLUMN ENDS-->
                                     </div>
-                                    <!-- COLUMN ENDS-->
+                                    <!-- COLUMN CONTAINER ENDS-->
                                 </div>
-                                <!-- COLUMN CONTAINER ENDS-->
-                            </div>
-                            <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
-                                <p>
-                                    <%-- <a style="color: #000;" href="#">Maioliche</a> / <a style="color: #000;" href="#">Succhi di Puglia</a>
+                                <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
+                                    <p>
+                                        <%-- <a style="color: #000;" href="#">Maioliche</a> / <a style="color: #000;" href="#">Succhi di Puglia</a>
                                     / <a style="color: #000;" href="#">Antichi Sapori</a> / <a style="color: #000;" href="#">Specialità</a>
                                     / <a style="color: #000;" href="#">Idee Regalo</a>--%>
-                                </p>
+                                    </p>
+                                </div>
+                                <!-- FOOTER ENDS-->
                             </div>
-                            <!-- FOOTER ENDS-->
+                            <!-- FOOTER CONTAINER ENDS-->
                         </div>
-                        <!-- FOOTER CONTAINER ENDS-->
-                    </div>
-                    <!-- FOOTER WRAPPER ENDS-->
-                    <div id="copyright-wrapper">
-                        <!-- COPYRIGHTS WRAPPER STARTS-->
-                        <div id="copyright">
-                            <a id="logo-copyright" title="Homepage" href="#"></a>
-                            <!--     <div class="right">
+                        <!-- FOOTER WRAPPER ENDS-->
+                        <div id="copyright-wrapper">
+                            <!-- COPYRIGHTS WRAPPER STARTS-->
+                            <div id="copyright">
+                                <a id="logo-copyright" title="Homepage" href="#"></a>
+                                <!--     <div class="right">
                                 <p>
                                     <a href="#">Home</a> / <a href="#">Features</a> / <a href="#">Pages</a> / <a href="#">
                                         Portfolio</a> / <a href="#">Blog</a> / <a href="#">Typography &amp; Columns</a>
@@ -297,14 +286,14 @@
                                 </p>
                                 <span>© Copyright 2011. All rights reserved. Template created by:<a href="http://themeforest.net/user/trendyWebStar">trendyWebStar</a></span>
                             </div>-->
+                            </div>
+                            <!-- COPYRIGHTS ENDS-->
                         </div>
-                        <!-- COPYRIGHTS ENDS-->
+                        <!-- COPYRIGHTS WRAPPER ENDS-->
                     </div>
-                    <!-- COPYRIGHTS WRAPPER ENDS-->
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </body>
 </html>

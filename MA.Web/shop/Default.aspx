@@ -12,8 +12,6 @@
             <div id="slides">
                 <div id="slider-big">
                     <div class="slides_container big-slider">
-                        <!-- SLIDER STARTS-->
-                        <!-- SLIDER CONTENT STARTS-->
                         <div class="slide">
                             <img src="images/slideshow/slide-rossa-01.jpg" alt=" " width="960" height="400" />
                         </div>
@@ -27,15 +25,12 @@
                             <img src="images/slideshow/slide-rossa-04.jpg" alt=" " width="960" height="400" />
                         </div>
                     </div>
-                    <!-- SLIDESHOW CONTAINER ENDS-->
                 </div>
                 <div class="slides-nav">
                     <a href="#" class="prev">Previous Slide</a> <a href="#" class="next">Next Slide</a>
                 </div>
             </div>
         </div>
-        <!-- SLIDER ENDS-->
-        <!-- SLIDESHOW ENDS-->
     </div>
     <div class="one">
         <div class="one-third">
@@ -46,7 +41,7 @@
                 vai al nostro magazine </a>
         </div>
         <div class="one-third last">
-            <a href="tradizione.html" id="tasto-trad">vai allo shop design e casa </a>
+            <a href="#" id="tasto-trad">vai allo shop design e casa </a>
         </div>
     </div>
     <div style="padding-top: 40px;" class="one">

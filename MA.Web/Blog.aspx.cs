@@ -79,9 +79,9 @@ public partial class Blog : BaseBlogPage
     DataTable dtNews;
     arrayBlogPosts.Insert(j,
       string.Format(
-        "<h6 style=\"height:50px;\">{0}</h6><p style=\"height:150px;overflow:hidden;\">{1}</p><a  href=\"BlogPost/{2}/{3}\">[+ Leggi Tutto]</a>",
+        "<h6>{0}</h6><p class=\"blog-box\">{1}</p><a class=\"blog-read-all\" href=\"BlogPost/{2}/{3}\">[+ Leggi Tutto]</a>",
        drBlogPost["Titolo"],
-        Helper.GetShortStringAndCleanTags(drBlogPost["Descrizione"].ToString(), 255),
+        Helper.GetShortStringAndCleanTags(drBlogPost["Descrizione"].ToString(), 250),
         drBlogPost["News_ID"],
         drBlogPost["Titolo"]));
   }

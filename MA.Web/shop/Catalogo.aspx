@@ -75,15 +75,14 @@
                     </asp:LoginView>
                 </ul>
                 <div id="container">
-                    <div id="header">
-                        <a id="logo_v" runat="server" class="logoVerde" visible="false" title="Homepage"
-                            href="tradizione.html"></a><a id="logo_r" runat="server" class="logoRosso" visible="false"
-                                title="Homepage" href="/shop"></a>
-                        <div runat="server" id="main_navigation" class="">
+                     <div id="header">
+                        <a id="logo_v" class="logoRosso" title="Homepage"
+                            href="/shop"></a>
+                        <div id="main_navigation" style="width:735px;" class="main-menu rosso">
                             <ul runat="server" id="menuCatShop">
                             </ul>
                         </div>
-                        <div runat="server" class="divCarrello" id="divCarrello">
+                        <div style="background: #D10A11;" id="carrello">
                             <a href="Carrello.aspx" class="carrello_titolo">
                                 <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                         </div>
@@ -146,8 +145,8 @@
                             </div>
                         </div>
                         <div runat="server" id="divSpotVerde" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-                            <a style="margin-top: 60px; background: transparent url('images/logo-tradizione.png') no-repeat; display: block; float: left; width: 220px; height: 70px; text-indent: -9999px;"
-                                id="A2" title="Homepage" href="tradizione.html"></a>
+                            <a style="margin-top: 60px; width: 220px; height: 70px; text-indent: -9999px;"
+                                class="banner-tradizione-logo" id="A2" title="Homepage" href="#"></a>
                             <div style="margin-top: 60px; background: #76A227; margin-left: 5px; float: left; width: 614px; height: 70px;">
                                 <p class="visita_shop">
                                     Entra e visita il nostro Shop Tradizione! Mille idee ti aspettano!
@@ -165,7 +164,7 @@
                                     <div class="one">
                                         <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
                                             <strong>Metodi di Pagamento</strong>
-                                            <img src="images/pagamenti.png" alt="" />
+                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
                                         </div>
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Termini e condizioni</strong>

@@ -4,6 +4,6 @@ public partial class Admin_MA_login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        // Logica per redirect in base al ruolo
     }
 }

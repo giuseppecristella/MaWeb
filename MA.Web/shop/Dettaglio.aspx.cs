@@ -127,7 +127,7 @@ public partial class shop_Dettaglio : BasePage
 
     private void BindProductImages(string productId)
     {
-        mainImage.Src = GetProductMainImageUrl(productId);
+        mainImage.Src = Product.imageurl = GetProductMainImageUrl(productId);
         var images = GetProductImagesUrlExceptMain(productId);
         if (images == null) return;
 
@@ -160,11 +160,11 @@ public partial class shop_Dettaglio : BasePage
 
     private void SetMainStyleAttributes()
     {
-        logo_r.Visible = true;
-        main_navigation.Attributes["class"] = "main-menu rosso";
-        divCarrello.Style.Add("background", "#D10A11");
-        lblNomeProd.CssClass = "colore_rosso";
-        divSpotVerde.Visible = true;
+        //logo_r.Visible = true;
+        //main_navigation.Attributes["class"] = "main-menu rosso";
+        //divCarrello.Style.Add("background", "#D10A11");
+        //lblNomeProd.CssClass = "colore_rosso";
+        //divSpotVerde.Visible = true;
     }
 
     private static string GetProductCategory(string[] categories)

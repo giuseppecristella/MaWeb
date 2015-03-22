@@ -8,15 +8,15 @@ public partial class Default : System.Web.UI.MasterPage
     {
         var arrayCart = (ArrayList)Session["carrello"];
         var numItems = 0;
-        if (arrayCart!=null)
+        if (arrayCart != null)
         {
-          numItems += arrayCart.Cast<Product>().Sum(tProd => int.Parse(tProd.qty));
+            numItems += arrayCart.Cast<Product>().Sum(tProd => int.Parse(tProd.qty));
         }
-        ltrTotCart.Text = numItems.ToString();
+
     }
 
     protected void _goNewsLetter(object sender, EventArgs e)
     {
-        
+
     }
 }

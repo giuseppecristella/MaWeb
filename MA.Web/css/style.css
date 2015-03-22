@@ -90,8 +90,8 @@ h5 {
 }
 
 h6 {
-    font-size: 20px;
-    line-height: 17px;
+    font-size: 1.6em;
+    line-height: 1.2em;
 }
 
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -2363,4 +2363,17 @@ a.tasto:hover {
     display: block;
     height: 32px;
     clear: both;
+}
+
+.blog-box {
+    /*height: 150px;*/
+    overflow: hidden;
+    line-height: 1.6em;
+    font-size: 1.15em;
+}
+
+.blog-read-all {
+    position: relative;
+    /*margin-top: 35px;*/
+    display: block;
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using Microsoft.AspNet.FriendlyUrls;
@@ -13,7 +14,7 @@ public partial class shop_Carrello : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+       // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
 
         if (Cart != null && !Cart.Products.Any())
         {
@@ -28,7 +29,10 @@ public partial class shop_Carrello : BasePage
             lvCart.DataBind();
         }
 
-        ltrSomma.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+        ltrSomma.Text = Cart != null ? Cart.Total.ToString("C") : String.Empty;
+
+        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
+        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
     }
 
     protected void lnkbtncheckout_Click(object sender, EventArgs e)
@@ -62,13 +66,14 @@ public partial class shop_Carrello : BasePage
         }
         if (!Cart.Products.Any())
         {
-            Response.Redirect("home_r.aspx");
+            //Response.Redirect("home_r.aspx");
             pnlCartTotal.Visible = false;
             LinkButton1.Enabled = false;
         }
-        lvCart.DataSource = Cart;
+        lvCart.DataSource = Cart.Products;
         lvCart.DataBind();
-        ltrTotCart.Text = ltrSomma.Text = Cart.Total.ToString("c");
+     //   ltrTotCart.Text = 
+            ltrSomma.Text = Cart.Total.ToString("c");
 
     }
 
@@ -78,22 +83,26 @@ public partial class shop_Carrello : BasePage
         if (item == null || item.DataItem as Product == null) return;
         var product = item.DataItem as Product;
 
+        // Id
+        var hfProductId = item.FindControl("hfProductId") as HiddenField;
+        if (hfProductId != null) hfProductId.Value = product.product_id;
+
         // Nome
         var lblnomeprod = item.FindControl("lblnomeprod") as Literal;
         if (lblnomeprod != null) lblnomeprod.Text = product.name;
 
         // Prezzo unitario
         var lblprezzoun = item.FindControl("lblprezzoun") as Label;
-        if (lblprezzoun != null) lblprezzoun.Text = string.Format("€. {0}", Helper.FormatCurrency(Helper.FormatCurrency(product.price)));
+        if (lblprezzoun != null) lblprezzoun.Text = string.Format("€. {0}", Helper.FormatCurrency(product.price));
 
         // Q.ta
         var txtqtaprod = item.FindControl("txtqta") as TextBox;
         if (txtqtaprod != null) txtqtaprod.Text = product.qty;
 
         // Prezzo totale
-        var tot = decimal.Parse(product.price) * int.Parse(product.qty);
+        var tot = decimal.Parse(product.price.Replace(".", ",")) * int.Parse(product.qty);
         var lblprezzotot = item.FindControl("lblprezzotot") as Label;
-        if (lblprezzotot != null) lblprezzotot.Text = string.Format("Tot. €. {0}", tot.ToString().Replace(".", ","));
+        if (lblprezzotot != null) lblprezzotot.Text = tot.ToString("C");
 
         // Immagine principale
         var imgprod = item.FindControl("imgprod") as Image;
@@ -126,16 +135,21 @@ public partial class shop_Carrello : BasePage
     {
         foreach (var item in lvCart.Items)
         {
-            if (item == null || item.DataItem as Product == null) continue;
-            var productId = (item.DataItem as Product).product_id;
+            if (item == null) continue;
+            var hfProductId = item.FindControl("hfProductId") as HiddenField;
+            if (hfProductId == null) return;
+            var productId = hfProductId.Value;
 
             var productQtyFromUI = GetProductItemQtyFromUI(item);
-            if (productQtyFromUI.HasValue == false) continue;
+            if ((productQtyFromUI.HasValue == false) || (!storedCart.Products.Any())) continue;
 
-            var productQtyFromStoredCart = int.Parse(
-              storedCart.Products.Where(p => p.product_id == productId).Select(p => p.qty).First());
+            var product = storedCart.Products.Where(p => p.product_id == productId).Select(p => p.qty).FirstOrDefault();
+            if (product == null) continue;
+
+            var productQtyFromStoredCart = int.Parse(product);
+
             if (productQtyFromUI.Value == productQtyFromStoredCart) continue;
-            if (_repository.GetStocksForProduct(productId) > productQtyFromUI)
+            if (_repository.GetStocksForProduct(productId) >= productQtyFromUI)
             {
                 var valueToUpdate = storedCart.Products.First(p => p.product_id == productId);
                 valueToUpdate.qty = productQtyFromUI.Value.ToString();
@@ -150,8 +164,10 @@ public partial class shop_Carrello : BasePage
         foreach (var item in items)
         {
             var chkDelete = item.FindControl("chkDelete") as CheckBox;
-            if (chkDelete == null) continue;
-            productToRemove.Add((item.DataItem as Product));
+            if (chkDelete == null || !chkDelete.Checked) continue;
+            var hfProductId = item.FindControl("hfProductId") as HiddenField;
+            if (hfProductId == null) return null;
+            productToRemove.Add((Cart.Products.Where(p => p.product_id == hfProductId.Value)).FirstOrDefault());
         }
         return productToRemove;
     }

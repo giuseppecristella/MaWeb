@@ -16,7 +16,7 @@ public partial class shop_Catalogo : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+        // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
     }
 
     protected void pagerProducts_PreRender(object sender, EventArgs e)
@@ -124,9 +124,9 @@ public partial class shop_Catalogo : BasePage
     {
 
         _isShopVerde = false;
-        logo_r.Visible = true;
-        main_navigation.Attributes["class"] = "main-menu rosso";
-        divCarrello.Style.Add("background", "#D10A11");
+        //logo_r.Visible = true;
+        //main_navigation.Attributes["class"] = "main-menu rosso";
+        //divCarrello.Style.Add("background", "#D10A11");
         divSpotVerde.Visible = true;
         lblCategoria.CssClass = "colore_rosso";
 
