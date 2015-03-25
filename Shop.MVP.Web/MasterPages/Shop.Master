@@ -35,7 +35,7 @@
                     <asp:Localize Text="<%$ Resources: Resources, Header_Address %>" runat="server"></asp:Localize>
                 </p>
                 <ul id="header-icons">
-                    <li><a href="../../MA.Web/shop/Customers/Default.aspx">Account Info</a></li>
+                    <li><a href="../../MA.Web//Customers/Default.aspx">Account Info</a></li>
                     <li><a href="../../MA.Web/shop/Customers/Ordini.aspx">Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>

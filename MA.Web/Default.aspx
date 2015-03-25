@@ -120,7 +120,7 @@
             <div id="content">
                 <%--  INIZIO POPUP--%>
                 <div style="display: none; width: 800px; line-height: 20px;" id="divpopupShop" class="__inner-content">
-                    <a href="shop/Catalogo.aspx">
+                    <a href="Design/Catalogo.aspx">
                         <img src="images/pop-up.png" /></a>
                 </div>
                 <div style="display: none; line-height: 20px;" runat="server" id="divpopup" class="inner-content">

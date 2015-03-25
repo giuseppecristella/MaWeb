@@ -7,12 +7,12 @@ public partial class Login : System.Web.UI.Page
   {
     if (HttpContext.Current.User.IsInRole("Admin")) return;
     /*online non funziona*/
-    const string returnUrl = "/Shop/Customers/Account.html";
+    const string returnUrl = "/Design/Customers/Account.html";
     var absUrl = Helper.GetAbsoluteUrl();
 
     if (!string.IsNullOrEmpty(Page.Request.QueryString["ReturnUrl"]))
     {
-      Response.Redirect("~/Shop/Accedi.aspx");
+        Response.Redirect("~/Design/Accedi.aspx");
       // FriendlyUrl.Resolve("~/Shop/Accedi");
     }
 
