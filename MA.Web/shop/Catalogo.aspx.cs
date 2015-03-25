@@ -81,7 +81,7 @@ public partial class shop_Catalogo : BasePage
             if (priceProduct != null && product.price != null) priceProduct.InnerHtml = Helper.FormatCurrency(product.price);
             // Link pagina dettaglio   
 
-            if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", product.name);
+            if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Shop", "Dettaglio", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
 
             SetItemStyleAttributes(item);
         }

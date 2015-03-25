@@ -123,4 +123,15 @@ public static class Helper
         return formattedCurr;
     }
 
+    /// <summary>
+    /// Restituisce una stringa da usare in un url SEO Friendly, 
+    /// eliminando le occorrenze di spazi vuoti sostituendoli con dei trattini
+    /// </summary>
+    /// <returns></returns>
+    public static string GetWellFormedProductName(string productName)
+    {
+        return string.Empty;
+        //Regex.Replace(myString, @"\s+", " ");
+    }
 }
+

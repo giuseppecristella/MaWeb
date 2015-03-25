@@ -1,16 +1,19 @@
 ﻿using System;
+using System.Web;
 using Microsoft.AspNet.FriendlyUrls;
 public partial class Login : System.Web.UI.Page
 {
   protected void Page_Load(object sender, EventArgs e)
   {
+    if (HttpContext.Current.User.IsInRole("Admin")) return;
     /*online non funziona*/
     const string returnUrl = "/Shop/Customers/Account.html";
     var absUrl = Helper.GetAbsoluteUrl();
 
     if (!string.IsNullOrEmpty(Page.Request.QueryString["ReturnUrl"]))
     {
-      FriendlyUrl.Resolve("~/Shop/Accedi");
+      Response.Redirect("~/Shop/Accedi.aspx");
+      // FriendlyUrl.Resolve("~/Shop/Accedi");
     }
 
     ContattilblNotificationErr.Visible = false;

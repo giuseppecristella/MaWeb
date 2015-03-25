@@ -15,7 +15,7 @@ public partial class _Default_ar : System.Web.UI.MasterPage
         numItems += int.Parse(tProd.qty);
       }
     }
-    ltrTotCart.Text = numItems.ToString();
+   // ltrTotCart.Text = numItems.ToString();
   }
   protected void _goNewsLetter(object sender, EventArgs e)
   {

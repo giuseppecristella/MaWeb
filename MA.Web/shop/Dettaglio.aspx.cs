@@ -5,8 +5,6 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-using MagentoBusinessDelegate.Helpers;
-using MagentoRepository.Connection;
 using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.AspNet.FriendlyUrls;
@@ -18,16 +16,17 @@ public partial class shop_Dettaglio : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Request.GetFriendlyUrlSegments().Any()) return;
-        _productName = Request.GetFriendlyUrlSegments()[0];
-        if (string.IsNullOrEmpty(_productName)) Response.Redirect("Catalogo.aspx");
+        _productId = Request.GetFriendlyUrlSegments()[0];
+        if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");
 
         if (IsPostBack) return;
-        ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+        // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
         SetMainStyleAttributes();
         menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
 
-        var product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "name", Value = _productName });
-        _productId = product.product_id;
+        // var product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "product_id", Value = _productName });
+        //  _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "name", Value = _productName });
+        // _productId = product.product_id;
 
         BindProduct(_productId);
         BindInventoryInfo(_productId);
@@ -137,7 +136,7 @@ public partial class shop_Dettaglio : BasePage
 
     private void BindInventoryInfo(string productId)
     {
-        var inventories =_repository.GetInventories(productId);
+        var inventories = _repository.GetInventories(productId);
         if (!inventories.Any() || inventories.FirstOrDefault() == null) return;
         prodScorte.Text = inventories[0].qty.Substring(0, inventories.FirstOrDefault().qty.IndexOf(".", StringComparison.Ordinal));
     }
