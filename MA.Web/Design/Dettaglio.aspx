@@ -91,13 +91,13 @@
                     <!--WRAPPER-->
                     <div id="header">
                         <a id="logo_v" class="logoRosso" title="Homepage"
-                            href="/shop"></a>
+                            href="/Design"></a>
                         <div id="main_navigation" class="main-menu rosso">
                             <ul runat="server" id="menuCatShop">
                             </ul>
                         </div>
                         <div style="background: #D10A11;" id="carrello">
-                            <a href="Carrello.aspx" class="carrello_titolo">
+                            <a href="<%= Page.ResolveClientUrl("Design") %>/Carrello.aspx" class="carrello_titolo">
                                 <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                         </div>
                     </div>

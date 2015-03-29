@@ -89,7 +89,7 @@
                 <div id="container">
                     <div id="header">
                         <a id="logo_v" class="logoRosso" title="Homepage"
-                            href="/shop"></a>
+                            href="/Design"></a>
                         <div id="main_navigation" class="main-menu rosso">
                             <ul runat="server" id="menuCatShop">
                             </ul>
