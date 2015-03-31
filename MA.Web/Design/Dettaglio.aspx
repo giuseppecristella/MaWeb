@@ -87,7 +87,7 @@
                         </AnonymousTemplate>
                     </asp:LoginView>
                 </ul>
-                <div id="container">
+                <div id="container"> 
                     <!--WRAPPER-->
                     <div id="header">
                         <a id="logo_v" class="logoRosso" title="Homepage"
