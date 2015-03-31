@@ -161,10 +161,6 @@
                         <asp:Repeater runat="server" ID="rptFotoHOME" DataSourceID="objFotoHOME">
                             <ItemTemplate>
                                 <div>
-                                    <%-- <div class="caption">
-                                        <%# Eval("Caption") %>
-                                    </div>--%>
-                                    <%--    <a href="_index.aspx"></a>--%>
                                     <img src='Handler.ashx?PhotoID=<%# Eval("PhotoID") %>' title="" alt="" />
                                 </div>
                             </ItemTemplate>
@@ -310,22 +306,22 @@
                 </div>
                 <div class="horizontal-line">
                 </div>
-                <div id="portfolio">
+                <div id="portfolio"> 
                     <div class="one-third">
-                        <a href="javascript:scegliShop();" class="tasto shop"></a>
+                        <a href="http://stores.ebay.it/MaterarredamentiShop" target="_blank" class="tasto ebay"></a>
                     </div>
                     <div class="one-third">
-                        <a href="#" class="tasto magazine"></a>
+                        <a href="#" class="tasto shop"></a>
                     </div>
                     <div class="one-third last">
-                        <a href="http://www.materaservice.it" target="_blank" class="tasto traslochi"></a>
+                        <a href="http://www.amazon.it/s/ref=bl_sr_kitchen?ie=UTF8&field-brandtextbin=Matera+Arredamenti&node=524015031" target="_blank" class="tasto amazon"></a>
                     </div>
                     <div class="line-separator"></div>
                     <div class="one-third">
-                        <a href="javascript:scegliShop();" class="tasto shop"></a>
+                        <a href="javascript:scegliShop();" class="tasto magazine"></a>
                     </div>
                     <div class="one-third">
-                        <a href="#" class="tasto magazine"></a>
+                        <a href="http://www.giovannimatera.it/" class="tasto blog"></a>
                     </div>
                     <div class="one-third last">
                         <a href="http://www.materaservice.it" target="_blank" class="tasto traslochi"></a>

@@ -1326,8 +1326,8 @@ a.nivo-prevNav {
             }
 /*-------------------------------SIMPLE BLOG NAVIGATION------------------------------------------------------------------*/
 .blog-testo {
-    font-size: 13px;
-    line-height: 22px;
+    font-size: 1.2em;
+    line-height: 1.6em;
 }
 
 .blog-pagination {
@@ -2340,16 +2340,28 @@ a.ex1:hover, a.ex1:active {
 }
 
     .tasto.shop {
-        background: url(../images/shop_home.png) no-repeat 0 0;
+        background: url(../images/shop.png) no-repeat 0 0;
     }
 
     .tasto.magazine {
-        background: url(../images/magazine_home.png) no-repeat 0 0;
+        background: url(../images/issuu.png) no-repeat 0 0;
     }
 
 
     .tasto.traslochi {
-        background: url(../images/traslochi_home.png) no-repeat 0 0;
+        background: url(../images/matera-traslochi.png) no-repeat 0 0;
+    }
+
+    .tasto.ebay{
+        background: url(../images/ebay.png) no-repeat 0 0;
+    }
+
+    .tasto.blog{
+        background: url(../images/Ricerca-Formazione.png) no-repeat 0 0;
+    }
+
+    .tasto.amazon{
+        background: url(../images/amazon.png) no-repeat 0 0;
     }
 
 
