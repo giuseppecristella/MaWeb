@@ -72,7 +72,7 @@ public partial class shop_Dettaglio : BasePage
             {
                 linkProd.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.name);
             }
-        }
+        }   
     }
 
     protected void btnaddTocart_Click(object sender, EventArgs e)

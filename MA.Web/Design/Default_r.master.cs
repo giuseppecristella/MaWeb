@@ -9,7 +9,7 @@ public partial class _Default_r : System.Web.UI.MasterPage
     //if (arrayCart != null)
     //{
     //  for (int i = 0; i < arrayCart.Count; i++)
-    //  {
+    //  { 
     //    Product tProd = (Product)arrayCart[i];
     //    numItems += int.Parse(tProd.qty);
     //  }
