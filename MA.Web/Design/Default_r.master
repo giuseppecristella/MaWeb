@@ -78,8 +78,8 @@
                 </ul>
                 <div id="container">
                     <div id="header">
-                        <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>
-                        <div id="main_navigation" class="main-menu rosso">
+                      <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
+                        <div id="main_navigation" class="main-menu">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolderNavigoss" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>

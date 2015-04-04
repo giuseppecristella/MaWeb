@@ -74,7 +74,7 @@ table {
 /*---------------02 - BODY & HEADINGS ---------------*/
 /*-------------------------------------------------------*/
 body {
-    background-color: #f6f6f6;
+    background-color: #fff;
     /*background-image:url(../images/body-bg-1.png);
 	background-repeat:repeat;*/
     font: 12px Arial,sans-serif;
@@ -347,9 +347,9 @@ form.inline {
     height: auto;
     width: 960px;
     background: #FFF;
-    -webkit-box-shadow: 0 10px 80px 0 rgba(0, 0, 0, 0.20);
+    /*-webkit-box-shadow: 0 10px 80px 0 rgba(0, 0, 0, 0.20);
     -moz-box-shadow: 0 10px 80px 0 rgba(0, 0, 0, 0.20);
-    box-shadow: 0 10px 80px 0 rgba(0, 0, 0, 0.20);
+    box-shadow: 0 10px 80px 0 rgba(0, 0, 0, 0.20);*/
     padding: 0 5px;
     text-align: left;
     margin-top: 0;
@@ -804,10 +804,11 @@ pre, code {
 
             .main-menu ul li a, .main-menu ul li a:link, .main-menu ul li a:visited {
                 line-height: 32px;
-                color: #fff;
+                /*color: #fff;*/
                 font-size: 17px;
-                margin-left: 15px;
-                padding-right: 10px;
+                text-transform: uppercase;
+                /*margin-left: 15px;*/
+                padding-right: 20px;
                 /*  font-weight: bold;*/
             }
 
@@ -819,7 +820,7 @@ pre, code {
                 display: block;
                 text-decoration: none;
                 overflow: hidden;
-                padding: 0px 8px; /* distanza tra le voci di menu*/
+                /*padding: 0px 8px;*/ /* distanza tra le voci di menu*/
                 font-size: 17px;
                 /*font-weight: bold;*/
             }
