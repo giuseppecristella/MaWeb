@@ -371,7 +371,14 @@ form.inline {
 
 #header {
     padding: 5px 0 5px 0;
-    height: 70px;
+    height: 50px;
+   
+}
+
+#header-logo {
+    padding: 5px 0 5px 0;
+    height: 100px;
+    background: #e4e4e4;
 }
 
 #tasto-sito {
@@ -774,12 +781,13 @@ pre, code {
 /*--------------------------------06 - MAIN NAVIGATION---------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------*/
 #main_navigation {
-    margin-left: 5px;
+    /*margin-left: 5px;*/
     float: left;
-    width: 788px;
+    width: 100%;
+    display: block;
     font-size: 10px;
     height: 30px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 .main-menu {
@@ -794,8 +802,9 @@ pre, code {
         padding: 0;
         margin-bottom: 10px;
         list-style-type: none;
+        border-top: 3px solid #999;
     }
-     
+
         .main-menu ul li {
             position: relative;
             display: inline;
@@ -804,12 +813,10 @@ pre, code {
 
             .main-menu ul li a, .main-menu ul li a:link, .main-menu ul li a:visited {
                 line-height: 32px;
-                /*color: #fff;*/
                 font-size: 17px;
                 text-transform: uppercase;
-                /*margin-left: 15px;*/
                 padding-right: 20px;
-                /*  font-weight: bold;*/
+                padding-top: 10px;
             }
 
                 .main-menu ul li a:hover {

@@ -77,16 +77,14 @@
                     </asp:LoginView>
                 </ul>
                 <div id="container">
+                    <div id="header-logo"></div>
                     <div id="header">
-                      <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
+                        <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
                         <div id="main_navigation" class="main-menu">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolderNavigoss" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
-                        <div style="background: #D10A11;" id="carrello">
-                            <a href="Carrello.aspx" class="carrello_titolo">
-                                <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
-                        </div>
+
                     </div>
                     <div id="content">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
