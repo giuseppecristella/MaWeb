@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavigoss" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphMenu" runat="Server">
     <ul runat="server" id="menuCatShop">
     </ul>
 </asp:Content>
@@ -54,7 +54,7 @@
                 <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
             </LayoutTemplate>
             <ItemTemplate>
-                <div runat="server" id="box_prodotto2" style="margin-top: 5px; margin-right: 10px;
+                <div runat="server" id="box_prodotto" style="margin-top: 5px; margin-right: 30px;
                     border: 1px solid #dfdfdf;" class="one-fourth view view-first">
                     <div style="width: 215px; height: 215px; overflow: hidden;">
                         <p runat="server" id="pProductPrice" class="desc_prezzo_home rosso">

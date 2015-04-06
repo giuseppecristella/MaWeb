@@ -75,16 +75,12 @@
                     </asp:LoginView>
                 </ul>
                 <div id="container">
-                     <div id="header">
-                        <a id="logo_v" class="logoRosso" title="Homepage"
-                            href="/shop"></a>
-                        <div id="main_navigation" class="main-menu rosso">
+                    <div id="header-logo"></div>
+                    <div id="header">
+                        <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
+                        <div id="main_navigation" class="main-menu">
                             <ul runat="server" id="menuCatShop">
                             </ul>
-                        </div>
-                        <div style="background: #D10A11;" id="carrello">
-                            <a href="Carrello.aspx" class="carrello_titolo">
-                                <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                         </div>
                     </div>
                     <div id="content">
@@ -99,7 +95,7 @@
                                     <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
                                 </LayoutTemplate>
                                 <ItemTemplate>
-                                    <div runat="server" id="box_prodotto" style="margin-top: 40px; margin-right: 10px; border: 1px solid #dfdfdf;"
+                                    <div runat="server" id="box_prodotto" style="margin-top: 40px; margin-right: 30px; border: 1px solid #dfdfdf;"
                                         class="one-fourth view view-first">
                                         <div style="width: 215px; height: 215px; overflow: hidden;">
                                             <p runat="server" id="priceProduct" class="desc_prezzo_home verde">
@@ -114,7 +110,7 @@
                                 </ItemTemplate>
                             </asp:ListView>
                         </div>
-                        <div style="padding-left: 30px; margin-top: 20px; width: 920px;" class="one">
+                        <div style="margin-top: 20px; width: 920px;" class="one">
                             <asp:DataPager runat="server" Visible="true" ID="pagerProducts" OnPreRender="pagerProducts_PreRender"
                                 PageSize="12" PagedControlID="lvProducts">
                                 <Fields>

@@ -88,17 +88,12 @@
                     </asp:LoginView>
                 </ul>
                 <div id="container"> 
-                    <!--WRAPPER-->
+                    <div id="header-logo"></div>
                     <div id="header">
-                        <a id="logo_v" class="logoRosso" title="Homepage"
-                            href="/Design"></a>
-                        <div id="main_navigation" class="main-menu rosso">
+                        <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
+                        <div id="main_navigation" class="main-menu">
                             <ul runat="server" id="menuCatShop">
                             </ul>
-                        </div>
-                        <div style="background: #D10A11;" id="carrello">
-                            <a href="<%= Page.ResolveClientUrl("Design") %>/Carrello.aspx" class="carrello_titolo">
-                                <asp:Literal runat="server" ID="ltrTotCart"></asp:Literal></a>
                         </div>
                     </div>
                     <!-- MAIN CONTAINER -->
@@ -112,7 +107,7 @@
                             </div>
                         </div>
                         <div style="min-height: 580px" class="one">
-                            <div style="margin-left: 30px;" class="one-half">
+                            <div class="one-half">
                                 <img runat="server" style="border: 1px solid #dfdfdf;" width="450" src="" alt=""
                                     id="mainImage" />
                                 <div class="clear-line">

@@ -8,7 +8,6 @@ using Microsoft.AspNet.FriendlyUrls;
 public partial class shop_Default : BasePage
 {
     private const string redProductCategoryId = "44";
-    private const string greenProductCategoryId = "45";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -47,7 +46,7 @@ public partial class shop_Default : BasePage
         if (pProductPrice != null) pProductPrice.InnerHtml = Helper.FormatCurrency(product.price);
 
         var lbGreenProductDetail = item.FindControl("lbProductDetail") as HtmlAnchor;
-        if (lbGreenProductDetail != null) lbGreenProductDetail.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.product_id, product.name.Replace(" ","-").TrimEnd('-').ToLowerInvariant());
+        if (lbGreenProductDetail != null) lbGreenProductDetail.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
     }
 
     private static void SetProductsBoxStyle(ListViewItem dataitem)
@@ -55,8 +54,8 @@ public partial class shop_Default : BasePage
         var moduleResult = dataitem.DataItemIndex % 4;
         if (moduleResult == 0)
         {
-            var box_prodotto = dataitem.FindControl("box_prodotto") as HtmlGenericControl;
-            if (box_prodotto != null) box_prodotto.Style.Add("margin-left", "30px");
+            //var box_prodotto = dataitem.FindControl("box_prodotto") as HtmlGenericControl;
+            //if (box_prodotto != null) box_prodotto.Style.Add("margin-left", "30px");
         }
         if (moduleResult == 3)
         {

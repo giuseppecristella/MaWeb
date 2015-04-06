@@ -167,7 +167,7 @@ public partial class shop_Catalogo : BasePage
         if (item.DataItemIndex % 4 == 0)
         // classe margin
         {
-            boxProdotto.Style.Add("margin-left", "30px");
+            //boxProdotto.Style.Add("margin-left", "30px");
         }
         if (item.DataItemIndex % 4 == 3)
         {

@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div style="margin-top: 20px;" class="one">
-        <div style="margin-left: 30px; width: 305px; min-height: 580px;" class="one-third">
+        <div style="width: 305px; min-height: 580px;" class="one-third">
             <h4>
                 Accedi</h4>
             <asp:Login  CssClass="table_reset" ID="Login1" runat="server"
