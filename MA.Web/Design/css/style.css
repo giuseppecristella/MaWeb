@@ -399,6 +399,30 @@ form.inline {
     width: 315px;
 }
 
+#tasto-ebay {
+    display: block;
+    background: transparent url("../images/tasto-ebay.png") no-repeat;
+    text-indent: -9999px;
+    height: 95px;
+    width: 315px;
+}
+
+#tasto-amazon {
+    display: block;
+    background: transparent url("../images/tasto-amazon.png") no-repeat;
+    text-indent: -9999px;
+    height: 95px;
+    width: 315px;
+}
+
+#tasto-issuu {
+    display: block;
+    background: transparent url("../images/tasto-issuu.png") no-repeat;
+    text-indent: -9999px;
+    height: 95px;
+    width: 315px;
+}
+
 #tasto-design {
     display: block;
     background: transparent url("../images/tasto-design.png") no-repeat;

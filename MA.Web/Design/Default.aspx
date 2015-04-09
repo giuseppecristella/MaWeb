@@ -34,14 +34,14 @@
     </div>
     <div class="one">
         <div class="one-third">
-            <a href="../Default.aspx" id="tasto-sito">vai al sito </a>
+            <a href="../Default.aspx" id="tasto-ebay">vai al sito </a>
         </div>
         <div class="one-third">
-            <a target="blank" href="http://issuu.com/materaarredamenti/docs/emme__00" id="tasto-magazine">
+            <a target="blank" href="http://issuu.com/materaarredamenti/docs/emme__00" id="tasto-amazon">
                 vai al nostro magazine </a>
         </div>
         <div class="one-third last">
-            <a href="#" id="tasto-trad">vai allo shop design e casa </a>
+            <a href="#" id="tasto-issuu">vai allo shop design e casa </a>
         </div>
     </div>
     <div style="padding-top: 40px;" class="one">
