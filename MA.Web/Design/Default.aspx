@@ -44,17 +44,17 @@
             <a href="#" id="tasto-issuu">vai allo shop design e casa </a>
         </div>
     </div>
-    <div style="padding-top: 40px;" class="one">
+    <div class="one">
         <div class="headline">
             <h4>
-                Le offerte del <span style="color: #D10A11;" class="colored">Mese</span></h4>
+                Le offerte del Mese</h4>
         </div>
         <asp:ListView runat="server" ID="lvProductsShowCase" OnItemDataBound="lvProductsShowCase_OnItemDataBound">
             <LayoutTemplate>
                 <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
             </LayoutTemplate>
             <ItemTemplate>
-                <div runat="server" id="box_prodotto" style="margin-top: 5px; margin-right: 30px;
+                <div runat="server" id="box_prodotto" style="margin-top: 25px; margin-right: 30px;
                     border: 1px solid #dfdfdf;" class="one-fourth view view-first">
                     <div style="width: 215px; height: 215px; overflow: hidden;">
                         <p runat="server" id="pProductPrice" class="desc_prezzo_home rosso">

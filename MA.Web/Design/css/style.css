@@ -2905,7 +2905,8 @@ ul.blog-category li {
 }
 
 .headline {
-    width: 900px;
+    width: 960px;
+    text-align: center;
     /*margin: 0 auto;*/
     /*padding: 0px 30px 0px 30px;*/
 }
