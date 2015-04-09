@@ -378,8 +378,8 @@ form.inline {
 
 #header-logo {
     padding: 5px 0 5px 0;
-    height: 100px;
-    background: #e4e4e4;
+    height: 200px;
+    /*background: #e4e4e4;*/
 }
 
 #tasto-sito {
