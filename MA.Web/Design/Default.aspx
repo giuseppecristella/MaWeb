@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div class="one">
+    <div style="margin-top: 15px;" class="one">
         <div class="one-third">
             <a href="../Default.aspx" id="tasto-ebay">vai al sito </a>
         </div>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Dettaglio.aspx.cs" Inherits="shop_Dettaglio" %>
+
 <%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,7 +32,7 @@
 
     <script type="text/javascript" src="../js/slider.js"></script>
 
-    <script type="text/javascript" src="../js/jquery.slider.js"></script> 
+    <script type="text/javascript" src="../js/jquery.slider.js"></script>
 
     <script type="text/javascript" src="../js/custom.js"></script>
 
@@ -87,8 +88,10 @@
                         </AnonymousTemplate>
                     </asp:LoginView>
                 </ul>
-                <div id="container"> 
-                    <div id="header-logo"></div>
+                <div id="container">
+                    <div id="header-logo">
+                        <img alt="" src="<%= Page.ResolveClientUrl("images") %>/Header_Logo_grafica.png" />
+                    </div>
                     <div id="header">
                         <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>
                         <div id="main_navigation" class="main-menu">
