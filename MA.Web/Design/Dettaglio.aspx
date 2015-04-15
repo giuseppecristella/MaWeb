@@ -102,12 +102,7 @@
                     <!-- MAIN CONTAINER -->
                     <div id="content">
                         <div style="padding: 20px 0 20px 0;" class="one">
-                            <div class="headline">
-                                <h4>
-                                    <asp:Label runat="server" ID="lblNomeCatProd"></asp:Label>
-                                    <span>
-                                        <asp:Label runat="server" ID="lblNomeProd">&nbsp;>&nbsp; </asp:Label></span></h4>
-                            </div>
+                             
                         </div>
                         <div style="min-height: 580px" class="one">
                             <div class="one-half">
@@ -144,6 +139,7 @@
                                 </div>
                             </div>
                             <div class="one-half last dettaglio-prodotto">
+                                <h1><asp:Label runat="server" ID="lblNomeProd"></asp:Label></h1>
                                 <asp:Literal runat="server" ID="prodDescription"></asp:Literal>
                                 <label>
                                     Prezzo: €.
@@ -203,6 +199,7 @@
                                     class="_carrello_titolo"></a>
                             </div>
                         </div>
+                        <img alt="" src="<%= Page.ResolveClientUrl("images") %>/immagine-pre-footer.png"/>
                         <div id="footer-wrapper">
                             <!-- FOOTER WRAPPER STARTS-->
                             <div id="footer-container">
@@ -260,12 +257,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="copyright-wrapper">
+                       <%-- <div id="copyright-wrapper">
                             <!-- COPYRIGHTS WRAPPER STARTS-->
                             <div id="copyright">
                                 <a id="logo-copyright" title="Homepage" href="#"></a>
                             </div>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>

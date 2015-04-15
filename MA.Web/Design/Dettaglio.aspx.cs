@@ -95,8 +95,8 @@ public partial class shop_Dettaglio : BasePage
         prodDescription.Text = Product.description;
         prodPrice.Text = Helper.FormatCurrency(Product.price);
 
-        var categoryId = GetProductCategory(Product.categories);
-        BindCategoryName(categoryId);
+        //var categoryId = GetProductCategory(Product.categories);
+        //BindCategoryName(categoryId);
         DisableProductWhenIsNotInStock(Product.is_in_stock);
     }
 
@@ -143,8 +143,8 @@ public partial class shop_Dettaglio : BasePage
 
     private void BindCategoryName(string categoryId)
     {
-        var categoryInfo = _repository.GetCategoryInfo(categoryId);
-        lblNomeCatProd.Text = (categoryInfo.name) ?? string.Empty;
+        //var categoryInfo = _repository.GetCategoryInfo(categoryId);
+        //lblNomeCatProd.Text = (categoryInfo.name) ?? string.Empty;
     }
 
     private void DisableProductWhenIsNotInStock(string isInStock)
