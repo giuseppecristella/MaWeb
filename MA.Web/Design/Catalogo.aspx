@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div id="content">
-                        <div style="padding-top: 40px;" class="one">
+                        <div class="one">
                             <div class="headline">
                                 <h4>
                                     <span class="colored">
@@ -142,20 +142,7 @@
                                     class="_carrello_titolo"></a>
                             </div>
                         </div>
-                        <div runat="server" id="divSpotVerde" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-                            <a style="margin-top: 60px; width: 220px; height: 70px; text-indent: -9999px;"
-                                class="banner-tradizione-logo" id="A2" title="Homepage" href="#"></a>
-                            <div style="margin-top: 60px; background: #76A227; margin-left: 5px; float: left; width: 614px; height: 70px;">
-                                <p class="visita_shop">
-                                    Entra e visita il nostro Shop Tradizione! Mille idee ti aspettano!
-                                </p>
-                            </div>
-                            <div style="margin-top: 60px; float: left; width: 120px; height: 70px;">
-                                <a style="background: #76A227 url('images/entra-rosso.png') no-repeat; position: relative; height: 70px; margin-top: 0px; text-indent: 60px; display: block;"
-                                    href="tradizione.html"
-                                    class="_carrello_titolo"></a>
-                            </div>
-                        </div>
+                        <img alt="" src="<%= Page.ResolveClientUrl("images") %>/immagine-pre-footer.png"/>
                         <div id="footer-wrapper">
                             <div id="footer-container">
                                 <div id="footer">
@@ -196,11 +183,6 @@
                                     <p>
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-                        <div id="copyright-wrapper">
-                            <div id="copyright">
-                                <a id="logo-copyright" title="Homepage" href="#"></a>
                             </div>
                         </div>
                     </div>

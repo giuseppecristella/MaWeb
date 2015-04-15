@@ -257,12 +257,6 @@
                                 </div>
                             </div>
                         </div>
-                       <%-- <div id="copyright-wrapper">
-                            <!-- COPYRIGHTS WRAPPER STARTS-->
-                            <div id="copyright">
-                                <a id="logo-copyright" title="Homepage" href="#"></a>
-                            </div>
-                        </div>--%>
                     </div>
                 </div>
             </div>
