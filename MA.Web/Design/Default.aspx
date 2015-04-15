@@ -44,7 +44,7 @@
             <a href="#" id="tasto-issuu">vai allo shop design e casa </a>
         </div>
     </div>
-    <div style="margin-top: 15px;"  class="one">
+    <div style="margin-top: 30px;"  class="one">
         <div class="headline">
             <h4>
                 Le offerte del Mese</h4>
