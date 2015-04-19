@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
@@ -9,7 +10,7 @@ using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.AspNet.FriendlyUrls;
 
-public partial class shop_Dettaglio : BasePage
+public partial class Design_Dettaglio : BasePage
 {
     private static string _productName;
     private static string _productId;
@@ -21,30 +22,11 @@ public partial class shop_Dettaglio : BasePage
 
         if (IsPostBack) return;
         // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
-        SetMainStyleAttributes();
-        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-
-        // var product = _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "product_id", Value = _productName });
-        //  _repository.GetFilteredProducts(new Filter { FilterOperator = LogicalOperator.Eq, Key = "name", Value = _productName });
-        // _productId = product.product_id;
 
         BindProduct(_productId);
         BindInventoryInfo(_productId);
         BindProductImages(_productId);
         BindLinkedProducts(_productId);
-
-        #region Garbage Shop Verde
-
-        //if (isShopVerde)
-        //{
-        //  logo_v.Visible = true;
-        //  main_navigation.Attributes["class"] = "main-menu verde";
-        //  divSpotRosso.Visible = true;
-        //  divCarrello.Style.Add("background", "#76A227");
-        //  lblNomeProd.CssClass = "colore_verde";
-        //}
-
-        #endregion Garbage Shop Verde
     }
 
     protected void rptImages_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -72,7 +54,7 @@ public partial class shop_Dettaglio : BasePage
             {
                 linkProd.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.name);
             }
-        }   
+        }
     }
 
     protected void btnaddTocart_Click(object sender, EventArgs e)
@@ -95,8 +77,6 @@ public partial class shop_Dettaglio : BasePage
         prodDescription.Text = Product.description;
         prodPrice.Text = Helper.FormatCurrency(Product.price);
 
-        //var categoryId = GetProductCategory(Product.categories);
-        //BindCategoryName(categoryId);
         DisableProductWhenIsNotInStock(Product.is_in_stock);
     }
 
@@ -141,12 +121,6 @@ public partial class shop_Dettaglio : BasePage
         prodScorte.Text = inventories[0].qty.Substring(0, inventories.FirstOrDefault().qty.IndexOf(".", StringComparison.Ordinal));
     }
 
-    private void BindCategoryName(string categoryId)
-    {
-        //var categoryInfo = _repository.GetCategoryInfo(categoryId);
-        //lblNomeCatProd.Text = (categoryInfo.name) ?? string.Empty;
-    }
-
     private void DisableProductWhenIsNotInStock(string isInStock)
     {
         if (isInStock == "0")
@@ -155,15 +129,6 @@ public partial class shop_Dettaglio : BasePage
             btnaddTocart.Visible = false;
             prodDisponibilità.Text = "Il prodotto non è più disponibile.";
         }
-    }
-
-    private void SetMainStyleAttributes()
-    {
-        //logo_r.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu rosso";
-        //divCarrello.Style.Add("background", "#D10A11");
-        //lblNomeProd.CssClass = "colore_rosso";
-        //divSpotVerde.Visible = true;
     }
 
     private static string GetProductCategory(string[] categories)
