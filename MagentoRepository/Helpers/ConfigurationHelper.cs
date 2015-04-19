@@ -29,7 +29,7 @@ namespace MagentoRepository.Helpers
         public const string Arredi = "48";
         public const string IdeeRegalo = "49";
         public const string Materassi = "50";
-        public const string Originali = "51";
+        public const string Maioliche = "51";
         public static readonly string[] HomeCategories = { "44", "45" };
         public const string SellaCurrencyCode = "242";
 

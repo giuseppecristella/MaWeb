@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using Ez.Newsletter.MagentoApi;
 using iTextSharp.text;
+using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 
@@ -18,11 +19,23 @@ public partial class shop_AggiornaCatalogo : BasePage
 
     protected void lbUpdateCatalog_Click(object sender, EventArgs e)
     {
-        var products = _repository.GetProductsByCategoryId("47");
+        var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
         lblUpdateCatalog.Text = "num prodotti: " + products.Count.ToString();
         // if (products == null) return;
+
         var cacheManager = CacheFactory.GetCacheManager();
+        cacheManager.Remove("ProductsList");
         var cachedProducts = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;
+        
+        //var keys = new Hashtable();
+        //keys.Add(ConfigurationHelper.Arredi, string.Format("{0}{1}", ConfigurationHelper.CacheKeyNames[CacheKey.CategoryInfo], ConfigurationHelper.Arredi));
+
+        //foreach (DictionaryEntry k in keys)
+        //{
+        //    cacheManager.Remove(k.Value.ToString());  
+        //}
+
+       // cacheManager.Remove("CategoryAssigned");
 
         var images = new List<string>();
         cachedProducts = null;

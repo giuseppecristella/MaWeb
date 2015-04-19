@@ -50,8 +50,8 @@ public partial class shop_Catalogo : BasePage
                 return ConfigurationHelper.IdeeRegalo;
             case "Materassi":
                 return ConfigurationHelper.Materassi;
-            case "Originali":
-                return ConfigurationHelper.Originali;
+            case "Maioliche":
+                return ConfigurationHelper.Maioliche;
             default:
                 return ConfigurationHelper.RootCategory;
         }

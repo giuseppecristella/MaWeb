@@ -31,6 +31,7 @@ public partial class Indirizzi : BasePage
           
         if (!int.TryParse(magentoUserId, out _customerId)) return;
         var customer = _repository.GetCustomerById(_customerId);
+        if (customer == null) Response.Redirect("~/Design/accedi.aspx");
         customer.mode = "register"; 
 
         SessionFacade.CartId = _repository.CreateCart();
