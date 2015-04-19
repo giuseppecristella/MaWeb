@@ -674,7 +674,7 @@ p, ul, ol, pre, code {
 }
 
 .colored {
-    color: #76A227;
+    color: #d10a11;
 }
 
 ul {
@@ -821,12 +821,10 @@ pre, code {
 .main-menu {
     position: relative;
     z-index: 22;
-    /*font-family:'Droid Sans', arial, serif;*/
     font-family: 'DeliciousRoman', sans-serif;
 }
 
     .main-menu ul {
-        /*margin: 15px;*/
         padding: 0;
         margin-bottom: 10px;
         list-style-type: none;
@@ -848,16 +846,19 @@ pre, code {
             }
 
                 .main-menu ul li a:hover {
-                    color: #000;
+                   color: #d10a11;
                 }
 
             .main-menu ul li a {
                 display: block;
                 text-decoration: none;
                 overflow: hidden;
-                /*padding: 0px 8px;*/ /* distanza tra le voci di menu*/
                 font-size: 17px;
-                /*font-weight: bold;*/
+            }
+
+            .menu-item-selected {
+                font-weight: bold;
+                 color: #d10a11;
             }
 
             * html .main-menu ul li a {
@@ -907,7 +908,7 @@ pre, code {
                     background: #f5f5f5;
                     text-decoration: none !important;
                     margin: 0 0px;
-                    color: #000;
+                    color: #005826;
                 }
 
             .main-menuz ul ul li ul li a:hover, .main-menu ul ul ul li a:hover {
@@ -1419,6 +1420,7 @@ a.nivo-prevNav {
 
     #footer strong {
         line-height: 60px;
+        font-size: 1.35em;
     }
 
     #footer ul li span, #footer ul li span a {
@@ -1432,7 +1434,7 @@ a.nivo-prevNav {
 
 /********** SOCIAL-LINK UL***************/
 ul#footer-info li {
-    margin-bottom: 5px;
+    padding: 5px;
 }
 
 ul.social-links {
@@ -3155,6 +3157,7 @@ a.portfolio-item-preview {
     -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
     opacity: 0;
+    
     background-color: rgba(209,10,17, 0.9);
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;

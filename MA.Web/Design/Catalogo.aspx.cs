@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using MagentoRepository.Helpers;
 using Microsoft.AspNet.FriendlyUrls;
 
-public partial class shop_Catalogo : BasePage
+public partial class Design_Catalogo : BasePage
 {
-    private bool _isShopVerde = true;
-
     #region Events
 
     protected void Page_Load(object sender, EventArgs e)
@@ -21,16 +20,7 @@ public partial class shop_Catalogo : BasePage
 
     protected void pagerProducts_PreRender(object sender, EventArgs e)
     {
-        var rootCat = SetMainStyleAttribute();
-
-        // Ottiene l'html da renderizzare per il megamenu e lo persiste in memoria / da rifattorizzare ?
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], rootCat));
-        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-
         if (!Request.GetFriendlyUrlSegments().Any()) return;
-        //var categoryId = (Request.GetFriendlyUrlSegments().Count == 2)
-        //    ? GetCategoryIdByName(Request.GetFriendlyUrlSegments()[1])
-        //    : ConfigurationHelper.RootCategory;
 
         if (BindProductsToList(GetCategoryIdByName(Request.GetFriendlyUrlSegments()[0])))
             ShowHidePagerForShop();
@@ -46,7 +36,7 @@ public partial class shop_Catalogo : BasePage
                 return ConfigurationHelper.ComplementiCatId;
             case "Arredi":
                 return ConfigurationHelper.Arredi;
-            case "IdeeRegalo":
+            case "Idee-Regalo":
                 return ConfigurationHelper.IdeeRegalo;
             case "Materassi":
                 return ConfigurationHelper.Materassi;
@@ -123,40 +113,17 @@ public partial class shop_Catalogo : BasePage
     private string SetMainStyleAttribute()
     {
 
-        _isShopVerde = false;
-        //logo_r.Visible = true;
-        //main_navigation.Attributes["class"] = "main-menu rosso";
-        //divCarrello.Style.Add("background", "#D10A11");
-        
         lblCategoria.CssClass = "colore_rosso";
-
-        #region Garbage Shop Verde
-        //else
-        //{
-        //  //shop verde
-        //  lblCategoria.CssClass = "colore_verde";
-        //  logo_v.Visible = true;
-        //  main_navigation.Attributes["class"] = "main-menu verde";
-        //  divSpotRosso.Visible = true;
-        //  divCarrello.Style.Add("background", "#76A227");
-        //} 
-        #endregion
         return string.Empty;
     }
 
     private void ShowHidePagerForShop()
     {
         bool isPagerVisible = (Products.Count() > pagerProducts.PageSize) && (Products != null);
-        if (_isShopVerde)
-        {
-            pagerProducts.Visible = isPagerVisible;
-            pagerRosso.Visible = false;
-        }
-        else
-        {
-            pagerRosso.Visible = isPagerVisible;
-            pagerProducts.Visible = false;
-        }
+
+        pagerRosso.Visible = isPagerVisible;
+        pagerProducts.Visible = false;
+
     }
 
     private void SetItemStyleAttributes(ListViewDataItem item)
@@ -173,16 +140,9 @@ public partial class shop_Catalogo : BasePage
         {
             boxProdotto.Attributes["class"] = "one-fourth view view-first last";
         }
-        if (_isShopVerde)
-        {
-            priceProduct.Attributes["Class"] = "desc_prezzo_home verde";
-            divMaskProd.Attributes["Class"] = "mask_green";
-        }
-        else
-        {
-            priceProduct.Attributes["Class"] = "desc_prezzo_home rosso";
-            divMaskProd.Attributes["Class"] = "mask_red";
-        }
+
+        priceProduct.Attributes["Class"] = "desc_prezzo_home rosso";
+        divMaskProd.Attributes["Class"] = "mask_red";
     }
 
     #endregion Private Methods

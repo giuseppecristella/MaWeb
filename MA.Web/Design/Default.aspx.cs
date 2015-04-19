@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
@@ -13,9 +12,6 @@ public partial class shop_Default : BasePage
     {
         try
         {
-            HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
-            menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
-
             var showcaseProducts = _repository.GetProductsByCategoryId(redProductCategoryId);
             lvProductsShowCase.DataSource = showcaseProducts;
             lvProductsShowCase.DataBind();

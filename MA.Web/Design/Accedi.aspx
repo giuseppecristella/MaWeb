@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Design/Default_account.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Design/Default_r.master" AutoEventWireup="true"
     CodeFile="Accedi.aspx.cs" Inherits="shop_Accedi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -76,7 +76,7 @@
             <asp:TextBox runat="server" ID="txtTel" class="text" />
         </div>
         <div style="width: 305px;" class="one-third last">
-            <div style="display: block; height: 35px;">
+            <div style="display: block; height: 53px;">
             </div>
             <asp:CreateUserWizard LoginCreatedUser="True" DuplicateUserNameErrorMessage="utente già presente"
                 DuplicateEmailErrorMessage="email già presente" ID="CreateUserWizard1" runat="server"

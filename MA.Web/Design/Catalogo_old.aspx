@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Dettaglio.aspx.cs" Inherits="shop_Dettaglio" %>
-
-<%@ Import Namespace="Microsoft.AspNet.FriendlyUrls" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Catalogo_old.aspx.cs" Inherits="shop_Catalogo" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,7 +13,7 @@
     <meta name="robots" content="index,follow" />
     <asp:Literal runat="server" ID="ltrMetaFB"></asp:Literal>
     <!--CSS FILES STARTS-->
-    <link rel="shortcut icon" type="image/gif" href="images/favicon.png" />
+    <link rel="shortcut icon" type="image/gif" href="../images/favicon.png" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../css/prettyPhoto.css" type="text/css" media="screen" />
     <link href="../css/slider.css" rel="stylesheet" type="text/css" />
@@ -26,27 +24,20 @@
     <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
     <!--CSS FILES ENDS-->
 
-    <script type="text/javascript">        document.getElementsByTagName('html')[0].className += ' js';</script>
-
+    <script type="text/javascript">document.getElementsByTagName('html')[0].className += ' js';</script>
     <script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="../js/slider.js"></script>
     <script type="text/javascript" src="../js/jquery.slider.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script>
     <script src="../js/jquery.prettyPhoto.js" type="text/javascript"></script>
     <script type="text/javascript">
-        /***************************************************
-        PRETTY PHOTO
-        ***************************************************/
+        //PRETTY PHOTO
         jQuery.noConflict()(function ($) {
             $(document).ready(function () {
-
                 $("a[rel^='prettyPhoto']").prettyPhoto({ opacity: 0.80, default_width: 500, default_height: 344, hideflash: false, modal: false });
-
             });
         });
-
     </script>
-
 </head>
 
 <script type="text/javascript">
@@ -60,7 +51,7 @@
         pageTracker._trackPageview();
     } catch (err) { }</script>
 
-<body onload="load()">
+<body>
     <form id="form1" runat="server">
         <div id="wrapper">
             <div class="center">
@@ -68,18 +59,18 @@
                     T: +39 821 39 36 E: shop@materarredamenti.it
                 </p>
                 <ul id="header-icons">
-                    <li><a href="<%= FriendlyUrl.Href("~/Design/Customers/Default") %>">Account Info</a></li>
-                    <li><a href="<%= FriendlyUrl.Href("~/Design/Customers/Ordini") %>">Ordini</a></li>
+                    <li><a href="Customers/Default.aspx">Account Info</a></li>
+                    <li><a href="Customers/Ordini.aspx">Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>
                             <li>
                                 <asp:LoginName CssClass="colored" runat="server" ID="loginName" FormatString="{0}" />
                                 <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
-                                    LoginText="Login" LogoutText="Logout" LogoutPageUrl="/Design/Default.aspx" CssClass="loginsubmit" />
+                                    LoginText="Login" LogoutText="Logout" LogoutPageUrl="~/Design/Catalogo.aspx" CssClass="loginsubmit" />
                             </li>
                         </LoggedInTemplate>
                         <AnonymousTemplate>
-                            <li><a href="<%= FriendlyUrl.Href("~/Design/accedi") %>">Accedi</a></li>
+                            <li><a href="Accedi.aspx">Accedi</a></li>
                         </AnonymousTemplate>
                     </asp:LoginView>
                 </ul>
@@ -94,121 +85,72 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- MAIN CONTAINER -->
                     <div id="content">
-                        <div style="padding: 20px 0 20px 0;" class="one">
-                             
+                        <div class="one">
+                            <div class="headline">
+                                <h4>
+                                    <span class="colored">
+                                        <asp:Label runat="server" ID="lblCategoria"></asp:Label></span></h4>
+                            </div>
+                            <asp:ListView runat="server" ID="lvProducts" OnItemDataBound="item_dataBound">
+                                <LayoutTemplate>
+                                    <asp:PlaceHolder runat="server" ID="itemPlaceholder"></asp:PlaceHolder>
+                                </LayoutTemplate>
+                                <ItemTemplate>
+                                    <div runat="server" id="box_prodotto" style="margin-top: 40px; margin-right: 30px; border: 1px solid #dfdfdf;"
+                                        class="one-fourth view view-first">
+                                        <div style="width: 215px; height: 215px; overflow: hidden;">
+                                            <p runat="server" id="priceProduct" class="desc_prezzo_home verde">
+                                            </p>
+                                            <asp:Image ImageUrl="../Handler.ashx" Width="215" Height="215" runat="server" ID="imgProduct"></asp:Image>
+                                        </div>
+                                        <div runat="server" id="divMaskProd" class="mask_green">
+                                            <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lnkDettaglio_1">
+                                                <span runat="server" id="descProduct" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">Vedi dettaglio</span> </a>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
                         </div>
-                        <div style="min-height: 580px" class="one">
-                            <div class="one-half">
-                                <img runat="server" style="border: 1px solid #dfdfdf;" width="450" src="" alt=""
-                                    id="mainImage" />
-                                <div class="clear-line">
-                                </div>
-                                <asp:Repeater OnItemDataBound="rptImages_OnItemDataBound" runat="server" ID="rptImages">
-                                    <ItemTemplate>
-                                        <ul id="clients">
-                                            <li><a runat="server" id="prettyThumb" rel="prettyPhoto" href="#">
-                                                <img height="63" runat="server" id="imgThumb" src="images/product-thumb.png" alt="" /></a>
-                                            </li>
-                                        </ul>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                                <div class="clear-line">
-                                </div>
-                                <div class="one-half">
-                                    <asp:Repeater OnItemDataBound="rptProdAssociati_OnItemDataBound" Visible="false" runat="server"
-                                        ID="rptProdAssociati">
-                                        <HeaderTemplate>
-                                            <h4>Potrebbero anche interessarti:
-                                            </h4>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <ul style="float: left;" id="clients">
-                                                <li><a runat="server" id="linkProd" href="#">
-                                                    <img height="63" runat="server" id="imgProdAss" src="" alt="" />
-                                                </a></li>
-                                            </ul>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </div>
-                            </div>
-                            <div class="one-half last dettaglio-prodotto">
-                                <h1><asp:Label runat="server" ID="lblNomeProd"></asp:Label></h1>
-                                <asp:Literal runat="server" ID="prodDescription"></asp:Literal>
-                                <label>
-                                    Prezzo: €.
-                                <asp:Literal runat="server" ID="prodPrice"></asp:Literal></label>
-                                <label>
-                                    Produttore:
-                                <asp:Literal runat="server" ID="prodProduttore"></asp:Literal></label>
-                                <label>
-                                    Pezzi disponibili:
-                                <asp:Literal runat="server" ID="prodScorte"></asp:Literal>
-                                </label>
-                                <label>
-                                    <asp:Literal runat="server" ID="prodDisponibilità"></asp:Literal>
-                                </label>
-                                <div class="clear-line">
-                                </div>
-                                <asp:ImageButton runat="server" ID="btnaddTocart" ImageUrl="images/tasto-carrello.png"
-                                    Style="border: none;" CssClass="btnImageCart" Text="Aggiungi al Carrello" OnClick="btnaddTocart_Click" />
-                                <div class="clear">
-                                </div>
-                                <div class="clear-line">
-                                </div>
-                            </div>
+                        <div style="margin-top: 20px; width: 920px;" class="one">
+                            <asp:DataPager runat="server" Visible="true" ID="pagerProducts" OnPreRender="pagerProducts_PreRender"
+                                PageSize="12" PagedControlID="lvProducts">
+                                <Fields>
+                                    <asp:NumericPagerField CurrentPageLabelCssClass="my-blog-pagination-current_gr" NextPreviousButtonCssClass="my-blog-pagination_gr"
+                                        NumericButtonCssClass="my-blog-pagination_gr" />
+                                </Fields>
+                            </asp:DataPager>
+                            <asp:DataPager runat="server" Visible="false" ID="pagerRosso" OnPreRender="pagerProducts_PreRender"
+                                PageSize="12" PagedControlID="lvProducts">
+                                <Fields>
+                                    <asp:NumericPagerField CurrentPageLabelCssClass="my-blog-pagination-current_red"
+                                        NextPreviousButtonCssClass="my-blog-pagination_red" NumericButtonCssClass="my-blog-pagination_red" />
+                                </Fields>
+                            </asp:DataPager>
                         </div>
                         <div runat="server" id="divSpotRosso" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-                            <!-- HEADER  -->
-                            <!-- LOGO -->
-                            <a style="background: transparent url('images/logo-design.png') no-repeat; display: block; float: left; width: 220px; height: 70px; text-indent: -9999px;"
-                                id="A1" title="Homepage"
-                                href="design.html"></a>
-                            <!--LOGO ENDS  -->
-                            <div style="background: #D10A11; margin-left: 5px; float: left; width: 614px; height: 70px;">
+                            <a style="margin-top: 60px; background: transparent url('images/logo-design.png') no-repeat; display: block; float: left; width: 220px; height: 70px; text-indent: -9999px;"
+                                id="A1" title="Homepage" href="design.html"></a>
+                            <div style="margin-top: 60px; background: #D10A11; margin-left: 5px; float: left; width: 614px; height: 70px;">
                                 <p class="visita_shop">
                                     Entra e visita il nostro Shop dedicato all'Arredamento! Mille idee ti aspettano!
                                 </p>
                             </div>
-                            <div style="float: left; width: 120px; height: 70px;">
+                            <div style="margin-top: 60px; float: left; width: 120px; height: 70px;">
                                 <a style="background: #D10A11 url('images/entra-rosso.png') no-repeat; position: relative; height: 70px; margin-top: 0px; text-indent: 60px; display: block;"
                                     href="design.html"
                                     class="_carrello_titolo"></a>
                             </div>
                         </div>
-                        <div runat="server" id="divSpotVerde" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-                            <!-- HEADER  -->
-                            <!-- LOGO -->
-                            <a class="banner-tradizione-logo" id="A2" title="Homepage"
-                                href="#"></a>
-                            <!--LOGO ENDS  -->
-                            <div style="background: #76A227; margin-left: 5px; float: left; width: 614px; height: 70px;">
-                                <p class="visita_shop">
-                                    Entra e visita il nostro Shop Tradizione! Mille idee ti aspettano!
-                                </p>
-                            </div>
-                            <div style="float: left; width: 120px; height: 70px;">
-                                <a style="background: #76A227 url('images/entra-rosso.png') no-repeat; position: relative; height: 70px; margin-top: 0px; text-indent: 60px; display: block;"
-                                    href="tradizione.html"
-                                    class="_carrello_titolo"></a>
-                            </div>
-                        </div>
                         <img alt="" src="<%= Page.ResolveClientUrl("images") %>/immagine-pre-footer.png"/>
                         <div id="footer-wrapper">
-                            <!-- FOOTER WRAPPER STARTS-->
                             <div id="footer-container">
-                                <!-- FOOTER CONTAINER STARTS-->
                                 <div id="footer">
-                                    <!-- FOOTER STARTS-->
                                     <div class="one">
-                                        <!-- COLUMN CONTAINER STARTS-->
                                         <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
-                                            <!-- COLUMN STARTS-->
                                             <strong>Metodi di Pagamento</strong>
-                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" />
+                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
                                         </div>
-                                        <!-- COLUMN ENDS-->
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Termini e condizioni</strong>
                                             <ul class="simple-nav">
@@ -217,11 +159,8 @@
                                                 <li><a href="#">Pagamenti</a></li>
                                                 <li><a href="#">Spedizioni</a></li>
                                             </ul>
-                                            <!--END UL-->
                                         </div>
-                                        <!-- COLUMN ENDS-->
                                         <div style="margin-right: 10px;" class="one-fourth">
-                                            <!-- COLUMN STARTS-->
                                             <strong style="padding-left: 10px;">Contatti</strong>
                                             <ul style="padding-left: 10px;" id="footer-info">
                                                 <li>A: Via Selva S. Vito, 23 - Laterza (TA)</li>
@@ -229,22 +168,16 @@
                                                 <li>C: +39 338 49 01 627 </li>
                                                 <li>E: <a href="#">info@materarredamenti.it</a></li>
                                                 <li>E-2: <a href="#">shop@materarredamenti.it</a></li>
-                                                <!-- SOCIAL LINKS ENDS-->
                                             </ul>
                                         </div>
-                                        <!-- COLUMN ENDS-->
                                         <div class="one-fourth last">
-                                            <!-- COLUMN STARTS-->
-                                            <!-- COLUMN STARTS-->
                                             <strong style="padding-left: 10px;">Dove Siamo</strong>
                                             <div id="Gmap__" style="width: 215px; height: 150px">
                                                 <iframe width="215" height="150" frameborder="0" scrolling="no" marginheight="0"
                                                     marginwidth="0" src="http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=laterza+via+selva+san+vito+23&amp;aq=&amp;sll=40.354131,18.174294&amp;sspn=0.107007,0.222988&amp;ie=UTF8&amp;hq=laterza+via+selva+san+vito+23&amp;hnear=&amp;radius=15000&amp;t=m&amp;ll=40.619624,16.808159&amp;spn=0.071946,0.071946&amp;output=embed"></iframe>
                                             </div>
                                         </div>
-                                        <!-- COLUMN ENDS-->
                                     </div>
-                                    <!-- COLUMN CONTAINER ENDS-->
                                 </div>
                                 <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
                                     <p>
@@ -256,7 +189,6 @@
                 </div>
             </div>
         </div>
-        <%--   </div>--%>
     </form>
 </body>
 </html>

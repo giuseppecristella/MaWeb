@@ -1,6 +1,5 @@
 ﻿using Cache;
 using MagentoRepository.Connection;
-using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Shop.Infrastructure.Cache;
 using Cart = MagentoBusinessDelegate.Cart;
@@ -37,7 +36,6 @@ public class BasePage : System.Web.UI.Page
     {
         get
         {
-
             return SessionFacade.Cart;
         }
         set

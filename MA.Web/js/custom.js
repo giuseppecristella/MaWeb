@@ -67,6 +67,6 @@ buildmenu:function(menuid, arrowsvar){
 
 
 //build menu with ID="main_navigation" on page:
-jqueryslidemenu.buildmenu("main_navigation", arrowimages)
+jqueryslidemenu.buildmenu("main_navigation", arrowimages);
 /*Custom JavaScript - TrendyWebStar*/
 
