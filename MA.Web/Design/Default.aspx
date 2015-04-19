@@ -44,10 +44,10 @@
             <a href="#" id="tasto-issuu">vai allo shop design e casa </a>
         </div>
     </div>
-    <div class="one">
+    <div style="margin-top: 30px;"  class="one">
         <div class="headline">
             <h4>
-                Le offerte del Mese</h4>
+                PRODOTTI IN PRIMO PIANO</h4>
         </div>
         <asp:ListView runat="server" ID="lvProductsShowCase" OnItemDataBound="lvProductsShowCase_OnItemDataBound">
             <LayoutTemplate>

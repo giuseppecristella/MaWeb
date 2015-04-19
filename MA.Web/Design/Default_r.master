@@ -91,9 +91,10 @@
                     <div id="content">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
                         </asp:ContentPlaceHolder>
+                        <img alt="" src="images/immagine-pre-footer.png"/>
                         <div id="footer-wrapper">
                             <div id="footer-container">
-                                <div id="footer">
+                                <div id="footer">                                 
                                     <div class="one">
                                         <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
                                             <strong>Metodi di Pagamento</strong>
@@ -133,14 +134,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="copyright-wrapper">
-                            <div id="copyright">
-                                <a id="logo-copyright" title="Homepage" href="#"></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </div>
+            </div>    
         </div>
     </form>
 </body>

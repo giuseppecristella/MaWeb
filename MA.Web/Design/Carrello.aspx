@@ -88,7 +88,7 @@
                 </ul>
                 <div id="container">
                     <div id="header-logo">
-                        <img alt="" src="<%= Page.ResolveClientUrl("images") %>/Header_Logo_grafica.png" />
+                         <img alt="" src="<%= Page.ResolveClientUrl("images") %>/Header_Logo_grafica.png" />
                     </div>
                     <div id="header">
                         <%--  <a id="logo_r" class="logoRosso" title="Homepage" href="/shop"></a>--%>

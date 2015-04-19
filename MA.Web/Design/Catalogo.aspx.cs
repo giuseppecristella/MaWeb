@@ -127,7 +127,7 @@ public partial class shop_Catalogo : BasePage
         //logo_r.Visible = true;
         //main_navigation.Attributes["class"] = "main-menu rosso";
         //divCarrello.Style.Add("background", "#D10A11");
-        divSpotVerde.Visible = true;
+        
         lblCategoria.CssClass = "colore_rosso";
 
         #region Garbage Shop Verde
