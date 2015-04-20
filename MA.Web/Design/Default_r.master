@@ -54,11 +54,11 @@
                 <p class="header-text-left">
                 </p>
                 <ul id="header-icons">
-                    <li><a href="Customers/Ordini.aspx">Stato Ordini</a></li>
+                    <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>
                             <li>
-                                <li><a href="Customers/Default.aspx">Account Info</a></li>
+                                <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Account Info</a></li>
                             </li>
                             <li>&nbsp; | &nbsp;
                                 <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />

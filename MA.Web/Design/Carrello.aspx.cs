@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
 using Microsoft.AspNet.FriendlyUrls;
@@ -9,12 +8,11 @@ using Cart = MagentoBusinessDelegate.Cart;
 using Image = System.Web.UI.WebControls.Image;
 using Label = System.Web.UI.WebControls.Label;
 using TextBox = System.Web.UI.WebControls.TextBox;
-
-public partial class shop_Carrello : BasePage
+public partial class Design_Carrello : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
+        // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
 
         if (Cart != null && !Cart.Products.Any())
         {
@@ -31,8 +29,6 @@ public partial class shop_Carrello : BasePage
 
         ltrSomma.Text = Cart != null ? Cart.Total.ToString("C") : String.Empty;
 
-        HttpContext.Current.Cache.Insert("htmlMegaMenu", Utility.SetMegaMenu((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], (string)Session["rootCat"]));
-        menuCatShop.InnerHtml = (string)HttpContext.Current.Cache["htmlMegaMenu"];
     }
 
     protected void lnkbtncheckout_Click(object sender, EventArgs e)
@@ -72,8 +68,8 @@ public partial class shop_Carrello : BasePage
         }
         lvCart.DataSource = Cart.Products;
         lvCart.DataBind();
-     //   ltrTotCart.Text = 
-            ltrSomma.Text = Cart.Total.ToString("c");
+        //   ltrTotCart.Text = 
+        ltrSomma.Text = Cart.Total.ToString("c");
 
     }
 
@@ -110,14 +106,13 @@ public partial class shop_Carrello : BasePage
 
         // Url pagina dettaglio 
         var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
-        if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio.aspx?CatId={0}&ProdId={1}",
-             product.categories[0], product.product_id);
+        if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio/{0}/{1}", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
         //product.category_ids[0], product.product_id);
     }
 
     protected void lnkbtnContinueShop_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Design/Catalogo.aspx");
+        Response.Redirect("~/Design/Default.aspx");
     }
 
     #region private methods
@@ -173,5 +168,4 @@ public partial class shop_Carrello : BasePage
     }
 
     #endregion
-
 }

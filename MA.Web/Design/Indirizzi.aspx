@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Default_ar.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="Default_r.master" AutoEventWireup="true"
     CodeFile="Indirizzi.aspx.cs" Inherits="Indirizzi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

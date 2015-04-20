@@ -7,7 +7,7 @@
     <div style="padding: 20px 0 20px 0;" class="one">
         <div class="headline">
             <h4>
-                Il tuo > Ordine
+                Il tuo Ordine
             </h4>
         </div>
     </div>

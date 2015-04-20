@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml;
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Enum;
 using MagentoRepository.Helpers;
 using WSCryptDecrypt = it.sella.ecomms2s.WSCryptDecrypt;
-
-
 public partial class Riepilogo : BasePage
 {
 
@@ -15,7 +14,7 @@ public partial class Riepilogo : BasePage
     {
         var customers = Page.User.Identity.Name;
 
-        if (string.IsNullOrEmpty(customers)) Response.Redirect("~/Shop/Accedi.aspx");
+        if (string.IsNullOrEmpty(customers)) Response.Redirect("~/Design/Accedi.aspx");
 
         if (IsPostBack) return;
         if (SessionFacade.CartId.Equals(0)) Response.Redirect("Carrello.aspx");
@@ -111,5 +110,5 @@ public partial class Riepilogo : BasePage
         var nodeErrorDesc = encryptedInfos.SelectSingleNode("descendant::ErrorDescription");
         return nodeErrorDesc == null ? "Errore transazione, l'ordine sarà annullato" : nodeErrorDesc.InnerText;
     }
-}
+} 
     #endregion

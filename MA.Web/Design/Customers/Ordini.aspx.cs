@@ -70,6 +70,6 @@ public partial class Ordini : BasePage
         break;
     }
     var lnkbtnInfoOrdine = e.Item.FindControl("lnkbtnInfoOrdine") as LinkButton;
-    if (lnkbtnInfoOrdine != null) lnkbtnInfoOrdine.PostBackUrl = string.Format("InfoOrdine.aspx?IncrementId={0}", order.increment_id);
+    if (lnkbtnInfoOrdine != null) lnkbtnInfoOrdine.PostBackUrl = string.Format("InfoOrdine/{0}", order.increment_id);
   }
 }
