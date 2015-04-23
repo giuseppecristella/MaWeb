@@ -28,7 +28,7 @@ public partial class Design_Carrello : BasePage
             lvCart.DataBind();
         }
 
-        ltrSomma.Text = Cart != null ? Cart.Total.ToString("C") : String.Empty;
+        ltrSomma.Text = Cart != null ? Cart.Total.ToString("C", CultureInfo.GetCultureInfo("it-IT")) : String.Empty;
 
     }
 
@@ -70,7 +70,7 @@ public partial class Design_Carrello : BasePage
         lvCart.DataSource = Cart.Products;
         lvCart.DataBind();
         //   ltrTotCart.Text = 
-        ltrSomma.Text = Cart.Total.ToString("c");
+        ltrSomma.Text = Cart.Total.ToString("c", CultureInfo.GetCultureInfo("it-IT"));
 
     }
 
