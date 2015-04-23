@@ -34,20 +34,27 @@ public partial class Riepilogo : BasePage
 
     protected void lvCartOnItemDataBound(object sender, ListViewItemEventArgs e)
     {
-        var dataItem = (ListViewDataItem)e.Item;
+        var item = (ListViewDataItem)e.Item;
+        if (item == null || item.DataItem as Product == null) return;
+        var product = item.DataItem as Product;
+
         var lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
-        lblnomeprod.Text = ((Product)(dataItem.DataItem)).name;
+        lblnomeprod.Text = product.name;
         var lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
-        lblprezzoun.Text = Helper.FormatCurrency(((Product)(dataItem.DataItem)).price);
+        lblprezzoun.Text = Helper.FormatCurrency(product.price);
         var imgprod = (Image)e.Item.FindControl("imgprod");
-        imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + ((Product)(dataItem.DataItem)).imageurl + "&W_=100&H_=100";
+        imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + product.imageurl + "&W_=100&H_=100";
         var txtqta = (Label)e.Item.FindControl("txtqta");
-        txtqta.Text = ((Product)(dataItem.DataItem)).qty;
+        txtqta.Text = product.qty;
         var lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
         var totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqta.Text)).ToString();
         // usare string.Format currency
         lblprezzoun.Text = string.Format("€. {0}", lblprezzoun.Text);
         lblprezzotot.Text = string.Format("Tot. €. {0}", totale.Replace(".", ","));
+
+        // Url pagina dettaglio 
+        var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
+        if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio/{0}/{1}", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
     }
 
     protected void rptCart_ItemDataBound(object sender, RepeaterItemEventArgs e)

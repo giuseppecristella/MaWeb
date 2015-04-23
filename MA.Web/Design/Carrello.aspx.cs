@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
@@ -98,7 +99,7 @@ public partial class Design_Carrello : BasePage
         // Prezzo totale
         var tot = decimal.Parse(product.price.Replace(".", ",")) * int.Parse(product.qty);
         var lblprezzotot = item.FindControl("lblprezzotot") as Label;
-        if (lblprezzotot != null) lblprezzotot.Text = tot.ToString("C");
+        if (lblprezzotot != null) lblprezzotot.Text = tot.ToString("C", CultureInfo.GetCultureInfo("it-IT"));
 
         // Immagine principale
         var imgprod = item.FindControl("imgprod") as Image;
