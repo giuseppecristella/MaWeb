@@ -69,7 +69,7 @@ public partial class Riepilogo : BasePage
 
         var shopId = Utility.SearchConfigValue("SELLACODE");
         var transactionId = CreateTransactionId(orderNum); //"34az85ord19";
-        var encryptedInfos = EncryptInfos(shopId, ConfigurationHelper.SellaCurrencyCode, Cart.Total.ToString(), transactionId);
+        var encryptedInfos = EncryptInfos(shopId, ConfigurationHelper.SellaCurrencyCode, "1", transactionId);
 
         if (IsOrderEncrypted(encryptedInfos))
         {

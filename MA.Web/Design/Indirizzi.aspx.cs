@@ -56,7 +56,7 @@ public partial class Indirizzi : BasePage
 
         rdbtnListPayMethods.DataSource = paymentMethods.Select(p => p.title).ToList();
         rdbtnListPayMethods.DataBind();
-        rdbtnListPayMethods.Items[0].Selected = true;
+        if (paymentMethods.Count > 0) rdbtnListPayMethods.Items[0].Selected = true;
         //questa info devo visualizzarla nella pagina carrello.aspx e devo chiamare il metodo Cart.cartShippingMethod dopo la create*/
         //questa sbrocca perchè ho cambiato la valuta e mi ritorna un double!!!
         //ShippingMethod[] shippingMethods = Cart.cartShippingList(apiUrl, sessionId, new object[] { int.Parse(cartId) });
