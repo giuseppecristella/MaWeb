@@ -52,7 +52,7 @@ public partial class Indirizzi : BasePage
             _repository.AddProductToCart(SessionFacade.CartId, product);
         }
 
-        var paymentMethods = _repository.GetPaymentMethods(SessionFacade.CartId);
+         var paymentMethods = _repository.GetPaymentMethods(SessionFacade.CartId);
 
         rdbtnListPayMethods.DataSource = paymentMethods.Select(p => p.title).ToList();
         rdbtnListPayMethods.DataBind();

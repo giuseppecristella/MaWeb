@@ -33,7 +33,7 @@ public class BasePage : System.Web.UI.Page
         var italianCulture = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);
         Thread.CurrentThread.CurrentCulture = italianCulture;
         var numberFormat = italianCulture.NumberFormat;
-        numberFormat.CurrencySymbol = "€";
+        numberFormat.CurrencySymbol = "€. ";
         numberFormat.CurrencyDecimalDigits = 2;
         numberFormat.CurrencyDecimalSeparator = ",";
         numberFormat.CurrencyGroupSeparator = ".";

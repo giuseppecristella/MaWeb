@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Ez.Newsletter.MagentoApi;
 
@@ -24,7 +25,7 @@ namespace MagentoBusinessDelegate
         {
             get
             {
-                return this.Products.Sum(p => int.Parse(p.qty) * decimal.Parse(p.price.Replace(".", ",")));
+                return this.Products.Sum(p => int.Parse(p.qty) * decimal.Parse(p.price.Replace(".", ","), CultureInfo.GetCultureInfo("it-IT").NumberFormat));
             }
         }
 
