@@ -1,4 +1,6 @@
-﻿using Cache;
+﻿using System.Globalization;
+using System.Threading;
+using Cache;
 using MagentoRepository.Connection;
 using MagentoRepository.Repository;
 using Shop.Infrastructure.Cache;
@@ -28,6 +30,7 @@ public class BasePage : System.Web.UI.Page
         _repository = repository;
         // come gestire una singola istanza della classe cache manager?
         _cache = new AspnetCacheManager(); // uso questa istanza per gestire il carrello mentre uso la cache di EL per i metodi del repo; analizzare meglio
+
     }
 
     #endregion Ctor

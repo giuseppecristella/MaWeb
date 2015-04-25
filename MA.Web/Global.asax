@@ -1,4 +1,6 @@
 ﻿<%@ Application Language="C#" %>
+<%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="System.Threading" %>
 <%@ Import Namespace="System.Web.Routing" %>
 <%@ Import Namespace="Cache" %>
 <%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
@@ -7,6 +9,14 @@
     void Application_Start(object sender, EventArgs e)
     {
         // Code that runs on application startup
+        // Creare una funzione ad hoc
+        var italianCulture = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);
+        Thread.CurrentThread.CurrentCulture = italianCulture;
+        var numberFormat = italianCulture.NumberFormat;
+        numberFormat.CurrencySymbol = "€";
+        numberFormat.CurrencyDecimalDigits = 2;
+        numberFormat.CurrencyDecimalSeparator = ",";
+        numberFormat.CurrencyGroupSeparator = ".";
     }
 
     void Application_End(object sender, EventArgs e)
