@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -29,7 +30,7 @@ public partial class Riepilogo : BasePage
         ltrSubTot.Text = Cart.Total.ToString();
         ltrSped.Text = Helper.FormatCurrency(shippingMethods.FirstOrDefault().price);
         // totale + spese spedizione
-        ltrSomma.Text = (decimal.Parse(ltrSped.Text) + decimal.Parse(ltrSubTot.Text)).ToString();
+        ltrSomma.Text = (decimal.Parse(ltrSped.Text, CultureInfo.GetCultureInfo("it-IT").NumberFormat) + decimal.Parse(ltrSubTot.Text)).ToString();
     }
 
     protected void lvCartOnItemDataBound(object sender, ListViewItemEventArgs e)
@@ -47,7 +48,7 @@ public partial class Riepilogo : BasePage
         var txtqta = (Label)e.Item.FindControl("txtqta");
         txtqta.Text = product.qty;
         var lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
-        var totale = (decimal.Parse(lblprezzoun.Text) * int.Parse(txtqta.Text)).ToString();
+        var totale = (decimal.Parse(lblprezzoun.Text, CultureInfo.GetCultureInfo("it-IT").NumberFormat) * int.Parse(txtqta.Text)).ToString();
         // usare string.Format currency
         lblprezzoun.Text = string.Format("€. {0}", lblprezzoun.Text);
         lblprezzotot.Text = string.Format("Tot. €. {0}", totale.Replace(".", ","));
