@@ -10,13 +10,7 @@
     {
         // Code that runs on application startup
         // Creare una funzione ad hoc
-        var italianCulture = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);
-        Thread.CurrentThread.CurrentCulture = italianCulture;
-        var numberFormat = italianCulture.NumberFormat;
-        numberFormat.CurrencySymbol = "€";
-        numberFormat.CurrencyDecimalDigits = 2;
-        numberFormat.CurrencyDecimalSeparator = ",";
-        numberFormat.CurrencyGroupSeparator = ".";
+       
     }
 
     void Application_End(object sender, EventArgs e)

@@ -30,7 +30,13 @@ public class BasePage : System.Web.UI.Page
         _repository = repository;
         // come gestire una singola istanza della classe cache manager?
         _cache = new AspnetCacheManager(); // uso questa istanza per gestire il carrello mentre uso la cache di EL per i metodi del repo; analizzare meglio
-
+        var italianCulture = new CultureInfo(Thread.CurrentThread.CurrentCulture.Name);
+        Thread.CurrentThread.CurrentCulture = italianCulture;
+        var numberFormat = italianCulture.NumberFormat;
+        numberFormat.CurrencySymbol = "€";
+        numberFormat.CurrencyDecimalDigits = 2;
+        numberFormat.CurrencyDecimalSeparator = ",";
+        numberFormat.CurrencyGroupSeparator = ".";
     }
 
     #endregion Ctor

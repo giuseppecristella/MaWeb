@@ -28,7 +28,7 @@ public partial class Design_Carrello : BasePage
             lvCart.DataBind();
         }
 
-        ltrSomma.Text = Cart != null ? Cart.Total.ToString("C", CultureInfo.GetCultureInfo("it-IT")) : String.Empty;
+        ltrSomma.Text = Cart != null ? Cart.Total.ToString("C") : String.Empty;
 
     }
 
