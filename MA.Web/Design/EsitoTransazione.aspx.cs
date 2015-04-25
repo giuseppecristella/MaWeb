@@ -38,11 +38,11 @@ public partial class shop_EsitoTransazione : BasePage
             if (orderNumber == null) return;
 
             var resultResponse = CheckTransactionResult(transactionResultNode);
-
             if (resultResponse == false)
             {
                 ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
                 _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
+                return;
             }
 
             // Recupera l'ordine relativo

@@ -28,9 +28,9 @@ public partial class Riepilogo : BasePage
         lvCart.DataBind();
 
         ltrSubTot.Text = Cart.Total.ToString();
-        ltrSped.Text = Helper.FormatCurrency(shippingMethods.FirstOrDefault().price);
+        ltrSped.Text = Helper.FormatCurrency(Helper.FormatCurrency(shippingMethods.FirstOrDefault().price));
         // totale + spese spedizione
-        ltrSomma.Text = (decimal.Parse(ltrSped.Text, CultureInfo.GetCultureInfo("it-IT").NumberFormat) + decimal.Parse(ltrSubTot.Text)).ToString();
+        ltrSomma.Text = (decimal.Parse(ltrSped.Text, CultureInfo.GetCultureInfo("it-IT").NumberFormat) + decimal.Parse(ltrSubTot.Text, CultureInfo.GetCultureInfo("it-IT").NumberFormat)).ToString();
     }
 
     protected void lvCartOnItemDataBound(object sender, ListViewItemEventArgs e)

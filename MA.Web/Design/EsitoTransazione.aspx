@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Design/Default_ar.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Design/Default_r.master" AutoEventWireup="true"
     CodeFile="EsitoTransazione.aspx.cs" Inherits="shop_EsitoTransazione" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

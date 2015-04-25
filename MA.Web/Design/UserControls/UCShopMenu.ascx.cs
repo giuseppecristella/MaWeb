@@ -17,7 +17,6 @@ public partial class Design_UserControls_UCShopMenu : System.Web.UI.UserControl
         get { return Request.GetFriendlyUrlSegments().Any() ? Request.GetFriendlyUrlSegments()[0] : string.Empty; }
     }
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Page.IsPostBack) return;
@@ -31,18 +30,16 @@ public partial class Design_UserControls_UCShopMenu : System.Web.UI.UserControl
         
         rptMenuItems.DataSource = categories.Select(c => new { name = (c as Hashtable)["name"].ToString().Replace(" ", "-") }).ToList();
         rptMenuItems.DataBind();
+
+
+        lbCartQty.Text = (SessionFacade.Cart.Products != null) ? SessionFacade.Cart.Products.ToList().Count.ToString() : "0";
     }
 
     protected void rptMenuItems_OnItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        var dataItem = e.Item.DataItem;
-
         var lbMenuItem = e.Item.FindControl("lbMenuItem") as HtmlAnchor;
         if (lbMenuItem == null) return;
-        if (!string.IsNullOrEmpty(PageName))
-        {
-            if (lbMenuItem.HRef.Contains(PageName)) lbMenuItem.Attributes["class"] = "menu-item-selected";
-        }
-        
+        if (string.IsNullOrEmpty(PageName)) return;
+        if (lbMenuItem.HRef.Contains(PageName)) lbMenuItem.Attributes["class"] = "menu-item-selected";
     }
 }
