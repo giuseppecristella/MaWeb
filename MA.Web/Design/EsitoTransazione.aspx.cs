@@ -40,7 +40,8 @@ public partial class shop_EsitoTransazione : BasePage
             var resultResponse = CheckTransactionResult(transactionResultNode);
             if (resultResponse == false)
             {
-                ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
+                ShowMessage(MessageType.Error, _errorMsg);
+                //ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
                 _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
                 return;
             }
