@@ -87,7 +87,7 @@ public partial class shop_EsitoTransazione : BasePage
     private string GetOrderNumber(XmlNode decryptedNode)
     {
         var nodeTransactionId = decryptedNode.SelectSingleNode("descendant::ShopTransactionID");
-        return nodeTransactionId == null ? null : nodeTransactionId.InnerText.Substring(0, 9);
+        return nodeTransactionId == null ? null : nodeTransactionId.InnerText.Substring(0, 6);
     }
 
     private static void SendMailToUser(OrderInfo orderDetails, Customer customer, string numOrdine, string mailBody)
