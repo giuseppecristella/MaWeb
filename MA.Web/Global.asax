@@ -9,13 +9,13 @@
     void Application_Start(object sender, EventArgs e)
     {
         // Code that runs on application startup
-        // Creare una funzione ad hoc
-       
+        RouteConfig.RegisterRoutes(RouteTable.Routes);
     }
 
     void Application_End(object sender, EventArgs e)
     {
         //  Code that runs on application shutdown
+        
     }
 
     void Application_Error(object sender, EventArgs e)
@@ -25,7 +25,7 @@
 
     void Session_Start(object sender, EventArgs e)
     {
-        RouteConfig.RegisterRoutes(RouteTable.Routes);
+       
         // Code that runs when a new session is started
         // api settings
         // Session["apiUrl"] = "http://localhost/magento/api/xmlrpc";
