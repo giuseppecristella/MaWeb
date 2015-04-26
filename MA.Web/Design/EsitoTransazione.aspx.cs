@@ -61,9 +61,9 @@ public partial class shop_EsitoTransazione : BasePage
         catch (Exception ex)
         {
             var stack = ex.StackTrace ?? ex.StackTrace.ToString();
-            var source = ex.InnerException.Source ?? ex.InnerException.Source.ToString();
+            //var source = ex.InnerException.Source ?? ex.InnerException.Source.ToString();
 
-            ltrEsito.Text += "<br>" + source + "<br>" + stack;
+            ltrEsito.Text += stack;
         }
     }
 
