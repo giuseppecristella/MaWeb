@@ -79,9 +79,9 @@
             <div style="display: block; height: 53px;">
             </div>
             <asp:CreateUserWizard LoginCreatedUser="True" DuplicateUserNameErrorMessage="utente già presente"
-                DuplicateEmailErrorMessage="email già presente" ID="CreateUserWizard1" runat="server"
+                DuplicateEmailErrorMessage="email già presente" ID="CreateUserWizard1" runat="server" 
                 OnCreatedUser="CreateMagentoUser" CompleteSuccessText="Registrazione effettuata con successo."
-                ContinueButtonText="Continua lo shopping" ContinueButtonType="Link" ContinueDestinationPageUrl="~/Design/Catalogo.html"
+                ContinueButtonText="Continua lo shopping" ContinueButtonType="Link" ContinueDestinationPageUrl="~/Design/Default.aspx"
                 FinishDestinationPageUrl="~/Contatti.aspx">
                 <WizardSteps>
                     <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">

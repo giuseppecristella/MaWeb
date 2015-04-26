@@ -17,26 +17,17 @@ public partial class shop_AggiornaCatalogo : BasePage
 
     protected void lbUpdateCatalog_Click(object sender, EventArgs e)
     {
-        var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
-        lblUpdateCatalog.Text = "num prodotti: " + products.Count.ToString();
-        // if (products == null) return;
-
         var cacheManager = CacheFactory.GetCacheManager();
-        cacheManager.Remove("ProductsList");
         var cachedProducts = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;
-        
-        //var keys = new Hashtable();
-        //keys.Add(ConfigurationHelper.Arredi, string.Format("{0}{1}", ConfigurationHelper.CacheKeyNames[CacheKey.CategoryInfo], ConfigurationHelper.Arredi));
 
-        //foreach (DictionaryEntry k in keys)
-        //{
-        //    cacheManager.Remove(k.Value.ToString());  
-        //}
+        cacheManager.Flush();
 
-       // cacheManager.Remove("CategoryAssigned");
+        var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
+        lblUpdateCatalog.Text = "num prodotti: " + products.Count;
 
         var images = new List<string>();
         cachedProducts = null;
+        // TODO: scaricare solo le immagini modificate o aggiunte
         if (cachedProducts != null)
         {
             GetChangedImages(products, cachedProducts, images);
@@ -48,31 +39,16 @@ public partial class shop_AggiornaCatalogo : BasePage
         }
         DownloadImages(images);
 
-        #region To Delete
-        HttpContext.Current.Cache.Remove("myAssignedProducts38");
-        HttpContext.Current.Cache.Remove("myAssignedProducts39");
-        HttpContext.Current.Cache.Remove("myAssignedProducts40");
-        HttpContext.Current.Cache.Remove("myAssignedProducts41");
-        HttpContext.Current.Cache.Remove("myAssignedProducts42");
-        HttpContext.Current.Cache.Remove("myAssignedProducts43");
-        HttpContext.Current.Cache.Remove("myAssignedProducts48");
-        HttpContext.Current.Cache.Remove("myAssignedProducts49");
-        HttpContext.Current.Cache.Remove("myAssignedProducts50");
-        HttpContext.Current.Cache.Remove("myAssignedProducts51");
-        HttpContext.Current.Cache.Remove("myAssignedProducts52");
-        HttpContext.Current.Cache.Remove("myAssignedProducts53");
-        HttpContext.Current.Cache.Remove("myAssignedProducts54");
-        HttpContext.Current.Cache.Remove("myAssignedProducts55");
-        HttpContext.Current.Cache.Remove("myAssignedProducts56");
-        HttpContext.Current.Cache.Remove("myAssignedProducts58");
-        #endregion
         //  lblUpdateCatalog.Text = "<br>Le modifiche al catalogo sono state eseguite correttamente!";
     }
 
     private void DownloadImages(IEnumerable<string> images)
     {
-        var imgPath = Server.MapPath("~/Public/");
+        var imgPath = Server.MapPath("~/Design/images/prodotti/");
 
+        string[] filePaths = Directory.GetFiles(@imgPath);
+        foreach (string filePath in filePaths) File.Delete(filePath);
+        
         foreach (var img in images)
         {
             using (var client = new WebClient())

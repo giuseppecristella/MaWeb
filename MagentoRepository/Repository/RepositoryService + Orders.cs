@@ -33,7 +33,7 @@ namespace MagentoRepository.Repository
             var filterParameters = CreateParameters(filter);
             try
             {
-                return Order.List(_connection.Url, _connection.SessionId, new object[] { filterParameters }).ToList();
+                return Order.List(_connection.Url, _connection.SessionId, new object[] { filterParameters }).OrderByDescending(o => o.created_at).ToList();
             }
             catch (Exception ex)
             {
