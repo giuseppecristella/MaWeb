@@ -92,7 +92,7 @@ public partial class Riepilogo : BasePage
     #region Private Methods
     private static string CreateTransactionId(int orderNum)
     {
-        return string.Format("{0}{1}", orderNum, Guid.NewGuid());
+        return string.Format("{0}§{1}", orderNum, Guid.NewGuid());
     }
 
     private XmlNode EncryptInfos(string shopId, string currencyCode, string total, string transactionId)

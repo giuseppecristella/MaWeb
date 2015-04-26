@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Xml;
@@ -42,7 +43,7 @@ public partial class shop_EsitoTransazione : BasePage
             if (resultResponse == false)
             {
                 ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
-               // _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
+                _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
                 return;
             }
 
@@ -87,7 +88,7 @@ public partial class shop_EsitoTransazione : BasePage
     private string GetOrderNumber(XmlNode decryptedNode)
     {
         var nodeOrderNumber = decryptedNode.SelectSingleNode("descendant::ShopTransactionID");
-        return nodeOrderNumber == null ? null : nodeOrderNumber.InnerText;
+        return nodeOrderNumber == null ? null : nodeOrderNumber.InnerText.Split('§').FirstOrDefault();
     }
 
     private static void SendMailToUser(OrderInfo orderDetails, Customer customer, string numOrdine, string mailBody)
