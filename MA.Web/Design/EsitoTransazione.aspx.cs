@@ -33,11 +33,12 @@ public partial class shop_EsitoTransazione : BasePage
             CartHelper.ClearCart();
             var transactionResultNode = GetTransactionResult();
             if (GetTransactionResult() == null) return;
-
+            ltrEsito.Text = "GetTransactionResult ok";
             var orderNumber = GetOrderNumber(transactionResultNode);
             if (orderNumber == null) return;
 
             var resultResponse = CheckTransactionResult(transactionResultNode);
+            ltrEsito.Text += "GetTransactionResult ok";
             if (resultResponse == false)
             {
                 ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
@@ -59,7 +60,10 @@ public partial class shop_EsitoTransazione : BasePage
         }
         catch (Exception ex)
         {
-            ltrEsito.Text = ex.InnerException.ToString() + "<br>" + ex.Source + "<br>" + ex.StackTrace.ToString() ;
+            var stack = ex.StackTrace ?? ex.StackTrace.ToString();
+            var source = ex.InnerException.Source ?? ex.InnerException.Source.ToString();
+
+            ltrEsito.Text += "<br>" + source + "<br>" + stack;
         }
     }
 
