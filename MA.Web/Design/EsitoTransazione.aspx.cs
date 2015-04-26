@@ -40,8 +40,7 @@ public partial class shop_EsitoTransazione : BasePage
             var resultResponse = CheckTransactionResult(transactionResultNode);
             if (resultResponse == false)
             {
-                ShowMessage(MessageType.Error, _errorMsg);
-                //ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
+                ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
                 _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
                 return;
             }
@@ -60,7 +59,7 @@ public partial class shop_EsitoTransazione : BasePage
         }
         catch (Exception ex)
         {
-            ltrEsito.Text = ex.Message;
+            ltrEsito.Text = ex.InnerException.ToString() + "<br>" + ex.Source + "<br>" + ex.StackTrace.ToString() ;
         }
     }
 
