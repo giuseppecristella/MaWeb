@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AggiornaCatalogo.aspx.cs" MasterPageFile="~/Design/Default_r.master"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AggiornaCatalogo.aspx.cs" MasterPageFile="~/Design/Admin/Default.master"
     Inherits="shop_AggiornaCatalogo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">

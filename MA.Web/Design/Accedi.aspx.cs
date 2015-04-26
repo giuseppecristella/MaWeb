@@ -22,9 +22,15 @@ public partial class shop_Accedi : BasePage
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        Response.Redirect(ViewState["PreviousPage"] != null
-          ? ViewState["PreviousPage"].ToString()
-          : "~/Design/Customers/Default.aspx");
+        // Logica per redirect in base al ruolo
+        if (Roles.IsUserInRole(Login1.UserName, "User"))
+        {
+            Response.Redirect(ViewState["PreviousPage"] != null ? ViewState["PreviousPage"].ToString() : "~/Design/Customers/Default.aspx");
+        }
+        else if (Roles.IsUserInRole(Login1.UserName, "Administrator"))
+        {
+            Response.Redirect("~/Design/Admin/AggiornaCatalogo.aspx");
+        }
     }
 
     protected void CreateMagentoUser(object sender, EventArgs e)
