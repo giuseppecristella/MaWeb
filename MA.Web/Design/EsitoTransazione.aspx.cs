@@ -42,7 +42,7 @@ public partial class shop_EsitoTransazione : BasePage
             if (resultResponse == false)
             {
                 ShowMessage(MessageType.Error, string.Format(_errorMsg, orderNumber));
-                _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
+               // _repository.SetOrderStatus(int.Parse(orderNumber), OrderStatusType.Canceled);
                 return;
             }
 
@@ -86,8 +86,8 @@ public partial class shop_EsitoTransazione : BasePage
 
     private string GetOrderNumber(XmlNode decryptedNode)
     {
-        var nodeTransactionId = decryptedNode.SelectSingleNode("descendant::ShopTransactionID");
-        return nodeTransactionId == null ? null : nodeTransactionId.InnerText.Substring(0, 6);
+        var nodeOrderNumber = decryptedNode.SelectSingleNode("descendant::ShopTransactionID");
+        return nodeOrderNumber == null ? null : nodeOrderNumber.InnerText;
     }
 
     private static void SendMailToUser(OrderInfo orderDetails, Customer customer, string numOrdine, string mailBody)
