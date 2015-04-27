@@ -1,0 +1,144 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Default.master.cs" Inherits="Default" %>
+
+<%@ Register Src="~/Design/UserControls/UCShopMenu.ascx" TagPrefix="uc1" TagName="UCShopMenu" %>
+<%@ Reference Page="~/Default.aspx" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Matera Arredamenti - mobili per la vita</title>
+    <meta name="google-site-verification" content="DlFMFUeCnP1k0kgsQVQP4RdC-InOjfP_Pbaz0u4hc78" />
+    <meta name="keywords" content="matera arredamenti,arredamenti,matera arredamenti laterza, arredamenti laterza, arredamenti taranto, arredamenti uffici, mobili, mobili taranto, mobili laterza, arredamenti matera, arredamenti giardino " />
+    <meta name="description" content="Soddisfare il cliente è il Nostro Primo Patrimonio, Vendiamo Qualità, Consulenza ed Emozioni." />
+    <meta name="Distribution" content="Global" />
+    <meta name="Author" content="Giovanni Matera" />
+    <meta name="language" content="italian" />
+    <meta name="robots" content="index,follow" />
+    <!--CSS FILES STARTS-->
+
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../../css/prettyPhoto.css" type="text/css" media="screen" />
+    <link href="../../css/slider.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.slider.css" />
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,regularitalic,600,600italic,bold,bolditalic'
+        type='text/css' />
+    <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
+    <!--CSS FILES ENDS-->
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/custom.js"></script>
+    <script type="text/javascript" src="../js/slides.min.jquery.js"></script>
+    <script type="text/javascript" src="../js/cycle.js"></script>
+    <script type="text/javascript" src="../js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="../js/scrolltopcontrol.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-12761769-1");
+        pageTracker._trackPageview();
+    } catch (err) { }</script>
+
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <div class="center">
+                <p class="header-text-left">
+                    
+                </p>
+                <ul id="header-icons">
+                    <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
+                    <asp:LoginView ID="loginView1" runat="server">
+                        <LoggedInTemplate>
+                            <li>
+                                <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Account Info</a></li>
+                            </li>
+                            <li>&nbsp; | &nbsp;
+                                <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />
+                            </li>
+                            <li>
+                                <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
+                                    LoginText="Accedi" LogoutText="Esci" LogoutPageUrl="~/Design/Default" CssClass="loginsubmit" />
+                            </li>
+                        </LoggedInTemplate>
+                        <AnonymousTemplate>
+                            <li><a href="Accedi.aspx">Accedi / Registrati</a></li>
+                        </AnonymousTemplate>
+                    </asp:LoginView>
+                </ul>
+                <div id="container">
+                    <div id="header-logo">
+                        <img alt="" src="<%= Page.ResolveClientUrl("~/Design/images/") %>/Header_Logo_grafica.png" />
+                    </div>
+                    <div id="header">
+                        <div id="main_navigation" class="main-menu">
+                            <uc1:UCShopMenu runat="server" ID="UCShopMenu" />
+                            <asp:ContentPlaceHolder ID="cphMenu" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div id="content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <img alt="" src="<%= Page.ResolveClientUrl("~/Design/images/") %>immagine-pre-footer.png" />
+                        <div id="footer-wrapper">
+                            <div id="footer-container">
+                                    <div id="footer">
+                                    <div class="one">
+                                          <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                            <strong style="padding-left: 10px;">Design</strong>
+                                             <ul class="simple-nav">
+                                                <li><a href="../Catalogo/Complementi">Complementi</a></li>
+                                                <li><a href="../Catalogo/Arredi">Arredi</a></li>
+                                                <li><a href="../Catalogo.aspx/Idee-Regalo">Idee Regalo</a></li>
+                                                 <li><a href="../Catalogo/Materassi">Materassi</a></li>
+                                                <li><a href="../Catalogo/Maioliche">Maioliche</a></li>
+                                            </ul>
+                                        </div>
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <strong style="padding-left: 10px;">Shop Online</strong>
+                                            <ul class="simple-nav">
+                                                <li><a href="#">Pagamenti</a></li>
+                                                <li><a href="#">Spedizioni</a></li>
+                                                <li><a href="#">Punto Vendita</a></li>
+                                                <li><a target="_blank" href="http://www.materarredamenti.it/newsletter.aspx">Newsletter</a></li>
+                                            </ul>
+                                        </div>
+                                        <div style="margin-right: 10px;" class="one-fourth">
+                                            <strong style="padding-left: 10px;">Contatti</strong>
+                                            <ul style="padding-left: 10px;" id="footer-info">
+                                                <li>Via Selva S. Vito, 23 - Laterza (TA)</li>
+                                                <li>Tel.  + 39 099 82 16 774</li>
+                                                <li>Cell. + 39 338 49 01 627 </li>
+                                                <li><a href="#">shop@materarredamenti.it</a></li>
+                                                <li><a href="#">info@materarredamenti.it</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="one-fourth last">
+                                            <strong style="padding-left: 10px;">Metodi di Pagamento</strong>
+                                             <img src="<%= Page.ResolveClientUrl("~/images") %>/pagamenti.png" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
+                                    <p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
