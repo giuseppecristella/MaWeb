@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Enum;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
 
 namespace MagentoRepository.Repository
 {

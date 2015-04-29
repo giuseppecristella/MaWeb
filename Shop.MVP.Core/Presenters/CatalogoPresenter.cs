@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
 using MagentoRepository.Repository;
 using Shop.MVP.Core.Models;
 using Shop.MVP.Core.Views;

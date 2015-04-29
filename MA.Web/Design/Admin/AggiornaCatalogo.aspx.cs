@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using Ez.Newsletter.MagentoApi;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 public partial class shop_AggiornaCatalogo : BasePage

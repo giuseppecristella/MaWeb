@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ez.Newsletter.MagentoApi;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
+
 
 namespace MagentoRepository.Repository
 {

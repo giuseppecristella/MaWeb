@@ -73,20 +73,20 @@
                     <fieldset>
                         <asp:LinkButton runat="server" ID="btnUpdateCart" Text="Aggiorna il Carrello"
                             OnClick="btnUpdateCart_Click" />
-                        <label class="cartLabel" style="float: right; margin-right: 30px;">
+                        <label class="cartLabel" style="float: right; margin-right: 17px;">
                             Tot.&nbsp;
                                         <asp:Literal runat="server" ID="ltrSomma"></asp:Literal></label>
                     </fieldset>
                     <br />
                     <fieldset>
-                        <asp:LinkButton Style="float: right; margin-right: 30px;" CssClass="fancy-button red small"
-                            ID="LinkButton1" runat="server" OnClick="lnkbtncheckout_Click">Conferma ordine</asp:LinkButton>
+                        <asp:LinkButton runat="server" Text="Continua lo shopping" ID="lbContinueShop"
+                            CssClass="fancy-button red small" Style="float: right; margin-right: 17px;"
+                            OnClick="lbContinueShop_Click"></asp:LinkButton>
                     </fieldset>
                     <br />
                     <fieldset>
-                        <asp:LinkButton runat="server" Text="Continua lo shopping" ID="lnkbtnContinueShop"
-                            CssClass="fancy-button red small" Style="float: right; margin-right: 30px;"
-                            OnClick="lnkbtnContinueShop_Click"></asp:LinkButton>
+                        <asp:LinkButton Style="float: right; margin-right: 17px;" CssClass="fancy-button red small"
+                            ID="lbCheckout" runat="server" OnClick="lbCheckout_Click">Conferma ordine</asp:LinkButton>
                     </fieldset>
                     <div class="clear">
                     </div>

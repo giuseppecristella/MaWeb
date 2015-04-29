@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml;
 using Ez.Newsletter.MagentoApi;
 using MagentoComunication.Enum;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
 using WSCryptDecrypt = it.sella.ecomms2s.WSCryptDecrypt;
 public partial class Riepilogo : BasePage
 {

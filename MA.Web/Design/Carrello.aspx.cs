@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
-using Microsoft.AspNet.FriendlyUrls;
 using Cart = MagentoBusinessDelegate.Cart;
 using Image = System.Web.UI.WebControls.Image;
 using Label = System.Web.UI.WebControls.Label;
@@ -13,12 +12,11 @@ public partial class Design_Carrello : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
 
         if (Cart != null && !Cart.Products.Any())
         {
             pnlCartTotal.Visible = false;
-            LinkButton1.Enabled = false;
+            lbCheckout.Enabled = false;
         }
         if (IsPostBack) return;
         ViewState["PreviousPage"] = Request.UrlReferrer; //Saves the Previous page url in ViewState
@@ -32,7 +30,7 @@ public partial class Design_Carrello : BasePage
 
     }
 
-    protected void lnkbtncheckout_Click(object sender, EventArgs e)
+    protected void lbCheckout_Click(object sender, EventArgs e)
     {
         bool blerrore = false;
         foreach (var product in Cart.Products)
@@ -44,8 +42,6 @@ public partial class Design_Carrello : BasePage
 
             blerrore = true;
             msgError.Visible = true;
-            //var textBox = item.FindControl("txtqty") as TextBox;
-            //if (textBox != null) textBox.BorderColor = System.Drawing.Color.Red;
         }
         if (blerrore) return;
         Response.Redirect("~/Design/Indirizzi.aspx");
@@ -63,14 +59,12 @@ public partial class Design_Carrello : BasePage
         }
         if (!Cart.Products.Any())
         {
-            //Response.Redirect("home_r.aspx");
             pnlCartTotal.Visible = false;
-            LinkButton1.Enabled = false;
+            lbCheckout.Enabled = false;
         }
         lvCart.DataSource = Cart.Products;
         lvCart.DataBind();
-        //   ltrTotCart.Text = 
-        ltrSomma.Text = Cart.Total.ToString("c", CultureInfo.GetCultureInfo("it-IT"));
+        ltrSomma.Text = Cart.Total.ToString("C", CultureInfo.GetCultureInfo("it-IT"));
 
     }
 
@@ -108,10 +102,9 @@ public partial class Design_Carrello : BasePage
         // Url pagina dettaglio 
         var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
         if (lnkbtnDettProd != null) lnkbtnDettProd.PostBackUrl = string.Format("Dettaglio/{0}/{1}", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
-        //product.category_ids[0], product.product_id);
     }
 
-    protected void lnkbtnContinueShop_Click(object sender, EventArgs e)
+    protected void lbContinueShop_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/Design/Default.aspx");
     }

@@ -53,16 +53,12 @@
         <div id="wrapper">
             <div class="center">
                 <p class="header-text-left">
-                    
+                    <a href="www.materarredamenti.it">vai al sito</a>
                 </p>
                 <ul id="header-icons">
-                    <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>
                             <li>
-                                <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Account Info</a></li>
-                            </li>
-                            <li>&nbsp; | &nbsp;
                                 <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />
                             </li>
                             <li>
@@ -125,7 +121,7 @@
                                         </div>
                                         <div class="one-fourth last">
                                             <strong style="padding-left: 10px;">Metodi di Pagamento</strong>
-                                             <img src="<%= Page.ResolveClientUrl("~/images") %>/pagamenti.png" alt="" />
+                                             <img src="<%= Page.ResolveClientUrl("~/Design/images") %>/pagamenti.png" alt="" />
                                         </div>
                                     </div>
                                 </div>

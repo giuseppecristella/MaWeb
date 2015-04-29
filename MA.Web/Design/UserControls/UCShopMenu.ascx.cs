@@ -3,8 +3,8 @@ using System.Collections;
 using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using MagentoComunication.Helpers;
 using MagentoRepository.Connection;
-using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.AspNet.FriendlyUrls;
 
@@ -19,7 +19,7 @@ public partial class Design_UserControls_UCShopMenu : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Page.IsPostBack) return;
+        // if (Page.IsPostBack) return;
         var repository = new RepositoryService(MagentoConnection.Instance, new Cache.ELCacheManager());
         var rootCategoryInfo = repository.GetCategoryLevel(ConfigurationHelper.RootCategory) as Hashtable;
         if (rootCategoryInfo == null) return;
@@ -27,7 +27,7 @@ public partial class Design_UserControls_UCShopMenu : System.Web.UI.UserControl
         if (categories == null) return;
 
         if (Request.GetFriendlyUrlFileVirtualPath().ToLowerInvariant().Contains("default")) lbMenuItemHome.Attributes["class"] = "menu-item-selected";
-        
+
         rptMenuItems.DataSource = categories.Select(c => new { name = (c as Hashtable)["name"].ToString().Replace(" ", "-") }).ToList();
         rptMenuItems.DataBind();
 

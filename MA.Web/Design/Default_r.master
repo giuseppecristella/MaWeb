@@ -17,9 +17,9 @@
     <!--CSS FILES STARTS-->
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../css/prettyPhoto.css" type="text/css" media="screen" />
+    <link href="../css/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="../css/slider.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../css/jquery.slider.css" />
+    <link href="../css/jquery.slider.css" rel="stylesheet" type="text/css" />
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Droid+Sans:regular,regularitalic,600,600italic,bold,bolditalic'
         type='text/css' />
     <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
@@ -52,6 +52,7 @@
         <div id="wrapper">
             <div class="center">
                 <p class="header-text-left">
+                    <a href="http://www.materarredamenti.it">materarredamenti.it</a>
                 </p>
                 <ul id="header-icons">
                     <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
@@ -69,7 +70,7 @@
                             </li>
                         </LoggedInTemplate>
                         <AnonymousTemplate>
-                            <li><a href="Accedi.aspx">Accedi / Registrati</a></li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/") %>Accedi.aspx">Accedi / Registrati</a></li>
                         </AnonymousTemplate>
                     </asp:LoginView>
                 </ul>
@@ -92,13 +93,13 @@
                             <div id="footer-container">
                                 <div id="footer">
                                     <div class="one">
-                                          <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                        <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Design</strong>
-                                             <ul class="simple-nav">
+                                            <ul class="simple-nav">
                                                 <li><a href="Catalogo/Complementi">Complementi</a></li>
                                                 <li><a href="Catalogo/Arredi">Arredi</a></li>
                                                 <li><a href="Catalogo.aspx/Idee-Regalo">Idee Regalo</a></li>
-                                                 <li><a href="Catalogo/Materassi">Materassi</a></li>
+                                                <li><a href="Catalogo/Materassi">Materassi</a></li>
                                                 <li><a href="Catalogo/Maioliche">Maioliche</a></li>
                                             </ul>
                                         </div>
@@ -123,7 +124,7 @@
                                         </div>
                                         <div class="one-fourth last">
                                             <strong style="padding-left: 10px;">Metodi di Pagamento</strong>
-                                             <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
+                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
                                         </div>
                                     </div>
                                 </div>

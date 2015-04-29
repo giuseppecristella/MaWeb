@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ez.Newsletter.MagentoApi;
+﻿using Ez.Newsletter.MagentoApi;
 using MagentoBusinessApi.Test;
-using MagentoBusinessDelegate.Helpers;
+using MagentoComunication.Helpers;
 using MagentoRepository.Connection;
-using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shop.Infrastructure.Cache;
-using Cart = MagentoBusinessDelegate.Cart;
 using CookComputing.XmlRpc;
 
 

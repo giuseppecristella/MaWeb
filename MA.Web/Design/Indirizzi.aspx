@@ -9,7 +9,6 @@
             <h4>
                 Metodo di Pagamento</h4>
             <br />
-            <%--     <label>Puoi pagare con: </label>--%> 
             <p>
                 <img width="217" src="images/gestpay.gif" alt=""/>
             </p>

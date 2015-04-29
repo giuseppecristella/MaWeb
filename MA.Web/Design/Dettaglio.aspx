@@ -61,41 +61,6 @@
                 </div>
             </div>
         </div>
-        <div runat="server" id="divSpotRosso" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-            <!-- HEADER  -->
-            <!-- LOGO -->
-            <a style="background: transparent url('images/logo-design.png') no-repeat; display: block; float: left; width: 220px; height: 70px; text-indent: -9999px;"
-                id="A1" title="Homepage"
-                href="design.html"></a>
-            <!--LOGO ENDS  -->
-            <div style="background: #D10A11; margin-left: 5px; float: left; width: 614px; height: 70px;">
-                <p class="visita_shop">
-                    Entra e visita il nostro Shop dedicato all'Arredamento! Mille idee ti aspettano!
-                </p>
-            </div>
-            <div style="float: left; width: 120px; height: 70px;">
-                <a style="background: #D10A11 url('images/entra-rosso.png') no-repeat; position: relative; height: 70px; margin-top: 0px; text-indent: 60px; display: block;"
-                    href="design.html"
-                    class="_carrello_titolo"></a>
-            </div>
-        </div>
-        <div runat="server" id="divSpotVerde" visible="false" style="padding: 20px 0 5px 0; height: 70px;">
-            <!-- HEADER  -->
-            <!-- LOGO -->
-            <a class="banner-tradizione-logo" id="A2" title="Homepage"
-                href="#"></a>
-            <!--LOGO ENDS  -->
-            <div style="background: #76A227; margin-left: 5px; float: left; width: 614px; height: 70px;">
-                <p class="visita_shop">
-                    Entra e visita il nostro Shop Tradizione! Mille idee ti aspettano!
-                </p>
-            </div>
-            <div style="float: left; width: 120px; height: 70px;">
-                <a style="background: #76A227 url('images/entra-rosso.png') no-repeat; position: relative; height: 70px; margin-top: 0px; text-indent: 60px; display: block;"
-                    href="tradizione.html"
-                    class="_carrello_titolo"></a>
-            </div>
-        </div>
     </div>
 </asp:Content>
 

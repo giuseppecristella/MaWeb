@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using Ez.Newsletter.MagentoApi;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.AspNet.FriendlyUrls;
+using Ez.Newsletter.MagentoApi;
 
 public partial class Design_Dettaglio : BasePage
 {
@@ -21,7 +19,6 @@ public partial class Design_Dettaglio : BasePage
         if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");
 
         if (IsPostBack) return;
-        // ltrTotCart.Text = Cart != null ? Cart.Total.ToString() : String.Empty;
 
         BindProduct(_productId);
         BindInventoryInfo(_productId);

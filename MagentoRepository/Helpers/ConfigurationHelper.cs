@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MagentoRepository.Helpers
+namespace MagentoComunication.Helpers
 {
     public enum CacheKey
     {

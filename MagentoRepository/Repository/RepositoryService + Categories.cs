@@ -1,6 +1,7 @@
 ﻿using System;
 using Ez.Newsletter.MagentoApi;
-using MagentoRepository.Helpers;
+using MagentoComunication.Helpers;
+
 
 namespace MagentoRepository.Repository
 {

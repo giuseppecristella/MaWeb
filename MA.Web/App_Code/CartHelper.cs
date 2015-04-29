@@ -1,7 +1,4 @@
 ﻿using Ez.Newsletter.MagentoApi;
-using MagentoRepository.Helpers;
-
-
 public static class CartHelper
 {
     public static void AddProductToCartAndUpdateCache(Product product)

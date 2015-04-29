@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Helpers;
 using MagentoRepository.Connection;
-using MagentoRepository.Helpers;
 using MagentoRepository.Repository;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

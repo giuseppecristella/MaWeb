@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div style="padding: 20px 0 20px 0; min-height: 580px;" class="one">
-        <div style="margin-left: 30px; width: 305px;" class="one-third">
+        <div style="width: 305px;" class="one-third">
             <h4>Dati Utente</h4>
             <fieldset>
                 <label>Nome:</label>

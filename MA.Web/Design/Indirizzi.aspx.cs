@@ -92,8 +92,6 @@ public partial class Indirizzi : BasePage
         myCustomerAddresses[0].mode = "billing";
         myCustomerAddresses[1].mode = "shipping";
 
-        //Ez.Newsletter.MagentoApi.Cart.cartCustomerAddresses((string)HttpContext.Current.Cache["apiUrl"], (string)HttpContext.Current.Cache["sessionId"], new object[] { int.Parse(cartId), myCustomerAddresses });
-
         if (!_repository.AddShippingMethodToCart(SessionFacade.CartId, "flatrate_flatrate")) return;
         var payMethods = _repository.GetPaymentMethods(SessionFacade.CartId);
 
@@ -116,7 +114,6 @@ public partial class Indirizzi : BasePage
     protected void btnUpdateBilling_Click(object sender, EventArgs e)
     {
         string utente = Page.User.Identity.Name;
-        //   var profile = HttpContext.Current.Profile;
         if (!string.IsNullOrEmpty(utente))
         {
             MembershipUser userAspNet = Membership.GetUser(utente);
