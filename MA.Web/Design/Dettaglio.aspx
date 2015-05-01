@@ -46,10 +46,19 @@
                 <h1>
                     <asp:Label runat="server" ID="lblNomeProd"></asp:Label></h1>
                 <asp:Literal runat="server" ID="prodDescription"></asp:Literal>
-                <label>PREZZO: <br /></label>€.<asp:Literal runat="server" ID="prodPrice"></asp:Literal> (Consegna Gratuita)
+                <label>
+                    PREZZO:
+                    <br />
+                </label>
+                <span style="font-size: 1.3em;">€.</span><span style="font-size: 1.3em; font-weight: 800; padding: 10px"><asp:Literal runat="server" ID="prodPrice"></asp:Literal></span>(Consegna Gratuita)
+                <div class="clear-line"></div>
                 <label>PRODUTTORE:</label><asp:Literal runat="server" ID="prodProduttore"></asp:Literal>
-                <label>DISPONIBILITA':</label><asp:Literal runat="server" ID="prodScorte"></asp:Literal> PEZZI
-                <label><asp:Literal runat="server" ID="prodDisponibilità"></asp:Literal>
+                <div class="clear-line"></div>
+                <label>DISPONIBILITA':</label><asp:Literal runat="server" ID="prodScorte"></asp:Literal>
+                PEZZI
+                <label>
+                    <span style="font-size: 1.3em; font-weight: 800; padding: 10px">
+                        <asp:Literal runat="server" ID="prodDisponibilità"></asp:Literal></span>
                 </label>
                 <div class="clear-line">
                 </div>

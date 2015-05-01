@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div style="margin-top: 20px;" class="one">
-        <div style="width: 305px; min-height: 580px;" class="one-third">
+        <div style="min-height: 580px;" class="one-third">
             <h4>
                 Accedi</h4>
             <asp:Login  CssClass="table_reset" ID="Login1" runat="server"
@@ -30,13 +30,13 @@
                     </fieldset>
                     <br />
                     <fieldset>
-                        <asp:Button CssClass="fancy-button green small" ID="LoginButton" runat="server" CommandName="Login"
+                        <asp:Button CssClass="fancy-button" ID="LoginButton" runat="server" CommandName="Login"
                             Text="Accedi" ValidationGroup="Login1" />
                     </fieldset>
                 </LayoutTemplate>
             </asp:Login>
         </div>
-        <div style="width: 305px;" class="one-third">
+        <div class="one-third">
             <h4>
                 Registrati</h4>
             <label>
@@ -75,7 +75,7 @@
             </label>
             <asp:TextBox runat="server" ID="txtTel" class="text" />
         </div>
-        <div style="width: 305px;" class="one-third last">
+        <div class="one-third last">
             <div style="display: block; height: 53px;">
             </div>
             <asp:CreateUserWizard LoginCreatedUser="True" DuplicateUserNameErrorMessage="utente già presente"

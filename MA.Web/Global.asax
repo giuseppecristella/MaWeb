@@ -1,9 +1,6 @@
 ﻿<%@ Application Language="C#" %>
-<%@ Import Namespace="System.Globalization" %>
-<%@ Import Namespace="System.Threading" %>
 <%@ Import Namespace="System.Web.Routing" %>
 <%@ Import Namespace="Cache" %>
-<%@ Import Namespace="MagentoBusinessDelegate.Helpers" %>
 <%@ Import Namespace="MagentoRepository.Connection" %>
 <script RunAt="server">
     void Application_Start(object sender, EventArgs e)
@@ -15,7 +12,7 @@
     void Application_End(object sender, EventArgs e)
     {
         //  Code that runs on application shutdown
-        
+
     }
 
     void Application_Error(object sender, EventArgs e)
@@ -25,10 +22,6 @@
 
     void Session_Start(object sender, EventArgs e)
     {
-       
-        // Code that runs when a new session is started
-        // api settings
-        // Session["apiUrl"] = "http://localhost/magento/api/xmlrpc";
 
         MagentoConnection.Instance.CacheManager = new AspnetCacheManager();
         MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
@@ -36,13 +29,11 @@
         MagentoConnection.Instance.UserId = "ws_user";
 
         // DI
-//        CartHelper.CacheManager = new AspnetCacheManager();
-        
-        
+        //        CartHelper.CacheManager = new AspnetCacheManager();
+
+
         Session["carrello"] = new ArrayList();
         Session["numOrdine"] = "000000";
-        //Session["rootCat"] = "37";
-        //Session["htmlMegaMenu"] = Helper.SetMegaMenu((string)Session["apiUrl"], (string)Session["sessionId"], (string)Session["rootCat"]);
 
         Session["NewsIDInserita"] = 0;
         Session["CaptionAlbumNews"] = "";
@@ -56,7 +47,6 @@
         Session["UrlAllegato"] = "";
         Session["mailNewsLetter"] = "";
         Session["metatagFB"] = "";
-        //nuova var sessione per la foto Articolo
         Session["pathFotoArticolo"] = "";
         Session["tipoNews"] = "";
     }

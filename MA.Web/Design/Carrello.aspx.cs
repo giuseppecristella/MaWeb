@@ -49,7 +49,6 @@ public partial class Design_Carrello : BasePage
 
     protected void btnUpdateCart_Click(object sender, EventArgs e)
     {
-        //var lbCartQty = Page.Master.FindControl("UCShopMenu").FindControl("lbCartQty")
         if (Cart.Products.Any())
         {
             var storedCart = Cart;
@@ -66,7 +65,9 @@ public partial class Design_Carrello : BasePage
         lvCart.DataSource = Cart.Products;
         lvCart.DataBind();
         ltrSomma.Text = Cart.Total.ToString("C", CultureInfo.GetCultureInfo("it-IT"));
-
+        var lbCartQty = Page.Master.FindControl("UCShopMenu").FindControl("lbCartQty") as Label;
+        if (lbCartQty == null) return;
+        lbCartQty.Text = Cart.Products.Count().ToString();
     }
 
     protected void lvDataBound(object sender, ListViewItemEventArgs e)
@@ -80,7 +81,7 @@ public partial class Design_Carrello : BasePage
         if (hfProductId != null) hfProductId.Value = product.product_id;
 
         // Nome
-        var lblnomeprod = item.FindControl("lblnomeprod") as Literal;
+        var lblnomeprod = item.FindControl("lblnomeprod") as Label;
         if (lblnomeprod != null) lblnomeprod.Text = product.name;
 
         // Prezzo unitario

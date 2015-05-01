@@ -43,19 +43,18 @@
                             <td>
                                 <fieldset>
                                     <asp:HiddenField runat="server" ID="hfProductId" />
-                                    <label style="width: 365px;" class="cartLabel">
-                                        <asp:Literal runat="server" ID="lblnomeprod"></asp:Literal></label>
+                                    <asp:Label Style="width: 365px;" runat="server" ID="lblnomeprod" class="cartLabel"></asp:Label>
                                     <asp:Label runat="server" ID="lblprezzoun" Style="width: 60px;" class="cartLabel"></asp:Label>
                                     <asp:Label runat="server" ID="Label1" Style="width: 5px;" class="cartLabel_noborder">x</asp:Label>
-                                    <asp:TextBox runat="server" ID="txtqta" CssClass="cartLabel" Style="width: 20px; height: 20px"></asp:TextBox>
-                                    <asp:Label runat="server" ID="lblprezzotot" Style="width: 70px;" class="cartLabel"></asp:Label>
+                                    <asp:TextBox runat="server" ID="txtqta" CssClass="cartLabel" Style="width: 20px; height: 20px; font-size: 11px; text-align: center;"></asp:TextBox>
+                                    <asp:Label runat="server" ID="lblprezzotot" Style="width: 70px; text-align: right;" class="cartLabel"></asp:Label>
                                 </fieldset>
                                 <br />
                                 <fieldset>
                                     <asp:CheckBox runat="server" ID="chkDelete" Style="float: left;" />
-                                    <label style="margin-left: 5px; float: left;">
+                                    <label style="margin-left: 5px; font-size: 11px; float: left;">
                                         desidero eliminare questo articolo dal carrello</label>
-                                    <asp:LinkButton runat="server" Style="float: right;" ID="lnkbtnDettProd" Text="visualizza dettagli articolo" />
+                                    <asp:LinkButton runat="server" Style="float: right;" ID="lnkbtnDettProd" Text="Visualizza dettagli articolo" />
                                 </fieldset>
                                 <fieldset>
                                 </fieldset>
@@ -73,19 +72,18 @@
                     <fieldset>
                         <asp:LinkButton runat="server" ID="btnUpdateCart" Text="Aggiorna il Carrello"
                             OnClick="btnUpdateCart_Click" />
-                        <label class="cartLabel" style="float: right; margin-right: 17px;">
-                            Tot.&nbsp;
-                                        <asp:Literal runat="server" ID="ltrSomma"></asp:Literal></label>
+                        <label class="cartLabel" style="float: right; margin-right: 19px;">
+                            Tot.&nbsp;<asp:Literal runat="server" ID="ltrSomma"></asp:Literal></label>
                     </fieldset>
                     <br />
                     <fieldset>
                         <asp:LinkButton runat="server" Text="Continua lo shopping" ID="lbContinueShop"
-                            CssClass="fancy-button red small" Style="float: right; margin-right: 17px;"
+                            CssClass="fancy-button fix-200-centered" Style="float: right; margin-right: 17px;"
                             OnClick="lbContinueShop_Click"></asp:LinkButton>
                     </fieldset>
                     <br />
                     <fieldset>
-                        <asp:LinkButton Style="float: right; margin-right: 17px;" CssClass="fancy-button red small"
+                        <asp:LinkButton Style="float: right; margin-right: 17px;" CssClass="fancy-button fix-200-centered"
                             ID="lbCheckout" runat="server" OnClick="lbCheckout_Click">Conferma ordine</asp:LinkButton>
                     </fieldset>
                     <div class="clear">

@@ -52,21 +52,19 @@
         <div id="wrapper">
             <div class="center">
                 <p class="header-text-left">
-                    <a href="http://www.materarredamenti.it">materarredamenti.it</a>
+                    <a href="http://www.materarredamenti.it">Vai al sito > <span style="font-weight: bold">materarredamenti.it</span></a>
                 </p>
                 <ul id="header-icons">
-                    <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>
-                            <li>
-                                <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Account Info</a></li>
+                            <li>Benvenuto:
+                                <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />&nbsp;&nbsp;/
                             </li>
-                            <li>&nbsp; | &nbsp;
-                                <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />
-                            </li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini&nbsp;&nbsp;/</a></li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Il mio Account</a></li>
                             <li>
                                 <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
-                                    LoginText="Accedi" LogoutText="Esci" LogoutPageUrl="~/Design/Catalogo.aspx" CssClass="loginsubmit" />
+                                    LoginText="Accedi" LogoutText="Chiudi Sessione" LogoutPageUrl="~/Design/Catalogo.aspx" CssClass="loginsubmit" />
                             </li>
                         </LoggedInTemplate>
                         <AnonymousTemplate>
