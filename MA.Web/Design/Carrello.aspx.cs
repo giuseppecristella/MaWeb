@@ -49,6 +49,7 @@ public partial class Design_Carrello : BasePage
 
     protected void btnUpdateCart_Click(object sender, EventArgs e)
     {
+        //var lbCartQty = Page.Master.FindControl("UCShopMenu").FindControl("lbCartQty")
         if (Cart.Products.Any())
         {
             var storedCart = Cart;
