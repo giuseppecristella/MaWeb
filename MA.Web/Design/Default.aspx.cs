@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Ez.Newsletter.MagentoApi;
+using MagentoComunication.Helpers;
 using Microsoft.AspNet.FriendlyUrls;
 
 public partial class shop_Default : BasePage
@@ -42,8 +43,11 @@ public partial class shop_Default : BasePage
         var pProductPrice = item.FindControl("pProductPrice") as HtmlGenericControl;
         if (pProductPrice != null) pProductPrice.InnerHtml = Helper.FormatCurrency(product.price);
 
-        var lbGreenProductDetail = item.FindControl("lbProductDetail") as HtmlAnchor;
-        if (lbGreenProductDetail != null) lbGreenProductDetail.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
+        var lbProductDetail = item.FindControl("lbProductDetail") as LinkButton;
+
+        var hfProductId = item.FindControl("hfProductId") as HiddenField;
+        if (hfProductId != null) hfProductId.Value = product.product_id;
+        //if (lbGreenProductDetail != null) lbGreenProductDetail.PostBackUrl = FriendlyUrl.Href("~/Design", "Dettaglio", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
     }
 
     private static void SetProductsBoxStyle(ListViewItem dataitem)
@@ -61,4 +65,15 @@ public partial class shop_Default : BasePage
         }
     }
 
+    protected void lbProductDetail_OnClick(object sender, EventArgs e)
+    {
+        var lbProductDetail = sender as LinkButton;
+        if (lbProductDetail == null) return;
+        var hfProductId = lbProductDetail.FindControl("hfProductId") as HiddenField;
+        if (hfProductId == null) return;
+        var product = _repository.GetProductInfo(hfProductId.Value);
+        var categoryId = product.categories.FirstOrDefault(c => !c.Equals("44"));
+        var categoryName = _repository.GetCategoryInfo(categoryId);
+        Response.Redirect(string.Format("~/Design/Dettaglio/{0}/{1}/{2}", categoryName.name, product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant()));
+    }
 }

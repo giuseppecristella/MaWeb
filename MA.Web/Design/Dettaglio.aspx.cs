@@ -15,7 +15,7 @@ public partial class Design_Dettaglio : BasePage
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Request.GetFriendlyUrlSegments().Any()) return;
-        _productId = Request.GetFriendlyUrlSegments()[0];
+        _productId = Request.GetFriendlyUrlSegments()[1];
         if (string.IsNullOrEmpty(_productId)) Response.Redirect("Catalogo.aspx");
 
         if (IsPostBack) return;

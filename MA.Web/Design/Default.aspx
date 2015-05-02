@@ -52,8 +52,10 @@
                         <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
                     </div>
                     <div class="mask_red">
-                        <a style="display: block; height: 100%; text-decoration: none;" runat="server" id="lbProductDetail">
-                            <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span><span class="link_vedi_dettaglio">Vedi dettaglio</span> </a>
+                        <asp:LinkButton style="display: block; height: 100%; text-decoration: none;" OnClick="lbProductDetail_OnClick" runat="server" id="lbProductDetail">
+                            <asp:HiddenField runat="server" ID="hfProductId"/>
+                            <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span>
+                            <span class="link_vedi_dettaglio">Vedi dettaglio</span> </asp:LinkButton>
                     </div>
                 </div>
             </ItemTemplate>

@@ -9,6 +9,11 @@ using Ez.Newsletter.MagentoApi;
 
 public partial class Design_Catalogo : BasePage
 {
+    public string CategoryName
+    {
+        get { return Request.GetFriendlyUrlSegments().Any() ? Request.GetFriendlyUrlSegments()[0] : string.Empty; }
+    }
+
     #region Events
 
     protected void Page_Load(object sender, EventArgs e)
@@ -18,7 +23,7 @@ public partial class Design_Catalogo : BasePage
 
     protected void pagerProducts_PreRender(object sender, EventArgs e)
     {
-        if (!Request.GetFriendlyUrlSegments().Any()) Response.Redirect("~/Design/Default"); 
+        if (!Request.GetFriendlyUrlSegments().Any() || (CategoryName.Equals(string.Empty))) Response.Redirect("~/Design/Default");
 
         if (BindProductsToList(GetCategoryIdByName(Request.GetFriendlyUrlSegments()[0])))
             ShowHidePagerForShop();
@@ -69,7 +74,7 @@ public partial class Design_Catalogo : BasePage
             if (priceProduct != null && product.price != null) priceProduct.InnerHtml = Helper.FormatCurrency(product.price);
             // Link pagina dettaglio   
 
-            if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
+            if (linkDettaglio != null && product.name != null) linkDettaglio.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", CategoryName, product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
 
             SetItemStyleAttributes(item);
         }

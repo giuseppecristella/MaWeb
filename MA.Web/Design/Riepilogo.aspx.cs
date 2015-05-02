@@ -39,7 +39,7 @@ public partial class Riepilogo : BasePage
         if (item == null || item.DataItem as Product == null) return;
         var product = item.DataItem as Product;
 
-        var lblnomeprod = (Literal)e.Item.FindControl("lblnomeprod");
+        var lblnomeprod = (Label)e.Item.FindControl("lblnomeprod");
         lblnomeprod.Text = product.name;
         var lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
         lblprezzoun.Text = Helper.FormatCurrency(product.price);
