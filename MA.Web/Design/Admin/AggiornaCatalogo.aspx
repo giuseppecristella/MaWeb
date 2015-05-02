@@ -8,6 +8,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div>
         <asp:Button ID="lbUpdateCatalog" runat="server" OnClick="lbUpdateCatalog_Click" Text="Aggiorna Catalogo Prodotti"></asp:Button>
+        <div class="clear-line"></div>
+        <asp:Button ID="lbSyncImages" runat="server" OnClick="lbSyncImages_OnClick" Text="Sincronizza Immagini"></asp:Button>
         <br />
         <asp:Label runat="server" ID="lblUpdateCatalog" ForeColor="green"></asp:Label>
     </div>

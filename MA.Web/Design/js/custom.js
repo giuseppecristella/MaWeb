@@ -17,119 +17,9 @@ $(document).ready(function() {
 	});
 	});
 //FULLWIDTH BACKGROUND JQUERY CODE
-jQuery.noConflict()(function($){
-$(document).ready(function() {
-	$.backstretch("images/fullwidth-bg.jpg");
-  	});
-});
+ 
 
-
-
-
-
-
-
-// ===============
-// Slider function
-// ===============
-function slider(){
-
-	//Main slider
-	$('#flexcarousel').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 188,
-    //itemMargin: 5 ,
-    asNavFor: '#flexslider'
-  });
-   
-  $('#flexslider').flexslider({
-    animation: "slide",
-    controlNav: true,
-    animationLoop: true,
-    slideshow: true,
-	slideshowSpeed: 5000,
-	animationSpeed: 600,
-    sync: "#flexcarousel"
-  });
-  
-  // Thubnail
-  $('#flexcarousel-product').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 115,
-    asNavFor: "#flexslider-product"
-  });
-  
-  $('#flexslider-product').flexslider({
-    animation: "slide",
-    controlNav: true,
-    animationLoop: true,
-    slideshow: false,
-    sync: "#flexcarousel-product"
-  });
-
-  // Brands
-  $('#flexcarousel-brands').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: true,
-    slideshow: false,
-    itemWidth: 180,
-  });
-}
-
-
-
-
-
-
-/***************************************************
-		CYCLE SLIDER
-***************************************************/
-jQuery.noConflict()(function($){
-$(document).ready(function() {
-    $('#cycle-slider').cycle({
-		fx:     'scrollDown', 
-		prev:    '#prev',
-        next:    '#next',
-		easing: 'bounceout',
-		 pause:   0,
-		 timeout: 0,
-           
-		delay:  -2000   
-	});
-	
-	});
-});
-
-/***************************************************
-		CYCLE SLIDER
-***************************************************/
-jQuery.noConflict()(function($){
-$(document).ready(function() {
-$('#sliderClients').cycle({
-		fx:     'scrollLeft', 
-		prev:    '#prev',
-        next:    '#next',
-		 pause:   0, 
-		timeout: 0, 		
-		delay:  -2000   
-	});
-	
-	});
-});
-jQuery.noConflict()(function($){
-$(document).ready(function() { 
-	$('a.preview').each(function() {
-        $(this).removeAttr('data-rel').attr('rel', 'prettyPhoto');
-});
-})
-});
+ 
 /***************************************************
 	    THUMB PORTFOLIO HOVER
 ***************************************************/
@@ -139,24 +29,26 @@ jQuery(document).ready(function($) {
 	}, function() {
 		$(this).find(".item-links").stop(true, true).animate({ opacity: 'hide' }, 400);		
 	});
-});	
-jQuery.noConflict()(function($){
-$(document).ready(function() {
- $('#slider3').nivoSlider({
- pauseTime:5000,
- pauseOnHover:false
- }); 
- });
 });
-jQuery.noConflict()(function($){
-$(document).ready(function() {
- $('#slider4').nivoSlider({
- pauseTime:5000,
- pauseOnHover:false,
- controlNavThumbs:true
- });
- });
- });
+
+//jQuery.noConflict()(function($){
+//$(document).ready(function() {
+// $('#slider3').nivoSlider({
+// pauseTime:5000,
+// pauseOnHover:false
+// }); 
+// });
+//});
+//jQuery.noConflict()(function($){
+//$(document).ready(function() {
+// $('#slider4').nivoSlider({
+// pauseTime:5000,
+// pauseOnHover:false,
+// controlNavThumbs:true
+// });
+// });
+//});
+
 jQuery.noConflict()(function($){
 $(document).ready(function() {
 jQuery('.slideimage').hide();
@@ -443,22 +335,7 @@ $(document).ready(function() {
 });
 });
 
-jQuery.noConflict()(function($){
-$(document).ready(function() { 
-$(".tweet").tweet({
-	 username: "trendywebstar",
-	 join_text: null,
-	 avatar_size: null,
-	 count: 2,
-	 auto_join_text_default: "we said,", 
-	 auto_join_text_ed: "we",
-	 auto_join_text_ing: "we were",
-	 auto_join_text_reply: "we replied to",
-	 auto_join_text_url: "we were checking out",
-	 loading_text: "loading tweets..."
- });
-});
-});
+ 
 jQuery.noConflict()(function($){
 $(document).ready(function() {
  $('#slider-two-third').cycle({
@@ -529,126 +406,6 @@ $mainmenu.find("ul").css({display:'none', visibility:'visible'})
 }
 }
 jqueryslidemenu.buildmenu("main_navigation", arrowimages)
-jQuery.noConflict()(function($){
-jQuery(document).ready(function($){
-var 
-speed = 700, 
-$wall = $('#portfolio').find('.portfolio-container ul')
-;
-$wall.masonry({
-singleMode: true,
-itemSelector: '.one-fourth:not(.invis)',
-animate: true,
-animationOptions: {
-duration: speed,
-queue: false
-}
-});
-$('#filterable a').click(function(){
-var colorClass = '.' + $(this).attr('class');
-if(colorClass=='.all') {
-$wall.children('.invis')
-.toggleClass('invis').fadeIn(speed);
-} else { 
-$wall.children().not(colorClass).not('.invis')
-.toggleClass('invis').fadeOut(speed);
-$wall.children(colorClass+'.invis')
-.toggleClass('invis').fadeIn(speed);
-}
-$wall.masonry();
- return false;
-});
-});
-});
-jQuery.noConflict()(function($){
-jQuery(document).ready(function($){
-var 
-speed = 700, 
-$wall = $('#portfolio').find('.portfolio-container ul')
-;
-$wall.masonry({
-singleMode: true,
-itemSelector: '.one-third:not(.invis)',
-animate: true,
-animationOptions: {
-duration: speed,
-queue: false
-}
-});
-$('#filterable a').click(function(){
-var colorClass = '.' + $(this).attr('class');
-if(colorClass=='.all') {
-$wall.children('.invis')
-.toggleClass('invis').fadeIn(speed);
-} else { 
-$wall.children().not(colorClass).not('.invis')
-.toggleClass('invis').fadeOut(speed);
-$wall.children(colorClass+'.invis')
-.toggleClass('invis').fadeIn(speed);
-}
-$wall.masonry();
- return false;
-});
-});
-});
-jQuery.noConflict()(function($){
-jQuery(document).ready(function($){
-var 
-speed = 700, 
-$wall = $('#portfolio').find('.portfolio-container ul');
-$wall.masonry({
-singleMode: true,
-itemSelector: '.one-half:not(.invis)',
-animate: true,
-animationOptions: {
-duration: speed,
-queue: false
-}
-});
-$('#filterable a').click(function(){
-var colorClass = '.' + $(this).attr('class');
-if(colorClass=='.all') {
-$wall.children('.invis')
-.toggleClass('invis').fadeIn(speed);
-} else { 
-$wall.children().not(colorClass).not('.invis')
-.toggleClass('invis').fadeOut(speed);
-$wall.children(colorClass+'.invis')
-.toggleClass('invis').fadeIn(speed);
-}
-$wall.masonry();
- return false;
-});
-});
-});
 
-jQuery.noConflict()(function($){
-jQuery(document).ready(function($){
-var 
-speed = 700, 
-$wall = $('#portfolio').find('.portfolio-container ul');
-$wall.masonry({
-singleMode: true,
-itemSelector: '.one-fifth:not(.invis)',
-animate: true,
-animationOptions: {
-duration: speed,
-queue: false
-}
-});
-$('#filterable a').click(function(){
-var colorClass = '.' + $(this).attr('class');
-if(colorClass=='.all') {
-$wall.children('.invis')
-.toggleClass('invis').fadeIn(speed);
-} else { 
-$wall.children().not(colorClass).not('.invis')
-.toggleClass('invis').fadeOut(speed);
-$wall.children(colorClass+'.invis')
-.toggleClass('invis').fadeIn(speed);
-}
-$wall.masonry();
- return false;
-});
-});
-});
+ 
+ 

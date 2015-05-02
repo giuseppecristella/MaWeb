@@ -18,28 +18,28 @@ public partial class shop_AggiornaCatalogo : BasePage
     protected void lbUpdateCatalog_Click(object sender, EventArgs e)
     {
         var cacheManager = CacheFactory.GetCacheManager();
-        var cachedProducts = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;
-
         cacheManager.Flush();
+    }
 
+    protected void lbSyncImages_OnClick(object sender, EventArgs e)
+    {
         var products = _repository.GetProductsByCategoryId(ConfigurationHelper.RootCategory);
-        lblUpdateCatalog.Text = "num prodotti: " + products.Count;
+        lblUpdateCatalog.Text = string.Format("Sincronizzati {0} prodotti dal repository Magento.", products.Count);
 
         var images = new List<string>();
-        cachedProducts = null;
+        //var cachedProducts = cacheManager.GetData("ProductsList") as List<CategoryAssignedProduct>;
+        object cachedProducts = null;
         // TODO: scaricare solo le immagini modificate o aggiunte
         if (cachedProducts != null)
         {
-            GetChangedImages(products, cachedProducts, images);
-            GetNewImages(products, cachedProducts, images);
+            //GetChangedImages(products, cachedProducts, images);
+            //GetNewImages(products, cachedProducts, images);
         }
         else
         {
             GetAllProductsImages(products, images);
         }
         DownloadImages(images);
-
-        //  lblUpdateCatalog.Text = "<br>Le modifiche al catalogo sono state eseguite correttamente!";
     }
 
     private void DownloadImages(IEnumerable<string> images)
@@ -48,7 +48,7 @@ public partial class shop_AggiornaCatalogo : BasePage
 
         string[] filePaths = Directory.GetFiles(@imgPath);
         foreach (string filePath in filePaths) File.Delete(filePath);
-        
+
         foreach (var img in images)
         {
             using (var client = new WebClient())
@@ -175,5 +175,6 @@ public partial class shop_AggiornaCatalogo : BasePage
     }
 
     #endregion
+
 
 }

@@ -99,7 +99,7 @@ public partial class Design_Carrello : BasePage
 
         // Immagine principale
         var imgprod = item.FindControl("imgprod") as Image;
-        if (imgprod != null) imgprod.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=100&H_=100", product.imageurl);
+        if (imgprod != null) imgprod.ImageUrl = string.Format("../Handler.ashx?Path={0}&W_=100&H_=100", product.imageurl);
 
         // Url pagina dettaglio 
         var lnkbtnDettProd = item.FindControl("lnkbtnDettProd") as LinkButton;
