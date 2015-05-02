@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderWrapper" runat="Server">
     <div style="margin-top: 20px;" class="one">
-        <div style="margin-left: 30px; width: 305px;" class="one-third">
+        <div style="width: 305px;" class="one-third">
             <h4>
                 Metodo di Pagamento</h4>
             <br />
@@ -46,7 +46,7 @@
             </fieldset>
             <br />
             <fieldset>
-                <asp:LinkButton runat="server" ID="btnUpdateBilling" Text="Modifica indirizzi" OnClick="btnUpdateBilling_Click" />
+                <asp:LinkButton runat="server" ID="btnUpdateBilling" CssClass="fancy-button" Text="Modifica indirizzi" OnClick="btnUpdateBilling_Click" />
             </fieldset>
         </div>
         <div style="width: 305px;" class="one-third last">
@@ -77,7 +77,7 @@
             </fieldset>
             <br />
         </div>
-        <asp:LinkButton runat="server" Style="float: right;" ID="lnkbtnOrder" CssClass="fancy-button red small"
+        <asp:LinkButton runat="server" ID="lnkbtnOrder" CssClass="fancy-button"
             OnClick="lnkbtnOrder_Click">Riepilogo Ordine</asp:LinkButton>
     </div>
 </asp:Content>

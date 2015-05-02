@@ -25,7 +25,7 @@ public partial class shop_Accedi : BasePage
         // Logica per redirect in base al ruolo
         if (Roles.IsUserInRole(Login1.UserName, "User"))
         {
-            Response.Redirect(ViewState["PreviousPage"] != null ? ViewState["PreviousPage"].ToString() : "~/Design/Customers/Default.aspx");
+            Response.Redirect(ViewState["PreviousPage"] != null && ViewState["PreviousPage"].ToString().Contains("Carrello") ? ViewState["PreviousPage"].ToString() : "~/Design/Customers/Default.aspx");
         }
         else if (Roles.IsUserInRole(Login1.UserName, "Administrator"))
         {

@@ -195,8 +195,9 @@ input[type=text], input[type=password], input.text, input.title, textarea, selec
     background-color: #FFF;
     border: 1px solid #ebebeb;
     font-size: 11px;
-    font-size: 1.35em;
+    font-size: 1.3em;
     line-height: 1.6em;
+    color: #666666;
     /*width: 100%;*/
 }
 

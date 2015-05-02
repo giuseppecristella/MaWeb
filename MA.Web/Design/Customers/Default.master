@@ -26,12 +26,20 @@
     <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
     <!--CSS FILES ENDS-->
 
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/custom.js"></script>
-    <script type="text/javascript" src="../js/slides.min.jquery.js"></script>
-    <script type="text/javascript" src="../js/cycle.js"></script>
-    <script type="text/javascript" src="../js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="../js/scrolltopcontrol.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/custom.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/jqueryTools/jquery.tools.min.html"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/slides/slides.min.jquery.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/cycle-slider/cycle.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/nivo-slider/jquery.nivo.slider.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/tabify/jquery.tabify.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/prettyPhoto/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/twitter/jquery.tweet.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/scrolltop/scrolltopcontrol.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/modernizr/modernizr-2.0.3.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/easing/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/kwicks/jquery.kwicks-1.5.1.pack.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Design/") %>js/swfobject/swfobject.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -53,25 +61,23 @@
         <div id="wrapper">
             <div class="center">
                 <p class="header-text-left">
-                    
                 </p>
                 <ul id="header-icons">
-                    <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini</a></li>
                     <asp:LoginView ID="loginView1" runat="server">
                         <LoggedInTemplate>
-                            <li>
-                                <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Account Info</a></li>
-                            </li>
-                            <li>&nbsp; | &nbsp;
+                            <li>Benvenuto:
                                 <asp:LoginName CssClass="colored red" runat="server" ID="loginName" FormatString="{0}" />
+                                &nbsp;&nbsp;/
                             </li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Ordini">Stato Ordini&nbsp;&nbsp;/</a></li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/Customers/") %>Default">Il mio Account</a></li>
                             <li>
                                 <asp:LoginStatus Style="float: right; margin-left: 10px;" runat="server" ID="logStatus"
-                                    LoginText="Accedi" LogoutText="Esci" LogoutPageUrl="~/Design/Default" CssClass="loginsubmit" />
+                                    LoginText="Accedi" LogoutText="Chiudi Sessione" LogoutPageUrl="~/Design/Catalogo.aspx" CssClass="loginsubmit" />
                             </li>
                         </LoggedInTemplate>
                         <AnonymousTemplate>
-                            <li><a href="Accedi.aspx">Accedi / Registrati</a></li>
+                            <li><a href="<%= Page.ResolveClientUrl("~/Design/") %>Accedi.aspx">Accedi / Registrati</a></li>
                         </AnonymousTemplate>
                     </asp:LoginView>
                 </ul>
@@ -90,33 +96,32 @@
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
                         </asp:ContentPlaceHolder>
                         <img alt="" src="<%= Page.ResolveClientUrl("~/Design/images/") %>immagine-pre-footer.png" />
-                        <div id="footer-wrapper">
+                         <div id="footer-wrapper">
                             <div id="footer-container">
-                                    <div id="footer">
+                                <div id="footer">
                                     <div class="one">
-                                          <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                        <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Design</strong>
-                                             <ul class="simple-nav">
-                                                <li><a href="../Catalogo/Complementi">Complementi</a></li>
-                                                <li><a href="../Catalogo/Arredi">Arredi</a></li>
-                                                <li><a href="../Catalogo.aspx/Idee-Regalo">Idee Regalo</a></li>
-                                                 <li><a href="../Catalogo/Materassi">Materassi</a></li>
-                                                <li><a href="../Catalogo/Maioliche">Maioliche</a></li>
+                                            <ul class="simple-nav">
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Complementi">Complementi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Arredi">Arredi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Idee-Regalo">Idee Regalo</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Materassi">Materassi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Maioliche">Maioliche</a></li>
                                             </ul>
                                         </div>
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Shop Online</strong>
                                             <ul class="simple-nav">
-                                                <li><a href="#">Pagamenti</a></li>
-                                                <li><a href="#">Spedizioni</a></li>
-                                                <li><a href="#">Punto Vendita</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Pagamenti">Pagamenti</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Spedizioni">Spedizioni</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Privacy">Privacy</a></li>
                                                 <li><a target="_blank" href="http://www.materarredamenti.it/newsletter.aspx">Newsletter</a></li>
                                             </ul>
                                         </div>
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Contatti</strong>
                                             <ul style="padding-left: 10px;" id="footer-info">
-                                                <li>Via Selva S. Vito, 23 - Laterza (TA)</li>
                                                 <li>Tel.  + 39 099 82 16 774</li>
                                                 <li>Cell. + 39 338 49 01 627 </li>
                                                 <li><a href="#">shop@materarredamenti.it</a></li>
@@ -125,12 +130,13 @@
                                         </div>
                                         <div class="one-fourth last">
                                             <strong style="padding-left: 10px;">Metodi di Pagamento</strong>
-                                             <img src="<%= Page.ResolveClientUrl("~/Design/images") %>/pagamenti.png" alt="" />
+                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
                                         </div>
                                     </div>
                                 </div>
-                                <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
-                                    <p>
+                                <div style="width: 100%; padding-left: 30px; font-size: 1em; padding-top: 30px;" class="left">
+                                    <p style="font-size:0.85em;text-align: center;">
+                                        Copyright © 2015 Matera Arredamenti. P.IVA 00000000000 - R.E.A. 1111111
                                     </p>
                                 </div>
                             </div>

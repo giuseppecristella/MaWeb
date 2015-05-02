@@ -34,7 +34,7 @@ public partial class Design_Dettaglio : BasePage
         if (prettyThumb != null)
         {
             prettyThumb.HRef = e.Item.DataItem.ToString();
-            prettyThumb.Title = string.Empty;
+            prettyThumb.Title = " ";
         }
     }
 

@@ -86,33 +86,32 @@
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderWrapper" runat="server">
                         </asp:ContentPlaceHolder>
                         <img alt="" src="<%= Page.ResolveClientUrl("~/Design/images/") %>immagine-pre-footer.png" />
-                        <div id="footer-wrapper">
+                         <div id="footer-wrapper">
                             <div id="footer-container">
-                                    <div id="footer">
+                                <div id="footer">
                                     <div class="one">
-                                          <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
+                                        <div style="margin-left: 30px; margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Design</strong>
-                                             <ul class="simple-nav">
-                                                <li><a href="../Catalogo/Complementi">Complementi</a></li>
-                                                <li><a href="../Catalogo/Arredi">Arredi</a></li>
-                                                <li><a href="../Catalogo.aspx/Idee-Regalo">Idee Regalo</a></li>
-                                                 <li><a href="../Catalogo/Materassi">Materassi</a></li>
-                                                <li><a href="../Catalogo/Maioliche">Maioliche</a></li>
+                                            <ul class="simple-nav">
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Complementi">Complementi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Arredi">Arredi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Idee-Regalo">Idee Regalo</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Materassi">Materassi</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Catalogo/Maioliche">Maioliche</a></li>
                                             </ul>
                                         </div>
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Shop Online</strong>
                                             <ul class="simple-nav">
-                                                <li><a href="#">Pagamenti</a></li>
-                                                <li><a href="#">Spedizioni</a></li>
-                                                <li><a href="#">Punto Vendita</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Pagamenti">Pagamenti</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Spedizioni">Spedizioni</a></li>
+                                                <li><a href="<%= Page.ResolveClientUrl("~/Design") %>/Privacy">Privacy</a></li>
                                                 <li><a target="_blank" href="http://www.materarredamenti.it/newsletter.aspx">Newsletter</a></li>
                                             </ul>
                                         </div>
                                         <div style="margin-right: 10px;" class="one-fourth">
                                             <strong style="padding-left: 10px;">Contatti</strong>
                                             <ul style="padding-left: 10px;" id="footer-info">
-                                                <li>Via Selva S. Vito, 23 - Laterza (TA)</li>
                                                 <li>Tel.  + 39 099 82 16 774</li>
                                                 <li>Cell. + 39 338 49 01 627 </li>
                                                 <li><a href="#">shop@materarredamenti.it</a></li>
@@ -121,12 +120,13 @@
                                         </div>
                                         <div class="one-fourth last">
                                             <strong style="padding-left: 10px;">Metodi di Pagamento</strong>
-                                             <img src="<%= Page.ResolveClientUrl("~/Design/images") %>/pagamenti.png" alt="" />
+                                            <img src="<%= Page.ResolveClientUrl("images") %>/pagamenti.png" alt="" />
                                         </div>
                                     </div>
                                 </div>
-                                <div style="width: 100%; padding-left: 30px; padding-top: 30px;" class="left">
-                                    <p>
+                                <div style="width: 100%; padding-left: 30px; font-size: 1em; padding-top: 30px;" class="left">
+                                    <p style="font-size:0.85em;text-align: center;">
+                                        Copyright © 2015 Matera Arredamenti. P.IVA 00000000000 - R.E.A. 1111111
                                     </p>
                                 </div>
                             </div>

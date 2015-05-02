@@ -28,11 +28,13 @@ public partial class Indirizzi : BasePage
         var aspNetUser = Membership.GetUser(utente);
         if (aspNetUser == null) Response.Redirect("~/Design/accedi.aspx");
         var magentoUserId = aspNetUser.Comment;
-          
+
         if (!int.TryParse(magentoUserId, out _customerId)) return;
         var customer = _repository.GetCustomerById(_customerId);
         if (customer == null) Response.Redirect("~/Design/accedi.aspx");
-        customer.mode = "register"; 
+        customer.mode = "register";
+
+        if (!Cart.Products.Any()) Response.Redirect("~/Design/Carrello.aspx");
 
         SessionFacade.CartId = _repository.CreateCart();
         var areCustomerAssociatedToCart = _repository.AssociateCustomerToCart(SessionFacade.CartId, customer);
@@ -52,7 +54,7 @@ public partial class Indirizzi : BasePage
             _repository.AddProductToCart(SessionFacade.CartId, product);
         }
 
-         var paymentMethods = _repository.GetPaymentMethods(SessionFacade.CartId);
+        var paymentMethods = _repository.GetPaymentMethods(SessionFacade.CartId);
 
         rdbtnListPayMethods.DataSource = paymentMethods.Select(p => p.title).ToList();
         rdbtnListPayMethods.DataBind();
