@@ -66,8 +66,8 @@ public partial class Design_Catalogo : BasePage
             // Immagine    
             //if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = string.Format("../Handler.ashx?UrlFoto={0}&W_=215&H_=215", (product.imageurl));
             // if (imgProd != null && product.imageurl != null) imgProd.ImageUrl = product.imageurl;
-            var imagePath = Helper.GetImageName(product.imageurl);
-            if (imgProd != null && imagePath != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Design/Images/Prodotti/", imagePath);
+            var imageName = Helper.GetImageName(product.imageurl);
+            if (imgProd != null && imageName != null) imgProd.ImageUrl = string.Format("{0}{1}", "~/Design/Images/Prodotti/", imageName);
             // Descrizione  
             if (descProduct != null && product.name != null) descProduct.InnerHtml = Helper.GetShortString(product.name, 132);
             // Prezzo

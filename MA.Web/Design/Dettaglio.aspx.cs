@@ -33,7 +33,8 @@ public partial class Design_Dettaglio : BasePage
         var prettyThumb = e.Item.FindControl("prettyThumb") as HtmlAnchor;
         if (prettyThumb != null)
         {
-            prettyThumb.HRef = e.Item.DataItem.ToString();
+            var imageName = Helper.GetImageName(e.Item.DataItem.ToString());
+            prettyThumb.HRef = e.Item.DataItem.ToString(); //string.Format("{0}{1}", "~/Design/Images/Prodotti/", imageName);
             prettyThumb.Title = " ";
         }
     }
@@ -104,7 +105,8 @@ public partial class Design_Dettaglio : BasePage
 
     private void BindProductImages(string productId)
     {
-        mainImage.Src = Product.imageurl = GetProductMainImageUrl(productId);
+        var imageName = Helper.GetImageName(GetProductMainImageUrl(productId));
+        mainImage.Src = Product.imageurl = string.Format("{0}{1}", "~/Design/Images/Prodotti/", imageName);
         var images = GetProductImagesUrlExceptMain(productId);
         if (images == null) return;
 

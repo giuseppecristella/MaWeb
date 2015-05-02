@@ -17,7 +17,7 @@
                 <asp:Repeater OnItemDataBound="rptImages_OnItemDataBound" runat="server" ID="rptImages">
                     <ItemTemplate>
                         <ul id="clients">
-                            <li><a title="aaaa" runat="server" id="prettyThumb" rel="prettyPhoto" href="#">
+                            <li><a title=" " runat="server" id="prettyThumb" rel="prettyPhoto" href="#">
                                 <img height="63" runat="server" id="imgThumb" src="images/product-thumb.png" alt="" /></a>
                             </li>
                         </ul>
