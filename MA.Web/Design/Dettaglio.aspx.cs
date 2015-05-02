@@ -49,7 +49,8 @@ public partial class Design_Dettaglio : BasePage
             var linkProd = (HtmlAnchor)e.Item.FindControl("linkProd");
             if (linkProd != null)
             {
-                linkProd.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", product.name);
+                var category = Request.GetFriendlyUrlSegments()[0];
+                linkProd.HRef = FriendlyUrl.Href("~/Design", "Dettaglio", category, product.product_id, product.name.Replace(" ", "-").TrimEnd('-').ToLowerInvariant());
             }
         }
     }
