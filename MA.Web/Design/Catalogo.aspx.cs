@@ -113,13 +113,6 @@ public partial class Design_Catalogo : BasePage
         return true;
     }
 
-    private string SetMainStyleAttribute()
-    {
-
-        lblCategoria.CssClass = "colore_rosso";
-        return string.Empty;
-    }
-
     private void ShowHidePagerForShop()
     {
         bool isPagerVisible = (Products.Count() > pagerProducts.PageSize) && (Products != null);

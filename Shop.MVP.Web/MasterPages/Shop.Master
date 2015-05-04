@@ -14,6 +14,13 @@
         <%: Scripts.Render("~/bundles/jqueryui") %>
         <%: Scripts.Render("~/bundles/shop") %>
         <%: Styles.Render("~/bundles/css") %>
+        
+         <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-resource.min.js"></script>
+    <script src="/app/app.js"></script>
+    <script src="/app/data.js"></script>
+    <script src="/app/scCatalogCtrl.js"></script>
+
 
         <script type="text/javascript">
             //PRETTY PHOTO -> move to custom

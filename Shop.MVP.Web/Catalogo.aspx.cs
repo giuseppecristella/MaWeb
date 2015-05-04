@@ -24,7 +24,7 @@ namespace Shop.Web.Mvp
       if (IsPostBack)
       {
         var viewModel = new List<CategoryAssignedProductViewModel>();
-        _presenter.OnPostBack(viewModel);
+        _presenter.OnViewLoaded();
       }
     }
 

@@ -22,6 +22,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <TargetFrameworkProfile />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,6 +96,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -115,6 +119,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\data.js" />
+    <Content Include="app\scCatalogCtrl.js" />
+    <Content Include="CatalogDataService.svc" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Css\delicious\delicious-bold-demo.html" />
     <Content Include="Css\delicious\delicious-bold-webfont.svg" />
@@ -145,13 +153,17 @@
     <Content Include="Css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery.prettyPhoto.js" />
     <Content Include="Scripts\jquery.slider.js" />
     <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Themes\flatfolio\138.html" />
     <Content Include="Themes\flatfolio\404.html" />
     <Content Include="Themes\flatfolio\about.html" />
@@ -380,6 +392,10 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CatalogDataService.svc.cs">
+      <DependentUpon>CatalogDataService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ICatalogDataService.cs" />
     <Compile Include="Infrastructure\Cache\AspnetCacheManager.cs" />
     <Compile Include="Catalogo.aspx.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
