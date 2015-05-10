@@ -21,8 +21,8 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <TargetFrameworkProfile />
-    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,13 +44,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,8 +88,9 @@
       <HintPath>..\packages\Unity.Interception.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -105,7 +108,8 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Optimization">
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
@@ -114,7 +118,8 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebGrease">
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -122,6 +127,214 @@
     <Content Include="app\app.js" />
     <Content Include="app\data.js" />
     <Content Include="app\scCatalogCtrl.js" />
+    <Content Include="assets\css\animate.min.css" />
+    <Content Include="assets\css\bewear-icons.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\critical.min.css" />
+    <Content Include="assets\css\flexslider.css" />
+    <Content Include="assets\css\jasny-bootstrap.min.css" />
+    <Content Include="assets\css\lightbox.css" />
+    <Content Include="assets\css\main.css" />
+    <Content Include="assets\css\main.min.css" />
+    <Content Include="assets\css\owl.carousel.css" />
+    <Content Include="assets\fonts\bewear.svg" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\images\about\01.jpg" />
+    <Content Include="assets\images\about\brand1.jpg" />
+    <Content Include="assets\images\about\brand2.jpg" />
+    <Content Include="assets\images\about\brand3.jpg" />
+    <Content Include="assets\images\about\brand4.jpg" />
+    <Content Include="assets\images\about\brand5.jpg" />
+    <Content Include="assets\images\about\f1.jpg" />
+    <Content Include="assets\images\about\f2.jpg" />
+    <Content Include="assets\images\about\f3.jpg" />
+    <Content Include="assets\images\about\header-image.jpg" />
+    <Content Include="assets\images\about\t1.jpg" />
+    <Content Include="assets\images\about\t2.jpg" />
+    <Content Include="assets\images\about\t3.jpg" />
+    <Content Include="assets\images\about\t4.jpg" />
+    <Content Include="assets\images\about\t5.jpg" />
+    <Content Include="assets\images\about\t6.jpg" />
+    <Content Include="assets\images\ajax.gif" />
+    <Content Include="assets\images\arrived-products\1.jpg" />
+    <Content Include="assets\images\arrived-products\2.jpg" />
+    <Content Include="assets\images\arrived-products\3.jpg" />
+    <Content Include="assets\images\arrived-products\4.jpg" />
+    <Content Include="assets\images\arrived-products\5.jpg" />
+    <Content Include="assets\images\arrived-products\6.jpg" />
+    <Content Include="assets\images\arrived-products\7.jpg" />
+    <Content Include="assets\images\arrived-products\8.jpg" />
+    <Content Include="assets\images\blank.gif" />
+    <Content Include="assets\images\blog\1.jpg" />
+    <Content Include="assets\images\blog\2.jpg" />
+    <Content Include="assets\images\blog\3.jpg" />
+    <Content Include="assets\images\blog\4.jpg" />
+    <Content Include="assets\images\blog\5.jpg" />
+    <Content Include="assets\images\blog\6.jpg" />
+    <Content Include="assets\images\blog\7.jpg" />
+    <Content Include="assets\images\blog\8.jpg" />
+    <Content Include="assets\images\blog\9.jpg" />
+    <Content Include="assets\images\blog\featured-post\1.jpg" />
+    <Content Include="assets\images\brands\1.png" />
+    <Content Include="assets\images\brands\2.png" />
+    <Content Include="assets\images\brands\3.png" />
+    <Content Include="assets\images\brands\4.png" />
+    <Content Include="assets\images\brands\5.png" />
+    <Content Include="assets\images\brands\w1.jpg" />
+    <Content Include="assets\images\brands\w2.jpg" />
+    <Content Include="assets\images\brands\w3.jpg" />
+    <Content Include="assets\images\bxslider\bx_loader.gif" />
+    <Content Include="assets\images\bxslider\controls.png" />
+    <Content Include="assets\images\cart-icon1.png" />
+    <Content Include="assets\images\cart-icon2.png" />
+    <Content Include="assets\images\cart-products\01.jpg" />
+    <Content Include="assets\images\cart-products\02.jpg" />
+    <Content Include="assets\images\cart-products\03.jpg" />
+    <Content Include="assets\images\cart-products\04.jpg" />
+    <Content Include="assets\images\catalog\1.jpg" />
+    <Content Include="assets\images\catalog\10.jpg" />
+    <Content Include="assets\images\catalog\11.jpg" />
+    <Content Include="assets\images\catalog\12.jpg" />
+    <Content Include="assets\images\catalog\13.jpg" />
+    <Content Include="assets\images\catalog\2.jpg" />
+    <Content Include="assets\images\catalog\3.jpg" />
+    <Content Include="assets\images\catalog\4.jpg" />
+    <Content Include="assets\images\catalog\5.jpg" />
+    <Content Include="assets\images\catalog\6.jpg" />
+    <Content Include="assets\images\catalog\7.jpg" />
+    <Content Include="assets\images\catalog\8.jpg" />
+    <Content Include="assets\images\catalog\9.jpg" />
+    <Content Include="assets\images\catalog\bg.jpg" />
+    <Content Include="assets\images\category\1.jpg" />
+    <Content Include="assets\images\category\2.jpg" />
+    <Content Include="assets\images\category\3.jpg" />
+    <Content Include="assets\images\category\4.jpg" />
+    <Content Include="assets\images\category\5.jpg" />
+    <Content Include="assets\images\category\6.jpg" />
+    <Content Include="assets\images\category\7.jpg" />
+    <Content Include="assets\images\category\8.jpg" />
+    <Content Include="assets\images\category\9.jpg" />
+    <Content Include="assets\images\checkout1.jpg" />
+    <Content Include="assets\images\checkout2.jpg" />
+    <Content Include="assets\images\close.png" />
+    <Content Include="assets\images\favicon.png" />
+    <Content Include="assets\images\filters.svg" />
+    <Content Include="assets\images\footer-logo.png" />
+    <Content Include="assets\images\grid.jpg" />
+    <Content Include="assets\images\hero\home-1.jpg" />
+    <Content Include="assets\images\hero\home-2.jpg" />
+    <Content Include="assets\images\loading.gif" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\logo2.png" />
+    <Content Include="assets\images\lookbook\1.jpg" />
+    <Content Include="assets\images\lookbook\2.jpg" />
+    <Content Include="assets\images\lookbook\3.jpg" />
+    <Content Include="assets\images\lookbook\4.jpg" />
+    <Content Include="assets\images\lookbook\5.jpg" />
+    <Content Include="assets\images\lookbook\big-image.jpg" />
+    <Content Include="assets\images\lookbook\l1-1.jpg" />
+    <Content Include="assets\images\lookbook\l1.jpg" />
+    <Content Include="assets\images\lookbook\l2-1.jpg" />
+    <Content Include="assets\images\lookbook\l2.jpg" />
+    <Content Include="assets\images\lookbook\l3-1.jpg" />
+    <Content Include="assets\images\lookbook\l3.jpg" />
+    <Content Include="assets\images\lookbook\l4-1.jpg" />
+    <Content Include="assets\images\lookbook\l4.jpg" />
+    <Content Include="assets\images\lookbook\l5-1.jpg" />
+    <Content Include="assets\images\lookbook\l5.jpg" />
+    <Content Include="assets\images\lookbook\s1.jpg" />
+    <Content Include="assets\images\lookbook\s2.jpg" />
+    <Content Include="assets\images\lookbook\s3.jpg" />
+    <Content Include="assets\images\lookbook\s4.jpg" />
+    <Content Include="assets\images\next.png" />
+    <Content Include="assets\images\payments\p1.png" />
+    <Content Include="assets\images\payments\p2.png" />
+    <Content Include="assets\images\payments\p3.png" />
+    <Content Include="assets\images\payments\p4.png" />
+    <Content Include="assets\images\payments\p5.png" />
+    <Content Include="assets\images\prev.png" />
+    <Content Include="assets\images\products\1.jpg" />
+    <Content Include="assets\images\products\10.jpg" />
+    <Content Include="assets\images\products\11.jpg" />
+    <Content Include="assets\images\products\12.jpg" />
+    <Content Include="assets\images\products\13.jpg" />
+    <Content Include="assets\images\products\14.jpg" />
+    <Content Include="assets\images\products\15.jpg" />
+    <Content Include="assets\images\products\16.jpg" />
+    <Content Include="assets\images\products\17.jpg" />
+    <Content Include="assets\images\products\18.jpg" />
+    <Content Include="assets\images\products\19.jpg" />
+    <Content Include="assets\images\products\2.jpg" />
+    <Content Include="assets\images\products\20.jpg" />
+    <Content Include="assets\images\products\3.jpg" />
+    <Content Include="assets\images\products\4.jpg" />
+    <Content Include="assets\images\products\5.jpg" />
+    <Content Include="assets\images\products\6.jpg" />
+    <Content Include="assets\images\products\7.jpg" />
+    <Content Include="assets\images\products\8.jpg" />
+    <Content Include="assets\images\products\9.jpg" />
+    <Content Include="assets\images\products\big-image.jpg" />
+    <Content Include="assets\images\products\big-image2.jpg" />
+    <Content Include="assets\images\products\des1.jpg" />
+    <Content Include="assets\images\products\des2.jpg" />
+    <Content Include="assets\images\products\des3.jpg" />
+    <Content Include="assets\images\products\des4.jpg" />
+    <Content Include="assets\images\products\des5.jpg" />
+    <Content Include="assets\images\products\f1.jpg" />
+    <Content Include="assets\images\products\f2.jpg" />
+    <Content Include="assets\images\products\f3.jpg" />
+    <Content Include="assets\images\products\feature1.jpg" />
+    <Content Include="assets\images\products\feature2.jpg" />
+    <Content Include="assets\images\products\feature3.jpg" />
+    <Content Include="assets\images\products\footer-image.jpg" />
+    <Content Include="assets\images\products\mega1.jpg" />
+    <Content Include="assets\images\products\mega2.jpg" />
+    <Content Include="assets\images\products\mega3.jpg" />
+    <Content Include="assets\images\products\mega4.jpg" />
+    <Content Include="assets\images\products\news1.jpg" />
+    <Content Include="assets\images\products\news2.jpg" />
+    <Content Include="assets\images\products\news3.jpg" />
+    <Content Include="assets\images\products\pickup-product.jpg" />
+    <Content Include="assets\images\products\quick-product.png" />
+    <Content Include="assets\images\products\relate.jpg" />
+    <Content Include="assets\images\products\relate1.jpg" />
+    <Content Include="assets\images\products\relate2.jpg" />
+    <Content Include="assets\images\products\s1-ver2.jpg" />
+    <Content Include="assets\images\products\s1.jpg" />
+    <Content Include="assets\images\products\s2-ver2.jpg" />
+    <Content Include="assets\images\products\s2.jpg" />
+    <Content Include="assets\images\products\s3.jpg" />
+    <Content Include="assets\images\related\1.jpg" />
+    <Content Include="assets\images\related\2.jpg" />
+    <Content Include="assets\images\related\3.jpg" />
+    <Content Include="assets\images\related\4.jpg" />
+    <Content Include="assets\images\single-blog\01.jpg" />
+    <Content Include="assets\images\single-blog\02.jpg" />
+    <Content Include="assets\images\single-blog\03.jpg" />
+    <Content Include="assets\images\single-blog\04.jpg" />
+    <Content Include="assets\images\single-blog\05.jpg" />
+    <Content Include="assets\images\single-blog\06.jpg" />
+    <Content Include="assets\images\single-blog\next.jpg" />
+    <Content Include="assets\images\single-blog\prev.jpg" />
+    <Content Include="assets\images\slider-logo.png" />
+    <Content Include="assets\js\bootstrap-hover-dropdown.min.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\echo.min.js" />
+    <Content Include="assets\js\jasny-bootstrap.min.js" />
+    <Content Include="assets\js\jquery-1.11.2.min.js" />
+    <Content Include="assets\js\jquery-ui.min.js" />
+    <Content Include="assets\js\jquery.bxslider.min.js" />
+    <Content Include="assets\js\jquery.customSelect.min.js" />
+    <Content Include="assets\js\jquery.easing-1.3.min.js" />
+    <Content Include="assets\js\jquery.isotope.min.js" />
+    <Content Include="assets\js\lightbox.min.js" />
+    <Content Include="assets\js\odometer.min.js" />
+    <Content Include="assets\js\owl.carousel.min.js" />
+    <Content Include="assets\js\pace.min.js" />
+    <Content Include="assets\js\scripts.js" />
+    <Content Include="assets\js\scripts.min.js" />
+    <Content Include="assets\js\wow.min.js" />
     <Content Include="CatalogDataService.svc" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Css\delicious\delicious-bold-demo.html" />
@@ -153,6 +366,8 @@
     <Content Include="Css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="home.html" />
+    <Content Include="Prodotti.aspx" />
     <Content Include="Scripts\angular-resource.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\custom.js" />
@@ -381,8 +596,12 @@
     <Content Include="Themes\flatfolio\with-right-sidebar.html" />
     <Content Include="Themes\flatfolio\xyyllc.html" />
     <Content Include="Themes\flatfolio\youtu.be\index.html" />
+    <Content Include="UserControls\UCFooter.ascx" />
+    <Content Include="UserControls\UCHeader.ascx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.designer.cs">
@@ -423,6 +642,13 @@
     <Compile Include="MasterPages\Shop.Master.designer.cs">
       <DependentUpon>Shop.Master</DependentUpon>
     </Compile>
+    <Compile Include="Prodotti.aspx.cs">
+      <DependentUpon>Prodotti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prodotti.aspx.designer.cs">
+      <DependentUpon>Prodotti.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
@@ -444,6 +670,20 @@
     </Compile>
     <Compile Include="Themes\flatfolio\Shop.Master.Master.designer.cs">
       <DependentUpon>Shop.Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCFooter.ascx.cs">
+      <DependentUpon>UCFooter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCFooter.ascx.designer.cs">
+      <DependentUpon>UCFooter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UCHeader.ascx.cs">
+      <DependentUpon>UCHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\UCHeader.ascx.designer.cs">
+      <DependentUpon>UCHeader.ascx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -487,6 +727,60 @@
     <Content Include="Themes\flatfolio\assets\FlexSlider\fonts\flexslider-icon.woff" />
     <Content Include="Themes\flatfolio\assets\FlexSlider\fonts\flexslider-icond41d.eot" />
     <Content Include="Themes\flatfolio\Shop.Master.Master" />
+    <Content Include="assets\fonts\bewear.eot" />
+    <Content Include="assets\fonts\bewear.ttf" />
+    <Content Include="assets\fonts\bewear.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\less\components.less" />
+    <Content Include="assets\less\components\breadcrumb.less" />
+    <Content Include="assets\less\components\buttons.less" />
+    <Content Include="assets\less\components\bxslider.less" />
+    <Content Include="assets\less\components\carousel.less" />
+    <Content Include="assets\less\components\control-bar.less" />
+    <Content Include="assets\less\components\newsletter-block.less" />
+    <Content Include="assets\less\components\odometer.less" />
+    <Content Include="assets\less\components\pace.less" />
+    <Content Include="assets\less\components\pagination.less" />
+    <Content Include="assets\less\components\range-slider.less" />
+    <Content Include="assets\less\components\shopping-cart-offcanvas.less" />
+    <Content Include="assets\less\components\star-rating.less" />
+    <Content Include="assets\less\components\wide-banners.less" />
+    <Content Include="assets\less\critical.less" />
+    <Content Include="assets\less\footer.less" />
+    <Content Include="assets\less\general.less" />
+    <Content Include="assets\less\header.less" />
+    <Content Include="assets\less\home-page-slider.less" />
+    <Content Include="assets\less\icons.less" />
+    <Content Include="assets\less\main.less" />
+    <Content Include="assets\less\page-about.less" />
+    <Content Include="assets\less\page-blog-post.less" />
+    <Content Include="assets\less\page-blog.less" />
+    <Content Include="assets\less\page-catalog.less" />
+    <Content Include="assets\less\page-categories-grid.less" />
+    <Content Include="assets\less\page-checkout.less" />
+    <Content Include="assets\less\page-contact.less" />
+    <Content Include="assets\less\page-home.less" />
+    <Content Include="assets\less\page-lookbook-2.less" />
+    <Content Include="assets\less\page-lookbook.less" />
+    <Content Include="assets\less\page-single-look.less" />
+    <Content Include="assets\less\page-single-product.less" />
+    <Content Include="assets\less\product.less" />
+    <Content Include="assets\less\product\product-attributes.less" />
+    <Content Include="assets\less\product\product-extended-tab.less" />
+    <Content Include="assets\less\product\product-item.less" />
+    <Content Include="assets\less\product\product-quick-view.less" />
+    <Content Include="assets\less\responsive.less" />
+    <Content Include="assets\less\sections.less" />
+    <Content Include="assets\less\variables.less" />
+    <Content Include="assets\js\scripts.min.js.map">
+      <DependentUpon>scripts.min.js</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

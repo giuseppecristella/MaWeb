@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 namespace Shop.Web.Mvp.MasterPages {
-     
+    
     
     public partial class Shop {
         
@@ -31,102 +31,30 @@ namespace Shop.Web.Mvp.MasterPages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// loginView1 control.
+        /// UCHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView loginView1;
+        protected global::Shop.Web.Mvp.UserControls.UCHeader UCHeader;
         
         /// <summary>
-        /// logo_v control.
+        /// cpMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor logo_v;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cpMain;
         
         /// <summary>
-        /// logo_r control.
+        /// UCFooter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor logo_r;
-        
-        /// <summary>
-        /// main_navigation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_navigation;
-        
-        /// <summary>
-        /// menuCatShop control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuCatShop;
-        
-        /// <summary>
-        /// divCarrello control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCarrello;
-        
-        /// <summary>
-        /// ltrTotCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTotCart;
-        
-        /// <summary>
-        /// lblCategoria control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCategoria;
-        
-        /// <summary>
-        /// cphMain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphMain;
-        
-        /// <summary>
-        /// divSpotRosso control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSpotRosso;
-        
-        /// <summary>
-        /// divSpotVerde control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSpotVerde;
+        protected global::Shop.Web.Mvp.UserControls.UCFooter UCFooter;
     }
 }

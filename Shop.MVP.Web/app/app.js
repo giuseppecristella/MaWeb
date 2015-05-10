@@ -1,4 +1,4 @@
-﻿var app = angular.module('app', ['ngResource']);
+﻿var app = angular.module('app', ['ngResource', 'ui.slider']);
 
 //app.value('identity', {});
 //app.value('toastr', toastr);
