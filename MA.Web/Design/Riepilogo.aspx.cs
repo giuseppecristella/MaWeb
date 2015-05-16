@@ -44,7 +44,7 @@ public partial class Riepilogo : BasePage
         var lblprezzoun = (Label)e.Item.FindControl("lblprezzoun");
         lblprezzoun.Text = Helper.FormatCurrency(product.price);
         var imgprod = (Image)e.Item.FindControl("imgprod");
-        imgprod.ImageUrl = "../Handler.ashx?UrlFoto=" + product.imageurl + "&W_=100&H_=100";
+        imgprod.ImageUrl = "../Handler.ashx?Path=" + product.imageurl + "&W_=100&H_=100";
         var txtqta = (Label)e.Item.FindControl("txtqta");
         txtqta.Text = product.qty;
         var lblprezzotot = (Label)e.Item.FindControl("lblprezzotot");
