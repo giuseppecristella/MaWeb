@@ -18,7 +18,7 @@ namespace ShopMagentoApi.Test
     [TestInitialize]
     public void TestInitialize()
     {
-      _apiUrl = "http://www.zoom2cart.com/api/xmlrpc";
+      _apiUrl = "http://www.calzafacileshop.com/api/xmlrpc";
       _apiUser = "ws_user";
       _apiPassword = "123456";
       CheckConnection();

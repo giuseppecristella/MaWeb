@@ -103,15 +103,15 @@
                                 <ul>
                                     <li ng-repeat="category in categories">
                                         <label for="{{category}}">
-                                        <input type="radio" id="{{category}}" ng-model="my.favorite" ng-value="category" name="favorite" />
-                                        <span>{{category}}</span></label>
+                                            <span>{{category}}</span></label>
+                                        <input type="checkbox" id="{{category}}" ng-click="toggleSelection(category)" ng-true-value="{{category}}" name="favorite" />
                                     </li>
                                     <li>
                                         <input type="radio" id="cbCassetta" ng-model="filter.name" value="Cass" />
                                         <label for="cbCassetta"><span>Cassetta</span></label>
                                     </li>
-                                    cbCassetta {{filter.name}}
-                                    You chose {{my.favorite}}
+                                    cbCassetta : {{filter.name}}<br />
+                                    You chose : {{selection}}
                                     <%--<li class="highlight"><a href="product-simple.html">Sale</a></li>--%>
                                 </ul>
                             </div>

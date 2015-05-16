@@ -26,7 +26,7 @@ namespace ShopMagentoApi.Test
         public void TestInitialize()
         {
             // Queste informazioni devono essere inizializzate nel global.asax
-            MagentoConnection.Instance.Url = "http://www.zoom2cart.com/api/xmlrpc";
+            MagentoConnection.Instance.Url = "http://www.calzafacileshop.com/api/xmlrpc";//"http://www.zoom2cart.com/api/xmlrpc";
             MagentoConnection.Instance.UserId = "ws_user";
             MagentoConnection.Instance.Password = "123456";
 
@@ -49,10 +49,9 @@ namespace ShopMagentoApi.Test
         [TestMethod]
         public void GetProductsByCategoryIdTest()
         {
-
             var repository = new RepositoryService(MagentoConnection.Instance, FakeCacheManager);
 
-            var products = repository.GetProductsByCategoryId("47");
+            var products = repository.GetProductsByCategoryId("3");
             Assert.IsTrue(products.Count > 0, "Nessun prodotto trovato per una categoria che contiente prodotti");
 
             // La cache deve contenere la lista dei prodotti dopo la prima chiamata
