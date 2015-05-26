@@ -13,9 +13,9 @@
                         <div class="slide">
                             <img src="images/slideshow/slide-rossa-01.jpg" alt=" " width="960" height="400" />
                         </div>
-                        <div class="slide">
+                        <%--<div class="slide">
                             <img src="images/slideshow/slide-rossa-02.jpg" alt=" " width="960" height="400" />
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
                 <div class="slides-nav">
