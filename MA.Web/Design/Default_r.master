@@ -14,8 +14,8 @@
     <meta name="Author" content="Giovanni Matera" />
     <meta name="language" content="italian" />
     <meta name="robots" content="index,follow" />
+    <asp:Literal runat="server" ID="ltrMetaFB"></asp:Literal>
     <!--CSS FILES STARTS-->
-
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/prettyPhoto.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="../css/slider.css" rel="stylesheet" type="text/css" />
@@ -24,8 +24,6 @@
         type='text/css' />
     <link href="../css/delicious/stylesheet.css" rel="stylesheet" type="text/css" />
     <!--CSS FILES ENDS-->
-
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

@@ -52,4 +52,6 @@ public class BasePage : System.Web.UI.Page
             SessionFacade.Cart = value;
         }
     }
+
+    public string FBMetaTag { get; set; }
 }

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using MagentoComunication.Helpers;
@@ -10,6 +13,7 @@ using Ez.Newsletter.MagentoApi;
 
 public partial class Design_Dettaglio : BasePage
 {
+
     private static string _productName;
     private static string _productId;
     protected void Page_Load(object sender, EventArgs e)
@@ -24,6 +28,19 @@ public partial class Design_Dettaglio : BasePage
         BindInventoryInfo(_productId);
         BindProductImages(_productId);
         BindLinkedProducts(_productId);
+
+        var ltrMetaFB = Master.FindControl("ltrMetaFB") as Literal;
+        if (ltrMetaFB == null) return;
+        // Build Fb Tags
+        var fileName = HttpContext.Current.Server.MapPath("~\\public\\templates\\template_tagFb.htm");
+        using (var streamReader = new StreamReader(fileName, Encoding.Default))
+        {
+            var stringBuilder = new StringBuilder(streamReader.ReadToEnd());
+            stringBuilder.Replace("##image##", string.Format("{0},{1}", Helper.GetAbsoluteUrl(), Product.imageurl.Remove(0, 2)))
+                .Replace("##titolo##", Product.name)
+                .Replace("##caption##", Product.description);
+            ltrMetaFB.Text = stringBuilder.ToString();
+        }
     }
 
     protected void rptImages_OnItemDataBound(object sender, RepeaterItemEventArgs e)
