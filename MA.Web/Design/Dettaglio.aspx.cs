@@ -31,16 +31,8 @@ public partial class Design_Dettaglio : BasePage
 
         var ltrMetaFB = Master.FindControl("ltrMetaFB") as Literal;
         if (ltrMetaFB == null) return;
-        // Build Fb Tags
-        var fileName = HttpContext.Current.Server.MapPath("~\\public\\templates\\template_tagFb.htm");
-        using (var streamReader = new StreamReader(fileName, Encoding.Default))
-        {
-            var stringBuilder = new StringBuilder(streamReader.ReadToEnd());
-            stringBuilder.Replace("##image##", string.Format("{0},{1}", Helper.GetAbsoluteUrl(), Product.imageurl.Remove(0, 2)))
-                .Replace("##titolo##", Product.name)
-                .Replace("##caption##", Product.description);
-            ltrMetaFB.Text = stringBuilder.ToString();
-        }
+
+        ltrMetaFB.Text = GetFbMeta();
     }
 
     protected void rptImages_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -178,6 +170,21 @@ public partial class Design_Dettaglio : BasePage
         get
         {
             return _repository.GetProductInfo(_productId);
+        }
+    }
+
+    private string GetFbMeta()
+    {
+        var fileName = HttpContext.Current.Server.MapPath("~\\public\\templates\\template_tagFb.htm");
+        using (var srFbMeta = new StreamReader(fileName, Encoding.Default))
+        {
+            var sbFbMeta = new StringBuilder(srFbMeta.ReadToEnd());
+            sbFbMeta.Replace("##image##", string.Format("{0}{1}", Helper.GetAbsoluteUrl(), Product.imageurl.Remove(0, 2)))
+                .Replace("##titolo##", Product.name)
+                .Replace("##url##", string.Empty)
+                .Replace("##titolo##", Product.name)
+                .Replace("##caption##", Product.description);
+            return sbFbMeta.ToString();
         }
     }
 }
