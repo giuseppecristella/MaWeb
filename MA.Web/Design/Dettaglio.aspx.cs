@@ -183,7 +183,7 @@ public partial class Design_Dettaglio : BasePage
                 .Replace("##titolo##", Product.name)
                 .Replace("##url##", string.Empty)
                 .Replace("##titolo##", Product.name)
-                .Replace("##caption##", Product.description);
+                .Replace("##caption##", Utility.CleanHtmlTagsFromString(Product.description));
             return sbFbMeta.ToString();
         }
     }
