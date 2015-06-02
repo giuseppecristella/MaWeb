@@ -11,11 +11,20 @@
                 <div id="slider-big">
                     <div class="slides_container big-slider">
                         <div class="slide">
+                            <img src="images/slideshow/slider_01.jpg" alt=" " width="960" height="400" />
+                        </div>
+                        <div class="slide">
                             <img src="images/slideshow/slide-rossa-01.jpg" alt=" " width="960" height="400" />
                         </div>
-                        <%--<div class="slide">
-                            <img src="images/slideshow/slide-rossa-02.jpg" alt=" " width="960" height="400" />
-                        </div>--%>
+                        <div class="slide">
+                            <img src="images/slideshow/slider_02.jpg" alt=" " width="960" height="400" />
+                        </div>
+                        <div class="slide">
+                            <img src="images/slideshow/slider_03.jpg" alt=" " width="960" height="400" />
+                        </div>
+                        <div class="slide">
+                            <img src="images/slideshow/slider_04.jpg" alt=" " width="960" height="400" />
+                        </div>
                     </div>
                 </div>
                 <div class="slides-nav">
@@ -32,7 +41,7 @@
             <a href="" id="tasto-issuu">vai allo shop design e casa </a>
         </div>
         <div class="one-third last">
-          <a target="_blank" href="http://www.amazon.it/s/ref=bl_sr_kitchen?ie=UTF8&field-brandtextbin=Matera+Arredamenti&node=524015031" id="tasto-amazon">vai al nostro magazine </a>
+            <a target="_blank" href="http://www.amazon.it/s/ref=bl_sr_kitchen?ie=UTF8&field-brandtextbin=Matera+Arredamenti&node=524015031" id="tasto-amazon">vai al nostro magazine </a>
         </div>
     </div>
     <div style="margin-top: 30px;" class="one">
@@ -52,10 +61,11 @@
                         <asp:Image ImageUrl="" Width="215" Height="215" runat="server" ID="imgProduct" />
                     </div>
                     <div class="mask_red">
-                        <asp:LinkButton style="display: block; height: 100%; text-decoration: none;" OnClick="lbProductDetail_OnClick" runat="server" id="lbProductDetail">
-                            <asp:HiddenField runat="server" ID="hfProductId"/>
+                        <asp:LinkButton Style="display: block; height: 100%; text-decoration: none;" OnClick="lbProductDetail_OnClick" runat="server" ID="lbProductDetail">
+                            <asp:HiddenField runat="server" ID="hfProductId" />
                             <span runat="server" id="spanProductDescription" class="desc_prodotto_home"></span>
-                            <span class="link_vedi_dettaglio">Vedi dettaglio</span> </asp:LinkButton>
+                            <span class="link_vedi_dettaglio">Vedi dettaglio</span>
+                        </asp:LinkButton>
                     </div>
                 </div>
             </ItemTemplate>
