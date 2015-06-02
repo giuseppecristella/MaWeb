@@ -4,6 +4,6 @@ public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Redirect("http://shop.materarredamenti.it/design");
+        //Response.Redirect("http://shop.materarredamenti.it/design");
     }
 }

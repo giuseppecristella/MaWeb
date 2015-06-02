@@ -145,7 +145,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function (event) {
             cookieChoices.showCookieConsentBar('Matera Arredamenti utilizza i cookie per migliorare la tua esperienza sul sito. Continuando la navigazione autorizzi l\'uso dei cookie.',
-                'OK', 'Maggiori Informazioni', 'URL Pagina Politica Privacy');
+                'OK', 'Maggiori Informazioni', 'Privacy.aspx');
         });
 </script>
 </body>
