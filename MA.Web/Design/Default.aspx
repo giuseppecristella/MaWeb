@@ -35,13 +35,13 @@
     </div>
     <div style="margin-top: 15px;" class="one">
         <div class="one-third">
-            <a href="http://stores.ebay.it/MaterarredamentiShop" target="_blank" id="tasto-ebay">vai al sito </a>
+            <a href="http://stores.ebay.it/MaterarredamentiShop" target="_blank" id="tasto-ebay"></a>
         </div>
         <div class="one-third">
-            <a href="" id="tasto-issuu">vai allo shop design e casa </a>
+            <a href="http://issuu.com/materaarredamenti" target="_blank" id="tasto-issuu"></a>
         </div>
         <div class="one-third last">
-            <a target="_blank" href="http://www.amazon.it/s/ref=bl_sr_kitchen?ie=UTF8&field-brandtextbin=Matera+Arredamenti&node=524015031" id="tasto-amazon">vai al nostro magazine </a>
+            <a target="_blank" href="http://www.amazon.it/s/ref=nb_sb_noss/275-7821011-7208732?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Dkitchen&field-keywords=materashop.it&rh=n%3A524015031%2Ck%3Amaterashop.it" id="tasto-amazon"></a>
         </div>
     </div>
     <div style="margin-top: 30px;" class="one">
